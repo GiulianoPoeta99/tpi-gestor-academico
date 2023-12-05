@@ -1,0 +1,68 @@
+@startuml AcademicManager
+
+package academicmanager {
+
+    class AcademicManager {
+        + main(args: String[]): void
+    }
+
+    ' ==========================================================================
+
+    package common {
+
+        interface Model {
+            save(): void
+            load(): void
+            validate(): boolean
+        }
+
+        interface Controller {
+            main(): void
+            create(): void
+            update(): void
+            view(): void
+            delete(): void
+        }
+
+    }
+
+    ' ==========================================================================
+
+    package student {
+
+        class Student {
+            - id: int
+            - dossierNumber: String
+            - firstName: String
+            - lastName: String
+            - birthDate: String
+
+            ' metodos ==============
+
+            + save(): void
+            + load(): void
+            + validate(): boolean
+        }
+
+        class StudentController {
+            + main(): void
+            + create(): void
+            + update(): void
+            + view(): void
+            + delete(): void
+        }
+
+    }
+}
+
+' ==============================================================================
+' estudiantes 
+
+Student --|> Model
+
+StudentController --|> Controller
+StudentController <-- Student
+
+' ==============================================================================
+
+@enduml

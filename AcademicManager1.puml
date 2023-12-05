@@ -1,0 +1,273 @@
+@startuml AcademicManager
+
+' ==============================================================================
+' factory method para las carreras
+
+package career {
+    interface UniversityCareer {
+        create(): void
+    }
+
+    interface UniversityCareerCreator {
+        createUniversityCareer(): UniversityCareer
+    }
+
+    class Career {
+        - id: int
+        - name: String
+        - plan: StudyPlan
+        - students: StundentsByCareer
+        
+        ' metodos ----------------------
+
+        + create(): void
+    }
+    ' conexiones -----------------------
+    Career --|> UniversityCareer
+
+    class CareerCreator {
+        ' metodos ----------------------
+
+        + createUniversityCareer(): UniversityCareer
+    }
+    ' conexiones -----------------------
+    CareerCreator --|> UniversityCareerCreator
+    CareerCreator ..--> Career : create
+}
+
+' ==============================================================================
+' hago un factory method de alumnos
+' hago un composite de alumnos. Simple: alumnos Compuesto: alumnos por carrera
+
+package student {
+
+    interface StudentComponent {
+        create(): void
+        printDetails(): void
+    }
+
+    interface StudentComponentCreator {
+        createStudentComponent(): StudentComponent
+    }
+
+    class Student {
+        - id: int
+        - dossierNumber: String
+        - firstName: String
+        - lastName: String
+        - dni: String
+        - birthDate: String
+        - currentCareer: Career
+
+        ' metodos ----------------------
+
+        + create(): void
+        + printDetails(): void
+    }
+
+    class StudentCreator {
+        + createStudentComponent(): StudentComponent
+    }
+
+    class StudentsByCareer {
+        - students: List<StudentComponent> 
+
+        ' metodos ----------------------
+
+        + add(subject: StudentComponent): void 
+        + remove(subject: StudentComponent): void 
+        + create(): void
+        + printDetails(): void
+    }
+
+    class StudentsByCareerCreator {
+        ' metodos ----------------------
+
+        + createStudentComponent(): StudentComponent
+    }
+
+    ' comun
+    Student --|> StudentComponent
+    StudentsByCareer --|> StudentComponent
+
+    ' factory method
+    StudentCreator --|> StudentComponentCreator
+    StudentCreator ..--> Student : create
+    StudentsByCareerCreator --|> StudentComponentCreator
+    StudentsByCareerCreator ..--> StudentsByCareer : create
+
+    ' composite
+    StudentsByCareer o-- StudentComponent
+}
+
+' ==============================================================================
+' conectamos carreras y alumnos
+
+Career *-- StudentsByCareer
+Student *-- Career
+
+' ==============================================================================
+' hago un factory method de materias
+' hago un composite de materias. Simple: materia Compuesto: materias por cuatrimestre
+' hago un strategy para las materias para que esten las obligatorias y las opcionales
+
+' TODO hago un state para ver los estados de las materias? hay que ver el tema de los finales
+
+package subject {
+
+    interface SubjectComponent {
+        create(): void
+        printDetails(): void
+    }
+
+    interface SubjectComponentCreator {
+        createSubjectComponent(): SubjectComponent
+    }
+
+    interface SubjectState {
+
+    }
+
+    class NotEnrolled {
+
+    }
+    NotEnrolled --|> SubjectState
+
+    class Enrolled {
+
+    }
+    Enrolled --|> SubjectState
+
+    class Failed {
+
+    }
+    Failed --|> SubjectState
+
+    class Passed {
+
+    }
+    Passed --|> SubjectState
+
+    class Approval {
+
+    }
+    Approval --|> SubjectState
+
+
+    abstract class Subject {
+        - id: int
+        - name: String
+        - correlativeSubjects: ListOfSubjects
+        - state: SubjectState
+
+        ' metodos ----------------------
+
+        + create(): void
+        + printDetails(): void
+    }
+    Subject --|> SubjectComponent
+    Subject *-- SubjectState
+
+    class ObligatorySubject {
+
+    }
+    ObligatorySubject --|> Subject
+
+    class OptionalSubject {
+
+    }
+    OptionalSubject --|> Subject
+
+    class SubjectCreator {
+        ' metodos ----------------------
+
+        + createSubjectComponent(): SubjectComponent
+    }
+    SubjectCreator --|> SubjectComponentCreator
+    SubjectCreator ..--> Subject : create
+
+    class ListOfSubjects {
+        - subjects: List<SubjectComponent> 
+
+        ' metodos ----------------------
+
+        + add(subject: SubjectComponent): void 
+        + remove(subject: SubjectComponent): void 
+        + create(): void
+        + printDetails(): void
+    }
+    ListOfSubjects --|> SubjectComponent
+    ListOfSubjects o-- SubjectComponent
+
+    class ListOfSubjectsCreator {
+        ' metodos ----------------------
+
+        + createSubjectComponent(): SubjectComponent
+    }
+    ListOfSubjectsCreator --|> SubjectComponentCreator
+    ListOfSubjectsCreator ..--> ListOfSubjects : create
+}
+
+' ==============================================================================
+' se aplico un strategy para los tipos de planes
+
+package studyplan {
+    interface StudyPlanStrategy {
+        printConditions(): void
+    }
+
+    class StudyPlanA {
+        + printConditions(): void
+    }
+    StudyPlanA --|> StudyPlanStrategy
+
+    class StudyPlanB {
+        + printConditions(): void
+    }
+    StudyPlanB --|> StudyPlanStrategy
+
+    class StudyPlanC {
+        + printConditions(): void
+    }
+    StudyPlanC --|> StudyPlanStrategy
+
+    class StudyPlanD {
+        + printConditions(): void
+    }
+    StudyPlanD --|> StudyPlanStrategy
+
+    class StudyPlanE {
+        + printConditions(): void
+    }
+    StudyPlanE --|> StudyPlanStrategy
+
+    class FourMonths {
+        subjects: ListOfSubjects
+    }
+    FourMonths *-- ListOfSubjects
+
+    class Year {
+        - yearNumber: int
+        - fourMonths: List<FourMonths>
+    }
+    Year *-- FourMonths
+    class StudyPlan {
+        - id: int
+        - type: StudyPlanStrategy 
+        - years: List<Year> 
+
+        ' metodos ----------------------
+
+    }
+    StudyPlan o-- StudyPlanStrategy
+    StudyPlan *-- Year
+}
+
+' ==============================================================================
+' unimos carreca con plan de estudios
+
+Career *-- StudyPlan
+
+' ==============================================================================
+
+@enduml
