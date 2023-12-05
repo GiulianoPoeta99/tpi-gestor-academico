@@ -1,9 +1,12 @@
 @startuml AcademicManager
 
+
 package academicmanager {
+    note "The builders, setters, and getters \n are not included in the diagram." as N1
 
     class AcademicManager {
-        + main(args: String[]): void
+        # loadData(): void
+        {static} + main(args: String[]): void
     }
 
     ' ==========================================================================
@@ -29,27 +32,30 @@ package academicmanager {
     ' ==========================================================================
 
     package student {
-
+        
         class Student {
+            {static} - TRANSLATE_NAME: String
             - id: int
             - dossierNumber: String
             - firstName: String
             - lastName: String
-            - birthDate: String
+            - birthDate: LocalDate
+            {static} # serial: int
+            {static} # all: Map<Integer, Student>
 
-            ' metodos ==============
-
-            + save(): void
-            + load(): void
-            + validate(): boolean
+            {static} # addSerial(): void
+            {static} + getById(int id): Student
+            {abstract} + save(): void
+            {abstract} + validate(): boolean
+            {abstract} + toString(): String
         }
 
         class StudentController {
-            + main(): void
-            + create(): void
-            + update(): void
-            + view(): void
-            + delete(): void
+            {abstract} + main(): void
+            {abstract} + create(): void
+            {abstract} + update(): void
+            {abstract} + view(): void
+            {abstract} + delete(): void
         }
 
     }
