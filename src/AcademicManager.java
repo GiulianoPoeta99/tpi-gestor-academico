@@ -1,4 +1,6 @@
 import student.Student;
+import career.Career;
+import studyplan.StudyPlan;;
 
 /**
  * Manages academic-related operations such as student enrollment, career registration,
@@ -17,6 +19,8 @@ public class AcademicManager {
      */
     protected void loadData() {
         Student.loadData();
+        Career.loadData();
+        StudyPlan.loadData();
     }
 
     /**

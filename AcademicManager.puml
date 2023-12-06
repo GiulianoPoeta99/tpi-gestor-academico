@@ -129,6 +129,11 @@ package academicmanager {
 ' ==============================================================================
 ' conexiones de clases
 
+' main
+AcademicManager *-- Student
+AcademicManager *-- Career
+AcademicManager *-- StudyPlan 
+
 ' estudiantes 
 
 Student --|> Model
