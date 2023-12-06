@@ -1,20 +1,38 @@
+import student.Student;
+
 /**
- *
- * @author gpoeta
+ * Manages academic-related operations such as student enrollment, career registration,
+ * and course enrollment.
+ * 
+ * This class serves as the entry point for the academic management system.
+ * It includes a method for loading initial data and a main method to perform various academic tasks.
+ * 
+ * @author Giuliano Ignacio Poeta
  */
 public class AcademicManager {
 
     /**
-     * @param args the command line arguments
+     * Loads initial data for testing purposes.
+     * This method initializes students with sample data.
+     */
+    protected void loadData() {
+        Student.loadData();
+    }
+
+    /**
+     * Entry point for the academic management system.
+     * This method contains tasks related to student enrollment, career registration,
+     * course enrollment, and checking if a student has completed a career.
+     * 
+     * @param args The command line arguments.
      */
     public static void main(String[] args) {
         /*
-        TODO: alta de alumnos
-        TODO: alta de carreras y planes de estudio
-        TODO: inscripción de un alumno a una carrera
-        TODO: inscripción de un alumno a una materia
-        TODO: verificar si un alumno terminó la carrera
+        TODO: Student enrollment
+        TODO: Career and study plan registration
+        TODO: Enrollment of a student in a career
+        TODO: Enrollment of a student in a course
+        TODO: Verify if a student has completed a career
         */
     }
-    
 }

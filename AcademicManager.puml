@@ -40,11 +40,14 @@ package academicmanager {
             - firstName: String
             - lastName: String
             - birthDate: LocalDate
+            - idCareer: int
             {static} # serial: int
             {static} # all: Map<Integer, Student>
 
             {static} # addSerial(): void
             {static} + getById(int id): Student
+            {static} + getAll(): Map<Integer, Student>
+            {static} + loadData(): void
             {abstract} + save(): void
             {abstract} + validate(): boolean
             {abstract} + toString(): String
@@ -59,15 +62,55 @@ package academicmanager {
         }
 
     }
+    
+    ' ==========================================================================
+
+    package career {
+        
+        class Career {
+            {static} - TRANSLATE_NAME: String
+            - id: int
+            - name: String
+            {static} # serial: int
+            {static} # all: Map<Integer, Career>
+
+            {static} # addSerial(): void
+            {static} + getById(int id): Career
+            {static} + getAll(): Map<Integer, Career>
+            {static} + loadData(): void
+            {abstract} + save(): void
+            {abstract} + validate(): boolean
+            {abstract} + toString(): String
+        }
+
+        class CareerController {
+            {abstract} + main(): void
+            {abstract} + create(): void
+            {abstract} + update(): void
+            {abstract} + view(): void
+            {abstract} + delete(): void
+        }
+
+    }
 }
 
 ' ==============================================================================
+' conexiones de clases
+
 ' estudiantes 
 
 Student --|> Model
 
 StudentController --|> Controller
 StudentController <-- Student
+
+' carreras
+
+Career --|> Model
+
+CareerController --|> Controller
+CareerController <-- Career
+
 
 ' ==============================================================================
 

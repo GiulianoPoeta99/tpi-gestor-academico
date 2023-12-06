@@ -11,7 +11,7 @@ import common.Model;
  * This class implements the Model interface.
  * It provides methods to manage student information.
  *
- * @author gpoeta
+ * @author Giuliano Ignacio Poeta
  */
 public class Student implements Model {
     // Constants
@@ -23,6 +23,7 @@ public class Student implements Model {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
+    private int idCareer;
 
     // Static attributes
     protected static int serial = 0;
@@ -34,6 +35,31 @@ public class Student implements Model {
      * Default constructor for the Student class.
      */
     public Student() {}
+
+    /**
+     * Parameterized constructor for the Student class.
+     * Initializes a new student with the provided attributes and saves it.
+     *
+     * @param dossierNumber The dossier number of the student.
+     * @param firstName     The first name of the student.
+     * @param lastName      The last name of the student.
+     * @param birthDate      The birth date of the student.
+     * @param idCareer       The career ID of the student.
+     */
+    protected Student(
+            String dossierNumber,
+            String firstName,
+            String lastName,
+            LocalDate birthDate,
+            int idCareer
+    ) {
+        this.setDossierNumber(dossierNumber);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setBirthDate(birthDate);
+        this.setIdCareer(idCareer);
+        this.save();
+    }
 
     /**
      * Copy constructor for the Student class.
@@ -149,6 +175,26 @@ public class Student implements Model {
         return this.birthDate;
     }
 
+    /**
+     * Sets the career ID for the student.
+     * 
+     * @param idCareer The career ID.
+     * @return The updated Student object.
+     */
+    public Student setIdCareer(int idCareer) {
+        this.idCareer = idCareer;
+        return this;
+    }
+
+    /**
+     * Gets the career ID of the student.
+     * 
+     * @return The career ID.
+     */
+    public int getIdCareer() {
+        return this.idCareer;
+    }
+
     // Methods ================================================================
 
     /**
@@ -162,11 +208,29 @@ public class Student implements Model {
     }
 
     /**
+     * Retrieves a mapping of all students where the key is the student ID.
+     *
+     * @return A mapping of all students.
+     */
+    public static Map<Integer, Student> getAll() {
+        return all;
+    }
+
+    /**
      * Increments the serial number for student instances.
      * This method is used internally.
      */
     protected static void addSerial() {
         serial++;
+    }
+
+    /**
+     * Loads initial data for testing purposes.
+     * This method initializes student instances with sample data.
+     * The students are then added to the collection of all students.
+     */
+    public static void loadData() {
+        new Student("0001", "Giuliano", "Poeta", LocalDate.of(1999, 9, 14), 1);
     }
 
     // Implements ==============================================================
