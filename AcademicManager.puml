@@ -124,6 +124,37 @@ package academicmanager {
         }
 
     }
+
+    package subject {
+        
+        class Subject {
+            {static} - TRANSLATE_NAME: String
+            - id: int
+            - name: String
+            - isOptional: boolean
+            - fourMonths: int
+            - idStudyPlan: int
+            {static} # serial: int
+            {static} # all: Map<Integer, Subject>
+
+            {static} # addSerial(): void
+            {static} + getById(int id): Subject
+            {static} + getAll(): Map<Integer, Subject>
+            {static} + loadData(): void
+            {abstract} + save(): void
+            {abstract} + validate(): boolean
+            {abstract} + toString(): String
+        }
+
+        class SubjectController {
+            {abstract} + main(): void
+            {abstract} + create(): void
+            {abstract} + update(): void
+            {abstract} + view(): void
+            {abstract} + delete(): void
+        }
+
+    }
 }
 
 ' ==============================================================================
@@ -148,13 +179,19 @@ Career --|> Model
 CareerController --|> Controller
 CareerController <-- Career
 
-' Plan de Estudio
+' plan de Estudio
 
 StudyPlan --|> Model
 
 StudyPlanController --|> Controller
 StudyPlanController <-- StudyPlan
 
+' carrera
+
+Subject --|> Model
+
+SubjectController --|> Controller
+SubjectController <-- Subject
 
 ' ==============================================================================
 

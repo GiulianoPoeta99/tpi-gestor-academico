@@ -167,7 +167,10 @@ public class Career implements Model {
      */
     @Override
     public boolean validate() {
-        return (this.getName() != null);
+        return (
+            this.getName() != null &&
+            this.getIdStudyPlan() != 0
+        );
     }
 
     /**
