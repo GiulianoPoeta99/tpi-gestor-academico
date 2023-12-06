@@ -19,6 +19,7 @@ public class Career implements Model {
     // Attributes
     private int id;
     private String name;
+    private int idStudyPlan;
 
     // Static attributes
     protected static int serial = 0;
@@ -51,6 +52,7 @@ public class Career implements Model {
     protected Career(Career career) {
         addSerial();
         career.setId(serial);
+        this.setId(serial);
         all.put(career.getId(), career);
     }
 
@@ -94,6 +96,26 @@ public class Career implements Model {
      */
     public String getName() {
         return this.name;
+    }
+
+    /**
+     * Sets the ID of the study plan associated with the career.
+     *
+     * @param idStudyPlan The ID of the study plan to set.
+     * @return This career instance.
+     */
+    public Career setIdStudyPlan(int idStudyPlan) {
+        this.idStudyPlan = idStudyPlan;
+        return this;
+    }
+
+    /**
+     * Gets the ID of the study plan associated with the career.
+     *
+     * @return The ID of the study plan.
+     */
+    public int getIdStudyPlan() {
+        return this.idStudyPlan;
     }
 
     // Methods ================================================================

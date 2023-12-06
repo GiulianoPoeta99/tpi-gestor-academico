@@ -71,6 +71,7 @@ package academicmanager {
             {static} - TRANSLATE_NAME: String
             - id: int
             - name: String
+            - idStudyPlan: int
             {static} # serial: int
             {static} # all: Map<Integer, Career>
 
@@ -84,6 +85,37 @@ package academicmanager {
         }
 
         class CareerController {
+            {abstract} + main(): void
+            {abstract} + create(): void
+            {abstract} + update(): void
+            {abstract} + view(): void
+            {abstract} + delete(): void
+        }
+
+    }
+
+    ' ==========================================================================
+
+    package studyplan {
+        
+        class StudyPlan {
+            {static} - TRANSLATE_NAME: String
+            {static} - TYPES_STUDY_PLAN: List<String>
+            - id: int
+            - type: String
+            {static} # serial: int
+            {static} # all: Map<Integer, StudyPlan>
+
+            {static} # addSerial(): void
+            {static} + getById(int id): StudyPlan
+            {static} + getAll(): Map<Integer, StudyPlan>
+            {static} + loadData(): void
+            {abstract} + save(): void
+            {abstract} + validate(): boolean
+            {abstract} + toString(): String
+        }
+
+        class StudyPlanController {
             {abstract} + main(): void
             {abstract} + create(): void
             {abstract} + update(): void
@@ -110,6 +142,13 @@ Career --|> Model
 
 CareerController --|> Controller
 CareerController <-- Career
+
+' Plan de Estudio
+
+StudyPlan --|> Model
+
+StudyPlanController --|> Controller
+StudyPlanController <-- StudyPlan
 
 
 ' ==============================================================================

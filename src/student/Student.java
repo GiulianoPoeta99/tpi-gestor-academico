@@ -40,20 +40,17 @@ public class Student implements Model {
      * Parameterized constructor for the Student class.
      * Initializes a new student with the provided attributes and saves it.
      *
-     * @param dossierNumber The dossier number of the student.
      * @param firstName     The first name of the student.
      * @param lastName      The last name of the student.
      * @param birthDate      The birth date of the student.
      * @param idCareer       The career ID of the student.
      */
     protected Student(
-            String dossierNumber,
             String firstName,
             String lastName,
             LocalDate birthDate,
             int idCareer
     ) {
-        this.setDossierNumber(dossierNumber);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setBirthDate(birthDate);
@@ -70,6 +67,9 @@ public class Student implements Model {
     protected Student(Student student) {
         addSerial();
         student.setId(serial);
+        student.setDossierNumber(String.format("%04d", serial));
+        this.setId(serial);
+        this.setDossierNumber(String.format("%04d", serial));
         all.put(student.getId(), student);
     }
 
@@ -230,7 +230,7 @@ public class Student implements Model {
      * The students are then added to the collection of all students.
      */
     public static void loadData() {
-        new Student("0001", "Giuliano", "Poeta", LocalDate.of(1999, 9, 14), 1);
+        new Student("Giuliano", "Poeta", LocalDate.of(1999, 9, 14), 1);
     }
 
     // Implements ==============================================================
