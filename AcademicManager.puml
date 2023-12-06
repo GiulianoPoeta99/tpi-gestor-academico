@@ -164,6 +164,7 @@ package academicmanager {
 AcademicManager *-- Student
 AcademicManager *-- Career
 AcademicManager *-- StudyPlan 
+AcademicManager *-- Subject
 
 ' estudiantes 
 
