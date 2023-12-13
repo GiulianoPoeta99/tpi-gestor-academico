@@ -30,7 +30,7 @@ public class StudyPlan implements Model {
     protected static int serial = 0;
     protected static Map<Integer, StudyPlan> all = new HashMap<Integer, StudyPlan>();
 
-    // Constructors ============================================================
+    // Builders ============================================================
 
     /**
      * Default constructor for the StudyPlan class.

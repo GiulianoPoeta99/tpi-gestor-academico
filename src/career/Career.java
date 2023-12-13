@@ -25,7 +25,7 @@ public class Career implements Model {
     protected static int serial = 0;
     protected static Map<Integer, Career> all = new HashMap<>();
 
-    // Constructors ============================================================
+    // Builders ============================================================
 
     /**
      * Default constructor for the Career class.
