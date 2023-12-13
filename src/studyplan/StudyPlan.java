@@ -25,6 +25,7 @@ public class StudyPlan implements Model {
     // Attributes
     private int id;
     private String type;
+    private int idCareer;
 
     // Static attributes
     protected static int serial = 0;
@@ -102,7 +103,6 @@ public class StudyPlan implements Model {
         return this;
     }
 
-
     /**
      * Gets the type of the study plan.
      *
@@ -110,6 +110,26 @@ public class StudyPlan implements Model {
      */
     public String getType() {
         return this.type;
+    }
+
+    /**
+     * Sets the career ID for the study plan.
+     * 
+     * @param idCareer The career ID to set.
+     * @return This study plan instance.
+     */
+    public StudyPlan setIdCareer(int idCareer) {
+        this.idCareer = idCareer;
+        return this;
+    }
+
+    /**
+     * Gets the career ID of the study plan.
+     * 
+     * @return The career ID of the study plan.
+     */
+    public int getIdCareer() {
+        return this.idCareer;
     }
 
     // Methods ================================================================
@@ -160,7 +180,10 @@ public class StudyPlan implements Model {
     @Override
     public boolean validate() {
         // Validation logic goes here
-        return (this.getType() != null);
+        return (
+            this.getType() != null &&
+            this.getIdCareer() != 0
+        );
     }
 
     /**
