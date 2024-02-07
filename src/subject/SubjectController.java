@@ -17,7 +17,7 @@ public class SubjectController implements Controller {
      * Main method for the subject controller.
      * Implementations for the main functionality of the subject controller should be provided here.
      */
-    public void main() {
+    public void index() {
         // Implementation for the main functionality of the subject controller.
     }
 

@@ -19,7 +19,7 @@ public interface Controller {
      * Entry point for the controller.
      * This method is typically used to initiate the application or module.
      */
-    void main();
+    void index();
 
     /**
      * Handles the creation of new entities or data.

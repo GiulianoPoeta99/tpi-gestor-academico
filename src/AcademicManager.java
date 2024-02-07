@@ -2,6 +2,7 @@ import student.Student;
 import career.Career;
 import studyplan.StudyPlan;
 import subject.Subject;
+import site.SiteController;
 
 /**
  * Manages academic-related operations such as student enrollment, career registration,
@@ -40,5 +41,12 @@ public class AcademicManager {
         TODO: Enrollment of a student in a course
         TODO: Verify if a student has completed a career
         */
+
+        // Carga inicial de datos
+        new AcademicManager().loadData();
+
+        // Inicializar la interfaz gráfica de usuario (UI) utilizando SiteController
+        SiteController siteController = new SiteController();
+        siteController.index();
     }
 }

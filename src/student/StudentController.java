@@ -15,7 +15,7 @@ public class StudentController implements Controller {
      * Entry point for the student controller.
      * This method is typically used to initiate the student-related functionality.
      */
-    public void main() {
+    public void index() {
         // Implementation for the main functionality of the student controller.
     }
     

@@ -17,7 +17,7 @@ public class StudyPlanController implements Controller {
      * Main method for the study plan controller.
      * Implementations for the main functionality of the study plan controller should be provided here.
      */
-    public void main() {
+    public void index() {
         // Implementation for the main functionality of the study plan controller.
     }
 

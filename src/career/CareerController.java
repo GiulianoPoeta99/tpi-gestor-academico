@@ -15,7 +15,7 @@ public class CareerController implements Controller {
      * Entry point for the career controller.
      * This method is typically used to initiate the career-related functionality.
      */
-    public void main() {
+    public void index() {
         // Implementation for the main functionality of the career controller.
     }
     
