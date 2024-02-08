@@ -10,7 +10,7 @@ public class SubjectViews {
     public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
-        JLabel heading = CommonComponent.heading(24, "Materias");
+        JLabel heading = CommonComponent.h1("Materias");
         components.add(heading);
 
         return components;

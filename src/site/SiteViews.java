@@ -31,7 +31,7 @@ public class SiteViews {
     public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
-        JLabel heading = CommonComponent.heading(24, "Inicio");
+        JLabel heading = CommonComponent.h1("Inicio");
         components.add(heading);
 
         return components;

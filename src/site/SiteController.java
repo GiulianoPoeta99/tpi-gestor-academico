@@ -5,13 +5,6 @@ import java.util.ArrayList;
 
 import common.Controller;
 
-/**
- * Controller for site management.
- * This controller implements the Controller interface.
- * It provides methods to manage site information such as creating, updating, viewing, and deleting.
- *
- * @author Giuliano Ignacio Poeta
- */
 public class SiteController implements Controller {
 
     private static final SiteController instance = new SiteController(); // Instancia única del controlador
@@ -20,19 +13,10 @@ public class SiteController implements Controller {
     private SiteController() {
     }
 
-    /**
-     * Método estático para obtener la instancia única del controlador.
-     *
-     * @return La instancia única del controlador.
-     */
     public static SiteController getInstance() {
         return instance;
     }
 
-    /**
-     * Main method of the site controller.
-     * This method is the main entry point for site management.
-     */
     public void principal() {
         // Crear un array list de redirecciones
         ArrayList<String> redirections = new ArrayList<>();

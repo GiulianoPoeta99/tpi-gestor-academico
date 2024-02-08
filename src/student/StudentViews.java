@@ -10,7 +10,7 @@ public class StudentViews {
     public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
-        JLabel heading = CommonComponent.heading(24, "Estudiantes");
+        JLabel heading = CommonComponent.h1("Estudiantes");
         components.add(heading);
 
         return components;

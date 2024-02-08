@@ -10,7 +10,7 @@ public class StudyPlanViews {
     public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
-        JLabel heading = CommonComponent.heading(24, "Plan de Estudios");
+        JLabel heading = CommonComponent.h1("Plan de Estudios");
         components.add(heading);
 
         return components;
