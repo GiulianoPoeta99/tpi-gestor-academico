@@ -15,11 +15,6 @@ public class LayOutComponent {
     private static JFrame frame;
     private static JPanel contentPanel;
 
-    /**
-     * Method to create and configure the main JFrame.
-     *
-     * @return The configured JFrame.
-     */
     public static JFrame mainFrame() {
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,12 +22,6 @@ public class LayOutComponent {
         return frame;
     }
 
-    /**
-     * Method to create and configure the side panel.
-     *
-     * @param redirections The ArrayList of redirections.
-     * @return The configured side panel.
-     */
     public static JPanel sidePanel(ArrayList<String> redirections) {
         JPanel sidePanel = new JPanel();
         sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS)); // Use BoxLayout to stack buttons vertically
@@ -48,12 +37,6 @@ public class LayOutComponent {
         return sidePanel;
     }
 
-    /**
-     * Method to create a custom button with specified index.
-     *
-     * @param index The index of the redirection.
-     * @return The configured JButton.
-     */
     public static JButton sideButton(int index) {
         String[] redirections = {"Inicio", "Carreras", "Planes de Estudio", "Materias", "Alumnos"};
         String buttonText = redirections[index]; // Obtener el texto del botón según el índice
@@ -99,11 +82,6 @@ public class LayOutComponent {
     }
 
 
-    /**
-     * Method to create and configure the top panel with the title.
-     *
-     * @return The configured top panel.
-     */
     public static JPanel topPanel() {
         JPanel topPanel = new JPanel();
         topPanel.setBackground(Color.decode("#000000")); // Color oscuro para el top panel
@@ -121,22 +99,12 @@ public class LayOutComponent {
         return topPanel;
     }
 
-    /**
-     * Method to create and configure the content panel.
-     *
-     * @return The configured content panel.
-     */
     public static JPanel contentPanel() {
         contentPanel = new JPanel();
         contentPanel.setBackground(Color.decode("#2E2F32")); // Dark color for the content panel
         return contentPanel;
     }
 
-    /**
-     * Method to get the current content panel.
-     *
-     * @return The current content panel.
-     */
     public static JPanel getContentPanel() {
         return contentPanel;
     }
