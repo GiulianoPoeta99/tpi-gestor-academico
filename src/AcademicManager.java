@@ -1,8 +1,8 @@
-import student.Student;
+import site.SiteController;
 import career.Career;
 import studyplan.StudyPlan;
 import subject.Subject;
-import site.SiteController;
+import student.Student;
 
 /**
  * Manages academic-related operations such as student enrollment, career registration,
@@ -46,7 +46,6 @@ public class AcademicManager {
         new AcademicManager().loadData();
 
         // Inicializar la interfaz gráfica de usuario (UI) utilizando SiteController
-        SiteController siteController = new SiteController();
-        siteController.principal();
+        SiteController.getInstance().principal();
     }
 }

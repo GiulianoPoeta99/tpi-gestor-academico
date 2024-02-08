@@ -14,6 +14,21 @@ import common.Controller;
  */
 public class SiteController implements Controller {
 
+    private static final SiteController instance = new SiteController(); // Instancia única del controlador
+
+    // Constructor privado para evitar la creación de instancias externas
+    private SiteController() {
+    }
+
+    /**
+     * Método estático para obtener la instancia única del controlador.
+     *
+     * @return La instancia única del controlador.
+     */
+    public static SiteController getInstance() {
+        return instance;
+    }
+
     /**
      * Main method of the site controller.
      * This method is the main entry point for site management.

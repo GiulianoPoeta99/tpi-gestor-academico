@@ -1,5 +1,7 @@
 package student;
 
+import career.CareerController;
+import career.CareerViews;
 import common.Controller;
 
 /**
@@ -11,12 +13,27 @@ import common.Controller;
  * @author Giuliano Ignacio Poeta
  */
 public class StudentController implements Controller {
+    private static final StudentController instance = new StudentController(); // Instancia única del controlador
+
+    // Constructor privado para evitar la creación de instancias externas
+    private StudentController() {
+    }
+
+    /**
+     * Método estático para obtener la instancia única del controlador.
+     *
+     * @return La instancia única del controlador.
+     */
+    public static StudentController getInstance() {
+        return instance;
+    }
+
     /**
      * Entry point for the student controller.
      * This method is typically used to initiate the student-related functionality.
      */
     public void index() {
-        // Implementation for the main functionality of the student controller.
+        render(StudentViews::index);
     }
     
     /**

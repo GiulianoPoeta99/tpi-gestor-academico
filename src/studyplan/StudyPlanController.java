@@ -1,6 +1,8 @@
 package studyplan;
 
+import career.CareerViews;
 import common.Controller;
+import student.StudentController;
 
 /**
  * Represents a controller for managing study plans.
@@ -12,13 +14,27 @@ import common.Controller;
  * @author Giuliano Ignacio Poeta
  */
 public class StudyPlanController implements Controller {
+    private static final StudyPlanController instance = new StudyPlanController(); // Instancia única del controlador
+
+    // Constructor privado para evitar la creación de instancias externas
+    private StudyPlanController() {
+    }
+
+    /**
+     * Método estático para obtener la instancia única del controlador.
+     *
+     * @return La instancia única del controlador.
+     */
+    public static StudyPlanController getInstance() {
+        return instance;
+    }
 
     /**
      * Main method for the study plan controller.
      * Implementations for the main functionality of the study plan controller should be provided here.
      */
     public void index() {
-        // Implementation for the main functionality of the study plan controller.
+        render(StudyPlanViews::index);
     }
 
     /**

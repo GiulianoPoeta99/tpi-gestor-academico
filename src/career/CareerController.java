@@ -1,6 +1,7 @@
 package career;
 
 import common.Controller;
+import site.SiteViews;
 
 /**
  * Controller class for managing career entities.
@@ -11,12 +12,27 @@ import common.Controller;
  * @author Giuliano Ignacio Poeta
  */
 public class CareerController implements Controller {
+    private static final CareerController instance = new CareerController(); // Instancia única del controlador
+
+    // Constructor privado para evitar la creación de instancias externas
+    private CareerController() {
+    }
+
+    /**
+     * Método estático para obtener la instancia única del controlador.
+     *
+     * @return La instancia única del controlador.
+     */
+    public static CareerController getInstance() {
+        return instance;
+    }
+
     /**
      * Entry point for the career controller.
      * This method is typically used to initiate the career-related functionality.
      */
     public void index() {
-        // Implementation for the main functionality of the career controller.
+        render(CareerViews::index);
     }
     
     /**

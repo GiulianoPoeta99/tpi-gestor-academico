@@ -1,6 +1,8 @@
 package subject;
 
+import career.CareerViews;
 import common.Controller;
+import studyplan.StudyPlanController;
 
 /**
  * Represents a controller for managing subjects.
@@ -12,13 +14,27 @@ import common.Controller;
  * @author Giuliano Ignacio Poeta
  */
 public class SubjectController implements Controller {
+    private static final SubjectController instance = new SubjectController(); // Instancia única del controlador
+
+    // Constructor privado para evitar la creación de instancias externas
+    private SubjectController() {
+    }
+
+    /**
+     * Método estático para obtener la instancia única del controlador.
+     *
+     * @return La instancia única del controlador.
+     */
+    public static SubjectController getInstance() {
+        return instance;
+    }
 
     /**
      * Main method for the subject controller.
      * Implementations for the main functionality of the subject controller should be provided here.
      */
     public void index() {
-        // Implementation for the main functionality of the subject controller.
+        render(SubjectViews::index);
     }
 
     /**

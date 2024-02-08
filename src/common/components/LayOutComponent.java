@@ -4,6 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import site.SiteController;
+import career.CareerController;
+import student.StudentController;
+import studyplan.StudyPlanController;
+import subject.SubjectController;
+
 public class LayOutComponent {
 
     private static JFrame frame;
@@ -33,8 +39,8 @@ public class LayOutComponent {
         sidePanel.setBackground(Color.decode("#191C20")); // Dark color for the side panel
 
         // Create and add a button for each redirection
-        for (String redirection : redirections) {
-            JButton button = sideButton(redirection);
+        for (int i = 0; i < redirections.size(); i++) {
+            JButton button = sideButton(i);
             sidePanel.add(button);
             sidePanel.add(Box.createRigidArea(new Dimension(0, 2))); // Add 2-pixel vertical space between buttons
         }
@@ -43,13 +49,16 @@ public class LayOutComponent {
     }
 
     /**
-     * Method to create a custom button with specified text.
+     * Method to create a custom button with specified index.
      *
-     * @param text The text to display on the button.
+     * @param index The index of the redirection.
      * @return The configured JButton.
      */
-    public static JButton sideButton(String text) {
-        JButton button = new JButton(text);
+    public static JButton sideButton(int index) {
+        String[] redirections = {"Inicio", "Carreras", "Planes de Estudio", "Materias", "Alumnos"};
+        String buttonText = redirections[index]; // Obtener el texto del botón según el índice
+
+        JButton button = new JButton(buttonText);
         button.setBackground(Color.decode("#191C20")); // Color oscuro para el fondo
         button.setForeground(Color.decode("#CCCCCC")); // Color claro para el texto
         button.setFont(new Font("Arial", Font.PLAIN, 16)); // Tamaño y tipo de fuente para el texto
@@ -63,6 +72,28 @@ public class LayOutComponent {
 
         // Establecer el ancho máximo para permitir que el botón se expanda horizontalmente
         button.setMaximumSize(new Dimension(Integer.MAX_VALUE, button.getPreferredSize().height));
+
+        // Agregar ActionListener para manejar los clics en el botón
+        button.addActionListener(e -> {
+            // Aquí implementa la lógica de redirección según el índice del botón
+            switch (index) {
+                case 0:
+                    SiteController.getInstance().index();
+                    break;
+                case 1:
+                    CareerController.getInstance().index();
+                    break;
+                case 2:
+                    StudyPlanController.getInstance().index();
+                    break;
+                case 3:
+                    SubjectController.getInstance().index();
+                    break;
+                case 4:
+                    StudentController.getInstance().index();
+                    break;
+            }
+        });
 
         return button;
     }
