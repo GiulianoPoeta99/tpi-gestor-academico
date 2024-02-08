@@ -1,5 +1,9 @@
 package common;
 
+import javax.swing.*;
+import java.util.List;
+import java.util.function.Supplier;
+
 /**
  * Represents a generic controller interface.
  * Controllers are responsible for handling user interactions and managing data flow.
@@ -40,4 +44,28 @@ public interface Controller {
      * Handles the deletion or removal of entities or data.
      */
     void delete();
+
+    /**
+     * Renders the view specified by the provided method.
+     * @param viewMethod The method of the view to render.
+     */
+    default void render(Supplier<List<JComponent>> viewMethod) {
+        // Get the content panel
+        JPanel contentPanel = common.components.LayOutComponent.getContentPanel();
+
+        // Clear existing content
+        contentPanel.removeAll();
+
+        // Execute the view method to render the content
+        List<JComponent> components = viewMethod.get(); // Utilizar get() en lugar de run()
+
+        // Add the components to the content panel
+        for (JComponent component : components) {
+            contentPanel.add(component);
+        }
+
+        // Repaint the content panel
+        contentPanel.revalidate();
+        contentPanel.repaint();
+    }
 }

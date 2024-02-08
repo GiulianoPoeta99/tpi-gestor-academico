@@ -20,10 +20,10 @@ public class AcademicManager {
      * This method initializes students with sample data.
      */
     protected void loadData() {
-        Student.loadData();
         Career.loadData();
         StudyPlan.loadData();
         Subject.loadData();
+        Student.loadData();
     }
 
     /**
@@ -47,6 +47,6 @@ public class AcademicManager {
 
         // Inicializar la interfaz gráfica de usuario (UI) utilizando SiteController
         SiteController siteController = new SiteController();
-        siteController.index();
+        siteController.principal();
     }
 }

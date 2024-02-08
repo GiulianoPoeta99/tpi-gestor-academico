@@ -6,13 +6,16 @@ import java.util.ArrayList;
 
 public class LayOutComponent {
 
+    private static JFrame frame;
+    private static JPanel contentPanel;
+
     /**
      * Method to create and configure the main JFrame.
      *
      * @return The configured JFrame.
      */
     public static JFrame mainFrame() {
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1280, 720);
         return frame;
@@ -93,8 +96,17 @@ public class LayOutComponent {
      * @return The configured content panel.
      */
     public static JPanel contentPanel() {
-        JPanel contentPanel = new JPanel();
+        contentPanel = new JPanel();
         contentPanel.setBackground(Color.decode("#2E2F32")); // Dark color for the content panel
+        return contentPanel;
+    }
+
+    /**
+     * Method to get the current content panel.
+     *
+     * @return The current content panel.
+     */
+    public static JPanel getContentPanel() {
         return contentPanel;
     }
 }

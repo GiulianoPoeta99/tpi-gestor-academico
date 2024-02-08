@@ -1,11 +1,9 @@
 package site;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 import common.Controller;
-import site.SiteViews;
 
 /**
  * Controller for site management.
@@ -20,40 +18,42 @@ public class SiteController implements Controller {
      * Main method of the site controller.
      * This method is the main entry point for site management.
      */
-    public void index() {
+    public void principal() {
+        // Crear un array list de redirecciones
         ArrayList<String> redirections = new ArrayList<>();
+        redirections.add("Inicio");
         redirections.add("Carreras");
         redirections.add("Planes de Estudio");
         redirections.add("Materias");
         redirections.add("Alumnos");
-        SiteViews.index(redirections);
+
+        // Inicializar la GUI utilizando SwingUtilities.invokeLater()
+        SwingUtilities.invokeLater(() -> {
+            // Invocar el método layout de SiteViews para configurar la interfaz gráfica
+            SiteViews.layout(redirections);
+
+            // Mostrar la vista de inicio (index)
+            index();
+        });
     }
 
-    /**
-     * Method to create a new site.
-     */
+    public void index() {
+        render(SiteViews::index);
+    }
+
     public void create() {
-        // Implementation of the create method
+        index();
     }
 
-    /**
-     * Method to update an existing site.
-     */
     public void update() {
-        // Implementation of the update method
+        index();
     }
 
-    /**
-     * Method to view site information.
-     */
     public void view() {
-        // Implementation of the view method
+        index();
     }
 
-    /**
-     * Method to delete a site.
-     */
     public void delete() {
-        // Implementation of the delete method
+        index();
     }
 }

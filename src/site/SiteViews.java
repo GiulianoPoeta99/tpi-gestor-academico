@@ -3,8 +3,10 @@ package site;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import common.components.LayOutComponent;
+import common.components.CommonComponent;
 
 /**
  * Class responsible for managing the site views.
@@ -12,7 +14,7 @@ import common.components.LayOutComponent;
  */
 public class SiteViews {
 
-    public static void index(ArrayList<String> redirections) {
+    public static void layout(ArrayList<String> redirections) {
         JFrame frame = LayOutComponent.mainFrame();
         JPanel topPanel = LayOutComponent.topPanel();
         JPanel sidePanel = LayOutComponent.sidePanel(redirections);
@@ -26,4 +28,12 @@ public class SiteViews {
         frame.setVisible(true);
     }
 
+    public static List<JComponent> index() {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel heading = CommonComponent.heading(24, "Inicio");
+        components.add(heading);
+
+        return components;
+    }
 }
