@@ -19,7 +19,7 @@ public class StudyPlan implements Model {
 
     // Static attributes
     protected static int serial = 0;
-    protected static Map<Integer, StudyPlan> all = new HashMap<Integer, StudyPlan>();
+    protected static Map<Integer, Model> all = new HashMap<>();
 
     // Builders ============================================================
 
@@ -72,11 +72,11 @@ public class StudyPlan implements Model {
 
     // Methods ================================================================
 
-    public static StudyPlan getById(int id) {
+    public static Model getById(int id) {
         return all.get(id);
     }
 
-    public static Map<Integer, StudyPlan> getAll() {
+    public static Map<Integer, Model> getAll() {
         return all;
     }
 
@@ -104,6 +104,16 @@ public class StudyPlan implements Model {
         if (this.validate()) {
             new StudyPlan(this);
         }
+    }
+
+    @Override
+    public Object[] getAttributeValues() {
+        return new Object[] { this.getType(), this.getIdCareer() }; // Devuelve los valores de los atributos como un arreglo de objetos
+    }
+
+    @Override
+    public String[] getAttributeNames() {
+        return new String[] { "Tipo", "ID Carrera" }; // Devuelve los nombres de los atributos como un arreglo de cadenas
     }
 
     // Overrides ===============================================================

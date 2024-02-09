@@ -20,7 +20,7 @@ public class Student implements Model {
 
     // Static attributes
     protected static int serial = 0;
-    protected static Map<Integer, Student> all = new HashMap<Integer, Student>();
+    protected static Map<Integer, Model> all = new HashMap<>();
 
     // Builders ============================================================
 
@@ -106,11 +106,11 @@ public class Student implements Model {
 
     // Methods ================================================================
 
-    public static Student getById(int id) {
+    public static Model getById(int id) {
         return all.get(id);
     }
 
-    public static Map<Integer, Student> getAll() {
+    public static Map<Integer, Model> getAll() {
         return all;
     }
 
@@ -139,6 +139,16 @@ public class Student implements Model {
         if (this.validate()) {
             new Student(this);
         }
+    }
+
+    @Override
+    public Object[] getAttributeValues() {
+        return new Object[] { this.getDossierNumber(), this.getFirstName(), this.getLastName(), this.getBirthDate(), this.getIdCareer()}; // Devuelve los valores de los atributos como un arreglo de objetos
+    }
+
+    @Override
+    public String[] getAttributeNames() {
+        return new String[] { "Legajo", "Nombre", "Apellido", "Fecha de nacimiento", "ID Carrera" }; // Devuelve los nombres de los atributos como un arreglo de cadenas
     }
 
     // Overrides ===============================================================

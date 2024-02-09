@@ -15,7 +15,7 @@ public class Career implements Model {
 
     // Static attributes
     protected static int serial = 0;
-    protected static Map<Integer, Career> all = new HashMap<>();
+    protected static Map<Integer, Model> all = new HashMap<>();
 
     // Builders ============================================================
 
@@ -55,11 +55,11 @@ public class Career implements Model {
 
     // Methods ================================================================
 
-    public static Career getById(int id) {
+    public static Model getById(int id) {
         return all.get(id);
     }
 
-    public static Map<Integer, Career> getAll() {
+    public static Map<Integer, Model> getAll() {
         return Career.all;
     }
 
@@ -84,6 +84,16 @@ public class Career implements Model {
         if (this.validate()) {
             new Career(this);
         }
+    }
+
+    @Override
+    public Object[] getAttributeValues() {
+        return new Object[] { this.getName() }; // Devuelve los valores de los atributos como un arreglo de objetos
+    }
+
+    @Override
+    public String[] getAttributeNames() {
+        return new String[] { "Nombre" }; // Devuelve los nombres de los atributos como un arreglo de cadenas
     }
 
     // Overrides ===============================================================

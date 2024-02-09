@@ -1,8 +1,12 @@
 package student;
 
+import career.Career;
 import career.CareerController;
 import career.CareerViews;
 import common.Controller;
+import common.Model;
+
+import java.util.Map;
 
 public class StudentController implements Controller {
     private static final StudentController instance = new StudentController(); // Instancia única del controlador
@@ -20,7 +24,7 @@ public class StudentController implements Controller {
      * This method is typically used to initiate the student-related functionality.
      */
     public void index() {
-        render(StudentViews::index);
+        render(() -> StudentViews.index(Student.getAll()));
     }
 
     public void create() {

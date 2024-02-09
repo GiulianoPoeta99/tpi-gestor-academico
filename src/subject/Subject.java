@@ -7,7 +7,7 @@ import common.Model;
 
 public class Subject implements Model {
     // Constants
-    public static final String TRANSLATE_NAME = "Subject";
+    public static final String TRANSLATE_NAME = "Materia";
 
     // Attributes
     private int id;
@@ -18,7 +18,7 @@ public class Subject implements Model {
 
     // Static attributes
     protected static int serial = 0;
-    protected static Map<Integer, Subject> all = new HashMap<Integer, Subject>();
+    protected static Map<Integer, Model> all = new HashMap<>();
 
     // Builders ============================================================
 
@@ -93,11 +93,11 @@ public class Subject implements Model {
 
     // Methods ================================================================
 
-    public static Subject getById(int id) {
+    public static Model getById(int id) {
         return all.get(id);
     }
 
-    public static Map<Integer, Subject> getAll() {
+    public static Map<Integer, Model> getAll() {
         return all;
     }
 
@@ -125,6 +125,16 @@ public class Subject implements Model {
         if (this.validate()) {
             new Subject(this);
         }
+    }
+
+    @Override
+    public Object[] getAttributeValues() {
+        return new Object[] { this.getName(), this.getIsOptional(), this.getFourMonths(), this.getIdStudyPlan() }; // Devuelve los valores de los atributos como un arreglo de objetos
+    }
+
+    @Override
+    public String[] getAttributeNames() {
+        return new String[] { "Nombre", "Opcional", "Cuatrimestre", "ID Plan de studio" }; // Devuelve los nombres de los atributos como un arreglo de cadenas
     }
 
     // Overrides ===============================================================

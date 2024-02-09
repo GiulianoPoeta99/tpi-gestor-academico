@@ -1,6 +1,9 @@
 package studyplan;
 
 import common.Controller;
+import common.Model;
+
+import java.util.Map;
 
 public class StudyPlanController implements Controller {
     private static final StudyPlanController instance = new StudyPlanController(); // Instancia única del controlador
@@ -14,7 +17,7 @@ public class StudyPlanController implements Controller {
     }
 
     public void index() {
-        render(StudyPlanViews::index);
+        render(() -> StudyPlanViews.index(StudyPlan.getAll()));
     }
 
     public void create() {

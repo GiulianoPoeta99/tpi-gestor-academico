@@ -1,6 +1,8 @@
 package subject;
 
 import common.Controller;
+import studyplan.StudyPlan;
+import studyplan.StudyPlanViews;
 
 public class SubjectController implements Controller {
     private static final SubjectController instance = new SubjectController(); // Instancia única del controlador
@@ -14,7 +16,7 @@ public class SubjectController implements Controller {
     }
 
     public void index() {
-        render(SubjectViews::index);
+        render(() -> SubjectViews.index(Subject.getAll()));
     }
 
     public void create() {
