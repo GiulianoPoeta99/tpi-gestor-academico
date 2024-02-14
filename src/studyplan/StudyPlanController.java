@@ -6,9 +6,8 @@ import common.Model;
 import java.util.Map;
 
 public class StudyPlanController implements Controller {
-    private static final StudyPlanController instance = new StudyPlanController(); // Instancia única del controlador
+    private static final StudyPlanController instance = new StudyPlanController();
 
-    // Constructor privado para evitar la creación de instancias externas
     private StudyPlanController() {
     }
 

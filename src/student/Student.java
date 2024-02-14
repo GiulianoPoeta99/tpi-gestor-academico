@@ -10,7 +10,7 @@ public class Student implements Model {
     // Constants
     public static final String TRANSLATE_NAME = "Estudiante";
 
-    // Atributes
+    // Attributes
     private int id;
     private String dossierNumber;
     private String firstName;

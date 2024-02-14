@@ -5,9 +5,8 @@ import studyplan.StudyPlan;
 import studyplan.StudyPlanViews;
 
 public class SubjectController implements Controller {
-    private static final SubjectController instance = new SubjectController(); // Instancia única del controlador
+    private static final SubjectController instance = new SubjectController();
 
-    // Constructor privado para evitar la creación de instancias externas
     private SubjectController() {
     }
 

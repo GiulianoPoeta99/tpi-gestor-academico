@@ -12,9 +12,8 @@ import subject.SubjectController;
 
 public class SiteController implements Controller {
 
-    private static final SiteController instance = new SiteController(); // Instancia única del controlador
+    private static final SiteController instance = new SiteController();
 
-    // Constructor privado para evitar la creación de instancias externas
     private SiteController() {
     }
 
@@ -23,7 +22,6 @@ public class SiteController implements Controller {
     }
 
     public void principal() {
-        // Crear un array list de redirecciones
         Map<String, Runnable> redirections = new LinkedHashMap<>();
         redirections.put("Inicio",SiteController.getInstance()::index);
         redirections.put("Carreras", CareerController.getInstance()::index);
@@ -31,12 +29,8 @@ public class SiteController implements Controller {
         redirections.put("Materias", SubjectController.getInstance()::index);
         redirections.put("Alumnos", StudentController.getInstance()::index);
 
-        // Inicializar la GUI utilizando SwingUtilities.invokeLater()
         SwingUtilities.invokeLater(() -> {
-            // Invocar el método layout de SiteViews para configurar la interfaz gráfica
             SiteViews.layout(redirections);
-
-            // Mostrar la vista de inicio (index)
             index();
         });
     }

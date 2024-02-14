@@ -5,20 +5,18 @@ import java.awt.*;
 
 public class ButtonComponent extends UIComponent{
     public static JButton buttonSuccess(String text, Runnable redirection) {
-
         JButton button = new JButton(text);
         button.setBackground(SUCCESS_COLOR);
         button.setForeground(TEXT_COLOR);
         button.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 13));
         button.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR), // Borde inferior
-                BorderFactory.createEmptyBorder(10, 20, 10, 20) // Espacio interno alrededor del texto
+                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)
         ));
-        button.setFocusPainted(false); // Remover indicación de enfoque
-        button.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar horizontalmente el texto
-        button.setAlignmentY(Component.CENTER_ALIGNMENT); // Centrar verticalmente el texto
+        button.setFocusPainted(false);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-        // Agregar ActionListener para manejar los clics en el botón
         button.addActionListener(e -> {
             redirection.run();
         });
@@ -27,20 +25,18 @@ public class ButtonComponent extends UIComponent{
     }
 
     public static JButton buttonPrimary(String text, Runnable redirection) {
-
         JButton button = new JButton(text);
         button.setBackground(PRIMARY_COLOR);
         button.setForeground(TEXT_COLOR);
         button.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 13));
         button.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR), // Borde inferior
-                BorderFactory.createEmptyBorder(10, 20, 10, 20) // Espacio interno alrededor del texto
+                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)
         ));
-        button.setFocusPainted(false); // Remover indicación de enfoque
-        button.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar horizontalmente el texto
-        button.setAlignmentY(Component.CENTER_ALIGNMENT); // Centrar verticalmente el texto
+        button.setFocusPainted(false);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-        // Agregar ActionListener para manejar los clics en el botón
         button.addActionListener(e -> {
             redirection.run();
         });
@@ -49,20 +45,18 @@ public class ButtonComponent extends UIComponent{
     }
 
     public static JButton buttonSecondary(String text, Runnable redirection) {
-
         JButton button = new JButton(text);
         button.setBackground(SECONDARY_COLOR);
         button.setForeground(TEXT_COLOR);
         button.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 13));
         button.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR), // Borde inferior
-                BorderFactory.createEmptyBorder(10, 20, 10, 20) // Espacio interno alrededor del texto
+                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)
         ));
-        button.setFocusPainted(false); // Remover indicación de enfoque
-        button.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar horizontalmente el texto
-        button.setAlignmentY(Component.CENTER_ALIGNMENT); // Centrar verticalmente el texto
+        button.setFocusPainted(false);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-        // Agregar ActionListener para manejar los clics en el botón
         button.addActionListener(e -> {
             redirection.run();
         });
@@ -71,20 +65,18 @@ public class ButtonComponent extends UIComponent{
     }
 
     public static JButton buttonInfo(String text, Runnable redirection) {
-
         JButton button = new JButton(text);
         button.setBackground(INFO_COLOR);
         button.setForeground(TEXT_COLOR);
         button.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 13));
         button.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR), // Borde inferior
-                BorderFactory.createEmptyBorder(10, 20, 10, 20) // Espacio interno alrededor del texto
+                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)
         ));
-        button.setFocusPainted(false); // Remover indicación de enfoque
-        button.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar horizontalmente el texto
-        button.setAlignmentY(Component.CENTER_ALIGNMENT); // Centrar verticalmente el texto
+        button.setFocusPainted(false);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-        // Agregar ActionListener para manejar los clics en el botón
         button.addActionListener(e -> {
             redirection.run();
         });
@@ -99,14 +91,13 @@ public class ButtonComponent extends UIComponent{
         button.setForeground(TEXT_COLOR);
         button.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 13));
         button.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR), // Borde inferior
-                BorderFactory.createEmptyBorder(10, 20, 10, 20) // Espacio interno alrededor del texto
+                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)
         ));
-        button.setFocusPainted(false); // Remover indicación de enfoque
-        button.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar horizontalmente el texto
-        button.setAlignmentY(Component.CENTER_ALIGNMENT); // Centrar verticalmente el texto
+        button.setFocusPainted(false);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-        // Agregar ActionListener para manejar los clics en el botón
         button.addActionListener(e -> {
             redirection.run();
         });
@@ -121,14 +112,13 @@ public class ButtonComponent extends UIComponent{
         button.setForeground(TEXT_COLOR);
         button.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 13));
         button.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR), // Borde inferior
-                BorderFactory.createEmptyBorder(10, 20, 10, 20) // Espacio interno alrededor del texto
+                BorderFactory.createMatteBorder(0, 0, 1, 0, BACKGROUND_COLOR),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)
         ));
-        button.setFocusPainted(false); // Remover indicación de enfoque
-        button.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar horizontalmente el texto
-        button.setAlignmentY(Component.CENTER_ALIGNMENT); // Centrar verticalmente el texto
+        button.setFocusPainted(false);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-        // Agregar ActionListener para manejar los clics en el botón
         button.addActionListener(e -> {
             redirection.run();
         });

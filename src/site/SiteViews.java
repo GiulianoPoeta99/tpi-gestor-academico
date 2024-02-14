@@ -32,7 +32,6 @@ public class SiteViews {
     public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
-        // Título tipo H1
         JLabel title = TextComponent.h1("Inicio");
         components.add(title);
 

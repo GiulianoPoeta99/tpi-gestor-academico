@@ -42,7 +42,6 @@ public class StudyPlan implements Model {
     }
 
     public StudyPlan setType(String type) {
-        // Check if the new type is in the list before assigning it
         if (TYPES_STUDY_PLAN.contains(type)) {
             this.type = type;
         } else {
@@ -104,12 +103,12 @@ public class StudyPlan implements Model {
 
     @Override
     public Object[] getAttributeValues() {
-        return new Object[] { this.getType(), this.getIdCareer() }; // Devuelve los valores de los atributos como un arreglo de objetos
+        return new Object[] { this.getType(), this.getIdCareer() };
     }
 
     @Override
     public String[] getAttributeNames() {
-        return new String[] { "Tipo", "ID Carrera" }; // Devuelve los nombres de los atributos como un arreglo de cadenas
+        return new String[] { "Tipo", "ID Carrera" };
     }
 
     // Overrides ===============================================================

@@ -15,17 +15,13 @@ public class StudyPlanViews {
 
         List<JComponent> components = new ArrayList<>();
 
-        // Título tipo H1
         JLabel title = TextComponent.h1(StudyPlan.TRANSLATE_NAME);
         components.add(title);
 
-        // Box debajo del título
         JPanel boxPanel = UIComponent.bigBox();
 
-        // Crear tabla
         JTable table = UIComponent.table(allData);
 
-        // Agregar tabla al bigBox
         boxPanel.setLayout(new BorderLayout());
         boxPanel.add(new JScrollPane(table), BorderLayout.CENTER);
 

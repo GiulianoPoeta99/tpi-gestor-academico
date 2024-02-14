@@ -9,9 +9,8 @@ import common.Model;
 import java.util.Map;
 
 public class StudentController implements Controller {
-    private static final StudentController instance = new StudentController(); // Instancia única del controlador
+    private static final StudentController instance = new StudentController();
 
-    // Constructor privado para evitar la creación de instancias externas
     private StudentController() {
     }
 
@@ -19,10 +18,6 @@ public class StudentController implements Controller {
         return instance;
     }
 
-    /**
-     * Entry point for the student controller.
-     * This method is typically used to initiate the student-related functionality.
-     */
     public void index() {
         render(() -> StudentViews.index(Student.getAll()));
     }

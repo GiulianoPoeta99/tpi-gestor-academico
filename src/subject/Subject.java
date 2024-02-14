@@ -124,12 +124,12 @@ public class Subject implements Model {
 
     @Override
     public Object[] getAttributeValues() {
-        return new Object[] { this.getName(), this.getIsOptional(), this.getFourMonths(), this.getIdStudyPlan() }; // Devuelve los valores de los atributos como un arreglo de objetos
+        return new Object[] { this.getName(), this.getIsOptional(), this.getFourMonths(), this.getIdStudyPlan() };
     }
 
     @Override
     public String[] getAttributeNames() {
-        return new String[] { "Nombre", "Opcional", "Cuatrimestre", "ID Plan de studio" }; // Devuelve los nombres de los atributos como un arreglo de cadenas
+        return new String[] { "Nombre", "Opcional", "Cuatrimestre", "ID Plan de studio" };
     }
 
     // Overrides ===============================================================
