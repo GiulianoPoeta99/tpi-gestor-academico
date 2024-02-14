@@ -37,13 +37,6 @@ public class Subject implements Model {
         this.save();
     }
 
-    protected Subject(Subject subject) {
-        addSerial();
-        subject.setId(serial);
-        this.setId(serial);
-        all.put(subject.getId(), subject);
-    }
-
     // Setters & Getters =======================================================
 
     public Subject setId(int id) {
@@ -123,7 +116,9 @@ public class Subject implements Model {
     @Override
     public void save() {
         if (this.validate()) {
-            new Subject(this);
+            addSerial();
+            this.setId(serial);
+            all.put(this.getId(), this);
         }
     }
 

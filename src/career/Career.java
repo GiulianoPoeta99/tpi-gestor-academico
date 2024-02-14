@@ -26,13 +26,6 @@ public class Career implements Model {
         this.save();
     }
 
-    protected Career(Career career) {
-        addSerial();
-        career.setId(serial);
-        this.setId(serial);
-        all.put(career.getId(), career);
-    }
-
     // Setters & Getters =======================================================
 
     public Career setId(int id) {
@@ -82,7 +75,9 @@ public class Career implements Model {
     @Override
     public void save() {
         if (this.validate()) {
-            new Career(this);
+            addSerial();
+            this.setId(serial);
+            all.put(this.getId(), this);
         }
     }
 

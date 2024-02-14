@@ -30,12 +30,6 @@ public class StudyPlan implements Model {
         this.save();
     }
 
-    protected StudyPlan(StudyPlan studyPlan) {
-        addSerial();
-        studyPlan.setId(serial);
-        all.put(studyPlan.getId(), studyPlan);
-    }
-
     // Setters & Getters =======================================================
 
     public StudyPlan setId(int id) {
@@ -102,7 +96,9 @@ public class StudyPlan implements Model {
     @Override
     public void save() {
         if (this.validate()) {
-            new StudyPlan(this);
+            addSerial();
+            this.setId(serial);
+            all.put(this.getId(), this);
         }
     }
 

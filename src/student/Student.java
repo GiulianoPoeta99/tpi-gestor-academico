@@ -27,27 +27,16 @@ public class Student implements Model {
     public Student() {}
 
     protected Student(
-            String dossierNumber,
             String firstName,
             String lastName,
             LocalDate birthDate,
             int idCareer
     ) {
-        this.setDossierNumber(dossierNumber);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setBirthDate(birthDate);
         this.setIdCareer(idCareer);
         this.save();
-    }
-
-    protected Student(Student student) {
-        addSerial();
-        student.setId(serial);
-        student.setDossierNumber(String.format("%04d", serial));
-        this.setId(serial);
-        this.setDossierNumber(String.format("%04d", serial));
-        all.put(student.getId(), student);
     }
 
     // Setters & Getters =======================================================
@@ -121,7 +110,7 @@ public class Student implements Model {
     }
 
     public static void loadData() {
-        new Student("00000000001","Giuliano", "Poeta", LocalDate.of(1999, 9, 14), 1);
+        new Student("Giuliano", "Poeta", LocalDate.of(1999, 9, 14), 1);
     }
 
     // Implements ==============================================================
@@ -129,7 +118,6 @@ public class Student implements Model {
     @Override
     public boolean validate() {
         return (
-            this.getDossierNumber() != null &&
             this.getFirstName() != null &&
             this.getLastName() != null &&
             this.getBirthDate() != null
@@ -139,7 +127,10 @@ public class Student implements Model {
     @Override
     public void save() {
         if (this.validate()) {
-            new Student(this);
+            addSerial();
+            this.setId(serial);
+            this.setDossierNumber(String.format("%04d", serial));
+            all.put(this.getId(), this);
         }
     }
 
