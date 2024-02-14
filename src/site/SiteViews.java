@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import common.components.LayOutComponent;
 import common.components.TextComponent;
@@ -14,7 +15,7 @@ import common.components.TextComponent;
  */
 public class SiteViews {
 
-    public static void layout(ArrayList<String> redirections) {
+    public static void layout(Map<String, Runnable> redirections) {
         JFrame frame = LayOutComponent.mainFrame();
         JPanel topPanel = LayOutComponent.topPanel();
         JPanel sidePanel = LayOutComponent.sidePanel(redirections);

@@ -3,6 +3,7 @@ package common.components;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 import site.SiteController;
 import career.CareerController;
@@ -22,14 +23,14 @@ public class LayOutComponent {
         return frame;
     }
 
-    public static JPanel sidePanel(ArrayList<String> redirections) {
+    public static JPanel sidePanel(Map<String, Runnable> redirections) {
         JPanel sidePanel = new JPanel();
         sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS)); // Use BoxLayout to stack buttons vertically
         sidePanel.setBackground(Color.decode("#191C20")); // Dark color for the side panel
 
         // Create and add a button for each redirection
-        for (int i = 0; i < redirections.size(); i++) {
-            JButton button = sideButton(i);
+        for (Map.Entry<String, Runnable> redirection: redirections.entrySet()) {
+            JButton button = sideButton(redirection.getKey(),redirection.getValue());
             sidePanel.add(button);
             sidePanel.add(Box.createRigidArea(new Dimension(0, 2))); // Add 2-pixel vertical space between buttons
         }
@@ -37,11 +38,9 @@ public class LayOutComponent {
         return sidePanel;
     }
 
-    public static JButton sideButton(int index) {
-        String[] redirections = {"Inicio", "Carreras", "Planes de Estudio", "Materias", "Alumnos"};
-        String buttonText = redirections[index]; // Obtener el texto del botón según el índice
+    public static JButton sideButton(String text, Runnable redirection) {
 
-        JButton button = new JButton(buttonText);
+        JButton button = new JButton(text);
         button.setBackground(Color.decode("#191C20")); // Color oscuro para el fondo
         button.setForeground(Color.decode("#CCCCCC")); // Color claro para el texto
         button.setFont(new Font("Arial", Font.PLAIN, 16)); // Tamaño y tipo de fuente para el texto
@@ -58,24 +57,7 @@ public class LayOutComponent {
 
         // Agregar ActionListener para manejar los clics en el botón
         button.addActionListener(e -> {
-            // Aquí implementa la lógica de redirección según el índice del botón
-            switch (index) {
-                case 0:
-                    SiteController.getInstance().index();
-                    break;
-                case 1:
-                    CareerController.getInstance().index();
-                    break;
-                case 2:
-                    StudyPlanController.getInstance().index();
-                    break;
-                case 3:
-                    SubjectController.getInstance().index();
-                    break;
-                case 4:
-                    StudentController.getInstance().index();
-                    break;
-            }
+            redirection.run();
         });
 
         return button;

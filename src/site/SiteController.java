@@ -1,9 +1,14 @@
 package site;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
+import career.CareerController;
 import common.Controller;
+import student.StudentController;
+import studyplan.StudyPlanController;
+import subject.SubjectController;
 
 public class SiteController implements Controller {
 
@@ -19,12 +24,12 @@ public class SiteController implements Controller {
 
     public void principal() {
         // Crear un array list de redirecciones
-        ArrayList<String> redirections = new ArrayList<>();
-        redirections.add("Inicio");
-        redirections.add("Carreras");
-        redirections.add("Planes de Estudio");
-        redirections.add("Materias");
-        redirections.add("Alumnos");
+        Map<String, Runnable> redirections = new LinkedHashMap<>();
+        redirections.put("Inicio",SiteController.getInstance()::index);
+        redirections.put("Carreras", CareerController.getInstance()::index);
+        redirections.put("Planes de Estudio", StudyPlanController.getInstance()::index);
+        redirections.put("Materias", SubjectController.getInstance()::index);
+        redirections.put("Alumnos", StudentController.getInstance()::index);
 
         // Inicializar la GUI utilizando SwingUtilities.invokeLater()
         SwingUtilities.invokeLater(() -> {
