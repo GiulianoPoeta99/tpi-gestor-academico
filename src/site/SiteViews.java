@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.components.LayOutComponent;
-import common.components.CommonComponent;
+import common.components.TextComponent;
 
 /**
  * Class responsible for managing the site views.
@@ -32,7 +32,7 @@ public class SiteViews {
         List<JComponent> components = new ArrayList<>();
 
         // Título tipo H1
-        JLabel title = CommonComponent.h1("Inicio");
+        JLabel title = TextComponent.h1("Inicio");
         components.add(title);
 
         return components;

@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import career.Career;
 import common.Model;
-import common.components.CommonComponent;
+import common.components.TextComponent;
+import common.components.UIComponent;
 
 public class StudentViews {
     public static List<JComponent> index(Map<Integer, Model> allData) {
@@ -16,14 +16,14 @@ public class StudentViews {
         List<JComponent> components = new ArrayList<>();
 
         // Título tipo H1
-        JLabel title = CommonComponent.h1(Student.TRANSLATE_NAME);
+        JLabel title = TextComponent.h1(Student.TRANSLATE_NAME);
         components.add(title);
 
         // Box debajo del título
-        JPanel boxPanel = CommonComponent.bigBox();
+        JPanel boxPanel = UIComponent.bigBox();
 
         // Crear tabla
-        JTable table = CommonComponent.table(allData);
+        JTable table = UIComponent.table(allData);
 
         // Agregar tabla al bigBox
         boxPanel.setLayout(new BorderLayout());
