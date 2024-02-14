@@ -1,6 +1,6 @@
 package student;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.time.LocalDate;
 
@@ -20,7 +20,7 @@ public class Student implements Model {
 
     // Static attributes
     protected static int serial = 0;
-    protected static Map<Integer, Model> all = new HashMap<>();
+    protected static Map<Integer, Model> all = new LinkedHashMap<>();
 
     // Builders ============================================================
 
