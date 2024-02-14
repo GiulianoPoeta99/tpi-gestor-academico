@@ -22,7 +22,7 @@ public class StudentController implements Controller {
         render(() -> StudentViews.index(Student.getAll()));
     }
 
-    public void create() {
+    public void create(boolean save) {
         // Implementation for creating a new student.
     }
 
@@ -30,11 +30,11 @@ public class StudentController implements Controller {
         // Implementation for updating an existing student.
     }
 
-    public void view() {
+    public void view(int id) {
         // Implementation for viewing student data.
     }
 
-    public void delete() {
+    public void delete(int id) {
         // Implementation for deleting a student.
     }
 }

@@ -114,12 +114,14 @@ public class Subject implements Model {
     }
 
     @Override
-    public void save() {
+    public boolean save() {
         if (this.validate()) {
             addSerial();
             this.setId(serial);
             all.put(this.getId(), this);
+            return true;
         }
+        return false;
     }
 
     @Override

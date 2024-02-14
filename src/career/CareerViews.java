@@ -26,7 +26,7 @@ public class CareerViews {
         boxPanel.setLayout(new BorderLayout()); // Usar BorderLayout
 
         // Crear botón y agregarlo arriba a la izquierda
-        JButton createButton = Button.success("Crear carrera", CareerController.getInstance()::create);
+        JButton createButton = Button.success("Crear carrera", () -> CareerController.getInstance().create(false));
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Usar FlowLayout para el botón
         buttonPanel.setBackground(Common.BACKGROUND_COLOR);
         buttonPanel.add(createButton);
@@ -63,7 +63,7 @@ public class CareerViews {
         constraints.gridy = 0;
         buttonJPanel.add(Box.createVerticalStrut(10), constraints);
 
-        JButton saveButton = Button.success("Guardar", () -> CareerController.getInstance().create());
+        JButton saveButton = Button.success("Guardar", () -> CareerController.getInstance().create(false));
         constraints.gridx = 0;
         constraints.gridy = 1;
         buttonJPanel.add(saveButton, constraints);

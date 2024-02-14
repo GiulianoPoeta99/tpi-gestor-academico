@@ -39,7 +39,7 @@ public class SiteController implements Controller {
         render(SiteViews::index);
     }
 
-    public void create() {
+    public void create(boolean save) {
         index();
     }
 
@@ -47,11 +47,11 @@ public class SiteController implements Controller {
         index();
     }
 
-    public void view() {
+    public void view(int id) {
         index();
     }
 
-    public void delete() {
+    public void delete(int id) {
         index();
     }
 }

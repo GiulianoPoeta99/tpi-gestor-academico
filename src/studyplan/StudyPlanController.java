@@ -19,7 +19,7 @@ public class StudyPlanController implements Controller {
         render(() -> StudyPlanViews.index(StudyPlan.getAll()));
     }
 
-    public void create() {
+    public void create(boolean save) {
         // Implementation for creating a new study plan.
     }
 
@@ -27,11 +27,11 @@ public class StudyPlanController implements Controller {
         // Implementation for updating an existing study plan.
     }
 
-    public void view() {
+    public void view(int id) {
         // Implementation for viewing study plan data.
     }
 
-    public void delete() {
+    public void delete(int id) {
         // Implementation for deleting a study plan.
     }
 }

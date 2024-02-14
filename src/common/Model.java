@@ -3,7 +3,7 @@ package common;
 public interface Model {
     boolean validate(); 
 
-    void save();
+    boolean save();
 
     Object[] getAttributeValues();
 

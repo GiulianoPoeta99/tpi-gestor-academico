@@ -125,13 +125,15 @@ public class Student implements Model {
     }
 
     @Override
-    public void save() {
+    public boolean save() {
         if (this.validate()) {
             addSerial();
             this.setId(serial);
             this.setDossierNumber(String.format("%04d", serial));
             all.put(this.getId(), this);
+            return true;
         }
+        return false;
     }
 
     @Override

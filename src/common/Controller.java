@@ -7,13 +7,13 @@ import java.util.function.Supplier;
 public interface Controller {
     void index();
 
-    void create();
+    void create(boolean save);
 
     void update(int id);
 
-    void view();
+    void view(int id);
 
-    void delete();
+    void delete(int id);
 
     default void render(Supplier<List<JComponent>> viewMethod) {
         JPanel contentPanel = common.components.LayOut.getContentPanel();

@@ -19,19 +19,28 @@ public class CareerController implements Controller {
         render(() -> CareerViews.index(Career.getAll()));
     }
 
-    public void create() {
-        render(CareerViews::create);
+    public void create(boolean save) {
+        Career model = new Career();
+
+        if (save) {
+            if (model.save()) {
+                view(model.getId());
+            }
+        } else {
+
+            render(CareerViews::create);
+        }
     }
 
     public void update(int id) {
         // Implementation for updating an existing career.
     }
 
-    public void view() {
+    public void view(int id) {
         // Implementation for viewing career data.
     }
 
-    public void delete() {
+    public void delete(int id) {
         // Implementation for deleting a career.
     }
 }

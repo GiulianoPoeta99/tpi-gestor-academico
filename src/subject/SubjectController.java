@@ -18,7 +18,7 @@ public class SubjectController implements Controller {
         render(() -> SubjectViews.index(Subject.getAll()));
     }
 
-    public void create() {
+    public void create(boolean save) {
         // Implementation for creating a new subject.
     }
 
@@ -26,11 +26,11 @@ public class SubjectController implements Controller {
         // Implementation for updating an existing subject.
     }
 
-    public void view() {
+    public void view(int id) {
         // Implementation for viewing subject data.
     }
 
-    public void delete() {
+    public void delete(int id) {
         // Implementation for deleting a subject.
     }
 }
