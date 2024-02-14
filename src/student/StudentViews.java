@@ -19,24 +19,17 @@ public class StudentViews {
         JLabel title = CommonComponent.h1(Student.TRANSLATE_NAME);
         components.add(title);
 
-        for (Model model : allData.values()) {
-            if (model instanceof Student) {
-                JLabel iter = CommonComponent.h1(model.toString());
-                components.add(iter);
-            }
-        }
+        // Box debajo del título
+        JPanel boxPanel = CommonComponent.bigBox();
 
-        // // Box debajo del título
-        // JPanel boxPanel = CommonComponent.bigBox();
+        // Crear tabla
+        JTable table = CommonComponent.table(allData);
 
-        // // Crear tabla
-        // JTable table = CommonComponent.table(allData);
+        // Agregar tabla al bigBox
+        boxPanel.setLayout(new BorderLayout());
+        boxPanel.add(new JScrollPane(table), BorderLayout.CENTER);
 
-        // // Agregar tabla al bigBox
-        // boxPanel.setLayout(new BorderLayout());
-        // boxPanel.add(new JScrollPane(table), BorderLayout.CENTER);
-
-        // components.add(boxPanel);
+        components.add(boxPanel);
 
         return components;
     }

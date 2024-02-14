@@ -27,11 +27,13 @@ public class Student implements Model {
     public Student() {}
 
     protected Student(
+            String dossierNumber,
             String firstName,
             String lastName,
             LocalDate birthDate,
             int idCareer
     ) {
+        this.setDossierNumber(dossierNumber);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setBirthDate(birthDate);
@@ -119,7 +121,7 @@ public class Student implements Model {
     }
 
     public static void loadData() {
-        new Student("Giuliano", "Poeta", LocalDate.of(1999, 9, 14), 1);
+        new Student("00000000001","Giuliano", "Poeta", LocalDate.of(1999, 9, 14), 1);
     }
 
     // Implements ==============================================================
