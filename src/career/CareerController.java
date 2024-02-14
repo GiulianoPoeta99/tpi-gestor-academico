@@ -6,9 +6,8 @@ import common.Model;
 import java.util.Map;
 
 public class CareerController implements Controller {
-    private static final CareerController instance = new CareerController(); // Instancia única del controlador
+    private static final CareerController instance = new CareerController();
 
-    // Constructor privado para evitar la creación de instancias externas
     private CareerController() {
     }
 

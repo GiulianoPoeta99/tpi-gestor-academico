@@ -13,7 +13,7 @@ public class UIComponent extends CommonComponent {
         int boxPanelHeight = (int) (LayOutComponent.getContentPanel().getHeight() * 0.92); // 80% del alto del contentPanel
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(LayOutComponent.getContentPanel().getWidth() - 25, boxPanelHeight));
-        panel.setBackground(Color.decode("#222222"));
+        panel.setBackground(BACKGROUND_COLOR); // Usar el color de fondo definido en CommonComponent
         return panel;
     }
 
