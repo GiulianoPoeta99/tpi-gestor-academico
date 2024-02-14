@@ -26,7 +26,7 @@ public class StudentController implements Controller {
         // Implementation for creating a new student.
     }
 
-    public void update() {
+    public void update(int id) {
         // Implementation for updating an existing student.
     }
 

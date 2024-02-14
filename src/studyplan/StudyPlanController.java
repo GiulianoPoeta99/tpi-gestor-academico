@@ -23,7 +23,7 @@ public class StudyPlanController implements Controller {
         // Implementation for creating a new study plan.
     }
 
-    public void update() {
+    public void update(int id) {
         // Implementation for updating an existing study plan.
     }
 

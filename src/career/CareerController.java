@@ -23,7 +23,7 @@ public class CareerController implements Controller {
         // Implementation for creating a new career.
     }
 
-    public void update() {
+    public void update(int id) {
         // Implementation for updating an existing career.
     }
 

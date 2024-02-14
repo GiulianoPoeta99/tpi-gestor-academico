@@ -22,7 +22,7 @@ public class SubjectController implements Controller {
         // Implementation for creating a new subject.
     }
 
-    public void update() {
+    public void update(int id) {
         // Implementation for updating an existing subject.
     }
 

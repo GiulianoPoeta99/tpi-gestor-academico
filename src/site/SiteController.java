@@ -43,7 +43,7 @@ public class SiteController implements Controller {
         index();
     }
 
-    public void update() {
+    public void update(int id) {
         index();
     }
 

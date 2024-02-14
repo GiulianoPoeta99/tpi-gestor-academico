@@ -9,7 +9,7 @@ public interface Controller {
 
     void create();
 
-    void update();
+    void update(int id);
 
     void view();
 
