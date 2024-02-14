@@ -20,7 +20,7 @@ public class StudyPlanViews {
 
         JPanel boxPanel = UIComponent.bigBox();
 
-        JTable table = UIComponent.table(allData);
+        JScrollPane table = UIComponent.table(allData);
 
         boxPanel.setLayout(new BorderLayout());
         boxPanel.add(new JScrollPane(table), BorderLayout.CENTER);

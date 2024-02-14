@@ -3,6 +3,9 @@ package common.components;
 import common.Model;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
@@ -14,10 +17,11 @@ public class UIComponent extends CommonComponent {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(LayOutComponent.getContentPanel().getWidth() - 25, boxPanelHeight));
         panel.setBackground(BACKGROUND_COLOR);
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Agregar borde vacío de 5 píxeles
         return panel;
     }
 
-    public static JTable table(Map<Integer, Model> data) {
+    public static JScrollPane table(Map<Integer, Model> data) {
         DefaultTableModel model = new DefaultTableModel();
 
         if (!data.isEmpty()) {
@@ -51,6 +55,15 @@ public class UIComponent extends CommonComponent {
         header.setForeground(TEXT_COLOR);
         header.setBackground(COLUMN_BACKGROUND_COLOR);
 
-        return table;
+        // Agregar borde alrededor de la tabla
+        table.setBorder(new CompoundBorder(
+            new MatteBorder(1, 1, 1, 1, TEXT_COLOR),
+            new EmptyBorder(5, 5, 5, 5)
+        ));
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+
+        return scrollPane;
     }
 }
