@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import common.Model;
-import common.components.TextComponent;
+import common.components.Text;
 import common.components.UIComponent;
 
 public class SubjectViews {
@@ -15,7 +15,7 @@ public class SubjectViews {
 
         List<JComponent> components = new ArrayList<>();
 
-        JLabel title = TextComponent.h1(Subject.TRANSLATE_NAME);
+        JLabel title = Text.h1(Subject.TRANSLATE_NAME);
         components.add(title);
 
         JPanel boxPanel = UIComponent.bigBox();

@@ -11,11 +11,11 @@ import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.util.Map;
 
-public class UIComponent extends CommonComponent {
+public class UIComponent extends Common {
     public static JPanel bigBox() {
-        int boxPanelHeight = (int) (LayOutComponent.getContentPanel().getHeight() * 0.92);
+        int boxPanelHeight = (int) (LayOut.getContentPanel().getHeight() * 0.92);
         JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(LayOutComponent.getContentPanel().getWidth() - 25, boxPanelHeight));
+        panel.setPreferredSize(new Dimension(LayOut.getContentPanel().getWidth() - 25, boxPanelHeight));
         panel.setBackground(BACKGROUND_COLOR);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Agregar borde vacío de 5 píxeles
         return panel;

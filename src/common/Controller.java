@@ -16,7 +16,7 @@ public interface Controller {
     void delete();
 
     default void render(Supplier<List<JComponent>> viewMethod) {
-        JPanel contentPanel = common.components.LayOutComponent.getContentPanel();
+        JPanel contentPanel = common.components.LayOut.getContentPanel();
         contentPanel.removeAll();
 
         List<JComponent> components = viewMethod.get();

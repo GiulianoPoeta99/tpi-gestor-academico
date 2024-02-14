@@ -20,7 +20,7 @@ public class CareerController implements Controller {
     }
 
     public void create() {
-        // Implementation for creating a new career.
+        render(CareerViews::create);
     }
 
     public void update(int id) {

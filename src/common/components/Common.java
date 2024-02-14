@@ -2,7 +2,7 @@ package common.components;
 
 import java.awt.*;
 
-public abstract class CommonComponent {
+public class Common {
     public static final Color PRIMARY_COLOR = Color.decode("#0d6efd");
     public static final Color SUCCESS_COLOR = Color.decode("#198754");
     public static final Color WARNING_COLOR = Color.decode("#ffc107");

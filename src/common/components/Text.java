@@ -3,7 +3,7 @@ package common.components;
 import javax.swing.*;
 import java.awt.*;
 
-public class TextComponent extends CommonComponent {
+public class Text extends Common {
 
     public static JLabel h1(String text) {
         JLabel label = new JLabel(text);

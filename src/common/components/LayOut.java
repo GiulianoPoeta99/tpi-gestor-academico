@@ -2,16 +2,9 @@ package common.components;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Map;
 
-import site.SiteController;
-import career.CareerController;
-import student.StudentController;
-import studyplan.StudyPlanController;
-import subject.SubjectController;
-
-public class LayOutComponent {
+public class LayOut {
 
     private static JFrame frame;
     private static JPanel contentPanel;
