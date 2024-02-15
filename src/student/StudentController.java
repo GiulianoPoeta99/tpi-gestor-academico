@@ -22,7 +22,7 @@ public class StudentController implements Controller {
         render(() -> StudentViews.index(Student.getAll()));
     }
 
-    public void create(boolean save) {
+    public void create(boolean save, Model model) {
         // Implementation for creating a new student.
     }
 

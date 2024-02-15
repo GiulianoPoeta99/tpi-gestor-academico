@@ -6,6 +6,7 @@ import java.util.Map;
 
 import career.CareerController;
 import common.Controller;
+import common.Model;
 import student.StudentController;
 import studyplan.StudyPlanController;
 import subject.SubjectController;
@@ -39,7 +40,7 @@ public class SiteController implements Controller {
         render(SiteViews::index);
     }
 
-    public void create(boolean save) {
+    public void create(boolean save, Model model) {
         index();
     }
 

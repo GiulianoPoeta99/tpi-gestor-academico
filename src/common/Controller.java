@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 public interface Controller {
     void index();
 
-    void create(boolean save);
+    void create(boolean save, Model model);
 
     void update(int id);
 

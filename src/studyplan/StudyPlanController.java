@@ -19,7 +19,7 @@ public class StudyPlanController implements Controller {
         render(() -> StudyPlanViews.index(StudyPlan.getAll()));
     }
 
-    public void create(boolean save) {
+    public void create(boolean save, Model model) {
         // Implementation for creating a new study plan.
     }
 

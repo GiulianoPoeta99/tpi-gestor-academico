@@ -1,6 +1,7 @@
 package subject;
 
 import common.Controller;
+import common.Model;
 import studyplan.StudyPlan;
 import studyplan.StudyPlanViews;
 
@@ -18,7 +19,7 @@ public class SubjectController implements Controller {
         render(() -> SubjectViews.index(Subject.getAll()));
     }
 
-    public void create(boolean save) {
+    public void create(boolean save, Model model) {
         // Implementation for creating a new subject.
     }
 

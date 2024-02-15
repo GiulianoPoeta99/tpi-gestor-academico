@@ -19,16 +19,18 @@ public class CareerController implements Controller {
         render(() -> CareerViews.index(Career.getAll()));
     }
 
-    public void create(boolean save) {
-        Career model = new Career();
+    public void create(boolean save, Model model) {
+        if (model == null) {
+            model = new Career();
+        }
 
         if (save) {
             if (model.save()) {
                 view(model.getId());
             }
         } else {
-
-            render(CareerViews::create);
+            Model finalModel = model;
+            render(() -> CareerViews.create(finalModel));
         }
     }
 

@@ -26,7 +26,7 @@ public class CareerViews {
         boxPanel.setLayout(new BorderLayout()); // Usar BorderLayout
 
         // Crear botón y agregarlo arriba a la izquierda
-        JButton createButton = Button.success("Crear carrera", () -> CareerController.getInstance().create(false));
+        JButton createButton = Button.success("Crear carrera", () -> CareerController.getInstance().create(false, null));
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Usar FlowLayout para el botón
         buttonPanel.setBackground(Common.BACKGROUND_COLOR);
         buttonPanel.add(createButton);
@@ -40,7 +40,7 @@ public class CareerViews {
         return components;
     }
 
-    public static List<JComponent> create() {
+    public static List<JComponent> create(Model model) {
         List<JComponent> components = new ArrayList<>();
 
         // Título tipo H1
@@ -53,7 +53,7 @@ public class CareerViews {
 
         // armar formulario
 
-        //botones
+        // botones
         JPanel buttonJPanel = new JPanel(new GridBagLayout());
         buttonJPanel.setBackground(Common.BACKGROUND_COLOR);
         GridBagConstraints constraints = new GridBagConstraints();
@@ -63,7 +63,7 @@ public class CareerViews {
         constraints.gridy = 0;
         buttonJPanel.add(Box.createVerticalStrut(10), constraints);
 
-        JButton saveButton = Button.success("Guardar", () -> CareerController.getInstance().create(false));
+        JButton saveButton = Button.success("Guardar", () -> CareerController.getInstance().create(true, model));
         constraints.gridx = 0;
         constraints.gridy = 1;
         buttonJPanel.add(saveButton, constraints);

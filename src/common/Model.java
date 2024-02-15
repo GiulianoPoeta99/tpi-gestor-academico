@@ -8,4 +8,6 @@ public interface Model {
     Object[] getAttributeValues();
 
     String[] getAttributeNames();
+
+    int getId();
 }
