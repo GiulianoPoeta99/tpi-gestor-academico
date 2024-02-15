@@ -66,31 +66,22 @@ public class CareerViews {
         JPanel boxPanel = UIComponent.bigBox();
         boxPanel.setLayout(new BorderLayout()); // Usar BorderLayout
 
-        // Crear formulario
-        JPanel formPanel = new JPanel(new GridBagLayout());
+        // Crear formulario con FlowLayout izquierdo
+        JPanel formPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         formPanel.setBackground(Common.BACKGROUND_COLOR);
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.insets = new Insets(5, 5, 5, 5);
 
         // Nombre de la carrera (ejemplo de uso del input creado)
         JLabel nameLabel = new JLabel("Nombre:");
         JTextField nameField = Input.createInput(model != null ? model.getName() : ""); // Utilizar el nuevo componente de entrada
-        formPanel.add(nameLabel, constraints);
-        constraints.gridx = 1;
-        formPanel.add(nameField, constraints);
+        formPanel.add(nameLabel);
+        formPanel.add(nameField);
 
-        boxPanel.add(formPanel, BorderLayout.CENTER);
+        boxPanel.add(formPanel, BorderLayout.NORTH);
 
         // Botones
-        JPanel buttonJPanel = new JPanel(new GridBagLayout());
+        JPanel buttonJPanel = new JPanel();
         buttonJPanel.setBackground(Common.BACKGROUND_COLOR);
-        constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.CENTER;
-
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        buttonJPanel.add(Box.createVerticalStrut(10), constraints);
+        buttonJPanel.setLayout(new FlowLayout(FlowLayout.CENTER)); // Cambiar a FlowLayout con alineación centrada
 
         JButton saveButton = Button.success("Guardar", () -> {
             String newName = nameField.getText();
@@ -99,29 +90,17 @@ public class CareerViews {
             }
             CareerController.getInstance().create(true, model);
         });
-
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        buttonJPanel.add(saveButton, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 1;
-        buttonJPanel.add(Box.createHorizontalStrut(10), constraints);
+        buttonJPanel.add(saveButton); // Agregar botón "Guardar" al panel de botones
 
         JButton backButton = Button.danger("Volver", () -> CareerController.getInstance().index());
-        constraints.gridx = 2;
-        constraints.gridy = 1;
-        buttonJPanel.add(backButton, constraints);
+        buttonJPanel.add(backButton); // Agregar botón "Volver" al panel de botones
 
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        buttonJPanel.add(Box.createVerticalGlue(), constraints);
-
-        boxPanel.add(buttonJPanel, BorderLayout.SOUTH);
+        boxPanel.add(buttonJPanel, BorderLayout.SOUTH); // Agregar el panel de botones al sur del boxPanel
 
         // Agregar el panel debajo del título
         components.add(boxPanel);
 
         return components;
     }
+
 }
