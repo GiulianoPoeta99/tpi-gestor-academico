@@ -67,17 +67,27 @@ public class CareerViews {
         boxPanel.setLayout(new BorderLayout()); // Usar BorderLayout
 
         // Crear formulario con FlowLayout izquierdo
-        JPanel formPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel.setBackground(Common.BACKGROUND_COLOR);
+
+        // Crear formulario con GridBagLayout
+        JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBackground(Common.BACKGROUND_COLOR);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
 
         // Nombre de la carrera (ejemplo de uso del input creado)
         JLabel nameLabel = new JLabel("Nombre:");
+        nameLabel.setForeground(Common.TEXT_COLOR);
+        formPanel.add(nameLabel, gbc);
+        gbc.gridy++;
         JTextField nameField = Input.createInput(model != null ? model.getName() : ""); // Utilizar el nuevo componente de entrada
-        formPanel.add(nameLabel);
-        formPanel.add(nameField);
+        formPanel.add(nameField, gbc);
 
-        boxPanel.add(formPanel, BorderLayout.NORTH);
-
+        panel.add(formPanel, BorderLayout.NORTH);
+        boxPanel.add(panel, BorderLayout.NORTH);
         // Botones
         JPanel buttonJPanel = new JPanel();
         buttonJPanel.setBackground(Common.BACKGROUND_COLOR);
