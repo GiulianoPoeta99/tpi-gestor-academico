@@ -19,7 +19,7 @@ public class CareerController implements Controller {
         render(() -> CareerViews.index(Career.getAll()));
     }
 
-    public void create(boolean save, Model model) {
+    public void create(boolean save, Career model) {
         if (model == null) {
             model = new Career();
         }
@@ -29,7 +29,7 @@ public class CareerController implements Controller {
                 view(model.getId());
             }
         } else {
-            Model finalModel = model;
+            Career finalModel = model;
             render(() -> CareerViews.create(finalModel));
         }
     }

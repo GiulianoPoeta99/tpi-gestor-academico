@@ -5,16 +5,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public interface Controller {
-    void index();
-
-    void create(boolean save, Model model);
-
-    void update(int id);
-
-    void view(int id);
-
-    void delete(int id);
-
     default void render(Supplier<List<JComponent>> viewMethod) {
         JPanel contentPanel = common.components.LayOut.getContentPanel();
         contentPanel.removeAll();
