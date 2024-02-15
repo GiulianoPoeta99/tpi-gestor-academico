@@ -76,10 +76,9 @@ public class CareerViews {
         div.add(divForm, BorderLayout.NORTH);
         divBox.add(div, BorderLayout.NORTH);
 
-        // Botones
         JPanel divButton = new JPanel();
         divButton.setBackground(Common.BACKGROUND_COLOR);
-        divButton.setLayout(new FlowLayout(FlowLayout.CENTER)); // Cambiar a FlowLayout con alineación centrada
+        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.success("Guardar", () -> {
             String newName = nameField.getText();
@@ -100,4 +99,46 @@ public class CareerViews {
         return components;
     }
 
+    public static List<JComponent> view(Career model) {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1(String.format("Ver %s ID: %d", Career.TRANSLATE_NAME, model.getId()));
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel div = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        div.setBackground(Common.BACKGROUND_COLOR);
+
+        JLabel viewModel = Text.h3(model.toString());
+
+        div.add(viewModel);
+
+        divBox.add(div, BorderLayout.CENTER);
+
+        JPanel divButton = new JPanel();
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JButton continueButton = Button.success("Continuar", () -> CareerController.getInstance().index());
+        divButton.add(continueButton);
+
+        JButton updateButton = Button.primary("Actualizar", () -> CareerController.getInstance().update(model.getId()));
+        divButton.add(updateButton);
+
+        JButton deleteButton = Button.danger("Eliminar", () -> CareerController.getInstance().delete(model.getId()));
+        divButton.add(deleteButton);
+
+        divBox.add(divButton, BorderLayout.SOUTH);
+
+        components.add(divBox);
+
+        return components;
+    }
 }

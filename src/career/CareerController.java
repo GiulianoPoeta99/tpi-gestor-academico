@@ -39,7 +39,8 @@ public class CareerController implements Controller {
     }
 
     public void view(int id) {
-        // Implementation for viewing career data.
+        Career model = (Career) Career.getById(id);
+        render(() -> CareerViews.view(model));
     }
 
     public void delete(int id) {
