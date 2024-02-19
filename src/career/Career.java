@@ -84,6 +84,18 @@ public class Career implements Model {
         return false;
     }
 
+    public boolean update() {
+        if (this.validate()) {
+            all.put(this.getId(), this);
+            return true;
+        }
+        return false;
+    }
+
+    public void delete() {
+        all.remove(this.getId(), this);
+    }
+
     @Override
     public Object[] getAttributeValues() {
         return new Object[] { this.getName() }; // Devuelve los valores de los atributos como un arreglo de objetos

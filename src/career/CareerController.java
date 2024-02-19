@@ -34,8 +34,16 @@ public class CareerController implements Controller {
         }
     }
 
-    public void update(int id) {
-        // Implementation for updating an existing career.
+    public void update(boolean save, int id) {
+        Career model = (Career) Career.getById(id);
+
+        if (save) {
+            if (model.update()) {
+                view(model.getId());
+            }
+        } else {
+            render(() -> CareerViews.update(model));
+        }
     }
 
     public void view(int id) {
@@ -43,7 +51,13 @@ public class CareerController implements Controller {
         render(() -> CareerViews.view(model));
     }
 
-    public void delete(int id) {
-        // Implementation for deleting a career.
+    public void delete(boolean validation, int id) {
+        if (validation) {
+            Career model = (Career) Career.getById(id);
+            model.delete();
+            render(() -> CareerViews.delete(true, id));
+        } else {
+            render(() -> CareerViews.delete(false, id));
+        }
     }
 }
