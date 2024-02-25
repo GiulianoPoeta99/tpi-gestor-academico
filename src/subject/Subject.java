@@ -125,6 +125,20 @@ public class Subject implements Model {
     }
 
     @Override
+    public boolean update() {
+        if (this.validate()) {
+            all.put(this.getId(), this);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void delete() {
+        all.remove(this.getId(), this);
+    }
+
+    @Override
     public Object[] getAttributeValues() {
         return new Object[] { this.getName(), this.getIsOptional(), this.getFourMonths(), this.getIdStudyPlan() };
     }

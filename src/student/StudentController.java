@@ -1,8 +1,5 @@
 package student;
 
-import career.Career;
-import career.CareerController;
-import career.CareerViews;
 import common.Controller;
 import common.Model;
 
@@ -22,19 +19,45 @@ public class StudentController implements Controller {
         render(() -> StudentViews.index(Student.getAll()));
     }
 
-    public void create(boolean save, Model model) {
-        // Implementation for creating a new student.
+    public void create(boolean save, Student model) {
+        if (model == null) {
+            model = new Student();
+        }
+
+        if (save) {
+            if (model.save()) {
+                view(model.getId());
+            }
+        } else {
+            Student finalModel = model;
+            render(() -> StudentViews.create(finalModel));
+        }
     }
 
-    public void update(int id) {
-        // Implementation for updating an existing student.
+    public void update(boolean save, int id) {
+        Student model = (Student) Student.getById(id);
+
+        if (save) {
+            if (model.update()) {
+                view(model.getId());
+            }
+        } else {
+            render(() -> StudentViews.update(model));
+        }
     }
 
     public void view(int id) {
-        // Implementation for viewing student data.
+        Student model = (Student) Student.getById(id);
+        render(() -> StudentViews.view(model));
     }
 
-    public void delete(int id) {
-        // Implementation for deleting a student.
+    public void delete(boolean validation, int id) {
+        if (validation) {
+            Student model = (Student) Student.getById(id);
+            model.delete();
+            render(() -> StudentViews.delete(true, id));
+        } else {
+            render(() -> StudentViews.delete(false, id));
+        }
     }
 }

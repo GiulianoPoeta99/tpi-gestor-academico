@@ -137,6 +137,20 @@ public class Student implements Model {
     }
 
     @Override
+    public boolean update() {
+        if (this.validate()) {
+            all.put(this.getId(), this);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void delete() {
+        all.remove(this.getId(), this);
+    }
+
+    @Override
     public Object[] getAttributeValues() {
         return new Object[] { this.getDossierNumber(), this.getFirstName(), this.getLastName(), this.getBirthDate(), this.getIdCareer()}; // Devuelve los valores de los atributos como un arreglo de objetos
     }

@@ -33,7 +33,6 @@ public class Career implements Model {
         return this;
     }
 
-    @Override
     public int getId() {
         return this.id;
     }
@@ -84,6 +83,7 @@ public class Career implements Model {
         return false;
     }
 
+    @Override
     public boolean update() {
         if (this.validate()) {
             all.put(this.getId(), this);
@@ -92,6 +92,7 @@ public class Career implements Model {
         return false;
     }
 
+    @Override
     public void delete() {
         all.remove(this.getId(), this);
     }
