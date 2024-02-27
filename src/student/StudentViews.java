@@ -1,5 +1,6 @@
 package student;
 
+import career.Career;
 import common.Model;
 
 import javax.swing.*;
@@ -92,6 +93,15 @@ public class StudentViews {
         JTextField birthDateField = Input.createDateInput(model != null ? model.getBirthDate() : LocalDate.now());
         divForm.add(birthDateField, constraints);
 
+        constraints.gridy++;
+        JLabel careerIDLabel = new JLabel("Carrera:");
+        careerIDLabel.setForeground(Common.TEXT_COLOR);
+        divForm.add(careerIDLabel, constraints);
+
+        constraints.gridy++;
+        JPanel careerIDField = Input.createSelect2Input(Career.dataMap());
+        divForm.add(careerIDField, constraints);
+
         div.add(divForm, BorderLayout.NORTH);
         divBox.add(div, BorderLayout.NORTH);
 
@@ -103,6 +113,7 @@ public class StudentViews {
             String newFirstName = firstNameField.getText();
             String newLastName = lastNameField.getText();
             String newBirthDate = birthDateField.getText();
+            Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
 
             if (!newFirstName.isEmpty() && !newFirstName.equals(model.getFirstName())) {
                 model.setFirstName(newFirstName);
@@ -114,6 +125,10 @@ public class StudentViews {
 
             if (!newBirthDate.isEmpty() && !newBirthDate.equals(model.getBirthDate())) {
                 model.setBirthDate(LocalDate.parse(newBirthDate));
+            }
+
+            if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
+                model.setIdCareer(selectedCareerId);
             }
 
             StudentController.getInstance().create(true, model);

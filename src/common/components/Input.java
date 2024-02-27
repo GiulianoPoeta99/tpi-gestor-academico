@@ -1,17 +1,11 @@
 package common.components;
 
-import career.Career;
-import common.Model;
-
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -40,9 +34,10 @@ public class Input extends UIComponent {
         return textField;
     }
 
-    // Método para crear un input similar a un select 2 con datos de Career
-    public static JComboBox<String> createCareerInput(Map<Integer, String> dataMap) {
-        JComboBox<String> comboBox = new JComboBox<>(dataMap.values().toArray(new String[0]));
+    public static JPanel createSelect2Input(Map<Integer, String> options) {
+        JPanel panel = new JPanel(new BorderLayout());
+        JComboBox<String> comboBox = new JComboBox<>(options.values().toArray(new String[0]));
+
         comboBox.setPreferredSize(new Dimension(200, 30)); // Establecer el tamaño preferido
         comboBox.setForeground(TEXT_COLOR);
         comboBox.setBackground(BACKGROUND_COLOR);
@@ -50,6 +45,22 @@ public class Input extends UIComponent {
                 new MatteBorder(1, 1, 1, 1, TEXT_COLOR),
                 new EmptyBorder(5, 5, 5, 5)
         ));
-        return comboBox;
+
+        comboBox.setSelectedIndex(-1); // Para que inicialmente no haya ninguna opción seleccionada
+
+        comboBox.addActionListener(e -> {
+            if (comboBox.getSelectedItem() != null) {
+                String selectedValue = comboBox.getSelectedItem().toString();
+                for (Map.Entry<Integer, String> entry : options.entrySet()) {
+                    if (entry.getValue().equals(selectedValue)) {
+                        comboBox.putClientProperty("selectedIndex", entry.getKey());
+                        break;
+                    }
+                }
+            }
+        });
+
+        panel.add(comboBox, BorderLayout.CENTER);
+        return panel;
     }
 }
