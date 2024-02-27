@@ -19,19 +19,45 @@ public class StudyPlanController implements Controller {
         render(() -> StudyPlanViews.index(StudyPlan.getAll()));
     }
 
-    public void create(boolean save, Model model) {
-        // Implementation for creating a new study plan.
+    public void create(boolean save, StudyPlan model) {
+        if (model == null) {
+            model = new StudyPlan();
+        }
+
+        if (save) {
+            if (model.save()) {
+                view(model.getId());
+            }
+        } else {
+            StudyPlan finalModel = model;
+            render(() -> StudyPlanViews.create(finalModel));
+        }
     }
 
-    public void update(int id) {
-        // Implementation for updating an existing study plan.
+    public void update(boolean save, int id) {
+        StudyPlan model = (StudyPlan) StudyPlan.getById(id);
+
+        if (save) {
+            if (model.update()) {
+                view(model.getId());
+            }
+        } else {
+            render(() -> StudyPlanViews.update(model));
+        }
     }
 
     public void view(int id) {
-        // Implementation for viewing study plan data.
+        StudyPlan model = (StudyPlan) StudyPlan.getById(id);
+        render(() -> StudyPlanViews.view(model));
     }
 
-    public void delete(int id) {
-        // Implementation for deleting a study plan.
+    public void delete(boolean validation, int id) {
+        if (validation) {
+            StudyPlan model = (StudyPlan) StudyPlan.getById(id);
+            model.delete();
+            render(() -> StudyPlanViews.delete(true, id));
+        } else {
+            render(() -> StudyPlanViews.delete(false, id));
+        }
     }
 }

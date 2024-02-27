@@ -10,7 +10,7 @@ import common.Model;
 public class StudyPlan implements Model {
     // Constants
     public static final String TRANSLATE_NAME = "Plan de Estudio";
-    private static final List<String> TYPES_STUDY_PLAN = Arrays.asList("A", "B", "C", "D", "E");
+    public static final List<String> TYPES_STUDY_PLAN = Arrays.asList("A", "B", "C", "D", "E");
 
     // Attributes
     private int id;

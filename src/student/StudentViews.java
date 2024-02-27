@@ -100,7 +100,7 @@ public class StudentViews {
         divForm.add(careerIDLabel, constraints);
 
         constraints.gridy++;
-        JPanel careerIDField = Input.createSelect2Input(CareerSearch.getIDNameForSelect2());
+        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
         divForm.add(careerIDField, constraints);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -203,7 +203,7 @@ public class StudentViews {
         divForm.add(careerIDLabel, constraints);
 
         constraints.gridy++;
-        JPanel careerIDField = Input.createSelect2Input(CareerSearch.getIDNameForSelect2());
+        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
         divForm.add(careerIDField, constraints);
 
         div.add(divForm, BorderLayout.NORTH);

@@ -34,7 +34,7 @@ public class Input extends UIComponent {
         return textField;
     }
 
-    public static JPanel createSelect2Input(Map<Integer, String> options) {
+    public static JPanel createSelect2InputStrInt(Map<Integer, String> options) {
         JPanel panel = new JPanel(new BorderLayout());
         JComboBox<String> comboBox = new JComboBox<>(options.values().toArray(new String[0]));
 
@@ -52,6 +52,36 @@ public class Input extends UIComponent {
             if (comboBox.getSelectedItem() != null) {
                 String selectedValue = comboBox.getSelectedItem().toString();
                 for (Map.Entry<Integer, String> entry : options.entrySet()) {
+                    if (entry.getValue().equals(selectedValue)) {
+                        comboBox.putClientProperty("selectedIndex", entry.getKey());
+                        break;
+                    }
+                }
+            }
+        });
+
+        panel.add(comboBox, BorderLayout.CENTER);
+        return panel;
+    }
+
+    public static JPanel createSelect2InputStrStr(Map<String, String> options) {
+        JPanel panel = new JPanel(new BorderLayout());
+        JComboBox<String> comboBox = new JComboBox<>(options.values().toArray(new String[0]));
+
+        comboBox.setPreferredSize(new Dimension(200, 30)); // Establecer el tamaño preferido
+        comboBox.setForeground(TEXT_COLOR);
+        comboBox.setBackground(BACKGROUND_COLOR);
+        comboBox.setBorder(new CompoundBorder(
+                new MatteBorder(1, 1, 1, 1, TEXT_COLOR),
+                new EmptyBorder(5, 5, 5, 5)
+        ));
+
+        comboBox.setSelectedIndex(-1); // Para que inicialmente no haya ninguna opción seleccionada
+
+        comboBox.addActionListener(e -> {
+            if (comboBox.getSelectedItem() != null) {
+                String selectedValue = comboBox.getSelectedItem().toString();
+                for (Map.Entry<String, String> entry : options.entrySet()) {
                     if (entry.getValue().equals(selectedValue)) {
                         comboBox.putClientProperty("selectedIndex", entry.getKey());
                         break;
