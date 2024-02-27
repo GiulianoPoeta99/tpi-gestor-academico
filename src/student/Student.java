@@ -172,10 +172,10 @@ public class Student implements Model {
               * Fecha de Nacimiento: %s
             """,
             TRANSLATE_NAME,
-            this.getDossierNumber(), "N/A",
-            this.getFirstName(), "N/A",
-            this.getLastName(), "N/A",
-            this.getBirthDate(), "N/A"
+            this.getDossierNumber(),
+            this.getFirstName(),
+            this.getLastName(),
+            this.getBirthDate().toString()
         );
     }
 }
