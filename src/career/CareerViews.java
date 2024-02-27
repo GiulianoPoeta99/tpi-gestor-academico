@@ -102,7 +102,7 @@ public class CareerViews {
     public static List<JComponent> update(Career model) {
         List<JComponent> components = new ArrayList<>();
 
-        JLabel title = Text.h1("Crear " + Career.TRANSLATE_NAME);
+        JLabel title = Text.h1("Actualizar " + Career.TRANSLATE_NAME + " registro: " + model.getId());
 
         Box titleBox = Box.createHorizontalBox();
         titleBox.add(Box.createHorizontalGlue());

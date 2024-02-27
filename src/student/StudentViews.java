@@ -149,7 +149,7 @@ public class StudentViews {
     public static List<JComponent> update(Student model) {
         List<JComponent> components = new ArrayList<>();
 
-        JLabel title = Text.h1("Crear " + Student.TRANSLATE_NAME);
+        JLabel title = Text.h1("Actualizar " + Student.TRANSLATE_NAME + " registro: " + model.getId());
 
         Box titleBox = Box.createHorizontalBox();
         titleBox.add(Box.createHorizontalGlue());
@@ -166,18 +166,45 @@ public class StudentViews {
         JPanel divForm = new JPanel(new GridBagLayout());
         divForm.setBackground(Common.BACKGROUND_COLOR);
 
-        GridBagConstraints conditions = new GridBagConstraints();
-        conditions.gridx = 0;
-        conditions.gridy = 0;
-        conditions.anchor = GridBagConstraints.WEST;
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.WEST;
 
-        JLabel nameLabel = new JLabel("Nombre:");
-        nameLabel.setForeground(Common.TEXT_COLOR);
-        divForm.add(nameLabel, conditions);
+        JLabel firstNameLabel = new JLabel("Nombre:");
+        firstNameLabel.setForeground(Common.TEXT_COLOR);
+        divForm.add(firstNameLabel, constraints);
 
-        conditions.gridy++;
-        JTextField nameField = Input.createInput(model != null ? model.getFirstName() : "");
-        divForm.add(nameField, conditions);
+        constraints.gridy++;
+        JTextField firstNameField = Input.createInput(model != null ? model.getFirstName() : "");
+        divForm.add(firstNameField, constraints);
+
+        constraints.gridy++;
+        JLabel lastNameLabel = new JLabel("Apellido:");
+        lastNameLabel.setForeground(Common.TEXT_COLOR);
+        divForm.add(lastNameLabel, constraints);
+
+        constraints.gridy++;
+        JTextField lastNameField = Input.createInput(model != null ? model.getLastName() : "");
+        divForm.add(lastNameField, constraints);
+
+        constraints.gridy++;
+        JLabel birthDateLabel = new JLabel("Fecha de nacimiento (yyyy-mm-dd):");
+        birthDateLabel.setForeground(Common.TEXT_COLOR);
+        divForm.add(birthDateLabel, constraints);
+
+        constraints.gridy++;
+        JTextField birthDateField = Input.createDateInput(model != null ? model.getBirthDate() : LocalDate.now());
+        divForm.add(birthDateField, constraints);
+
+        constraints.gridy++;
+        JLabel careerIDLabel = new JLabel("Carrera:");
+        careerIDLabel.setForeground(Common.TEXT_COLOR);
+        divForm.add(careerIDLabel, constraints);
+
+        constraints.gridy++;
+        JPanel careerIDField = Input.createSelect2Input(CareerSearch.getIDNameForSelect2());
+        divForm.add(careerIDField, constraints);
 
         div.add(divForm, BorderLayout.NORTH);
         divBox.add(div, BorderLayout.NORTH);
@@ -187,10 +214,27 @@ public class StudentViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.primary("Actualizar", () -> {
-            String newName = nameField.getText();
-            if (!newName.isEmpty() && !newName.equals(model.getFirstName())) {
-                model.setFirstName(newName);
+            String newFirstName = firstNameField.getText();
+            String newLastName = lastNameField.getText();
+            String newBirthDate = birthDateField.getText();
+            Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
+
+            if (!newFirstName.isEmpty() && !newFirstName.equals(model.getFirstName())) {
+                model.setFirstName(newFirstName);
             }
+
+            if (!newLastName.isEmpty() && !newLastName.equals(model.getLastName())) {
+                model.setLastName(newLastName);
+            }
+
+            if (!newBirthDate.isEmpty() && !newBirthDate.equals(model.getBirthDate())) {
+                model.setBirthDate(LocalDate.parse(newBirthDate));
+            }
+
+            if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
+                model.setIdCareer(selectedCareerId);
+            }
+
             StudentController.getInstance().update(true, model.getId());
         });
         divButton.add(saveButton);
