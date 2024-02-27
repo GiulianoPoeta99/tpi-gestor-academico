@@ -60,6 +60,16 @@ public class Career implements Model {
         serial++;
     }
 
+    public static Map<Integer, String> dataMap() {
+        Map<Integer, String> careerMap = new LinkedHashMap<>();
+        for (Model model : Career.getAll().values()) {
+            if (model instanceof Career career) {
+                careerMap.put(career.getId(), career.getName());
+            }
+        }
+        return careerMap;
+    }
+
     public static void loadData() {
         new Career("Tecnicatura en sistemas");
         new Career("Licenciatura en sistemas");
