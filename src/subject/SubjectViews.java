@@ -1,12 +1,11 @@
 package subject;
 
-import career.Career;
+
 import career.CareerSearch;
 import common.Model;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -43,17 +42,7 @@ public class SubjectViews {
         return components;
     }
 
-    public static List<JComponent> create(Subject model) {
-        List<JComponent> components = new ArrayList<>();
-
-        JLabel title = Text.h1("Crear " + Subject.TRANSLATE_NAME);
-
-        Box titleBox = Box.createHorizontalBox();
-        titleBox.add(Box.createHorizontalGlue());
-        titleBox.add(title);
-        titleBox.add(Box.createHorizontalGlue());
-        components.add(titleBox);
-
+    private static JPanel form(Subject model, boolean update) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
 
@@ -126,12 +115,49 @@ public class SubjectViews {
 
             SubjectController.getInstance().create(true, model, selectedCareerId);
         });
+        if (update) {
+            saveButton = Button.primary("Actualizar", () -> {
+                String newName = nameField.getText();
+                boolean selectedIsOptional = (boolean) ((JComboBox) ((JPanel) isOptionalField).getComponent(0)).getClientProperty("selectedIndex");
+                String newFourMonths = fourMonthsField.getText();
+
+                if (!newName.isEmpty() && !newName.equals(model.getName())) {
+                    model.setName(newName);
+                }
+
+                if (selectedIsOptional != model.getIsOptional()) {
+                    model.setIsOptional(selectedIsOptional);
+                }
+
+                if (!newFourMonths.isEmpty() && !newFourMonths.equals(model.getFourMonths())) {
+                    model.setName(newName);
+                }
+
+                SubjectController.getInstance().update(true, model.getId());
+            });
+        }
         divButton.add(saveButton);
 
         JButton backButton = Button.danger("Volver", () -> SubjectController.getInstance().index());
         divButton.add(backButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
+
+        return divBox;
+    }
+
+    public static List<JComponent> create(Subject model) {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1("Crear " + Subject.TRANSLATE_NAME);
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = form(model,false);
 
         components.add(divBox);
 
@@ -149,82 +175,7 @@ public class SubjectViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = UIComponent.bigBox();
-        divBox.setLayout(new BorderLayout());
-
-        JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        div.setBackground(Common.BACKGROUND_COLOR);
-
-        JPanel divForm = new JPanel(new GridBagLayout());
-        divForm.setBackground(Common.BACKGROUND_COLOR);
-
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.WEST;
-
-        JLabel nameLabel = Text.label("Nombre:");
-        divForm.add(nameLabel, constraints);
-
-        constraints.gridy++;
-        JTextField nameField = Input.createInput(model != null ? model.getName() : "");
-        divForm.add(nameField, constraints);
-
-        constraints.gridy++;
-        JLabel isOptionalLabel = Text.label("Opcional:");
-        divForm.add(isOptionalLabel, constraints);
-
-        constraints.gridy++;
-        JPanel isOptionalField = Input.createSelect2InputBoolStr();
-        divForm.add(isOptionalField, constraints);
-
-        JLabel fourMonthsLabel = Text.label("Cuatrimestre:");
-        divForm.add(fourMonthsLabel, constraints);
-
-        constraints.gridy++;
-        JTextField fourMonthsField = Input.createInput(model != null ? String.valueOf(model.getFourMonths()) : "");
-        divForm.add(fourMonthsField, constraints);
-
-        constraints.gridy++;
-        JLabel careerIDLabel = Text.label("Plan de estudios:");
-        divForm.add(careerIDLabel, constraints);
-
-        constraints.gridy++;
-        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
-        divForm.add(careerIDField, constraints);
-
-        div.add(divForm, BorderLayout.NORTH);
-        divBox.add(div, BorderLayout.NORTH);
-
-        JPanel divButton = new JPanel();
-        divButton.setBackground(Common.BACKGROUND_COLOR);
-        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-        JButton saveButton = Button.primary("Actualizar", () -> {
-            String newName = nameField.getText();
-            boolean selectedIsOptional = (boolean) ((JComboBox) ((JPanel) isOptionalField).getComponent(0)).getClientProperty("selectedIndex");
-            String newFourMonths = fourMonthsField.getText();
-
-            if (!newName.isEmpty() && !newName.equals(model.getName())) {
-                model.setName(newName);
-            }
-
-            if (selectedIsOptional != model.getIsOptional()) {
-                model.setIsOptional(selectedIsOptional);
-            }
-
-            if (!newFourMonths.isEmpty() && !newFourMonths.equals(model.getFourMonths())) {
-                model.setName(newName);
-            }
-
-            SubjectController.getInstance().update(true, model.getId());
-        });
-        divButton.add(saveButton);
-
-        JButton backButton = Button.danger("Volver", () -> SubjectController.getInstance().index());
-        divButton.add(backButton);
-
-        divBox.add(divButton, BorderLayout.SOUTH);
+        JPanel divBox = form(model,true);
 
         components.add(divBox);
 

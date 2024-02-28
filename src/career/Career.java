@@ -6,6 +6,7 @@ import java.util.Map;
 import common.Model;
 
 public class Career implements Model {
+
     // Constants
     public static final String TRANSLATE_NAME = "Carrera";
 
@@ -17,33 +18,31 @@ public class Career implements Model {
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 
-    // Builders ============================================================
-
+    // Constructors ==========================================================
+    
     public Career() {}
 
     protected Career(String name) {
-        this.setName(name);
-        this.save();
+        this.name = name;
+        save();
     }
 
-    // Setters & Getters =======================================================
+    // Setters & Getters ======================================================
 
-    public Career setId(int id) {
+    public void setId(int id) {
         this.id = id;
-        return this;
     }
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
-    public Career setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     // Methods ================================================================
@@ -53,7 +52,7 @@ public class Career implements Model {
     }
 
     public static Map<Integer, Model> getAll() {
-        return Career.all;
+        return all;
     }
 
     protected static void addSerial() {
@@ -63,21 +62,23 @@ public class Career implements Model {
     public static void loadData() {
         new Career("Tecnicatura en sistemas");
         new Career("Licenciatura en sistemas");
+        new Career("Ingenieria Industrial");
+        new Career("Licenciatura en economia");
     }
 
-    // Implements ==============================================================
+    // Model interface methods =================================================
 
     @Override
     public boolean validate() {
-        return (this.getName() != null);
+        return name != null;
     }
 
     @Override
     public boolean save() {
-        if (this.validate()) {
+        if (validate()) {
             addSerial();
-            this.setId(serial);
-            all.put(this.getId(), this);
+            id = serial;
+            all.put(id, this);
             return true;
         }
         return false;
@@ -85,8 +86,8 @@ public class Career implements Model {
 
     @Override
     public boolean update() {
-        if (this.validate()) {
-            all.put(this.getId(), this);
+        if (validate()) {
+            all.put(id, this);
             return true;
         }
         return false;
@@ -94,17 +95,17 @@ public class Career implements Model {
 
     @Override
     public void delete() {
-        all.remove(this.getId(), this);
+        all.remove(id, this);
     }
 
     @Override
     public Object[] getAttributeValues() {
-        return new Object[] { this.getName() }; // Devuelve los valores de los atributos como un arreglo de objetos
+        return new Object[] { name };
     }
 
     @Override
     public String[] getAttributeNames() {
-        return new String[] { "Nombre" }; // Devuelve los nombres de los atributos como un arreglo de cadenas
+        return new String[] { "Nombre" };
     }
 
     // Overrides ===============================================================
@@ -112,11 +113,11 @@ public class Career implements Model {
     @Override
     public String toString() {
         return String.format("""
-            %s:
-              * Nombre: %s
-            """,
-            TRANSLATE_NAME,
-            this.getName(), "N/A"
-        );
+        %s
+          * Nombre: %s
+        """,
+        TRANSLATE_NAME,
+        name != null ? name : "N/A"
+    );
     }
 }

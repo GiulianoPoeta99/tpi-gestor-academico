@@ -20,7 +20,7 @@ public class Subject implements Model {
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 
-    // Builders ============================================================
+    // Constructors ==========================================================
 
     public Subject() {}
 
@@ -30,10 +30,10 @@ public class Subject implements Model {
         int fourMonths,
         int idStudyPlan
     ) {
-        this.setName(name);
-        this.setIsOptional(isOptional);
-        this.setFourMonths(fourMonths);
-        this.setIdStudyPlan(idStudyPlan);
+        this.name = name;
+        this.isOptional = isOptional;
+        this.fourMonths = fourMonths;
+        this.idStudyPlan = idStudyPlan;
         this.save();
     }
 
@@ -48,36 +48,32 @@ public class Subject implements Model {
         return this.id;
     }
 
-    public Subject setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public Subject setIsOptional(boolean isOptional) {
+    public void setIsOptional(boolean isOptional) {
         this.isOptional = isOptional;
-        return this;
     }
 
     public boolean getIsOptional() {
         return this.isOptional;
     }
 
-    public Subject setFourMonths(int fourMonths) {
+    public void setFourMonths(int fourMonths) {
         this.fourMonths = fourMonths;
-        return this;
     }
 
     public int getFourMonths() {
         return this.fourMonths;
     }
 
-    public Subject setIdStudyPlan(int idStudyPlan) {
+    public void setIdStudyPlan(int idStudyPlan) {
         this.idStudyPlan = idStudyPlan;
-        return this;
     }
 
     public int getIdStudyPlan() {
@@ -99,17 +95,22 @@ public class Subject implements Model {
     }
 
     public static void loadData() {
-        new Subject();
+        new Subject("Expresion de problemas y algoritmos", true,1,1);
+        new Subject("Elementos de informatica", true,1,1);
+        new Subject("Analisis matematico", true,1,1);
+        new Subject("Expresion de problemas y algoritmos", true,1,2);
+        new Subject("Elementos de informatica", true,1,2);
+        new Subject("Analisis matematico", true,1,2);
     }
 
-    // Implements ==============================================================
+    // Model interface methods =================================================
 
     @Override
     public boolean validate() {
         return (
-            this.getName() != null &&
-            this.getFourMonths() != 0 &&
-            this.getIdStudyPlan() != 0
+            name != null &&
+            fourMonths != 0 &&
+            idStudyPlan != 0
         );
     }
 
@@ -117,8 +118,8 @@ public class Subject implements Model {
     public boolean save() {
         if (this.validate()) {
             addSerial();
-            this.setId(serial);
-            all.put(this.getId(), this);
+            id = serial;
+            all.put(id, this);
             return true;
         }
         return false;
@@ -127,7 +128,7 @@ public class Subject implements Model {
     @Override
     public boolean update() {
         if (this.validate()) {
-            all.put(this.getId(), this);
+            all.put(id, this);
             return true;
         }
         return false;
@@ -135,12 +136,12 @@ public class Subject implements Model {
 
     @Override
     public void delete() {
-        all.remove(this.getId(), this);
+        all.remove(id, this);
     }
 
     @Override
     public Object[] getAttributeValues() {
-        return new Object[] { this.getName(), this.getIsOptional(), this.getFourMonths(), this.getIdStudyPlan() };
+        return new Object[] { name, isOptional, fourMonths, idStudyPlan };
     }
 
     @Override
@@ -154,12 +155,14 @@ public class Subject implements Model {
     public String toString() {
         return String.format("""
             %s:
-              * Name: %s
-              * Four Months: %s
+              * Nombre: %s
+              * Cuatrimestre: %s
+              * ID plan de estudio
             """,
             TRANSLATE_NAME,
-            this.getName(),
-            this.getFourMonths()
+            name,
+            fourMonths,
+            idStudyPlan
         );
     }
 }

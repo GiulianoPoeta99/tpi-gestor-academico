@@ -8,6 +8,7 @@ import java.util.Map;
 import common.Model;
 
 public class StudyPlan implements Model {
+
     // Constants
     public static final String TRANSLATE_NAME = "Plan de Estudio";
     public static final List<String> TYPES_STUDY_PLAN = Arrays.asList("A", "B", "C", "D", "E");
@@ -22,12 +23,14 @@ public class StudyPlan implements Model {
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 
-    // Builders ============================================================
+    // Constructors ============================================================
 
     public StudyPlan() {}
 
-    protected StudyPlan(String type) {
-        this.setType(type);
+    protected StudyPlan(String type, int idCareer, boolean isActive) {
+        this.type = type;
+        this.idCareer = idCareer;
+        this.isActive = isActive;
         this.save();
     }
 
@@ -39,38 +42,35 @@ public class StudyPlan implements Model {
     }
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
-    public StudyPlan setType(String type) {
+    public void setType(String type) {
         if (TYPES_STUDY_PLAN.contains(type)) {
             this.type = type;
         } else {
             this.type = "ERROR";
         }
-        return this;
     }
 
     public String getType() {
-        return this.type;
+        return type;
     }
 
-    public StudyPlan setIdCareer(int idCareer) {
+    public void setIdCareer(int idCareer) {
         this.idCareer = idCareer;
-        return this;
     }
 
     public int getIdCareer() {
-        return this.idCareer;
+        return idCareer;
     }
 
-    public StudyPlan setIsActive(boolean isActive) {
+    public void setIsActive(boolean isActive) {
         this.isActive = isActive;
-        return this;
     }
 
     public boolean getIsActive () {
-        return this.isActive;
+        return isActive;
     }
 
     // Methods ================================================================
@@ -81,8 +81,7 @@ public class StudyPlan implements Model {
 
     public static Model getByIdCareer (int idCareer) {
         for (Model model : all.values()) {
-            if (model instanceof StudyPlan) {
-                StudyPlan studyPlan = (StudyPlan) model;
+            if (model instanceof StudyPlan studyPlan) {
                 if (studyPlan.getIdCareer() == idCareer && studyPlan.getIsActive()) {
                     return studyPlan;
                 }
@@ -100,26 +99,27 @@ public class StudyPlan implements Model {
     }
 
     public static void loadData() {
-        new StudyPlan();
+        new StudyPlan("A", 1, true);
+        new StudyPlan("B", 2, true);
     }
 
-    // Implements ==============================================================
+    // Model interface methods =================================================
 
     @Override
     public boolean validate() {
         // Validation logic goes here
         return (
-            this.getType() != null &&
-            this.getIdCareer() != 0
+            type != null &&
+            idCareer != 0
         );
     }
 
     @Override
     public boolean save() {
-        if (this.validate()) {
+        if (validate()) {
             addSerial();
-            this.setId(serial);
-            all.put(this.getId(), this);
+            id = serial;
+            all.put(id, this);
             return true;
         }
         return false;
@@ -128,7 +128,7 @@ public class StudyPlan implements Model {
     @Override
     public boolean update() {
         if (this.validate()) {
-            all.put(this.getId(), this);
+            all.put(id, this);
             return true;
         }
         return false;
@@ -136,12 +136,12 @@ public class StudyPlan implements Model {
 
     @Override
     public void delete() {
-        all.remove(this.getId(), this);
+        all.remove(id, this);
     }
 
     @Override
     public Object[] getAttributeValues() {
-        return new Object[] { this.getType(), this.getIdCareer(), this.getIsActive()};
+        return new Object[] { type, idCareer, isActive};
     }
 
     @Override
@@ -156,11 +156,13 @@ public class StudyPlan implements Model {
         return String.format("""
             %s:
               * Tipo: %s
+              * Carrera: %s
               * Vigente: %s
             """,
             TRANSLATE_NAME,
-            this.getType(),
-            this.getIsActive()
+            type != null ? type : "N/A",
+            idCareer != 0 ? idCareer : "N/A",
+            isActive
         );
     }
 }

@@ -41,17 +41,7 @@ public class StudyPlanViews {
         return components;
     }
 
-    public static List<JComponent> create(StudyPlan model) {
-        List<JComponent> components = new ArrayList<>();
-
-        JLabel title = Text.h1("Crear " + StudyPlan.TRANSLATE_NAME);
-
-        Box titleBox = Box.createHorizontalBox();
-        titleBox.add(Box.createHorizontalGlue());
-        titleBox.add(title);
-        titleBox.add(Box.createHorizontalGlue());
-        components.add(titleBox);
-
+    private static JPanel form(StudyPlan model, boolean update) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
 
@@ -115,12 +105,48 @@ public class StudyPlanViews {
 
             StudyPlanController.getInstance().create(true, model);
         });
+        if (update) {
+            saveButton = Button.primary("Actualizar", () -> {
+                String selectedType = (String) ((JComboBox) ((JPanel) typeField).getComponent(0)).getClientProperty("selectedIndex");
+                Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
+                boolean selectedIsActive = (boolean) ((JComboBox) ((JPanel) isActiveField).getComponent(0)).getClientProperty("selectedIndex");
+                if (selectedType != null && !selectedType.isEmpty() && !selectedType.equals(model.getType())) {
+                    model.setType(selectedType);
+                }
+
+                if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
+                    model.setIdCareer(selectedCareerId);
+                }
+
+                if (selectedIsActive != model.getIsActive()) {
+                    model.setIdCareer(selectedCareerId);
+                }
+
+                StudyPlanController.getInstance().update(true, model.getId());
+            });
+        }
         divButton.add(saveButton);
 
         JButton backButton = Button.danger("Volver", () -> StudyPlanController.getInstance().index());
         divButton.add(backButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
+
+        return divBox;
+    }
+
+    public static List<JComponent> create(StudyPlan model) {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1("Crear " + StudyPlan.TRANSLATE_NAME);
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = form(model, false);
 
         components.add(divBox);
 
@@ -138,74 +164,7 @@ public class StudyPlanViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = UIComponent.bigBox();
-        divBox.setLayout(new BorderLayout());
-
-        JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        div.setBackground(Common.BACKGROUND_COLOR);
-
-        JPanel divForm = new JPanel(new GridBagLayout());
-        divForm.setBackground(Common.BACKGROUND_COLOR);
-
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.WEST;
-
-        JLabel typeLabel = Text.label("Tipo:");
-        divForm.add(typeLabel, constraints);
-
-        constraints.gridy++;
-        JPanel typeField = Input.createSelect2InputStrStr(StudyPlanSearch.getTypeForSelect2());
-        divForm.add(typeField, constraints);
-
-        constraints.gridy++;
-        JLabel careerIDLabel = Text.label("Carrera:");
-        divForm.add(careerIDLabel, constraints);
-
-        constraints.gridy++;
-        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
-        divForm.add(careerIDField, constraints);
-
-        constraints.gridy++;
-        JLabel isActiveLabel = Text.label("Vigente:");
-        divForm.add(isActiveLabel, constraints);
-
-        constraints.gridy++;
-        JPanel isActiveField = Input.createSelect2InputBoolStr();
-        divForm.add(isActiveField, constraints);
-
-        div.add(divForm, BorderLayout.NORTH);
-        divBox.add(div, BorderLayout.NORTH);
-
-        JPanel divButton = new JPanel();
-        divButton.setBackground(Common.BACKGROUND_COLOR);
-        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-        JButton saveButton = Button.primary("Actualizar", () -> {
-            String selectedType = (String) ((JComboBox) ((JPanel) typeField).getComponent(0)).getClientProperty("selectedIndex");
-            Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
-            boolean selectedIsActive = (boolean) ((JComboBox) ((JPanel) isActiveField).getComponent(0)).getClientProperty("selectedIndex");
-            if (selectedType != null && !selectedType.isEmpty() && !selectedType.equals(model.getType())) {
-                model.setType(selectedType);
-            }
-
-            if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
-                model.setIdCareer(selectedCareerId);
-            }
-
-            if (selectedIsActive != model.getIsActive()) {
-                model.setIdCareer(selectedCareerId);
-            }
-
-            StudyPlanController.getInstance().update(true, model.getId());
-        });
-        divButton.add(saveButton);
-
-        JButton backButton = Button.danger("Volver", () -> StudyPlanController.getInstance().index());
-        divButton.add(backButton);
-
-        divBox.add(divButton, BorderLayout.SOUTH);
+        JPanel divBox = form(model, false);
 
         components.add(divBox);
 

@@ -43,17 +43,7 @@ public class StudentViews {
         return components;
     }
 
-    public static List<JComponent> create(Student model) {
-        List<JComponent> components = new ArrayList<>();
-
-        JLabel title = Text.h1("Crear " + Student.TRANSLATE_NAME);
-
-        Box titleBox = Box.createHorizontalBox();
-        titleBox.add(Box.createHorizontalGlue());
-        titleBox.add(title);
-        titleBox.add(Box.createHorizontalGlue());
-        components.add(titleBox);
-
+    private static JPanel form(Student model, boolean update) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
 
@@ -130,6 +120,32 @@ public class StudentViews {
 
             StudentController.getInstance().create(true, model);
         });
+        if (update) {
+            saveButton = Button.primary("Actualizar", () -> {
+                String newFirstName = firstNameField.getText();
+                String newLastName = lastNameField.getText();
+                String newBirthDate = birthDateField.getText();
+                Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
+
+                if (!newFirstName.isEmpty() && !newFirstName.equals(model.getFirstName())) {
+                    model.setFirstName(newFirstName);
+                }
+
+                if (!newLastName.isEmpty() && !newLastName.equals(model.getLastName())) {
+                    model.setLastName(newLastName);
+                }
+
+                if (!newBirthDate.isEmpty() && !newBirthDate.equals(model.getBirthDate())) {
+                    model.setBirthDate(LocalDate.parse(newBirthDate));
+                }
+
+                if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
+                    model.setIdCareer(selectedCareerId);
+                }
+
+                StudentController.getInstance().update(true, model.getId());
+            });
+        }
         divButton.add(saveButton);
 
         JButton backButton = Button.danger("Volver", () -> StudentController.getInstance().index());
@@ -137,6 +153,21 @@ public class StudentViews {
 
         divBox.add(divButton, BorderLayout.SOUTH);
 
+        return divBox;
+    }
+
+    public static List<JComponent> create(Student model) {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1("Crear " + Student.TRANSLATE_NAME);
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = form(model,false);
         components.add(divBox);
 
         return components;
@@ -153,89 +184,7 @@ public class StudentViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = UIComponent.bigBox();
-        divBox.setLayout(new BorderLayout());
-
-        JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        div.setBackground(Common.BACKGROUND_COLOR);
-
-        JPanel divForm = new JPanel(new GridBagLayout());
-        divForm.setBackground(Common.BACKGROUND_COLOR);
-
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.WEST;
-
-        JLabel firstNameLabel = Text.label("Nombre:");
-        divForm.add(firstNameLabel, constraints);
-
-        constraints.gridy++;
-        JTextField firstNameField = Input.createInput(model != null ? model.getFirstName() : "");
-        divForm.add(firstNameField, constraints);
-
-        constraints.gridy++;
-        JLabel lastNameLabel = Text.label("Apellido:");
-        divForm.add(lastNameLabel, constraints);
-
-        constraints.gridy++;
-        JTextField lastNameField = Input.createInput(model != null ? model.getLastName() : "");
-        divForm.add(lastNameField, constraints);
-
-        constraints.gridy++;
-        JLabel birthDateLabel = Text.label("Fecha de nacimiento (yyyy-mm-dd):");
-        divForm.add(birthDateLabel, constraints);
-
-        constraints.gridy++;
-        JTextField birthDateField = Input.createDateInput(model != null ? model.getBirthDate() : LocalDate.now());
-        divForm.add(birthDateField, constraints);
-
-        constraints.gridy++;
-        JLabel careerIDLabel = Text.label("Carrera:");
-        divForm.add(careerIDLabel, constraints);
-
-        constraints.gridy++;
-        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
-        divForm.add(careerIDField, constraints);
-
-        div.add(divForm, BorderLayout.NORTH);
-        divBox.add(div, BorderLayout.NORTH);
-
-        JPanel divButton = new JPanel();
-        divButton.setBackground(Common.BACKGROUND_COLOR);
-        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-        JButton saveButton = Button.primary("Actualizar", () -> {
-            String newFirstName = firstNameField.getText();
-            String newLastName = lastNameField.getText();
-            String newBirthDate = birthDateField.getText();
-            Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
-
-            if (!newFirstName.isEmpty() && !newFirstName.equals(model.getFirstName())) {
-                model.setFirstName(newFirstName);
-            }
-
-            if (!newLastName.isEmpty() && !newLastName.equals(model.getLastName())) {
-                model.setLastName(newLastName);
-            }
-
-            if (!newBirthDate.isEmpty() && !newBirthDate.equals(model.getBirthDate())) {
-                model.setBirthDate(LocalDate.parse(newBirthDate));
-            }
-
-            if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
-                model.setIdCareer(selectedCareerId);
-            }
-
-            StudentController.getInstance().update(true, model.getId());
-        });
-        divButton.add(saveButton);
-
-        JButton backButton = Button.danger("Volver", () -> StudentController.getInstance().index());
-        divButton.add(backButton);
-
-        divBox.add(divButton, BorderLayout.SOUTH);
-
+        JPanel divBox = form(model,true);
         components.add(divBox);
 
         return components;

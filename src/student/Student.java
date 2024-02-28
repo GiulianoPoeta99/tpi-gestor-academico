@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import common.Model;
 
 public class Student implements Model {
+
     // Constants
     public static final String TRANSLATE_NAME = "Estudiante";
 
@@ -22,73 +23,62 @@ public class Student implements Model {
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 
-    // Builders ============================================================
+    // Constructors ==========================================================
 
     public Student() {}
 
-    protected Student(
-            String firstName,
-            String lastName,
-            LocalDate birthDate,
-            int idCareer
-    ) {
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
-        this.setBirthDate(birthDate);
-        this.setIdCareer(idCareer);
+    protected Student(String firstName, String lastName, LocalDate birthDate, int idCareer) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.idCareer = idCareer;
         this.save();
     }
 
     // Setters & Getters =======================================================
 
-    public Student setId(int id) {
+    public void setId(int id) {
         this.id = id;
-        return this;
     }
 
     public int getId() {
         return this.id;
     }
 
-    public Student setDossierNumber(String dossierNumber) {
+    public void setDossierNumber(String dossierNumber) {
         this.dossierNumber = dossierNumber;
-        return this;
     }
 
     public String getDossierNumber() {
         return this.dossierNumber;
     }
 
-    public Student setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
-        return this;
     }
 
     public String getFirstName() {
         return this.firstName;
     }
 
-    public Student setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
-        return this;
     }
 
     public String getLastName() {
         return this.lastName;
     }
 
-    public Student setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
-        return this;
     }
 
     public LocalDate getBirthDate() {
         return this.birthDate;
     }
 
-    public Student setIdCareer(int idCareer) {
+    public void setIdCareer(int idCareer) {
         this.idCareer = idCareer;
-        return this;
     }
 
     public int getIdCareer() {
@@ -110,17 +100,18 @@ public class Student implements Model {
     }
 
     public static void loadData() {
-        new Student("Giuliano", "Poeta", LocalDate.of(1999, 9, 14), 1);
+        new Student("Giuliano Ignacio", "Poeta", LocalDate.of(1999, 9, 14), 1);
+        new Student("Rocio", "Olvero Jofre", LocalDate.of(1999, 12, 22), 1);
     }
 
-    // Implements ==============================================================
+    // Model interface methods =================================================
 
     @Override
     public boolean validate() {
         return (
-            this.getFirstName() != null &&
-            this.getLastName() != null &&
-            this.getBirthDate() != null
+            this.firstName != null &&
+            this.lastName != null &&
+            this.birthDate != null
         );
     }
 
@@ -128,9 +119,9 @@ public class Student implements Model {
     public boolean save() {
         if (this.validate()) {
             addSerial();
-            this.setId(serial);
-            this.setDossierNumber(String.format("%04d", serial));
-            all.put(this.getId(), this);
+            id = serial;
+            dossierNumber = String.format("%04d", serial);
+            all.put(id, this);
             return true;
         }
         return false;
@@ -138,8 +129,8 @@ public class Student implements Model {
 
     @Override
     public boolean update() {
-        if (this.validate()) {
-            all.put(this.getId(), this);
+        if (validate()) {
+            all.put(id, this);
             return true;
         }
         return false;
@@ -147,12 +138,12 @@ public class Student implements Model {
 
     @Override
     public void delete() {
-        all.remove(this.getId(), this);
+        all.remove(id, this);
     }
 
     @Override
     public Object[] getAttributeValues() {
-        return new Object[] { this.getDossierNumber(), this.getFirstName(), this.getLastName(), this.getBirthDate(), this.getIdCareer()}; // Devuelve los valores de los atributos como un arreglo de objetos
+        return new Object[] { dossierNumber, firstName, lastName, birthDate, idCareer}; // Devuelve los valores de los atributos como un arreglo de objetos
     }
 
     @Override
