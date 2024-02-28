@@ -43,6 +43,15 @@ public class UIComponent extends Common {
             model.addRow(rowData);
         }
 
+        JTable table = configureTable(model);
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+
+        return scrollPane;
+    }
+
+    private static JTable configureTable(DefaultTableModel model) {
         JTable table = new JTable(model);
         table.setFillsViewportHeight(true);
         table.setForeground(TEXT_COLOR);
@@ -60,10 +69,6 @@ public class UIComponent extends Common {
             new MatteBorder(1, 1, 1, 1, TEXT_COLOR),
             new EmptyBorder(5, 5, 5, 5)
         ));
-
-        JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBorder(BorderFactory.createEmptyBorder());
-
-        return scrollPane;
+        return table;
     }
 }

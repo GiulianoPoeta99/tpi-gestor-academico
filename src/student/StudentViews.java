@@ -1,6 +1,5 @@
 package student;
 
-import career.Career;
 import career.CareerSearch;
 import common.Model;
 
@@ -41,6 +40,29 @@ public class StudentViews {
         components.add(divBox);
 
         return components;
+    }
+
+    private static void performSaveOrUpdate(Student model, JTextField firstNameField, JTextField lastNameField, JTextField birthDateField, JPanel careerIDField) {
+        String newFirstName = firstNameField.getText();
+        String newLastName = lastNameField.getText();
+        String newBirthDate = birthDateField.getText();
+        Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
+
+        if (!newFirstName.isEmpty() && !newFirstName.equals(model.getFirstName())) {
+            model.setFirstName(newFirstName);
+        }
+
+        if (!newLastName.isEmpty() && !newLastName.equals(model.getLastName())) {
+            model.setLastName(newLastName);
+        }
+
+        if (!newBirthDate.isEmpty()) {
+            model.setBirthDate(LocalDate.parse(newBirthDate));
+        }
+
+        if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
+            model.setIdCareer(selectedCareerId);
+        }
     }
 
     private static JPanel form(Student model, boolean update) {
@@ -97,52 +119,13 @@ public class StudentViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.success("Guardar", () -> {
-            String newFirstName = firstNameField.getText();
-            String newLastName = lastNameField.getText();
-            String newBirthDate = birthDateField.getText();
-            Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
-
-            if (!newFirstName.isEmpty() && !newFirstName.equals(model.getFirstName())) {
-                model.setFirstName(newFirstName);
-            }
-
-            if (!newLastName.isEmpty() && !newLastName.equals(model.getLastName())) {
-                model.setLastName(newLastName);
-            }
-
-            if (!newBirthDate.isEmpty() && !newBirthDate.equals(model.getBirthDate())) {
-                model.setBirthDate(LocalDate.parse(newBirthDate));
-            }
-
-            if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
-                model.setIdCareer(selectedCareerId);
-            }
-
+            performSaveOrUpdate(model, firstNameField, lastNameField, birthDateField, careerIDField);
             StudentController.getInstance().create(true, model);
         });
         if (update) {
             saveButton = Button.primary("Actualizar", () -> {
-                String newFirstName = firstNameField.getText();
-                String newLastName = lastNameField.getText();
-                String newBirthDate = birthDateField.getText();
-                Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
-
-                if (!newFirstName.isEmpty() && !newFirstName.equals(model.getFirstName())) {
-                    model.setFirstName(newFirstName);
-                }
-
-                if (!newLastName.isEmpty() && !newLastName.equals(model.getLastName())) {
-                    model.setLastName(newLastName);
-                }
-
-                if (!newBirthDate.isEmpty() && !newBirthDate.equals(model.getBirthDate())) {
-                    model.setBirthDate(LocalDate.parse(newBirthDate));
-                }
-
-                if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
-                    model.setIdCareer(selectedCareerId);
-                }
-
+                performSaveOrUpdate(model, firstNameField, lastNameField, birthDateField, careerIDField);
+                assert model != null;
                 StudentController.getInstance().update(true, model.getId());
             });
         }

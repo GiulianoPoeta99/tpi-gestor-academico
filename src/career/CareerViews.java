@@ -40,6 +40,16 @@ public class CareerViews {
         return components;
     }
 
+    private static void performSaveOrUpdate(Career model, JTextField nameField) {
+        String newName = nameField.getText();
+        if (!newName.isEmpty()) {
+            assert model != null;
+            if (!newName.equals(model.getName())) {
+                model.setName(newName);
+            }
+        }
+    }
+
     private static JPanel form(Career model, boolean update) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
@@ -70,18 +80,13 @@ public class CareerViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.success("Guardar", () -> {
-            String newName = nameField.getText();
-            if (!newName.isEmpty() && !newName.equals(model.getName())) {
-                model.setName(newName);
-            }
+            performSaveOrUpdate(model, nameField);
             CareerController.getInstance().create(true, model);
         });
         if (update) {
             saveButton = Button.primary("Actualizar", () -> {
-                String newName = nameField.getText();
-                if (!newName.isEmpty() && !newName.equals(model.getName())) {
-                    model.setName(newName);
-                }
+                performSaveOrUpdate(model, nameField);
+                assert model != null;
                 CareerController.getInstance().update(true, model.getId());
             });
         }

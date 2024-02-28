@@ -41,6 +41,23 @@ public class StudyPlanViews {
         return components;
     }
 
+    private static void performSaveOrUpdate(StudyPlan model, JPanel typeField, JPanel careerIDField, JPanel isActiveField) {
+        String selectedType = (String) ((JComboBox<?>) typeField.getComponent(0)).getClientProperty("selectedIndex");
+        Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
+        boolean selectedIsActive = (boolean) ((JComboBox<?>) isActiveField.getComponent(0)).getClientProperty("selectedIndex");
+        if (selectedType != null && !selectedType.isEmpty() && !selectedType.equals(model.getType())) {
+            model.setType(selectedType);
+        }
+
+        if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
+            model.setIdCareer(selectedCareerId);
+        }
+
+        if (selectedIsActive != model.getIsActive()) {
+            model.setIsActive(selectedIsActive);
+        }
+    }
+
     private static JPanel form(StudyPlan model, boolean update) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
@@ -87,41 +104,12 @@ public class StudyPlanViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.success("Guardar", () -> {
-            String selectedType = (String) ((JComboBox) ((JPanel) typeField).getComponent(0)).getClientProperty("selectedIndex");
-            Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
-            boolean selectedIsActive = ((String) ((JComboBox<?>) ((JPanel) isActiveField).getComponent(0)).getSelectedItem()).equals("Si");
-
-            if (selectedType != null && !selectedType.isEmpty() && !selectedType.equals(model.getType())) {
-                model.setType(selectedType);
-            }
-
-            if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
-                model.setIdCareer(selectedCareerId);
-            }
-
-            if (selectedIsActive != model.getIsActive()) {
-                model.setIsActive(selectedIsActive);
-            }
-
+            performSaveOrUpdate(model,typeField,careerIDField,isActiveField);
             StudyPlanController.getInstance().create(true, model);
         });
         if (update) {
             saveButton = Button.primary("Actualizar", () -> {
-                String selectedType = (String) ((JComboBox) ((JPanel) typeField).getComponent(0)).getClientProperty("selectedIndex");
-                Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
-                boolean selectedIsActive = (boolean) ((JComboBox) ((JPanel) isActiveField).getComponent(0)).getClientProperty("selectedIndex");
-                if (selectedType != null && !selectedType.isEmpty() && !selectedType.equals(model.getType())) {
-                    model.setType(selectedType);
-                }
-
-                if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
-                    model.setIdCareer(selectedCareerId);
-                }
-
-                if (selectedIsActive != model.getIsActive()) {
-                    model.setIdCareer(selectedCareerId);
-                }
-
+                performSaveOrUpdate(model,typeField,careerIDField,isActiveField);
                 StudyPlanController.getInstance().update(true, model.getId());
             });
         }

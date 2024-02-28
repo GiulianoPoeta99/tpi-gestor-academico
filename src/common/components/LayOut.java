@@ -6,11 +6,10 @@ import java.util.Map;
 
 public class LayOut {
 
-    private static JFrame frame;
     private static JPanel contentPanel;
 
     public static JFrame mainFrame() {
-        frame = new JFrame();
+        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1280, 720);
         return frame;
@@ -46,9 +45,7 @@ public class LayOut {
 
         button.setMaximumSize(new Dimension(Integer.MAX_VALUE, button.getPreferredSize().height));
 
-        button.addActionListener(e -> {
-            redirection.run();
-        });
+        button.addActionListener(e -> redirection.run());
 
         return button;
     }
