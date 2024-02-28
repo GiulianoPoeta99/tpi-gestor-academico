@@ -164,7 +164,7 @@ public class StudyPlanViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = form(model, false);
+        JPanel divBox = form(model, true);
 
         components.add(divBox);
 

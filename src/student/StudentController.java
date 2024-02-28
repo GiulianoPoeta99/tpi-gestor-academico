@@ -1,9 +1,6 @@
 package student;
 
 import common.Controller;
-import common.Model;
-
-import java.util.Map;
 
 public class StudentController implements Controller {
     private static final StudentController instance = new StudentController();

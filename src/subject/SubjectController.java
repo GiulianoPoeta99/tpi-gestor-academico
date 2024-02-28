@@ -1,10 +1,8 @@
 package subject;
 
 import common.Controller;
-import common.Model;
 import studyplan.StudyPlan;
 
-import java.util.Map;
 
 public class SubjectController implements Controller {
     private static final SubjectController instance = new SubjectController();

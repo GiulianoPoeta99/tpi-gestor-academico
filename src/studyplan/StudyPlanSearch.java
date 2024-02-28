@@ -1,8 +1,5 @@
 package studyplan;
 
-import career.Career;
-import common.Model;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 

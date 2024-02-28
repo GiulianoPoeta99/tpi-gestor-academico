@@ -1,9 +1,6 @@
 package career;
 
 import common.Controller;
-import common.Model;
-
-import java.util.Map;
 
 public class CareerController implements Controller {
     private static final CareerController instance = new CareerController();

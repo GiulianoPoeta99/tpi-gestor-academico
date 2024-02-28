@@ -156,8 +156,8 @@ public class Subject implements Model {
         return String.format("""
             %s:
               * Nombre: %s
-              * Cuatrimestre: %s
-              * ID plan de estudio
+              * Cuatrimestre: %d
+              * ID plan de estudio: %s
             """,
             TRANSLATE_NAME,
             name,
