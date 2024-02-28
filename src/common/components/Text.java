@@ -40,4 +40,8 @@ public class Text extends Common {
     public static JLabel p(String text) {
         return configureLabel(text, 14);
     }
+
+    public static JLabel label(String text) {
+        return configureLabel(text, 12);
+    }
 }

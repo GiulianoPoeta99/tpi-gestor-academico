@@ -158,8 +158,8 @@ public class Subject implements Model {
               * Four Months: %s
             """,
             TRANSLATE_NAME,
-            this.getName(), "N/A",
-            this.getFourMonths(), "N/A"
+            this.getName(),
+            this.getFourMonths()
         );
     }
 }

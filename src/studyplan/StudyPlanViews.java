@@ -66,8 +66,7 @@ public class StudyPlanViews {
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JLabel typeLabel = new JLabel("Tipo:");
-        typeLabel.setForeground(Common.TEXT_COLOR);
+        JLabel typeLabel = Text.label("Tipo:");
         divForm.add(typeLabel, constraints);
 
         constraints.gridy++;
@@ -75,13 +74,20 @@ public class StudyPlanViews {
         divForm.add(typeField, constraints);
 
         constraints.gridy++;
-        JLabel careerIDLabel = new JLabel("Carrera:");
-        careerIDLabel.setForeground(Common.TEXT_COLOR);
+        JLabel careerIDLabel = Text.label("Carrera:");
         divForm.add(careerIDLabel, constraints);
 
         constraints.gridy++;
         JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
         divForm.add(careerIDField, constraints);
+
+        constraints.gridy++;
+        JLabel isActiveLabel = Text.label("Vigente:");
+        divForm.add(isActiveLabel, constraints);
+
+        constraints.gridy++;
+        JPanel isActiveField = Input.createSelect2InputBoolStr();
+        divForm.add(isActiveField, constraints);
 
         div.add(divForm, BorderLayout.NORTH);
         divBox.add(div, BorderLayout.NORTH);
@@ -93,6 +99,7 @@ public class StudyPlanViews {
         JButton saveButton = Button.success("Guardar", () -> {
             String selectedType = (String) ((JComboBox) ((JPanel) typeField).getComponent(0)).getClientProperty("selectedIndex");
             Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
+            boolean selectedIsActive = ((String) ((JComboBox<?>) ((JPanel) isActiveField).getComponent(0)).getSelectedItem()).equals("Si");
 
             if (selectedType != null && !selectedType.isEmpty() && !selectedType.equals(model.getType())) {
                 model.setType(selectedType);
@@ -100,6 +107,10 @@ public class StudyPlanViews {
 
             if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
                 model.setIdCareer(selectedCareerId);
+            }
+
+            if (selectedIsActive != model.getIsActive()) {
+                model.setIsActive(selectedIsActive);
             }
 
             StudyPlanController.getInstance().create(true, model);
@@ -141,8 +152,7 @@ public class StudyPlanViews {
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JLabel typeLabel = new JLabel("Tipo:");
-        typeLabel.setForeground(Common.TEXT_COLOR);
+        JLabel typeLabel = Text.label("Tipo:");
         divForm.add(typeLabel, constraints);
 
         constraints.gridy++;
@@ -150,13 +160,20 @@ public class StudyPlanViews {
         divForm.add(typeField, constraints);
 
         constraints.gridy++;
-        JLabel careerIDLabel = new JLabel("Carrera:");
-        careerIDLabel.setForeground(Common.TEXT_COLOR);
+        JLabel careerIDLabel = Text.label("Carrera:");
         divForm.add(careerIDLabel, constraints);
 
         constraints.gridy++;
         JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
         divForm.add(careerIDField, constraints);
+
+        constraints.gridy++;
+        JLabel isActiveLabel = Text.label("Vigente:");
+        divForm.add(isActiveLabel, constraints);
+
+        constraints.gridy++;
+        JPanel isActiveField = Input.createSelect2InputBoolStr();
+        divForm.add(isActiveField, constraints);
 
         div.add(divForm, BorderLayout.NORTH);
         divBox.add(div, BorderLayout.NORTH);
@@ -168,12 +185,16 @@ public class StudyPlanViews {
         JButton saveButton = Button.primary("Actualizar", () -> {
             String selectedType = (String) ((JComboBox) ((JPanel) typeField).getComponent(0)).getClientProperty("selectedIndex");
             Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
-
+            boolean selectedIsActive = (boolean) ((JComboBox) ((JPanel) isActiveField).getComponent(0)).getClientProperty("selectedIndex");
             if (selectedType != null && !selectedType.isEmpty() && !selectedType.equals(model.getType())) {
                 model.setType(selectedType);
             }
 
             if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
+                model.setIdCareer(selectedCareerId);
+            }
+
+            if (selectedIsActive != model.getIsActive()) {
                 model.setIdCareer(selectedCareerId);
             }
 

@@ -3,7 +3,8 @@ package subject;
 import common.Controller;
 import common.Model;
 import studyplan.StudyPlan;
-import studyplan.StudyPlanViews;
+
+import java.util.Map;
 
 public class SubjectController implements Controller {
     private static final SubjectController instance = new SubjectController();
@@ -19,19 +20,54 @@ public class SubjectController implements Controller {
         render(() -> SubjectViews.index(Subject.getAll()));
     }
 
-    public void create(boolean save, Model model) {
-        // Implementation for creating a new subject.
+    public void create(boolean save, Subject model, int idCareer) {
+        if (model == null) {
+            model = new Subject();
+        }
+
+        if (save) {
+            if (idCareer != 0) {
+                StudyPlan studyPlan = (StudyPlan) StudyPlan.getByIdCareer(idCareer);
+
+                if ((studyPlan != null) && (studyPlan.getId() != model.getIdStudyPlan())) {
+                    model.setIdStudyPlan(studyPlan.getId());
+                }
+
+                if (model.save()) {
+                    view(model.getId());
+                }
+            }
+
+        } else {
+            Subject finalModel = model;
+            render(() -> SubjectViews.create(finalModel));
+        }
     }
 
-    public void update(int id) {
-        // Implementation for updating an existing subject.
+    public void update(boolean save, int id) {
+        Subject model = (Subject) Subject.getById(id);
+
+        if (save) {
+            if (model.update()) {
+                view(model.getId());
+            }
+        } else {
+            render(() -> SubjectViews.update(model));
+        }
     }
 
     public void view(int id) {
-        // Implementation for viewing subject data.
+        Subject model = (Subject) Subject.getById(id);
+        render(() -> SubjectViews.view(model));
     }
 
-    public void delete(int id) {
-        // Implementation for deleting a subject.
+    public void delete(boolean validation, int id) {
+        if (validation) {
+            Subject model = (Subject) Subject.getById(id);
+            model.delete();
+            render(() -> SubjectViews.delete(true, id));
+        } else {
+            render(() -> SubjectViews.delete(false, id));
+        }
     }
 }

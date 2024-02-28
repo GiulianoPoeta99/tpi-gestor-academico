@@ -68,8 +68,7 @@ public class StudentViews {
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JLabel firstNameLabel = new JLabel("Nombre:");
-        firstNameLabel.setForeground(Common.TEXT_COLOR);
+        JLabel firstNameLabel = Text.label("Nombre:");
         divForm.add(firstNameLabel, constraints);
 
         constraints.gridy++;
@@ -77,8 +76,7 @@ public class StudentViews {
         divForm.add(firstNameField, constraints);
 
         constraints.gridy++;
-        JLabel lastNameLabel = new JLabel("Apellido:");
-        lastNameLabel.setForeground(Common.TEXT_COLOR);
+        JLabel lastNameLabel = Text.label("Apellido:");
         divForm.add(lastNameLabel, constraints);
 
         constraints.gridy++;
@@ -86,8 +84,7 @@ public class StudentViews {
         divForm.add(lastNameField, constraints);
 
         constraints.gridy++;
-        JLabel birthDateLabel = new JLabel("Fecha de nacimiento (yyyy-mm-dd):");
-        birthDateLabel.setForeground(Common.TEXT_COLOR);
+        JLabel birthDateLabel = Text.label("Fecha de nacimiento (yyyy-mm-dd):");
         divForm.add(birthDateLabel, constraints);
 
         constraints.gridy++;
@@ -95,8 +92,7 @@ public class StudentViews {
         divForm.add(birthDateField, constraints);
 
         constraints.gridy++;
-        JLabel careerIDLabel = new JLabel("Carrera:");
-        careerIDLabel.setForeground(Common.TEXT_COLOR);
+        JLabel careerIDLabel = Text.label("Carrera:");
         divForm.add(careerIDLabel, constraints);
 
         constraints.gridy++;
@@ -171,8 +167,7 @@ public class StudentViews {
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JLabel firstNameLabel = new JLabel("Nombre:");
-        firstNameLabel.setForeground(Common.TEXT_COLOR);
+        JLabel firstNameLabel = Text.label("Nombre:");
         divForm.add(firstNameLabel, constraints);
 
         constraints.gridy++;
@@ -180,8 +175,7 @@ public class StudentViews {
         divForm.add(firstNameField, constraints);
 
         constraints.gridy++;
-        JLabel lastNameLabel = new JLabel("Apellido:");
-        lastNameLabel.setForeground(Common.TEXT_COLOR);
+        JLabel lastNameLabel = Text.label("Apellido:");
         divForm.add(lastNameLabel, constraints);
 
         constraints.gridy++;
@@ -189,8 +183,7 @@ public class StudentViews {
         divForm.add(lastNameField, constraints);
 
         constraints.gridy++;
-        JLabel birthDateLabel = new JLabel("Fecha de nacimiento (yyyy-mm-dd):");
-        birthDateLabel.setForeground(Common.TEXT_COLOR);
+        JLabel birthDateLabel = Text.label("Fecha de nacimiento (yyyy-mm-dd):");
         divForm.add(birthDateLabel, constraints);
 
         constraints.gridy++;
@@ -198,8 +191,7 @@ public class StudentViews {
         divForm.add(birthDateField, constraints);
 
         constraints.gridy++;
-        JLabel careerIDLabel = new JLabel("Carrera:");
-        careerIDLabel.setForeground(Common.TEXT_COLOR);
+        JLabel careerIDLabel = Text.label("Carrera:");
         divForm.add(careerIDLabel, constraints);
 
         constraints.gridy++;

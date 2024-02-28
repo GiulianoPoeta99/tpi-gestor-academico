@@ -16,6 +16,7 @@ public class StudyPlan implements Model {
     private int id;
     private String type;
     private int idCareer;
+    private boolean isActive;
 
     // Static attributes
     protected static int serial = 0;
@@ -63,10 +64,31 @@ public class StudyPlan implements Model {
         return this.idCareer;
     }
 
+    public StudyPlan setIsActive(boolean isActive) {
+        this.isActive = isActive;
+        return this;
+    }
+
+    public boolean getIsActive () {
+        return this.isActive;
+    }
+
     // Methods ================================================================
 
     public static Model getById(int id) {
         return all.get(id);
+    }
+
+    public static Model getByIdCareer (int idCareer) {
+        for (Model model : all.values()) {
+            if (model instanceof StudyPlan) {
+                StudyPlan studyPlan = (StudyPlan) model;
+                if (studyPlan.getIdCareer() == idCareer && studyPlan.getIsActive()) {
+                    return studyPlan;
+                }
+            }
+        }
+        return null;
     }
 
     public static Map<Integer, Model> getAll() {
@@ -119,12 +141,12 @@ public class StudyPlan implements Model {
 
     @Override
     public Object[] getAttributeValues() {
-        return new Object[] { this.getType(), this.getIdCareer() };
+        return new Object[] { this.getType(), this.getIdCareer(), this.getIsActive()};
     }
 
     @Override
     public String[] getAttributeNames() {
-        return new String[] { "Tipo", "ID Carrera" };
+        return new String[] { "Tipo", "ID Carrera", "Vigente" };
     }
 
     // Overrides ===============================================================
@@ -134,9 +156,11 @@ public class StudyPlan implements Model {
         return String.format("""
             %s:
               * Tipo: %s
+              * Vigente: %s
             """,
             TRANSLATE_NAME,
-            this.getType(), "N/A"
+            this.getType(),
+            this.getIsActive()
         );
     }
 }

@@ -65,8 +65,7 @@ public class CareerViews {
         conditions.gridy = 0;
         conditions.anchor = GridBagConstraints.WEST;
 
-        JLabel nameLabel = new JLabel("Nombre:");
-        nameLabel.setForeground(Common.TEXT_COLOR);
+        JLabel nameLabel = Text.label("Nombre:");
         divForm.add(nameLabel, conditions);
 
         conditions.gridy++;
@@ -124,8 +123,7 @@ public class CareerViews {
         conditions.gridy = 0;
         conditions.anchor = GridBagConstraints.WEST;
 
-        JLabel nameLabel = new JLabel("Nombre:");
-        nameLabel.setForeground(Common.TEXT_COLOR);
+        JLabel nameLabel = Text.label("Nombre:");
         divForm.add(nameLabel, conditions);
 
         conditions.gridy++;
