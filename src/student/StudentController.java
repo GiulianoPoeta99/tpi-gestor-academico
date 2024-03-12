@@ -13,48 +13,48 @@ public class StudentController implements Controller {
     }
 
     public void index() {
-        render(() -> StudentViews.index(Student.getAll()));
+        render(StudentViews::index);
     }
 
-    public void create(boolean save, Student model) {
+    public void create(boolean isRegister, boolean save, Student model) {
         if (model == null) {
             model = new Student();
         }
 
         if (save) {
             if (model.save()) {
-                view(model.getId());
+                view(isRegister, model.getId());
             }
         } else {
             Student finalModel = model;
-            render(() -> StudentViews.create(finalModel));
+            render(() -> StudentViews.create(isRegister, finalModel));
         }
     }
 
-    public void update(boolean save, int id) {
+    public void update(boolean isRegister, boolean save, int id) {
         Student model = (Student) Student.getById(id);
 
         if (save) {
             if (model.update()) {
-                view(model.getId());
+                view(isRegister, model.getId());
             }
         } else {
-            render(() -> StudentViews.update(model));
+            render(() -> StudentViews.update(isRegister, model));
         }
     }
 
-    public void view(int id) {
+    public void view(boolean isRegister, int id) {
         Student model = (Student) Student.getById(id);
-        render(() -> StudentViews.view(model));
+        render(() -> StudentViews.view(isRegister, model));
     }
 
-    public void delete(boolean validation, int id) {
+    public void delete(boolean isRegister, boolean validation, int id) {
         if (validation) {
             Student model = (Student) Student.getById(id);
             model.delete();
-            render(() -> StudentViews.delete(true, id));
+            render(() -> StudentViews.delete(isRegister,true, id));
         } else {
-            render(() -> StudentViews.delete(false, id));
+            render(() -> StudentViews.delete(isRegister, false, id));
         }
     }
 }

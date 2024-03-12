@@ -14,12 +14,22 @@ public class StudentSearch extends Student {
         for (Model model : Student.getAll().values()) {
             if (model instanceof Student student) {
                 Model careerModel = Career.getById(student.getIdCareer());
-                if (careerModel instanceof Career career) {
+                if (careerModel != null) {
+                    if (careerModel instanceof Career career) {
+                        Object[] rowData = new Object[]{
+                                student.getDossierNumber(),
+                                String.format("%s %s", student.getLastName(), student.getFirstName()),
+                                student.getBirthDate(),
+                                career.getName()
+                        };
+                        customData.add(rowData);
+                    }
+                } else {
                     Object[] rowData = new Object[]{
                             student.getDossierNumber(),
                             String.format("%s %s", student.getLastName(), student.getFirstName()),
                             student.getBirthDate(),
-                            career.getName()
+                            "-"
                     };
                     customData.add(rowData);
                 }

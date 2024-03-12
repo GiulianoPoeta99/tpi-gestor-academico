@@ -1,20 +1,18 @@
 package student;
 
 import career.CareerSearch;
-import common.Model;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import common.components.*;
 import common.components.Button;
 
 public class StudentViews {
-    public static List<JComponent> index(Map<Integer, Model> allData) {
+    public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1(Student.TRANSLATE_NAME);
@@ -28,7 +26,7 @@ public class StudentViews {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
 
-        JButton createButton = Button.success("Crear estudiante", () -> StudentController.getInstance().create(false, null));
+        JButton createButton = Button.success("Crear estudiante", () -> StudentController.getInstance().create(false, false, null));
         JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
         divButton.setBackground(Common.BACKGROUND_COLOR);
         divButton.add(createButton);
@@ -42,7 +40,7 @@ public class StudentViews {
         return components;
     }
 
-    private static void performSaveOrUpdate(Student model, JTextField firstNameField, JTextField lastNameField, JTextField birthDateField, JPanel careerIDField) {
+    private static void performSaveOrUpdate(boolean isRegister, Student model, JTextField firstNameField, JTextField lastNameField, JTextField birthDateField, JPanel careerIDField) {
         String newFirstName = firstNameField.getText();
         String newLastName = lastNameField.getText();
         String newBirthDate = birthDateField.getText();
@@ -59,13 +57,14 @@ public class StudentViews {
         if (!newBirthDate.isEmpty()) {
             model.setBirthDate(LocalDate.parse(newBirthDate));
         }
-
-        if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
-            model.setIdCareer(selectedCareerId);
+        if (!isRegister) {
+            if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
+                model.setIdCareer(selectedCareerId);
+            }
         }
     }
 
-    private static JPanel form(Student model, boolean update) {
+    private static JPanel form(Student model, boolean update, boolean isRegister) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
 
@@ -103,13 +102,16 @@ public class StudentViews {
         JTextField birthDateField = Input.createDateInput(model != null ? model.getBirthDate() : LocalDate.now());
         divForm.add(birthDateField, constraints);
 
-        constraints.gridy++;
         JLabel careerIDLabel = Text.label("Carrera:");
-        divForm.add(careerIDLabel, constraints);
 
-        constraints.gridy++;
         JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
-        divForm.add(careerIDField, constraints);
+
+        if (!isRegister) {
+            constraints.gridy++;
+            divForm.add(careerIDLabel, constraints);
+            constraints.gridy++;
+            divForm.add(careerIDField, constraints);
+        }
 
         div.add(divForm, BorderLayout.NORTH);
         divBox.add(div, BorderLayout.NORTH);
@@ -119,14 +121,14 @@ public class StudentViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.success("Guardar", () -> {
-            performSaveOrUpdate(model, firstNameField, lastNameField, birthDateField, careerIDField);
-            StudentController.getInstance().create(true, model);
+            performSaveOrUpdate(isRegister, model, firstNameField, lastNameField, birthDateField, careerIDField);
+            StudentController.getInstance().create(isRegister, true, model);
         });
         if (update) {
             saveButton = Button.primary("Actualizar", () -> {
-                performSaveOrUpdate(model, firstNameField, lastNameField, birthDateField, careerIDField);
+                performSaveOrUpdate(isRegister, model, firstNameField, lastNameField, birthDateField, careerIDField);
                 assert model != null;
-                StudentController.getInstance().update(true, model.getId());
+                StudentController.getInstance().update(isRegister, true, model.getId());
             });
         }
         divButton.add(saveButton);
@@ -139,7 +141,7 @@ public class StudentViews {
         return divBox;
     }
 
-    public static List<JComponent> create(Student model) {
+    public static List<JComponent> create(boolean isRegister, Student model) {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1("Crear " + Student.TRANSLATE_NAME);
@@ -150,13 +152,13 @@ public class StudentViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = form(model,false);
+        JPanel divBox = form(model,false, isRegister);
         components.add(divBox);
 
         return components;
     }
 
-    public static List<JComponent> update(Student model) {
+    public static List<JComponent> update(boolean isRegister, Student model) {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1("Actualizar " + Student.TRANSLATE_NAME + " registro: " + model.getId());
@@ -167,13 +169,13 @@ public class StudentViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = form(model,true);
+        JPanel divBox = form(model,true, isRegister);
         components.add(divBox);
 
         return components;
     }
 
-    public static List<JComponent> view(Student model) {
+    public static List<JComponent> view(boolean isRegister, Student model) {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1(String.format("Ver %s ID: %d", Student.TRANSLATE_NAME, model.getId()));
@@ -203,13 +205,13 @@ public class StudentViews {
         JButton continueButton = Button.secondary("Continuar", () -> StudentController.getInstance().index());
         divButton.add(continueButton);
 
-        JButton createButton = Button.success("Crear", () -> StudentController.getInstance().create(false, null));
+        JButton createButton = Button.success("Crear", () -> StudentController.getInstance().create(isRegister, false, null));
         divButton.add(createButton);
 
-        JButton updateButton = Button.primary("Actualizar", () -> StudentController.getInstance().update(false, model.getId()));
+        JButton updateButton = Button.primary("Actualizar", () -> StudentController.getInstance().update(isRegister, false, model.getId()));
         divButton.add(updateButton);
 
-        JButton deleteButton = Button.danger("Eliminar", () -> StudentController.getInstance().delete(false, model.getId()));
+        JButton deleteButton = Button.danger("Eliminar", () -> StudentController.getInstance().delete(isRegister, false, model.getId()));
         divButton.add(deleteButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
@@ -219,7 +221,7 @@ public class StudentViews {
         return components;
     }
 
-    public static List<JComponent> delete(boolean isDelete, int id) {
+    public static List<JComponent> delete(boolean isRegister, boolean isDelete, int id) {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1(String.format("Eliminar %s ID: %d", Student.TRANSLATE_NAME, id));
@@ -256,10 +258,10 @@ public class StudentViews {
             divButton.setBackground(Common.BACKGROUND_COLOR);
             divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-            JButton deleteButton = Button.danger("Eliminar", () -> StudentController.getInstance().delete(true, id));
+            JButton deleteButton = Button.danger("Eliminar", () -> StudentController.getInstance().delete(isRegister, true, id));
             divButton.add(deleteButton);
 
-            JButton goBackButton = Button.primary("Volver", () -> StudentController.getInstance().view(id));
+            JButton goBackButton = Button.primary("Volver", () -> StudentController.getInstance().view(isRegister, id));
             divButton.add(goBackButton);
 
             divBox.add(divButton, BorderLayout.SOUTH);

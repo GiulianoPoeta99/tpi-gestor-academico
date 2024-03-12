@@ -25,9 +25,10 @@ public class SiteController implements Controller {
         Map<String, Runnable> redirections = new LinkedHashMap<>();
         redirections.put("Inicio",SiteController.getInstance()::index);
         redirections.put("Carreras", CareerController.getInstance()::index);
-        redirections.put("Planes de Estudio", StudyPlanController.getInstance()::index);
-        redirections.put("Materias", SubjectController.getInstance()::index);
+        redirections.put("Planes de estudio", StudyPlanController.getInstance()::index);
+        redirections.put("Registrar alumno", () -> StudentController.getInstance().create(true, false, null));
         redirections.put("Alumnos", StudentController.getInstance()::index);
+        redirections.put("Materias", SubjectController.getInstance()::index);
 
         SwingUtilities.invokeLater(() -> {
             SiteViews.layout(redirections);
