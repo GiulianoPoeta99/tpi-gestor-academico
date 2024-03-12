@@ -73,26 +73,11 @@ public class StudyPlan implements Model {
         return isActive;
     }
 
-    // Methods ================================================================
-
-    public static Model getById(int id) {
-        return all.get(id);
-    }
-
-    public static Model getByIdCareer (int idCareer) {
-        for (Model model : all.values()) {
-            if (model instanceof StudyPlan studyPlan) {
-                if (studyPlan.getIdCareer() == idCareer && studyPlan.getIsActive()) {
-                    return studyPlan;
-                }
-            }
-        }
-        return null;
-    }
-
     public static Map<Integer, Model> getAll() {
         return all;
     }
+
+    // Methods ================================================================
 
     protected static void addSerial() {
         serial++;

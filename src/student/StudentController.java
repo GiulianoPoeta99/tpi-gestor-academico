@@ -32,7 +32,7 @@ public class StudentController implements Controller {
     }
 
     public void update(boolean isRegister, boolean save, int id) {
-        Student model = (Student) Student.getById(id);
+        Student model = (Student) StudentSearch.getById(id);
 
         if (save) {
             if (model.update()) {
@@ -44,13 +44,13 @@ public class StudentController implements Controller {
     }
 
     public void view(boolean isRegister, int id) {
-        Student model = (Student) Student.getById(id);
+        Student model = (Student) StudentSearch.getById(id);
         render(() -> StudentViews.view(isRegister, model));
     }
 
     public void delete(boolean isRegister, boolean validation, int id) {
         if (validation) {
-            Student model = (Student) Student.getById(id);
+            Student model = (Student) StudentSearch.getById(id);
             model.delete();
             render(() -> StudentViews.delete(isRegister,true, id));
         } else {

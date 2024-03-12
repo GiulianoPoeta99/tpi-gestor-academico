@@ -32,7 +32,7 @@ public class StudyPlanController implements Controller {
     }
 
     public void update(boolean save, int id) {
-        StudyPlan model = (StudyPlan) StudyPlan.getById(id);
+        StudyPlan model = (StudyPlan) StudyPlanSearch.getById(id);
 
         if (save) {
             if (model.update()) {
@@ -44,13 +44,13 @@ public class StudyPlanController implements Controller {
     }
 
     public void view(int id) {
-        StudyPlan model = (StudyPlan) StudyPlan.getById(id);
+        StudyPlan model = (StudyPlan) StudyPlanSearch.getById(id);
         render(() -> StudyPlanViews.view(model));
     }
 
     public void delete(boolean validation, int id) {
         if (validation) {
-            StudyPlan model = (StudyPlan) StudyPlan.getById(id);
+            StudyPlan model = (StudyPlan) StudyPlanSearch.getById(id);
             model.delete();
             render(() -> StudyPlanViews.delete(true, id));
         } else {

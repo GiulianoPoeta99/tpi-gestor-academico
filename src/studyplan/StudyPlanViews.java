@@ -232,7 +232,7 @@ public class StudyPlanViews {
             JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
             div.setBackground(Common.BACKGROUND_COLOR);
 
-            JLabel viewModel = Text.h3(StudyPlan.getById(id).toString());
+            JLabel viewModel = Text.h3(StudyPlanSearch.getById(id).toString());
 
             div.add(viewModel);
 

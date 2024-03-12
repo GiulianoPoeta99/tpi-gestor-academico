@@ -45,15 +45,11 @@ public class Career implements Model {
         return name;
     }
 
-    // Methods ================================================================
-
-    public static Model getById(int id) {
-        return all.get(id);
-    }
-
     public static Map<Integer, Model> getAll() {
         return all;
     }
+
+    // Methods ================================================================
 
     protected static void addSerial() {
         serial++;

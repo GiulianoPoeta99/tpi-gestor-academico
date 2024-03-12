@@ -80,15 +80,11 @@ public class Subject implements Model {
         return this.idStudyPlan;
     }
 
-    // Methods ================================================================
-
-    public static Model getById(int id) {
-        return all.get(id);
-    }
-
     public static Map<Integer, Model> getAll() {
         return all;
     }
+
+    // Methods ================================================================
 
     protected static void addSerial() {
         serial++;

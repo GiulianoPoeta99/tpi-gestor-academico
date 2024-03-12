@@ -32,7 +32,7 @@ public class CareerController implements Controller {
     }
 
     public void update(boolean save, int id) {
-        Career model = (Career) Career.getById(id);
+        Career model = (Career) CareerSearch.getById(id);
 
         if (save) {
             if (model.update()) {
@@ -44,13 +44,13 @@ public class CareerController implements Controller {
     }
 
     public void view(int id) {
-        Career model = (Career) Career.getById(id);
+        Career model = (Career) CareerSearch.getById(id);
         render(() -> CareerViews.view(model));
     }
 
     public void delete(boolean validation, int id) {
         if (validation) {
-            Career model = (Career) Career.getById(id);
+            Career model = (Career) CareerSearch.getById(id);
             model.delete();
             render(() -> CareerViews.delete(true, id));
         } else {

@@ -2,6 +2,7 @@ package subject;
 
 import common.Controller;
 import studyplan.StudyPlan;
+import studyplan.StudyPlanSearch;
 
 
 public class SubjectController implements Controller {
@@ -25,7 +26,7 @@ public class SubjectController implements Controller {
 
         if (save) {
             if (idCareer != 0) {
-                StudyPlan studyPlan = (StudyPlan) StudyPlan.getByIdCareer(idCareer);
+                StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getByIdCareer(idCareer);
 
                 if ((studyPlan != null) && (studyPlan.getId() != model.getIdStudyPlan())) {
                     model.setIdStudyPlan(studyPlan.getId());
@@ -43,7 +44,7 @@ public class SubjectController implements Controller {
     }
 
     public void update(boolean save, int id) {
-        Subject model = (Subject) Subject.getById(id);
+        Subject model = (Subject) SubjectSearch.getById(id);
 
         if (save) {
             if (model.update()) {
@@ -55,13 +56,13 @@ public class SubjectController implements Controller {
     }
 
     public void view(int id) {
-        Subject model = (Subject) Subject.getById(id);
+        Subject model = (Subject) SubjectSearch.getById(id);
         render(() -> SubjectViews.view(model));
     }
 
     public void delete(boolean validation, int id) {
         if (validation) {
-            Subject model = (Subject) Subject.getById(id);
+            Subject model = (Subject) SubjectSearch.getById(id);
             model.delete();
             render(() -> SubjectViews.delete(true, id));
         } else {

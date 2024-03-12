@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 public class CareerSearch extends Career {
+    public static String[] getCustomColumns() {
+        return new String[] { "Nombre" };
+    }
+
     public static List<Object[]> getCustomData() {
         List<Object[]> customData = new ArrayList<>();
         for (Model model : Career.getAll().values()) {
@@ -19,10 +23,6 @@ public class CareerSearch extends Career {
         return customData;
     }
 
-    public static String[] getCustomColumns() {
-        return new String[] { "Nombre" };
-    }
-
     public static Map<Integer, String> getIDNameForSelect2() {
         Map<Integer, String> careerMap = new LinkedHashMap<>();
         for (Model model : Career.getAll().values()) {
@@ -31,5 +31,8 @@ public class CareerSearch extends Career {
             }
         }
         return careerMap;
+    }
+    public static Model getById(int id) {
+        return all.get(id);
     }
 }

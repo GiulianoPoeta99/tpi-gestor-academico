@@ -248,7 +248,7 @@ public class StudentViews {
             JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
             div.setBackground(Common.BACKGROUND_COLOR);
 
-            JLabel viewModel = Text.h3(Student.getById(id).toString());
+            JLabel viewModel = Text.h3(StudentSearch.getById(id).toString());
 
             div.add(viewModel);
 

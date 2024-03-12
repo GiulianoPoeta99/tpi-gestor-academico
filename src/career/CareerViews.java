@@ -210,7 +210,7 @@ public class CareerViews {
             JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
             div.setBackground(Common.BACKGROUND_COLOR);
 
-            JLabel viewModel = Text.h3(Career.getById(id).toString());
+            JLabel viewModel = Text.h3(CareerSearch.getById(id).toString());
 
             div.add(viewModel);
 

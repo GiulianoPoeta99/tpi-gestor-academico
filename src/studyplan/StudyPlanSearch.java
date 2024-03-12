@@ -1,6 +1,7 @@
 package studyplan;
 
 import career.Career;
+import career.CareerSearch;
 import studyplan.StudyPlan;
 import common.Model;
 
@@ -10,11 +11,15 @@ import java.util.List;
 import java.util.Map;
 
 public class StudyPlanSearch extends StudyPlan{
+    public static String[] getCustomColumns() {
+        return new String[] { "Tipo", "Carrera", "Vigente" };
+    }
+
     public static List<Object[]> getCustomData() {
         List<Object[]> customData = new ArrayList<>();
         for (Model model : StudyPlan.getAll().values()) {
             if (model instanceof StudyPlan studyPlan) {
-                Model career = Career.getById(studyPlan.getIdCareer());
+                Model career = CareerSearch.getById(studyPlan.getIdCareer());
                 if (career instanceof Career) {
                     Object[] rowData = new Object[] {
                             studyPlan.getType(),
@@ -28,8 +33,19 @@ public class StudyPlanSearch extends StudyPlan{
         return customData;
     }
 
-    public static String[] getCustomColumns() {
-        return new String[] { "Tipo", "Carrera", "Vigente" };
+    public static Model getById(int id) {
+        return all.get(id);
+    }
+
+    public static Model getByIdCareer (int idCareer) {
+        for (Model model : all.values()) {
+            if (model instanceof StudyPlan studyPlan) {
+                if (studyPlan.getIdCareer() == idCareer && studyPlan.getIsActive()) {
+                    return studyPlan;
+                }
+            }
+        }
+        return null;
     }
 
     public static Map<String, String> getTypeForSelect2() {
