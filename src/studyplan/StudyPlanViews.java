@@ -33,7 +33,7 @@ public class StudyPlanViews {
         divButton.add(createButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(allData);
+        JScrollPane table = UIComponent.table(StudyPlanSearch.getCustomColumns(), StudyPlanSearch.getCustomData());
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);

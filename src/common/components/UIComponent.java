@@ -9,6 +9,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.util.List;
 import java.util.Map;
 
 public class UIComponent extends Common {
@@ -21,7 +22,7 @@ public class UIComponent extends Common {
         return panel;
     }
 
-    public static JScrollPane table(Map<Integer, Model> data) {
+    public static JScrollPane tableModel(Map<Integer, Model> data) {
         DefaultTableModel model = new DefaultTableModel();
 
         if (!data.isEmpty()) {
@@ -40,6 +41,25 @@ public class UIComponent extends Common {
             for (Object attributeValue : modelObject.getAttributeValues()) {
                 rowData[columnCount++] = attributeValue;
             }
+            model.addRow(rowData);
+        }
+
+        JTable table = configureTable(model);
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+
+        return scrollPane;
+    }
+
+    public static JScrollPane table(String[] columns, List<Object[]> rows) {
+        DefaultTableModel model = new DefaultTableModel();
+
+        for (String columnName : columns) {
+            model.addColumn(columnName);
+        }
+
+        for (Object[] rowData : rows) {
             model.addRow(rowData);
         }
 

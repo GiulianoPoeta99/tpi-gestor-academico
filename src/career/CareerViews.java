@@ -32,7 +32,7 @@ public class CareerViews {
         divButton.add(createButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(allData);
+        JScrollPane table = UIComponent.table(CareerSearch.getCustomColumns(), CareerSearch.getCustomData());
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);

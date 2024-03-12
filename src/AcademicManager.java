@@ -6,7 +6,7 @@ import student.Student;
 
 public class AcademicManager {
 
-    protected void loadData() {
+    private static void loadData() {
         Career.loadData();
         StudyPlan.loadData();
         Subject.loadData();
@@ -14,16 +14,8 @@ public class AcademicManager {
     }
 
     public static void main(String[] args) {
-        /*
-        TODO: Student enrollment
-        TODO: Career and study plan registration
-        TODO: Enrollment of a student in a career
-        TODO: Enrollment of a student in a course
-        TODO: Verify if a student has completed a career
-        */
-
         // Carga inicial de datos
-        new AcademicManager().loadData();
+        AcademicManager.loadData();
 
         // Inicializar la interfaz gráfica de usuario (UI) utilizando SiteController
         SiteController.getInstance().principal();
