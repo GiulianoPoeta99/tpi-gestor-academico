@@ -15,7 +15,7 @@ public class SubjectController implements Controller {
     }
 
     public void index() {
-        render(() -> SubjectViews.index(Subject.getAll()));
+        render(SubjectViews::index);
     }
 
     public void create(boolean save, Subject model, int idCareer) {

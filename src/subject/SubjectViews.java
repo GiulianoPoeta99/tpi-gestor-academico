@@ -2,19 +2,17 @@ package subject;
 
 
 import career.CareerSearch;
-import common.Model;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import common.components.*;
 import common.components.Button;
 
 public class SubjectViews {
-    public static List<JComponent> index(Map<Integer, Model> allData) {
+    public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1(Subject.TRANSLATE_NAME);
@@ -34,7 +32,7 @@ public class SubjectViews {
         divButton.add(createButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.tableModel(allData);
+        JScrollPane table = UIComponent.table(SubjectSearch.getCustomColumns(), SubjectSearch.getCustomData());
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
@@ -97,19 +95,23 @@ public class SubjectViews {
 
         JButton saveButton = Button.success("Guardar", () -> {
             String newName = nameField.getText();
-            boolean selectedIsOptional = (boolean) ((JComboBox) ((JPanel) isOptionalField).getComponent(0)).getClientProperty("selectedIndex");
+            boolean selectedIsOptional = (boolean) ((JComboBox<?>) isOptionalField.getComponent(0)).getClientProperty("selectedIndex");
             String newFourMonths = fourMonthsField.getText();
-            Integer selectedCareerId = (Integer) ((JComboBox) ((JPanel) careerIDField).getComponent(0)).getClientProperty("selectedIndex");
+            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
 
-            if (!newName.isEmpty() && !newName.equals(model.getName())) {
-                model.setName(newName);
+            if (!newName.isEmpty()) {
+                assert model != null;
+                if (!newName.equals(model.getName())) {
+                    model.setName(newName);
+                }
             }
 
+            assert model != null;
             if (selectedIsOptional != model.getIsOptional()) {
                 model.setIsOptional(selectedIsOptional);
             }
 
-            if (!newFourMonths.isEmpty() && !newFourMonths.equals(model.getFourMonths())) {
+            if (!newFourMonths.isEmpty()) {
                 model.setFourMonths(Integer.parseInt(newFourMonths));
             }
 
@@ -118,18 +120,22 @@ public class SubjectViews {
         if (update) {
             saveButton = Button.primary("Actualizar", () -> {
                 String newName = nameField.getText();
-                boolean selectedIsOptional = (boolean) ((JComboBox) ((JPanel) isOptionalField).getComponent(0)).getClientProperty("selectedIndex");
+                boolean selectedIsOptional = (boolean) ((JComboBox<?>) isOptionalField.getComponent(0)).getClientProperty("selectedIndex");
                 String newFourMonths = fourMonthsField.getText();
 
-                if (!newName.isEmpty() && !newName.equals(model.getName())) {
-                    model.setName(newName);
+                if (!newName.isEmpty()) {
+                    assert model != null;
+                    if (!newName.equals(model.getName())) {
+                        model.setName(newName);
+                    }
                 }
 
+                assert model != null;
                 if (selectedIsOptional != model.getIsOptional()) {
                     model.setIsOptional(selectedIsOptional);
                 }
 
-                if (!newFourMonths.isEmpty() && !newFourMonths.equals(model.getFourMonths())) {
+                if (!newFourMonths.isEmpty()) {
                     model.setName(newName);
                 }
 
