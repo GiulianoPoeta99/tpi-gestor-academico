@@ -10,7 +10,7 @@ public class Common {
     public static final Color INFO_COLOR = Color.decode("#0dcaf0");
     public static final Color SECONDARY_COLOR = Color.decode("#6c757d");
     public static final Color TEXT_COLOR = Color.decode("#CCCCCC");
-    public static final Color BACKGROUND_COLOR = Color.decode("#222222");
-    public static final Color COLUMN_BACKGROUND_COLOR = Color.decode("#333333");
+    public static final Color BACKGROUND_COLOR = Color.decode("#282828");
+    public static final Color COLUMN_BACKGROUND_COLOR = Color.decode("#393939");
     public static final String DEFAULT_FONT = "Arial";
 }

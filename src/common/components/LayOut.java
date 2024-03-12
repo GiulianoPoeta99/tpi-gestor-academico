@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
 
-public class LayOut {
+public class LayOut extends Common {
 
     private static JPanel contentPanel;
 
@@ -33,7 +33,7 @@ public class LayOut {
 
         JButton button = new JButton(text);
         button.setBackground(Color.decode("#191C20"));
-        button.setForeground(Color.decode("#CCCCCC"));
+        button.setForeground(TEXT_COLOR);
         button.setFont(new Font("Arial", Font.PLAIN, 16));
         button.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(0, 0, 1, 0, Color.decode("#2E2F32")),
@@ -53,10 +53,10 @@ public class LayOut {
 
     public static JPanel topPanel() {
         JPanel topPanel = new JPanel();
-        topPanel.setBackground(Color.decode("#000000"));
+        topPanel.setBackground(Color.decode("#26663E"));
         topPanel.setPreferredSize(new Dimension(1280, 50));
         JLabel titleLabel = new JLabel("Academic Manager");
-        titleLabel.setForeground(Color.decode("#CCCCCC"));
+        titleLabel.setForeground(TEXT_COLOR);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
         titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
@@ -69,7 +69,7 @@ public class LayOut {
 
     public static JPanel contentPanel() {
         contentPanel = new JPanel();
-        contentPanel.setBackground(Color.decode("#2E2F32"));
+        contentPanel.setBackground(Color.decode("#3B3B3E"));
         return contentPanel;
     }
 
