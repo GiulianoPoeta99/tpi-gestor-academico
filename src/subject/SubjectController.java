@@ -1,5 +1,6 @@
 package subject;
 
+import career.CareerViews;
 import common.Controller;
 import studyplan.StudyPlan;
 import studyplan.StudyPlanSearch;
@@ -68,5 +69,9 @@ public class SubjectController implements Controller {
         } else {
             render(() -> SubjectViews.delete(false, id));
         }
+    }
+
+    public void search() {
+        render(SubjectViews::search);
     }
 }

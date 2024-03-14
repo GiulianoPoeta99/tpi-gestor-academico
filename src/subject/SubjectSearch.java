@@ -3,11 +3,14 @@ package subject;
 import career.Career;
 import career.CareerSearch;
 import common.Model;
+import student.Student;
 import studyplan.StudyPlan;
 import studyplan.StudyPlanSearch;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SubjectSearch extends Subject {
     public static List<Object[]> getCustomData() {
@@ -38,5 +41,20 @@ public class SubjectSearch extends Subject {
 
     public static Model getById(int id) {
         return all.get(id);
+    }
+
+    public static Map<Integer, String> getIDNameForSelect2() {
+        Map<Integer, String> subjectMap = new LinkedHashMap<>();
+        for (Model model : Subject.getAll().values()) {
+            if (model instanceof Subject subject) {
+                StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
+                Career career = (Career) CareerSearch.getById(studyPlan.getIdCareer());
+
+                String name = String.format("%s - %s", career.getName(), subject.getName());
+
+                subjectMap.put(subject.getId(), name);
+            }
+        }
+        return subjectMap;
     }
 }

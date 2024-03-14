@@ -1,5 +1,6 @@
 package student;
 
+import career.CareerController;
 import career.CareerSearch;
 
 import javax.swing.*;
@@ -26,10 +27,12 @@ public class StudentViews {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
 
-        JButton createButton = Button.success("Crear estudiante", () -> StudentController.getInstance().create(false, false, null));
         JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
         divButton.setBackground(Common.BACKGROUND_COLOR);
+        JButton createButton = Button.success("Crear estudiante", () -> StudentController.getInstance().create(false, false, null));
         divButton.add(createButton);
+        JButton searchButton = Button.warning("Ver estudiante", () -> StudentController.getInstance().search());
+        divButton.add(searchButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
         JScrollPane table = UIComponent.table(StudentSearch.getCustomColumns(), StudentSearch.getCustomData());
@@ -284,6 +287,64 @@ public class StudentViews {
 
             divBox.add(divButton, BorderLayout.SOUTH);
         }
+
+        components.add(divBox);
+
+        return components;
+    }
+
+    public static List<JComponent> search() {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1(String.format("Buscar %s", Student.TRANSLATE_NAME));
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        div.setBackground(Common.BACKGROUND_COLOR);
+
+        JPanel divForm = new JPanel(new GridBagLayout());
+        divForm.setBackground(Common.BACKGROUND_COLOR);
+
+        GridBagConstraints conditions = new GridBagConstraints();
+        conditions.gridx = 0;
+        conditions.gridy = 0;
+        conditions.anchor = GridBagConstraints.WEST;
+
+        JLabel studentIDLabel = Text.label("Estudiante:");
+        divForm.add(studentIDLabel, conditions);
+
+        conditions.gridy++;
+        JPanel studentIDField = Input.createSelect2InputStrInt(StudentSearch.getIDNameForSelect2());
+        divForm.add(studentIDField, conditions);
+
+        div.add(divForm, BorderLayout.NORTH);
+        divBox.add(div, BorderLayout.NORTH);
+
+        JPanel divButton = new JPanel();
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JButton saveButton = Button.info("Buscar", () -> {
+            Integer selectedStudentId = (Integer) ((JComboBox<?>) studentIDField.getComponent(0)).getClientProperty("selectedIndex");
+
+            if (selectedStudentId > 0) {
+                StudentController.getInstance().view(false, selectedStudentId);
+            }
+        });
+        divButton.add(saveButton);
+
+        JButton backButton = Button.danger("Volver", () -> StudentController.getInstance().index());
+        divButton.add(backButton);
+
+        divBox.add(divButton, BorderLayout.SOUTH);
 
         components.add(divBox);
 

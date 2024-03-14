@@ -1,18 +1,15 @@
 package career;
 
-import common.Model;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import common.components.*;
 import common.components.Button;
 
 public class CareerViews {
-    public static List<JComponent> index(Map<Integer, Model> allData) {
+    public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1(Career.TRANSLATE_NAME);
@@ -26,10 +23,12 @@ public class CareerViews {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
 
-        JButton createButton = Button.success("Crear carrera", () -> CareerController.getInstance().create(false, null));
         JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
         divButton.setBackground(Common.BACKGROUND_COLOR);
+        JButton createButton = Button.success("Crear carrera", () -> CareerController.getInstance().create(false, null));
         divButton.add(createButton);
+        JButton searchButton = Button.warning("Ver carrera", () -> CareerController.getInstance().search());
+        divButton.add(searchButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
         JScrollPane table = UIComponent.table(CareerSearch.getCustomColumns(), CareerSearch.getCustomData());
@@ -246,6 +245,64 @@ public class CareerViews {
 
             divBox.add(divButton, BorderLayout.SOUTH);
         }
+
+        components.add(divBox);
+
+        return components;
+    }
+
+    public static List<JComponent> search() {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1(String.format("Buscar %s", Career.TRANSLATE_NAME));
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        div.setBackground(Common.BACKGROUND_COLOR);
+
+        JPanel divForm = new JPanel(new GridBagLayout());
+        divForm.setBackground(Common.BACKGROUND_COLOR);
+
+        GridBagConstraints conditions = new GridBagConstraints();
+        conditions.gridx = 0;
+        conditions.gridy = 0;
+        conditions.anchor = GridBagConstraints.WEST;
+
+        JLabel careerIDLabel = Text.label("Carrera:");
+        divForm.add(careerIDLabel, conditions);
+
+        conditions.gridy++;
+        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
+        divForm.add(careerIDField, conditions);
+
+        div.add(divForm, BorderLayout.NORTH);
+        divBox.add(div, BorderLayout.NORTH);
+
+        JPanel divButton = new JPanel();
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JButton saveButton = Button.info("Buscar", () -> {
+            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
+
+            if (selectedCareerId > 0) {
+                CareerController.getInstance().view(selectedCareerId);
+            }
+        });
+        divButton.add(saveButton);
+
+        JButton backButton = Button.danger("Volver", () -> CareerController.getInstance().index());
+        divButton.add(backButton);
+
+        divBox.add(divButton, BorderLayout.SOUTH);
 
         components.add(divBox);
 

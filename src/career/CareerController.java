@@ -13,7 +13,7 @@ public class CareerController implements Controller {
     }
 
     public void index() {
-        render(() -> CareerViews.index(Career.getAll()));
+        render(CareerViews::index);
     }
 
     public void create(boolean save, Career model) {
@@ -56,5 +56,9 @@ public class CareerController implements Controller {
         } else {
             render(() -> CareerViews.delete(false, id));
         }
+    }
+
+    public void search() {
+        render(CareerViews::search);
     }
 }

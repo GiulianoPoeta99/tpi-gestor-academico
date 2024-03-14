@@ -1,5 +1,6 @@
 package studyplan;
 
+import career.CareerViews;
 import common.Controller;
 
 public class StudyPlanController implements Controller {
@@ -56,5 +57,9 @@ public class StudyPlanController implements Controller {
         } else {
             render(() -> StudyPlanViews.delete(false, id));
         }
+    }
+
+    public void search() {
+        render(StudyPlanViews::search);
     }
 }

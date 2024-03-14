@@ -2,6 +2,7 @@ package studyplan;
 
 import career.Career;
 import career.CareerSearch;
+import student.Student;
 import studyplan.StudyPlan;
 import common.Model;
 
@@ -12,7 +13,7 @@ import java.util.Map;
 
 public class StudyPlanSearch extends StudyPlan{
     public static String[] getCustomColumns() {
-        return new String[] { "Tipo", "Carrera", "Vigente" };
+        return new String[] { "Identificador", "Tipo", "Carrera", "Vigente" };
     }
 
     public static List<Object[]> getCustomData() {
@@ -22,6 +23,7 @@ public class StudyPlanSearch extends StudyPlan{
                 Model career = CareerSearch.getById(studyPlan.getIdCareer());
                 if (career instanceof Career) {
                     Object[] rowData = new Object[] {
+                            studyPlan.getId(),
                             studyPlan.getType(),
                             ((Career) career).getName(),
                             studyPlan.getIsActive() ? "Si" : "No"
@@ -54,6 +56,18 @@ public class StudyPlanSearch extends StudyPlan{
             typeMap.put(type,type);
         }
         return typeMap;
+    }
+
+    public static Map<Integer, String> getIDNameForSelect2() {
+        Map<Integer, String> studyPlanMap = new LinkedHashMap<>();
+        for (Model model : StudyPlan.getAll().values()) {
+            if (model instanceof StudyPlan studyPlan) {
+                Career career = (Career) CareerSearch.getById(studyPlan.getIdCareer());
+                String name = String.format("%s - %d (%s) Tipo: %s", career.getName(), studyPlan.getId(), studyPlan.getIsActive() ? "Vigente" : "No Vigente", studyPlan.getType());
+                studyPlanMap.put(studyPlan.getId(), name);
+            }
+        }
+        return studyPlanMap;
     }
 }
 

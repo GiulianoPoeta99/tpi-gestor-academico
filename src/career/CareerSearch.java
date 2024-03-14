@@ -23,6 +23,10 @@ public class CareerSearch extends Career {
         return customData;
     }
 
+    public static Model getById(int id) {
+        return all.get(id);
+    }
+
     public static Map<Integer, String> getIDNameForSelect2() {
         Map<Integer, String> careerMap = new LinkedHashMap<>();
         for (Model model : Career.getAll().values()) {
@@ -31,8 +35,5 @@ public class CareerSearch extends Career {
             }
         }
         return careerMap;
-    }
-    public static Model getById(int id) {
-        return all.get(id);
     }
 }
