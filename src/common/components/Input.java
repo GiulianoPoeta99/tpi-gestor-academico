@@ -10,8 +10,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Input extends UIComponent {
+
+    private static final int WIDTH = 450;
+    private static final int HEIGHT = 35;
+
     private static void configureComboBox(JComboBox<String> comboBox) {
-        comboBox.setPreferredSize(new Dimension(450, 35));
+        comboBox.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         comboBox.setForeground(TEXT_COLOR);
         comboBox.setBackground(BACKGROUND_COLOR);
         comboBox.setBorder(new CompoundBorder(
@@ -39,7 +43,7 @@ public class Input extends UIComponent {
 
     public static JTextField createInput(String initialValue) {
         JTextField textField = new JTextField(initialValue);
-        textField.setPreferredSize(new Dimension(200, 30));
+        textField.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         textField.setForeground(TEXT_COLOR);
         textField.setBackground(BACKGROUND_COLOR);
         textField.setBorder(new CompoundBorder(
