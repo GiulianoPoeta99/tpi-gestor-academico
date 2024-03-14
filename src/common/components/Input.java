@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Input extends UIComponent {
     private static void configureComboBox(JComboBox<String> comboBox) {
-        comboBox.setPreferredSize(new Dimension(200, 30));
+        comboBox.setPreferredSize(new Dimension(450, 35));
         comboBox.setForeground(TEXT_COLOR);
         comboBox.setBackground(BACKGROUND_COLOR);
         comboBox.setBorder(new CompoundBorder(
