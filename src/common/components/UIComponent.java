@@ -79,6 +79,7 @@ public class UIComponent extends Common {
         table.setForeground(TEXT_COLOR);
         table.setBackground(BACKGROUND_COLOR);
         table.setGridColor(TEXT_COLOR);
+        table.setRowHeight(25);
 
         JTableHeader header = table.getTableHeader();
         header.setForeground(TEXT_COLOR);
