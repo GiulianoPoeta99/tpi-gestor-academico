@@ -59,7 +59,12 @@ public class StudentController implements Controller {
         }
     }
 
-    public void search() {
-        render(StudentViews::search);
+    public void search(boolean isRegister) {
+        render(() -> StudentViews.search(isRegister));
+    }
+
+    public void enrollCareer(int idStudent) {
+        Student student = (Student) StudentSearch.getById(idStudent);
+        render(() -> StudentViews.enrollCareer(student));
     }
 }

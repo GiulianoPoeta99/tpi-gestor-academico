@@ -27,6 +27,7 @@ public class SiteController implements Controller {
         redirections.put("Carreras", CareerController.getInstance()::index);
         redirections.put("Planes de estudio", StudyPlanController.getInstance()::index);
         redirections.put("Registrar alumno", () -> StudentController.getInstance().create(true, false, null));
+        redirections.put("Inscribir a carrera", () -> StudentController.getInstance().search(true));
         redirections.put("Alumnos", StudentController.getInstance()::index);
         redirections.put("Materias", SubjectController.getInstance()::index);
 

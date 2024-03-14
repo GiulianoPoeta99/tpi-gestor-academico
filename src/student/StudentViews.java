@@ -1,5 +1,6 @@
 package student;
 
+import career.Career;
 import career.CareerController;
 import career.CareerSearch;
 
@@ -31,7 +32,7 @@ public class StudentViews {
         divButton.setBackground(Common.BACKGROUND_COLOR);
         JButton createButton = Button.success("Crear estudiante", () -> StudentController.getInstance().create(false, false, null));
         divButton.add(createButton);
-        JButton searchButton = Button.warning("Ver estudiante", () -> StudentController.getInstance().search());
+        JButton searchButton = Button.warning("Ver estudiante", () -> StudentController.getInstance().search(false));
         divButton.add(searchButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
@@ -293,7 +294,7 @@ public class StudentViews {
         return components;
     }
 
-    public static List<JComponent> search() {
+    public static List<JComponent> search(boolean isRegister) {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1(String.format("Buscar %s", Student.TRANSLATE_NAME));
@@ -336,8 +337,71 @@ public class StudentViews {
             Integer selectedStudentId = (Integer) ((JComboBox<?>) studentIDField.getComponent(0)).getClientProperty("selectedIndex");
 
             if (selectedStudentId > 0) {
-                StudentController.getInstance().view(false, selectedStudentId);
+                if (isRegister) {
+                    StudentController.getInstance().enrollCareer(selectedStudentId);
+                } else {
+                    StudentController.getInstance().view(false, selectedStudentId);
+                }
             }
+        });
+        divButton.add(saveButton);
+
+        JButton backButton = Button.danger("Volver", () -> StudentController.getInstance().index());
+        divButton.add(backButton);
+
+        divBox.add(divButton, BorderLayout.SOUTH);
+
+        components.add(divBox);
+
+        return components;
+    }
+
+    public static List<JComponent> enrollCareer(Student model) {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1(String.format("Inscribir %s: %s - %s %s  a %s", Student.TRANSLATE_NAME, model.getDossierNumber(), model.getLastName(), model.getLastName(), Career.TRANSLATE_NAME));
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        div.setBackground(Common.BACKGROUND_COLOR);
+
+        JPanel divForm = new JPanel(new GridBagLayout());
+        divForm.setBackground(Common.BACKGROUND_COLOR);
+
+        GridBagConstraints conditions = new GridBagConstraints();
+        conditions.gridx = 0;
+        conditions.gridy = 0;
+        conditions.anchor = GridBagConstraints.WEST;
+
+        JLabel careerIDLabel = Text.label("Carrera:");
+        divForm.add(careerIDLabel, conditions);
+
+        conditions.gridy++;
+        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
+        divForm.add(careerIDField, conditions);
+
+        div.add(divForm, BorderLayout.NORTH);
+        divBox.add(div, BorderLayout.NORTH);
+
+        JPanel divButton = new JPanel();
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JButton saveButton = Button.success("Guardar", () -> {
+            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
+
+            if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
+                model.setIdCareer(selectedCareerId);
+            }
+            StudentController.getInstance().update(false, true, model.getId());
         });
         divButton.add(saveButton);
 
