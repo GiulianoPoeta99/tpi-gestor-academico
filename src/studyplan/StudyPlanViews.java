@@ -1,23 +1,21 @@
 package studyplan;
 
-import career.CareerController;
+
+import career.Career;
 import career.CareerSearch;
-import common.Model;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import common.components.*;
 import common.components.Button;
-import student.Student;
-import student.StudentController;
-import student.StudentSearch;
+import subject.Subject;
+import subject.SubjectSearch;
 
 public class StudyPlanViews {
-    public static List<JComponent> index(Map<Integer, Model> allData) {
+    public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1(StudyPlan.TRANSLATE_NAME);
@@ -35,8 +33,10 @@ public class StudyPlanViews {
         divButton.setBackground(Common.BACKGROUND_COLOR);
         JButton createButton = Button.success("Crear plan de estudio", () -> StudyPlanController.getInstance().create(false, null));
         divButton.add(createButton);
-        JButton searchButton = Button.warning("Ver plan de estudio", () -> StudyPlanController.getInstance().search());
+        JButton searchButton = Button.warning("Ver plan de estudio", () -> StudyPlanController.getInstance().search(false));
         divButton.add(searchButton);
+        JButton subjectButton = Button.info("Ver materias", () -> StudyPlanController.getInstance().search(true));
+        divButton.add(subjectButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
         JScrollPane table = UIComponent.table(StudyPlanSearch.getCustomColumns(), StudyPlanSearch.getCustomData());
@@ -280,7 +280,7 @@ public class StudyPlanViews {
         return components;
     }
 
-    public static List<JComponent> search() {
+    public static List<JComponent> search(boolean viewSubject) {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1(String.format("Buscar %s", StudyPlan.TRANSLATE_NAME));
@@ -323,7 +323,11 @@ public class StudyPlanViews {
             Integer selectedStudyPlanId = (Integer) ((JComboBox<?>) studyPlanIDField.getComponent(0)).getClientProperty("selectedIndex");
 
             if (selectedStudyPlanId > 0) {
-                StudyPlanController.getInstance().view(selectedStudyPlanId);
+                if (viewSubject) {
+                    StudyPlanController.getInstance().viewSubjects(selectedStudyPlanId);
+                } else {
+                    StudyPlanController.getInstance().view(selectedStudyPlanId);
+                }
             }
         });
         divButton.add(saveButton);
@@ -332,6 +336,35 @@ public class StudyPlanViews {
         divButton.add(backButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
+
+        components.add(divBox);
+
+        return components;
+    }
+
+    public static List<JComponent> viewSubjects(StudyPlan model) {
+        List<JComponent> components = new ArrayList<>();
+        String career = ((Career) CareerSearch.getById(model.getIdCareer())).getName();
+
+        JLabel title = Text.h1(String.format("Ver %s de la %s: %s y el %s %d (%s) Tipo: %s", Subject.TRANSLATE_NAME, Career.TRANSLATE_NAME, career, StudyPlan.TRANSLATE_NAME, model.getId(), model.getIsActive() ? "Vigente" : "No vigente", model.getType()));
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        JButton backButton = Button.danger("Volver", StudyPlanController.getInstance()::index);
+        divButton.add(backButton);
+        divBox.add(divButton, BorderLayout.NORTH);
+
+        JScrollPane table = UIComponent.table(SubjectSearch.getCustomColumnsForStudyPlan(), SubjectSearch.getCustomDataForStudyPlan(model.getId()));
+        divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
 

@@ -57,4 +57,25 @@ public class SubjectSearch extends Subject {
         }
         return subjectMap;
     }
+
+    public static List<Object[]> getCustomDataForStudyPlan(int idStudyPLan) {
+        List<Object[]> customData = new ArrayList<>();
+        for (Model model : Subject.getAll().values()) {
+            if (model instanceof Subject subject) {
+                if (subject.getIdStudyPlan() == idStudyPLan) {
+                    Object[] rowData = new Object[]{
+                            subject.getName(),
+                            subject.getIsOptional() ? "Si" : "No",
+                            subject.getFourMonths()
+                    };
+                    customData.add(rowData);
+                }
+            }
+        }
+        return customData;
+    }
+
+    public static String[] getCustomColumnsForStudyPlan() {
+        return new String[] { "Nombre", "Opcional", "Cuatrimestre" };
+    }
 }

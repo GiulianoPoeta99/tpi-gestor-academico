@@ -14,7 +14,7 @@ public class StudyPlanController implements Controller {
     }
 
     public void index() {
-        render(() -> StudyPlanViews.index(StudyPlan.getAll()));
+        render(StudyPlanViews::index);
     }
 
     public void create(boolean save, StudyPlan model) {
@@ -59,7 +59,12 @@ public class StudyPlanController implements Controller {
         }
     }
 
-    public void search() {
-        render(StudyPlanViews::search);
+    public void search(boolean viewSubjects) {
+        render(() -> StudyPlanViews.search(viewSubjects));
+    }
+
+    public void viewSubjects(int idStudyPlan) {
+        StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(idStudyPlan);
+        render(() -> StudyPlanViews.viewSubjects(studyPlan));
     }
 }
