@@ -1,7 +1,6 @@
 package student;
 
 import career.Career;
-import career.CareerController;
 import career.CareerSearch;
 
 import javax.swing.*;

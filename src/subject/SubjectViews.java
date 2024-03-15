@@ -1,7 +1,5 @@
 package subject;
 
-
-import career.CareerController;
 import career.CareerSearch;
 
 import javax.swing.*;
@@ -11,9 +9,6 @@ import java.util.List;
 
 import common.components.*;
 import common.components.Button;
-import student.Student;
-import student.StudentController;
-import student.StudentSearch;
 
 public class SubjectViews {
     public static List<JComponent> index() {

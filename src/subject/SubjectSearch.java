@@ -3,7 +3,6 @@ package subject;
 import career.Career;
 import career.CareerSearch;
 import common.Model;
-import student.Student;
 import studyplan.StudyPlan;
 import studyplan.StudyPlanSearch;
 

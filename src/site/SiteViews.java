@@ -9,10 +9,6 @@ import java.util.Map;
 import common.components.LayOut;
 import common.components.Text;
 
-/**
- * Class responsible for managing the site views.
- * This class handles the creation and configuration of GUI components.
- */
 public class SiteViews {
 
     public static void layout(Map<String, Runnable> redirections) {

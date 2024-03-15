@@ -2,8 +2,6 @@ package studyplan;
 
 import career.Career;
 import career.CareerSearch;
-import student.Student;
-import studyplan.StudyPlan;
 import common.Model;
 
 import java.util.ArrayList;

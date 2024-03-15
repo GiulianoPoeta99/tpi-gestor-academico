@@ -3,8 +3,6 @@ package student;
 import career.Career;
 import career.CareerSearch;
 import common.Model;
-import studyplan.StudyPlan;
-import subject.Subject;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

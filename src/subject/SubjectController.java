@@ -1,6 +1,5 @@
 package subject;
 
-import career.CareerViews;
 import common.Controller;
 import studyplan.StudyPlan;
 import studyplan.StudyPlanSearch;
