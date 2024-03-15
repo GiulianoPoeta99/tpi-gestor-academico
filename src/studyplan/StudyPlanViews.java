@@ -94,13 +94,14 @@ public class StudyPlanViews {
         JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
         divForm.add(careerIDField, constraints);
 
-        constraints.gridy++;
         JLabel isActiveLabel = Text.label("Vigente:");
-        divForm.add(isActiveLabel, constraints);
-
-        constraints.gridy++;
         JPanel isActiveField = Input.createSelect2InputBoolStr();
-        divForm.add(isActiveField, constraints);
+        if (update) {
+            constraints.gridy++;
+            divForm.add(isActiveLabel, constraints);
+            constraints.gridy++;
+            divForm.add(isActiveField, constraints);
+        }
 
         div.add(divForm, BorderLayout.NORTH);
         divBox.add(div, BorderLayout.NORTH);

@@ -22,8 +22,19 @@ public class StudyPlanController implements Controller {
         }
 
         if (save) {
-            if (model.save()) {
-                view(model.getId());
+            model.setIsActive(true);
+            StudyPlan studyPlanActive = (StudyPlan) StudyPlanSearch.getByIdCareer(model.getIdCareer());
+            if (studyPlanActive != null) {
+                studyPlanActive.setIsActive(false);
+                if (studyPlanActive.update()) {
+                    if (model.save()) {
+                        view(model.getId());
+                    }
+                }
+            } else {
+                if (model.save()) {
+                    view(model.getId());
+                }
             }
         } else {
             StudyPlan finalModel = model;
