@@ -1,6 +1,10 @@
 package career;
 
 import common.Controller;
+import studyplan.StudyPlan;
+import studyplan.StudyPlanSearch;
+
+import java.util.Objects;
 
 public class CareerController implements Controller {
     private static final CareerController instance = new CareerController();
@@ -58,7 +62,13 @@ public class CareerController implements Controller {
         }
     }
 
-    public void search() {
-        render(CareerViews::search);
+    public void search(boolean viewSubjects) {
+        render(() -> CareerViews.search(viewSubjects));
+    }
+
+    public void viewSubjects(int idCareer) {
+        int idStudyPlan = ((StudyPlan) Objects.requireNonNull(StudyPlanSearch.getByIdCareer(idCareer))).getId();
+        StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(idStudyPlan);
+        render(() -> CareerViews.viewSubjects(studyPlan));
     }
 }

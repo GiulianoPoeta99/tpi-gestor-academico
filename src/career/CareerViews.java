@@ -7,6 +7,9 @@ import java.util.List;
 
 import common.components.*;
 import common.components.Button;
+import studyplan.StudyPlan;
+import subject.Subject;
+import subject.SubjectSearch;
 
 public class CareerViews {
     public static List<JComponent> index() {
@@ -27,8 +30,10 @@ public class CareerViews {
         divButton.setBackground(Common.BACKGROUND_COLOR);
         JButton createButton = Button.success("Crear carrera", () -> CareerController.getInstance().create(false, null));
         divButton.add(createButton);
-        JButton searchButton = Button.warning("Ver carrera", () -> CareerController.getInstance().search());
+        JButton searchButton = Button.warning("Ver carrera", () -> CareerController.getInstance().search(false));
         divButton.add(searchButton);
+        JButton subjectButton = Button.info("Ver materias", () -> CareerController.getInstance().search(true));
+        divButton.add(subjectButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
         JScrollPane table = UIComponent.table(CareerSearch.getCustomColumns(), CareerSearch.getCustomData());
@@ -251,7 +256,7 @@ public class CareerViews {
         return components;
     }
 
-    public static List<JComponent> search() {
+    public static List<JComponent> search(boolean viewSubjects) {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1(String.format("Buscar %s", Career.TRANSLATE_NAME));
@@ -294,7 +299,11 @@ public class CareerViews {
             Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
 
             if (selectedCareerId > 0) {
-                CareerController.getInstance().view(selectedCareerId);
+                if (viewSubjects) {
+                    CareerController.getInstance().viewSubjects(selectedCareerId);
+                } else {
+                    CareerController.getInstance().view(selectedCareerId);
+                }
             }
         });
         divButton.add(saveButton);
@@ -303,6 +312,35 @@ public class CareerViews {
         divButton.add(backButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
+
+        components.add(divBox);
+
+        return components;
+    }
+
+    public static List<JComponent> viewSubjects(StudyPlan model) {
+        List<JComponent> components = new ArrayList<>();
+        String career = ((Career) CareerSearch.getById(model.getIdCareer())).getName();
+
+        JLabel title = Text.h1(String.format("Ver %ss de la %s: %s y el %s %d (%s) Tipo: %s", Subject.TRANSLATE_NAME, Career.TRANSLATE_NAME, career, StudyPlan.TRANSLATE_NAME, model.getId(), model.getIsActive() ? "Vigente" : "No vigente", model.getType()));
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        JButton backButton = Button.danger("Volver", CareerController.getInstance()::index);
+        divButton.add(backButton);
+        divBox.add(divButton, BorderLayout.NORTH);
+
+        JScrollPane table = UIComponent.table(SubjectSearch.getCustomColumnsForStudyPlan(), SubjectSearch.getCustomDataForStudyPlan(model.getId()));
+        divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
 

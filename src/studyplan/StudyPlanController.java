@@ -1,6 +1,5 @@
 package studyplan;
 
-import career.CareerViews;
 import common.Controller;
 
 public class StudyPlanController implements Controller {

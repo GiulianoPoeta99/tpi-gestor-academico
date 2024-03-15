@@ -346,7 +346,7 @@ public class StudyPlanViews {
         List<JComponent> components = new ArrayList<>();
         String career = ((Career) CareerSearch.getById(model.getIdCareer())).getName();
 
-        JLabel title = Text.h1(String.format("Ver %s de la %s: %s y el %s %d (%s) Tipo: %s", Subject.TRANSLATE_NAME, Career.TRANSLATE_NAME, career, StudyPlan.TRANSLATE_NAME, model.getId(), model.getIsActive() ? "Vigente" : "No vigente", model.getType()));
+        JLabel title = Text.h1(String.format("Ver %ss de la %s: %s y el %s %d (%s) Tipo: %s", Subject.TRANSLATE_NAME, Career.TRANSLATE_NAME, career, StudyPlan.TRANSLATE_NAME, model.getId(), model.getIsActive() ? "Vigente" : "No vigente", model.getType()));
 
         Box titleBox = Box.createHorizontalBox();
         titleBox.add(Box.createHorizontalGlue());
