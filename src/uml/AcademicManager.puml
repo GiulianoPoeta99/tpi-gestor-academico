@@ -1,0 +1,14 @@
+@startuml AcademicManager
+
+note "The builders, setters, and getters \n are not included in the diagram." as N1
+
+package main {
+    class AcademicManager {
+        - loadData(): void
+        + main(String[] args): void
+    }
+
+    !include ./career/package.career.puml
+}
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+
+class Career {
+    - id: int
+    - name: String
+    - serial: int
+    - all: Map<Integer, Model>
+    + TRANSLATE_NAME: String
+    ---
+    + setId(int id): void
+    + getId(): int
+    + setName(String name): void
+    + getName(): String
+    + getAll(): Map<Integer, Model>
+    + addSerial(): void
+    + loadData(): void
+    + validate(): boolean
+    + save(): boolean
+    + update(): boolean
+    + delete(): void
+    + getAttributeValues(): Object[]
+    + getAttributeNames(): String[]
+    + toString(): String
+}
+
+
+@enduml

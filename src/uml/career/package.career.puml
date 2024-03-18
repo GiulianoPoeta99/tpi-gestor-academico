@@ -1,0 +1,18 @@
+@startuml
+
+package career {
+    !include ./Career.puml
+
+    !include ./CareerSearch.puml
+
+    !include ./CareerController.puml
+
+    !include ./CareerViews.puml
+
+    Career -- CareerController
+    CareerController ..> CareerSearch: Dependencia
+    CareerController ..> CareerViews: Dependencia
+    CareerSearch --|> Career: Herencia
+}
+
+@enduml

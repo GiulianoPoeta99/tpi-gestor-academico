@@ -1,0 +1,10 @@
+@startuml
+
+class CareerSearch {
+    + getCustomColumns(): String[]
+    + getCustomData(): List<Object[]>
+    + getById(int id): Model
+    + getIDNameForSelect2(): Map<Integer, String>
+}
+
+@enduml

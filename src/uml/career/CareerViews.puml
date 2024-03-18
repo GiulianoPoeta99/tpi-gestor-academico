@@ -1,0 +1,15 @@
+@startuml
+
+class CareerViews {
+    - performSaveOrUpdate(Career model, JTextField nameField): void
+    - form(Career model, boolean update): JPanel
+    + index(): List<JComponent>
+    + create(Career model): List<JComponent>
+    + update(Career model): List<JComponent>
+    + view(Career model): List<JComponent>
+    + delete(boolean isDelete, int id): List<JComponent>
+    + search(boolean viewSubjects): List<JComponent>
+    + viewSubjects(StudyPlan model): List<JComponent>
+}
+
+@enduml
