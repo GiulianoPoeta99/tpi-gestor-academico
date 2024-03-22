@@ -14,6 +14,18 @@ package main {
     !include ./student/package.student.puml
     !include ./studyplan/package.studyplan.puml
     !include ./subject/package.subject.puml
+
+
+    Career --> Model : Implementación
+    Student --> Model : Implementación
+    StudyPlan --> Model : Implementación
+    Subject --> Model : Implementación
+
+    CareerController --> Controller : Implementación
+    SiteController --> Controller : Implementación
+    StudentController --> Controller : Implementación
+    StudyPlanController --> Controller : Implementación
+    SubjectController --> Controller : Implementación
 }
 
 @enduml
