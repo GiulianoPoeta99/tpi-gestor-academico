@@ -1,0 +1,12 @@
+@startuml
+
+package studyplan {
+    !include ./StudyPlan.puml
+    !include ./StudyPlanSearch.puml
+    !include ./StudyPlanController.puml
+    !include ./StudyPlanViews.puml
+
+    StudyPlanSearch --|> StudyPlan: Herencia
+}
+
+@enduml
