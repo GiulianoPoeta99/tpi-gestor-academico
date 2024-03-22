@@ -1,0 +1,9 @@
+@startuml
+
+package common {
+    !include ./components/package.components.puml
+    !include ./Controller.puml
+    !include ./Model.puml
+}
+
+@enduml

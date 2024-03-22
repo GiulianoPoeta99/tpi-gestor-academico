@@ -1,0 +1,12 @@
+@startuml
+
+package components {
+    !include ./Button.puml
+    !include ./Common.puml
+    !include ./Input.puml
+    !include ./LayOut.puml
+    !include ./Text.puml
+    !include ./UIComponent.puml
+}
+
+@enduml
