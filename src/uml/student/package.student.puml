@@ -1,0 +1,12 @@
+@startuml
+
+package student {
+    !include ./Student.puml
+    !include ./StudentSearch.puml
+    !include ./StudentController.puml
+    !include ./StudentViews.puml
+
+    StudentSearch --|> Student: Herencia
+}
+
+@enduml
