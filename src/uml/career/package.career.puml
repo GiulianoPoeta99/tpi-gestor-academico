@@ -6,10 +6,12 @@ package career {
     !include ./CareerController.puml
     !include ./CareerViews.puml
 
-    Career -- CareerController
+    Career -- CareerController : Asociación
     CareerController ..> CareerSearch: Dependencia
     CareerController ..> CareerViews: Dependencia
-    CareerSearch --|> Career: Herencia
+    CareerViews -- Career : Asociación
+    CareerViews -- CareerSearch : Asociación
+    Career --|> CareerSearch: Herencia
 }
 
 @enduml
