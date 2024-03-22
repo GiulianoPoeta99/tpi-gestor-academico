@@ -1,13 +1,13 @@
 @startuml
 
 class Button {
-    - static configureButton(String text, Color backgroundColor, Runnable redirection): JButton
-    + static success(String text, Runnable redirection): JButton
-    + static primary(String text, Runnable redirection): JButton
-    + static secondary(String text, Runnable redirection): JButton
-    + static info(String text, Runnable redirection): JButton
-    + static warning(String text, Runnable redirection): JButton
-    + static danger(String text, Runnable redirection): JButton
+    - static configureButton(text: String, backgroundColor: Color, redirection: Runnable): JButton
+    + static success(text: String, redirection: Runnable): JButton
+    + static primary(text: String, redirection: Runnable): JButton
+    + static secondary(text: String, redirection: Runnable): JButton
+    + static info(text: String, redirection: Runnable): JButton
+    + static warning(text: String, redirection: Runnable): JButton
+    + static danger(text: String, redirection: Runnable): JButton
 }
 
 @enduml

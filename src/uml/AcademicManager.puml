@@ -16,16 +16,16 @@ package main {
     !include ./subject/package.subject.puml
 
 
-    Career --> Model : Implementación
-    Student --> Model : Implementación
-    StudyPlan --> Model : Implementación
-    Subject --> Model : Implementación
+    Career ..|> Model : Implements
+    Student ..|> Model : Implements
+    StudyPlan ..|> Model : Implements
+    Subject ..|> Model : Implements
 
-    CareerController --> Controller : Implementación
-    SiteController --> Controller : Implementación
-    StudentController --> Controller : Implementación
-    StudyPlanController --> Controller : Implementación
-    SubjectController --> Controller : Implementación
+    CareerController ..|> Controller : Implements
+    SiteController ..|> Controller : Implements
+    StudentController ..|> Controller : Implements
+    StudyPlanController ..|> Controller : Implements
+    SubjectController ..|> Controller : Implements
 }
 
 @enduml

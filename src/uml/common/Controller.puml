@@ -1,7 +1,7 @@
 @startuml
 
 interface Controller {
-    default render(Supplier<List<JComponent>> viewMethod): void
+    default render(viewMethod: Supplier<List<JComponent>>): void
 }
 
 @enduml

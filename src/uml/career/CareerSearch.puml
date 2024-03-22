@@ -3,7 +3,7 @@
 class CareerSearch {
     + getCustomColumns(): String[]
     + getCustomData(): List<Object[]>
-    + getById(int id): Model
+    + getById(id: int): Model
     + getIDNameForSelect2(): Map<Integer, String>
 }
 

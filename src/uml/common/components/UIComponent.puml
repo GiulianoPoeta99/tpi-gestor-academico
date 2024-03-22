@@ -2,9 +2,9 @@
 
 class UIComponent {
     + static bigBox(): JPanel
-    + static tableModel(Map<Integer, Model> data): JScrollPane
-    + static table(String[] columns, List<Object[]> rows): JScrollPane
-    - static configureTable(DefaultTableModel model): JTable
+    + static tableModel(data: Map<Integer, Model>): JScrollPane
+    + static table(columns: String[], rows: List<Object[]>): JScrollPane
+    - static configureTable(model: DefaultTableModel ): JTable
 }
 
 @enduml

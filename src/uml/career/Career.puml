@@ -9,7 +9,7 @@ class Career {
     ---
     + setId(int id): void
     + getId(): int
-    + setName(String name): void
+    + setName(name: String): void
     + getName(): String
     + getAll(): Map<Integer, Model>
     + addSerial(): void

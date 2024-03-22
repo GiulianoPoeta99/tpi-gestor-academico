@@ -3,8 +3,8 @@
 class LayOut {
     - static contentPanel: JPanel
     + static mainFrame(): JFrame
-    + static sidePanel(Map<String, Runnable> redirections): JPanel
-    + static sideButton(String text, Runnable redirection): JButton
+    + static sidePanel(redirections: Map<String, Runnable> ): JPanel
+    + static sideButton(text: String, redirection: Runnable): JButton
     + static topPanel(): JPanel
     + static contentPanel(): JPanel
     + static getContentPanel(): JPanel
