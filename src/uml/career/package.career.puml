@@ -2,11 +2,8 @@
 
 package career {
     !include ./Career.puml
-
     !include ./CareerSearch.puml
-
     !include ./CareerController.puml
-
     !include ./CareerViews.puml
 
     Career -- CareerController
