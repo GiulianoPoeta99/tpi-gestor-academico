@@ -7,6 +7,12 @@ package components {
     !include ./LayOut.puml
     !include ./Text.puml
     !include ./UIComponent.puml
+
+    Common --|> LayOut : Herencia
+    Common --|> Text : Herencia
+    Common --|> UIComponent : Herencia
+    UIComponent --|> Button : Herencia
+    UIComponent --|> Input : Herencia
 }
 
 @enduml

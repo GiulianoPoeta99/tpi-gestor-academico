@@ -1,7 +1,17 @@
 @startuml
 
 class Common {
-    
+    + static final PRIMARY_COLOR: Color
+    + static final SUCCESS_COLOR: Color
+    + static final WARNING_COLOR: Color
+    + static final DANGER_COLOR: Color
+    + static final INFO_COLOR: Color
+    + static final SECONDARY_COLOR: Color
+    + static final TEXT_COLOR: Color
+    + static final BACKGROUND_COLOR: Color
+    + static final COLUMN_BACKGROUND_COLOR: Color
+    + static final DEFAULT_FONT: String
 }
+
 
 @enduml

@@ -1,7 +1,10 @@
 @startuml
 
 class UIComponent {
-    
+    + static bigBox(): JPanel
+    + static tableModel(Map<Integer, Model> data): JScrollPane
+    + static table(String[] columns, List<Object[]> rows): JScrollPane
+    - static configureTable(DefaultTableModel model): JTable
 }
 
 @enduml
