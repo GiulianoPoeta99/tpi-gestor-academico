@@ -9,6 +9,8 @@ package main {
     }
 
     !include ./career/package.career.puml
+    !include ./common/package.common.puml
+    !include ./site/package.site.puml
     !include ./student/package.student.puml
     !include ./studyplan/package.studyplan.puml
     !include ./subject/package.subject.puml
