@@ -8,9 +8,9 @@ package career {
 
 
     Career <|-- CareerSearch: Inheritance
-    CareerController *-- Career : Composition
-    CareerSearch o-- CareerController: Aggregation
-    CareerController --o CareerViews: Aggregation
+    CareerController *--> Career : Composition
+    CareerSearch o--> CareerController: Aggregation
+    CareerController <--o CareerViews: Aggregation
     CareerViews -- Career : Association
     CareerViews -- CareerSearch : Association
 }
