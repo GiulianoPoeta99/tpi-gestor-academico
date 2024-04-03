@@ -61,4 +61,27 @@ public class AcademicHistoryController implements Controller {
     public void search() {
         render(AcademicHistoryViews::search);
     }
+
+    public void searchStudent() {
+        render(AcademicHistoryViews::searchStudent);
+    }
+
+    public void enrollSubject(boolean save, AcademicHistory model, int idStudent) {
+        if (model == null) {
+            model = new AcademicHistory();
+        }
+
+        model.setIdStudent(idStudent);
+        model.setState("Cursando");
+
+        if (save) {
+
+            if (model.save()) {
+                view(model.getId());
+            }
+        } else {
+            AcademicHistory finalModel = model;
+            render(() -> AcademicHistoryViews.enrollSubject(finalModel));
+        }
+    }
 }

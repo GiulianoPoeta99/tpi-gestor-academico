@@ -2,6 +2,8 @@ package main.academichistory;
 
 import main.common.components.*;
 import main.common.components.Button;
+import main.student.Student;
+import main.student.StudentController;
 import main.student.StudentSearch;
 import main.subject.SubjectSearch;
 
@@ -315,7 +317,7 @@ public class AcademicHistoryViews {
         conditions.gridy = 0;
         conditions.anchor = GridBagConstraints.WEST;
 
-        JLabel academicHistoryIDLabel = Text.label("Carrera:");
+        JLabel academicHistoryIDLabel = Text.label("Alumno/Materia:");
         divForm.add(academicHistoryIDLabel, conditions);
 
         conditions.gridy++;
@@ -330,13 +332,130 @@ public class AcademicHistoryViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.info("Buscar", () -> {
-            Integer selectedAcademicHistoryId = (Integer) ((JComboBox<?>) academicHistoryIDField.getComponent(0))
-                    .getClientProperty("selectedIndex");
+            Integer selectedAcademicHistoryId = (Integer) ((JComboBox<?>) academicHistoryIDField.getComponent(0)).getClientProperty("selectedIndex");
 
             if (selectedAcademicHistoryId > 0) {
                 AcademicHistoryController.getInstance().view(selectedAcademicHistoryId);
             }
         });
+        divButton.add(saveButton);
+
+        JButton backButton = Button.danger("Volver", () -> AcademicHistoryController.getInstance().index());
+        divButton.add(backButton);
+
+        divBox.add(divButton, BorderLayout.SOUTH);
+
+        components.add(divBox);
+
+        return components;
+    }
+
+    public static List<JComponent> searchStudent() {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1(String.format("Buscar %s", Student.TRANSLATE_NAME));
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        div.setBackground(Common.BACKGROUND_COLOR);
+
+        JPanel divForm = new JPanel(new GridBagLayout());
+        divForm.setBackground(Common.BACKGROUND_COLOR);
+
+        GridBagConstraints conditions = new GridBagConstraints();
+        conditions.gridx = 0;
+        conditions.gridy = 0;
+        conditions.anchor = GridBagConstraints.WEST;
+
+        JLabel studentIDLabel = Text.label("Estudiante:");
+        divForm.add(studentIDLabel, conditions);
+
+        conditions.gridy++;
+        JPanel studentIDField = Input.createSelect2InputStrInt(StudentSearch.getIDNameForSelect2());
+        divForm.add(studentIDField, conditions);
+
+        div.add(divForm, BorderLayout.NORTH);
+        divBox.add(div, BorderLayout.NORTH);
+
+        JPanel divButton = new JPanel();
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JButton saveButton = Button.info("Buscar", () -> {
+            Integer selectedStudentId = (Integer) ((JComboBox<?>) studentIDField.getComponent(0)).getClientProperty("selectedIndex");
+
+            if (selectedStudentId > 0) {
+                AcademicHistoryController.getInstance().enrollSubject(false, null, selectedStudentId);
+            }
+        });
+        divButton.add(saveButton);
+
+        JButton backButton = Button.danger("Volver", () -> AcademicHistoryController.getInstance().index());
+        divButton.add(backButton);
+
+        divBox.add(divButton, BorderLayout.SOUTH);
+
+        components.add(divBox);
+
+        return components;
+    }
+
+    public static List<JComponent> enrollSubject(AcademicHistory model) {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1("Crear " + AcademicHistory.TRANSLATE_NAME);
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        div.setBackground(Common.BACKGROUND_COLOR);
+
+        JPanel divForm = new JPanel(new GridBagLayout());
+        divForm.setBackground(Common.BACKGROUND_COLOR);
+
+        GridBagConstraints conditions = new GridBagConstraints();
+        conditions.gridx = 0;
+        conditions.gridy = 0;
+        conditions.anchor = GridBagConstraints.WEST;
+
+        JLabel subjectIDLabel = Text.label("Materia:");
+        divForm.add(subjectIDLabel, conditions);
+        conditions.gridy++;
+        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectSearch.getIDNameForSelect2());
+        divForm.add(subjectIDField, conditions);
+
+        div.add(divForm, BorderLayout.NORTH);
+        divBox.add(div, BorderLayout.NORTH);
+
+        JPanel divButton = new JPanel();
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JButton saveButton = Button.success("Guardar", () -> {
+            int selectedSubjectID= (int) ((JComboBox<?>) subjectIDField.getComponent(0)).getClientProperty("selectedIndex");
+
+            if (selectedSubjectID > 0 && selectedSubjectID != model.getIdSubject()) {
+                model.setIdSubject(selectedSubjectID);
+            }
+
+            AcademicHistoryController.getInstance().enrollSubject(true, model, model.getIdStudent());
+        });
+
         divButton.add(saveButton);
 
         JButton backButton = Button.danger("Volver", () -> AcademicHistoryController.getInstance().index());
