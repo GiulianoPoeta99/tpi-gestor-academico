@@ -1,0 +1,158 @@
+package main.academichistory;
+
+import main.common.Model;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+public class AcademicHistory implements Model {
+    // Constants
+    public static final String TRANSLATE_NAME = "Historia academica";
+    public static final List<String> TYPES_STATE = Arrays.asList("Aprobado", "Desaprobado", "Cursando");
+
+    // Attributes
+    private int id;
+    private int idStudent;
+    private int idSubject;
+    private String state;
+    private int grade;
+
+    // Static attributes
+    protected static int serial = 0;
+    protected static Map<Integer, Model> all = new LinkedHashMap<>();
+
+    // Constructors ==========================================================
+
+    public AcademicHistory() {}
+
+    protected AcademicHistory(int idStudent, int idSubject, String state, int grade) {
+        this.idStudent = idStudent;
+        this.idSubject = idSubject;
+        this.state = state;
+        this.grade = grade;
+        save();
+    }
+
+    // Setters & Getters ======================================================
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setIdSubject(int idSubject) {
+        this.idSubject = idSubject;
+    }
+
+    public int getIdSubject() {
+        return this.idSubject;
+    }
+
+    public void setIdStudent(int idStudent) {
+        this.idStudent = idStudent;
+    }
+
+    public int getIdStudent() {
+        return this.idStudent;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getState() {
+        return this.state;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public int getGrade() {
+        return this.grade;
+    }
+
+    public static Map<Integer, Model> getAll() {
+        return all;
+    }
+
+    // Methods ================================================================
+
+    protected static void addSerial() {
+        serial++;
+    }
+
+    public static void loadData() {
+
+    }
+
+    // Model interface methods =================================================
+
+    @Override
+    public boolean validate() {
+        return (
+            idStudent != 0
+            && idSubject != 0
+            && state != null
+        );
+    }
+
+    @Override
+    public boolean save() {
+        if (validate()) {
+            addSerial();
+            id = serial;
+            all.put(id, this);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean update() {
+        if (validate()) {
+            all.put(id, this);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void delete() {
+        all.remove(id, this);
+    }
+
+    @Override
+    public Object[] getAttributeValues() {
+        return new Object[] { idStudent, idSubject, state, grade };
+    }
+
+    @Override
+    public String[] getAttributeNames() {
+        return new String[] { "ID estudiante", "ID materia", "Estado", "Nota" };
+    }
+
+    // Overrides ===============================================================
+
+    @Override
+    public String toString() {
+        return String.format("""
+            %s
+              * Estudiante: %d
+              * Materia: %d
+              * Estado: %s
+              * Nota: %d
+            """,
+            TRANSLATE_NAME,
+            idStudent,
+            idSubject,
+            state != null ? state : "-",
+            grade
+        );
+    }
+}

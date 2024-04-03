@@ -1,0 +1,71 @@
+package main.academichistory;
+
+import main.career.Career;
+import main.common.Model;
+import main.student.Student;
+import main.student.StudentSearch;
+import main.studyplan.StudyPlan;
+import main.subject.Subject;
+import main.subject.SubjectSearch;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+public class AcademicHistorySearch extends AcademicHistory{
+    public static String[] getCustomColumns() {
+        return new String[] { "Estudiante", "Materia", "Estado", "Nota" };
+    }
+
+    public static List<Object[]> getCustomData() {
+        List<Object[]> customData = new ArrayList<>();
+        for (Model model : AcademicHistory.getAll().values()) {
+            if (model instanceof AcademicHistory academicHistory) {
+                Student student = (Student) StudentSearch.getById(academicHistory.getIdStudent());
+                Subject subject = (Subject) SubjectSearch.getById(academicHistory.getIdSubject());
+                Object[] rowData = new Object[] {
+                    String.format("%s - %s %s", student.getDossierNumber(), student.getLastName(), student.getFirstName()),
+                    String.format("%s - %s", subject.getId(), subject.getName()),
+                    academicHistory.getState(),
+                    academicHistory.getGrade()
+                };
+                customData.add(rowData);
+            }
+        }
+        return customData;
+    }
+
+    public static Model getById(int id) {
+        return all.get(id);
+    }
+
+    public static Map<Integer, String> getIDNameForSelect2() {
+        Map<Integer, String> academicHistoryMap = new LinkedHashMap<>();
+        for (Model model : AcademicHistory.getAll().values()) {
+            if (model instanceof AcademicHistory academicHistory) {
+                Student student = (Student) StudentSearch.getById(academicHistory.getIdStudent());
+                Subject subject = (Subject) SubjectSearch.getById(academicHistory.getIdSubject());
+                academicHistoryMap.put(
+                    academicHistory.getId(),
+                    String.format(
+                        "%d - %s/%s (%s)",
+                        academicHistory.getId(),
+                        String.format("%s - %s %s", student.getDossierNumber(), student.getLastName(), student.getFirstName()),
+                        subject.getName(),
+                        academicHistory.getState()
+                    )
+                );
+            }
+        }
+        return academicHistoryMap;
+    }
+
+    public static Map<String, String> getStateForSelect2() {
+        Map<String, String> typeMap = new LinkedHashMap<>();
+        for (String type : AcademicHistory.TYPES_STATE) {
+            typeMap.put(type,type);
+        }
+        return typeMap;
+    }
+}

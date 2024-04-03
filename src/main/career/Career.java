@@ -109,11 +109,11 @@ public class Career implements Model {
     @Override
     public String toString() {
         return String.format("""
-        %s
-          * Nombre: %s
-        """,
-        TRANSLATE_NAME,
-        name != null ? name : "N/A"
-    );
+            %s
+              * Nombre: %s
+            """,
+            TRANSLATE_NAME,
+            name != null ? name : "N/A"
+        );
     }
 }

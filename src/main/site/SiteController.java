@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import main.academichistory.AcademicHistoryController;
 import main.career.CareerController;
 import main.common.Controller;
 import main.student.StudentController;
@@ -30,6 +31,7 @@ public class SiteController implements Controller {
         redirections.put("Inscribir a carrera", () -> StudentController.getInstance().search(true));
         redirections.put("Alumnos", StudentController.getInstance()::index);
         redirections.put("Materias", SubjectController.getInstance()::index);
+        redirections.put("Historia academica", AcademicHistoryController.getInstance()::index);
 
         SwingUtilities.invokeLater(() -> {
             SiteViews.layout(redirections);
