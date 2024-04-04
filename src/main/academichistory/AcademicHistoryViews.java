@@ -5,10 +5,7 @@ import main.career.CareerSearch;
 import main.common.components.*;
 import main.common.components.Button;
 import main.student.Student;
-import main.student.StudentController;
 import main.student.StudentSearch;
-import main.studyplan.StudyPlan;
-import main.studyplan.StudyPlanSearch;
 import main.subject.SubjectSearch;
 
 import javax.swing.*;
@@ -47,10 +44,14 @@ public class AcademicHistoryViews {
         return components;
     }
 
-    private static void performSaveOrUpdate(AcademicHistory model, JPanel studentIDField,  JPanel subjectIDField, JPanel stateField, JTextField gradeField) {
+    private static void performSaveOrUpdate(AcademicHistory model, JPanel studentIDField,  JPanel subjectIDField, JPanel stateField, JTextField partial1Field, JTextField partial2Field, JPanel isPromotedField, JTextField finalExamField, JTextField gradeField) {
         int selectedStudentId = (int) ((JComboBox<?>) studentIDField.getComponent(0)).getClientProperty("selectedIndex");
         int selectedSubjectID= (int) ((JComboBox<?>) subjectIDField.getComponent(0)).getClientProperty("selectedIndex");
         String selectedState = (String) ((JComboBox<?>) stateField.getComponent(0)).getClientProperty("selectedIndex");
+        String newPartial1 = partial1Field.getText();
+        String newPartial2 = partial2Field.getText();
+        boolean selectedIsPromoted = (boolean) ((JComboBox<?>) isPromotedField.getComponent(0)).getClientProperty("selectedIndex");
+        String newFinalExam = finalExamField.getText();
         String newGrade = gradeField.getText();
 
         if (selectedStudentId > 0 && selectedStudentId != model.getIdStudent()) {
@@ -65,7 +66,27 @@ public class AcademicHistoryViews {
             model.setState(selectedState);
         }
 
-        model.setGrade(Integer.parseInt(newGrade));
+        if (!newPartial1.isEmpty()) {
+            model.setPartial1(Integer.parseInt(newPartial1));
+        }
+
+        if (!newPartial2.isEmpty()) {
+            model.setPartial2(Integer.parseInt(newPartial2));
+        }
+
+        assert model != null;
+        if (selectedIsPromoted != model.getIsPromoted()) {
+            model.setIsPromoted(selectedIsPromoted);
+        }
+
+        if (!newFinalExam.isEmpty()) {
+            model.setFinalExam(Integer.parseInt(newFinalExam));
+        }
+
+        if (!newGrade.isEmpty()) {
+            model.setGrade(Integer.parseInt(newGrade));
+        }
+
     }
 
     private static JPanel form(AcademicHistory model, boolean update) {
@@ -104,9 +125,36 @@ public class AcademicHistoryViews {
         divForm.add(stateField, conditions);
 
         conditions.gridy++;
+        JLabel partial1Label = Text.label("Parcial 1:");
+        divForm.add(partial1Label, conditions);
+        conditions.gridy++;
+        JTextField partial1Field = Input.createInput(model != null ? String.valueOf(model.getPartial1()) : "");
+        divForm.add(partial1Field, conditions);
+
+        conditions.gridy++;
+        JLabel partial2Label = Text.label("Parcial 2:");
+        divForm.add(partial2Label, conditions);
+        conditions.gridy++;
+        JTextField partial2Field = Input.createInput(model != null ? String.valueOf(model.getPartial2()) : "");
+        divForm.add(partial2Field, conditions);
+
+        conditions.gridy++;
+        JLabel isPromotedLabel = Text.label("Promoción:");
+        divForm.add(isPromotedLabel, conditions);
+        conditions.gridy++;
+        JPanel isPromotedField = Input.createSelect2InputBoolStr();
+        divForm.add(isPromotedField, conditions);
+
+        conditions.gridy++;
+        JLabel finalExamLabel = Text.label("Parcial 2:");
+        divForm.add(finalExamLabel, conditions);
+        conditions.gridy++;
+        JTextField finalExamField = Input.createInput(model != null ? String.valueOf(model.getFinalExam()) : "");
+        divForm.add(finalExamField, conditions);
+
+        conditions.gridy++;
         JLabel gradeLabel = Text.label("Nota:");
         divForm.add(gradeLabel, conditions);
-
         conditions.gridy++;
         JTextField gradeField = Input.createInput(model != null ? String.valueOf(model.getGrade()) : "");
         divForm.add(gradeField, conditions);
@@ -119,12 +167,12 @@ public class AcademicHistoryViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.success("Guardar", () -> {
-            performSaveOrUpdate(model, studentIDField, subjectIDField, stateField, gradeField);
+            performSaveOrUpdate(model, studentIDField, subjectIDField, stateField, partial1Field, partial2Field, isPromotedField, finalExamField, gradeField);
             AcademicHistoryController.getInstance().create(true, model);
         });
         if (update) {
             saveButton = Button.primary("Actualizar", () -> {
-                performSaveOrUpdate(model, studentIDField, subjectIDField, stateField, gradeField);
+                performSaveOrUpdate(model, studentIDField, subjectIDField, stateField, partial1Field, partial2Field, isPromotedField, finalExamField, gradeField);
                 assert model != null;
                 AcademicHistoryController.getInstance().update(true, model.getId());
             });

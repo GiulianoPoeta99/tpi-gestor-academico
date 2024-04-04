@@ -72,6 +72,14 @@ public class SubjectViews {
         divForm.add(isOptionalField, constraints);
 
         constraints.gridy++;
+        JLabel isPromotableLabel = Text.label("Promocionable:");
+        divForm.add(isPromotableLabel, constraints);
+
+        constraints.gridy++;
+        JPanel isPromotableField = Input.createSelect2InputBoolStr();
+        divForm.add(isPromotableField, constraints);
+
+        constraints.gridy++;
         JLabel fourMonthsLabel = Text.label("Cuatrimestre:");
         divForm.add(fourMonthsLabel, constraints);
 
@@ -97,6 +105,7 @@ public class SubjectViews {
         JButton saveButton = Button.success("Guardar", () -> {
             String newName = nameField.getText();
             boolean selectedIsOptional = (boolean) ((JComboBox<?>) isOptionalField.getComponent(0)).getClientProperty("selectedIndex");
+            boolean selectedIsPromotable = (boolean) ((JComboBox<?>) isPromotableField.getComponent(0)).getClientProperty("selectedIndex");
             String newFourMonths = fourMonthsField.getText();
             Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
 
@@ -110,6 +119,10 @@ public class SubjectViews {
             assert model != null;
             if (selectedIsOptional != model.getIsOptional()) {
                 model.setIsOptional(selectedIsOptional);
+            }
+
+            if (selectedIsPromotable != model.getIsPromotable()) {
+                model.setIsPromotable(selectedIsPromotable);
             }
 
             if (!newFourMonths.isEmpty()) {

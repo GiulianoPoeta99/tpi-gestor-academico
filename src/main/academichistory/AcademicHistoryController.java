@@ -1,6 +1,12 @@
 package main.academichistory;
 
 import main.common.Controller;
+import main.studyplan.StudyPlan;
+import main.studyplan.StudyPlanSearch;
+import main.subject.Subject;
+import main.subject.SubjectSearch;
+
+import java.util.Objects;
 
 public class AcademicHistoryController implements Controller {
     private static final AcademicHistoryController instance = new AcademicHistoryController();
@@ -75,6 +81,21 @@ public class AcademicHistoryController implements Controller {
         model.setState("Cursando");
 
         if (save) {
+            Subject subject = (Subject) SubjectSearch.getById(model.getIdSubject());
+            StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
+
+            String type = studyPlan.getType();
+            if (Objects.equals(type, "A")) {
+
+            } else if (Objects.equals(type,"B")) {
+
+            } else if (Objects.equals(type,"C")) {
+
+            } else if (Objects.equals(type,"D")) {
+
+            } else if (Objects.equals(type,"E")) {
+
+            }
 
             if (model.save()) {
                 view(model.getId());

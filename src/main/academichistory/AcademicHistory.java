@@ -10,13 +10,17 @@ import java.util.Map;
 public class AcademicHistory implements Model {
     // Constants
     public static final String TRANSLATE_NAME = "Historia academica";
-    public static final List<String> TYPES_STATE = Arrays.asList("Aprobado", "Desaprobado", "Cursando");
+    public static final List<String> TYPES_STATE = Arrays.asList("Aprobado", "Desaprobado", "Cursando", "Promocionado");
 
     // Attributes
     private int id;
     private int idStudent;
     private int idSubject;
     private String state;
+    private int partial1;
+    private int partial2;
+    private boolean isPromoted;
+    private int finalExam;
     private int grade;
 
     // Static attributes
@@ -27,10 +31,14 @@ public class AcademicHistory implements Model {
 
     public AcademicHistory() {}
 
-    protected AcademicHistory(int idStudent, int idSubject, String state, int grade) {
+    protected AcademicHistory(int idStudent, int idSubject, String state, int partial1, int partial2, boolean isPromoted, int finalExam, int grade) {
         this.idStudent = idStudent;
         this.idSubject = idSubject;
         this.state = state;
+        this.partial1 = partial1;
+        this.partial2 = partial2;
+        this.isPromoted = isPromoted;
+        this.finalExam = finalExam;
         this.grade = grade;
         save();
     }
@@ -67,6 +75,37 @@ public class AcademicHistory implements Model {
 
     public String getState() {
         return this.state;
+    }
+
+    public void setPartial1(int partial1) {
+        this.partial1 = partial1;
+    }
+
+    public int getPartial1() {
+        return partial1;
+    }
+    public void setPartial2(int partial2) {
+        this.partial2 = partial2;
+    }
+
+    public int getPartial2() {
+        return partial2;
+    }
+
+    public void setIsPromoted(boolean isPromoted) {
+        this.isPromoted = isPromoted;
+    }
+
+    public boolean getIsPromoted() {
+        return isPromoted;
+    }
+
+    public void setFinalExam(int finalExam) {
+        this.finalExam = finalExam;
+    }
+
+    public int getFinalExam() {
+        return finalExam;
     }
 
     public void setGrade(int grade) {

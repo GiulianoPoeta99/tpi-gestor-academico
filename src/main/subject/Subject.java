@@ -13,6 +13,7 @@ public class Subject implements Model {
     private int id;
     private String name;
     private boolean isOptional;
+    private boolean isPromotable;
     private int fourMonths;
     private int idStudyPlan;
 
@@ -27,11 +28,13 @@ public class Subject implements Model {
     protected Subject(
         String name,
         boolean isOptional,
+        boolean isPromotable,
         int fourMonths,
         int idStudyPlan
     ) {
         this.name = name;
         this.isOptional = isOptional;
+        this.isPromotable = isPromotable;
         this.fourMonths = fourMonths;
         this.idStudyPlan = idStudyPlan;
         this.save();
@@ -64,6 +67,14 @@ public class Subject implements Model {
         return this.isOptional;
     }
 
+    public void setIsPromotable(boolean isPromotable) {
+        this.isPromotable = isPromotable;
+    }
+
+    public boolean getIsPromotable() {
+        return this.isPromotable;
+    }
+
     public void setFourMonths(int fourMonths) {
         this.fourMonths = fourMonths;
     }
@@ -91,12 +102,12 @@ public class Subject implements Model {
     }
 
     public static void loadData() {
-        new Subject("Expresion de problemas y algoritmos", true,1,1);
-        new Subject("Elementos de informatica", true,1,1);
-        new Subject("Analisis matematico", true,1,1);
-        new Subject("Expresion de problemas y algoritmos", true,1,2);
-        new Subject("Elementos de informatica", true,1,2);
-        new Subject("Analisis matematico", true,1,2);
+        new Subject("Expresion de problemas y algoritmos", true,true,1,1);
+        new Subject("Elementos de informatica", true,true,1,1);
+        new Subject("Analisis matematico", true,true,1,1);
+        new Subject("Expresion de problemas y algoritmos", true,true,1,2);
+        new Subject("Elementos de informatica", true,true,1,2);
+        new Subject("Analisis matematico", true,true,1,2);
     }
 
     // Model interface methods =================================================
