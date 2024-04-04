@@ -7,6 +7,7 @@ import java.util.Map;
 import main.academichistory.AcademicHistoryController;
 import main.career.CareerController;
 import main.common.Controller;
+import main.correlative.CorrelativeController;
 import main.student.StudentController;
 import main.studyplan.StudyPlanController;
 import main.subject.SubjectController;
@@ -29,6 +30,7 @@ public class SiteController implements Controller {
         redirections.put("Planes de estudio", StudyPlanController.getInstance()::index);
         redirections.put("Alumnos", StudentController.getInstance()::index);
         redirections.put("Materias", SubjectController.getInstance()::index);
+        redirections.put("Correlativas", CorrelativeController.getInstance()::index);
         redirections.put("Historia academica", AcademicHistoryController.getInstance()::index);
         redirections.put("Registrar alumno", () -> StudentController.getInstance().create(true, false, null));
         redirections.put("Inscribir a carrera", () -> StudentController.getInstance().search(true));

@@ -168,12 +168,12 @@ public class AcademicHistory implements Model {
 
     @Override
     public Object[] getAttributeValues() {
-        return new Object[] { idStudent, idSubject, state, grade };
+        return new Object[] { idStudent, idSubject, state, partial1, partial2, isPromoted, finalExam, grade };
     }
 
     @Override
     public String[] getAttributeNames() {
-        return new String[] { "ID estudiante", "ID materia", "Estado", "Nota" };
+        return new String[] { "ID estudiante", "ID materia", "Estado", "Parcial 1", "Parcial 2", "Promoción", "Final", "Nota" };
     }
 
     // Overrides ===============================================================
@@ -185,12 +185,20 @@ public class AcademicHistory implements Model {
               * Estudiante: %d
               * Materia: %d
               * Estado: %s
+              * Parcial 1: %d
+              * Parcial 2: %d
+              * Promoción: %s
+              * Final: %d
               * Nota: %d
             """,
             TRANSLATE_NAME,
             idStudent,
             idSubject,
             state != null ? state : "-",
+            partial1,
+            partial2,
+            isPromoted,
+            finalExam,
             grade
         );
     }

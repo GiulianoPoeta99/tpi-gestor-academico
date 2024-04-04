@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class AcademicHistorySearch extends AcademicHistory{
     public static String[] getCustomColumns() {
-        return new String[] { "Estudiante", "Materia", "Estado", "Nota" };
+        return new String[] { "Estudiante", "Materia", "Estado", "Parcial 1", "Parcial 2", "Promoción", "Final", "Nota" };
     }
 
     public static List<Object[]> getCustomData() {
@@ -28,6 +28,10 @@ public class AcademicHistorySearch extends AcademicHistory{
                     String.format("%s - %s %s", student.getDossierNumber(), student.getLastName(), student.getFirstName()),
                     String.format("%s - %s", subject.getId(), subject.getName()),
                     academicHistory.getState(),
+                    academicHistory.getPartial1(),
+                    academicHistory.getPartial2(),
+                    academicHistory.getIsPromoted() ? "Si" : "No",
+                    academicHistory.getFinalExam(),
                     academicHistory.getGrade()
                 };
                 customData.add(rowData);
