@@ -97,7 +97,7 @@ public class Student implements Model {
 
     public static void loadData() {
         new Student("Giuliano Ignacio", "Poeta", LocalDate.of(1999, 9, 14), 1);
-        new Student("Rocio", "Olvero Jofre", LocalDate.of(1999, 12, 22), 1);
+        new Student("Rocio", "Olivero Jofre", LocalDate.of(1999, 12, 22), 2);
     }
 
     // Model interface methods =================================================

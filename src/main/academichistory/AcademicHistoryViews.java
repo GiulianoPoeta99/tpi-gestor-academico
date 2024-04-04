@@ -1,10 +1,14 @@
 package main.academichistory;
 
+import main.career.Career;
+import main.career.CareerSearch;
 import main.common.components.*;
 import main.common.components.Button;
 import main.student.Student;
 import main.student.StudentController;
 import main.student.StudentSearch;
+import main.studyplan.StudyPlan;
+import main.studyplan.StudyPlanSearch;
 import main.subject.SubjectSearch;
 
 import javax.swing.*;
@@ -409,6 +413,9 @@ public class AcademicHistoryViews {
     }
 
     public static List<JComponent> enrollSubject(AcademicHistory model) {
+        Student student = (Student) StudentSearch.getById(model.getIdStudent());
+        Career career = (Career) CareerSearch.getById(student.getIdCareer());
+
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1("Crear " + AcademicHistory.TRANSLATE_NAME);
@@ -436,7 +443,7 @@ public class AcademicHistoryViews {
         JLabel subjectIDLabel = Text.label("Materia:");
         divForm.add(subjectIDLabel, conditions);
         conditions.gridy++;
-        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectSearch.getIDNameForSelect2());
+        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectSearch.getAllSubjectsForCareerForSelect2(career.getId()));
         divForm.add(subjectIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);

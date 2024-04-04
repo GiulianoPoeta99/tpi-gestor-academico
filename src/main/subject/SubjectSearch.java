@@ -3,6 +3,7 @@ package main.subject;
 import main.career.Career;
 import main.career.CareerSearch;
 import main.common.Model;
+import main.student.Student;
 import main.studyplan.StudyPlan;
 import main.studyplan.StudyPlanSearch;
 
@@ -76,5 +77,21 @@ public class SubjectSearch extends Subject {
 
     public static String[] getCustomColumnsForStudyPlan() {
         return new String[] { "Nombre", "Opcional", "Cuatrimestre" };
+    }
+
+    public static Map<Integer, String> getAllSubjectsForCareerForSelect2(int idCareer) {
+        Map<Integer, String> subjectsMap = new LinkedHashMap<>();
+        for (Model model : Subject.getAll().values()) {
+            if (model instanceof Subject subject) {
+                StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
+                if (idCareer == studyPlan.getId()) {
+                    Career career = (Career) CareerSearch.getById(studyPlan.getIdCareer());
+
+                    String name = String.format("%s - %s", career.getName(), subject.getName());
+                    subjectsMap.put(subject.getId(), name);
+                }
+            }
+        }
+        return subjectsMap;
     }
 }

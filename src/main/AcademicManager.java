@@ -1,5 +1,6 @@
 package main;
 
+import main.academichistory.AcademicHistory;
 import main.site.SiteController;
 import main.career.Career;
 import main.studyplan.StudyPlan;
@@ -13,6 +14,7 @@ public class AcademicManager {
         StudyPlan.loadData();
         Subject.loadData();
         Student.loadData();
+        AcademicHistory.loadData();
     }
 
     public static void main(String[] args) {

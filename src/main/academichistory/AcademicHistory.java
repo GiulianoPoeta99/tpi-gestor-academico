@@ -88,7 +88,7 @@ public class AcademicHistory implements Model {
     }
 
     public static void loadData() {
-
+        new AcademicHistory();
     }
 
     // Model interface methods =================================================
