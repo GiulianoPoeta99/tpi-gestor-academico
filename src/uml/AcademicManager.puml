@@ -14,6 +14,8 @@ package main {
     !include ./student/package.student.puml
     !include ./studyplan/package.studyplan.puml
     !include ./subject/package.subject.puml
+    !include ./academichistory/package.academichistory.puml
+    !include ./correlative/package.correlative.puml
 
 
     Career ..|> Model : Implements
