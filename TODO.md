@@ -19,13 +19,12 @@ Objetivo:
 
 - [X] Para aprobar una materia se debe rendir primero un parcial y luego un final. Adicionalmente existe un régimen de promoción para algunas materias para aquellos alumnos que aprobaran la cursada (parcial).
 
-Tenga en cuenta que las condiciones para que un alumno pueda cursar una materia varían de
-acuerdo al plan de estudios de la carrera:
-- [ ] Plan A: aprobó las cursadas de las correlativas
-- [ ] Plan B: aprobó los finales de las correlativas
-- [ ] Plan C: aprobó las cursadas de las correlativas y los finales de todas las materias de 5 cuatrimestres previos al que se quiere anotar
-- [ ] Plan D: aprobó las cursadas de las correlativas y los finales de todas las materias de 3 cuatrimestres previos al que se quiere anotar
-- [ ] Plan E: aprobó los finales de las correlativas y los finales de todas las materias de 3 cuatrimestres previos.
+- [ ] Tenga en cuenta que las condiciones para que un alumno pueda cursar una materia varían de acuerdo al plan de estudios de la carrera:
+  - [ ] Plan A: aprobó las cursadas de las correlativas
+  - [ ] Plan B: aprobó los finales de las correlativas
+  - [ ] Plan C: aprobó las cursadas de las correlativas y los finales de todas las materias de 5 cuatrimestres previos al que se quiere anotar
+  - [ ] Plan D: aprobó las cursadas de las correlativas y los finales de todas las materias de 3 cuatrimestres previos al que se quiere anotar
+  - [ ] Plan E: aprobó los finales de las correlativas y los finales de todas las materias de 3 cuatrimestres previos.
 
 - [ ] Funcionalidad mínima a ser entregada.
     - [X] Interface visual (swing) para los siguientes puntos:

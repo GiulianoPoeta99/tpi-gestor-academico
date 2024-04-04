@@ -1,5 +1,9 @@
 package main.correlative;
 
+import main.career.Career;
+import main.career.CareerController;
+import main.career.CareerSearch;
+import main.common.components.Button;
 import main.common.components.Common;
 import main.common.components.Input;
 import main.common.components.Text;
@@ -28,7 +32,7 @@ public class CorrelativeViews {
 
         JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
         divButton.setBackground(Common.BACKGROUND_COLOR);
-        JButton createButton = main.common.components.Button.success("Crear correlativa", () -> CorrelativeController.getInstance().create(false, null));
+        JButton createButton = main.common.components.Button.success("Crear correlativa", () -> CorrelativeController.getInstance().searchCreate());
         divButton.add(createButton);
         JButton searchButton = main.common.components.Button.warning("Ver correlativa", () -> CorrelativeController.getInstance().search());
         divButton.add(searchButton);
@@ -55,7 +59,7 @@ public class CorrelativeViews {
         }
     }
 
-    private static JPanel form(Correlative model, boolean update) {
+    private static JPanel form(Correlative model, int idCareer, boolean update) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
 
@@ -73,14 +77,14 @@ public class CorrelativeViews {
         JLabel subjectIDLabel = Text.label("Materia:");
         divForm.add(subjectIDLabel, conditions);
         conditions.gridy++;
-        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectSearch.getIDNameForSelect2());
+        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectSearch.getAllSubjectsForCareerForSelect2(idCareer));
         divForm.add(subjectIDField, conditions);
 
         conditions.gridy++;
         JLabel subjectCorrelativeIDLabel = Text.label("Materia Correlativa:");
         divForm.add(subjectCorrelativeIDLabel, conditions);
         conditions.gridy++;
-        JPanel subjectCorrelativeIDField = Input.createSelect2InputStrInt(SubjectSearch.getIDNameForSelect2());
+        JPanel subjectCorrelativeIDField = Input.createSelect2InputStrInt(SubjectSearch.getAllSubjectsForCareerForSelect2(idCareer));
         divForm.add(subjectCorrelativeIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -92,7 +96,7 @@ public class CorrelativeViews {
 
         JButton saveButton = main.common.components.Button.success("Guardar", () -> {
             performSaveOrUpdate(model, subjectIDField, subjectCorrelativeIDField);
-            CorrelativeController.getInstance().create(true, model);
+            CorrelativeController.getInstance().create(true, model, idCareer);
         });
         if (update) {
             saveButton = main.common.components.Button.primary("Actualizar", () -> {
@@ -113,7 +117,7 @@ public class CorrelativeViews {
         return divBox;
     }
 
-    public static List<JComponent> create(Correlative model) {
+    public static List<JComponent> create(Correlative model, int idCareer) {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1("Crear " + Correlative.TRANSLATE_NAME);
@@ -124,14 +128,14 @@ public class CorrelativeViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = form(model, false);
+        JPanel divBox = form(model, idCareer, false);
 
         components.add(divBox);
 
         return components;
     }
 
-    public static List<JComponent> update(Correlative model) {
+    public static List<JComponent> update(Correlative model, int idCareer) {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1("Actualizar " + Correlative.TRANSLATE_NAME + " registro: " + model.getId());
@@ -142,7 +146,7 @@ public class CorrelativeViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = form(model, true);
+        JPanel divBox = form(model, idCareer, true);
 
         components.add(divBox);
 
@@ -176,16 +180,13 @@ public class CorrelativeViews {
         divButton.setBackground(Common.BACKGROUND_COLOR);
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        JButton continueButton = main.common.components.Button.secondary("Continuar",
-                () -> CorrelativeController.getInstance().index());
+        JButton continueButton = main.common.components.Button.secondary("Continuar", () -> CorrelativeController.getInstance().index());
         divButton.add(continueButton);
 
-        JButton createButton = main.common.components.Button.success("Crear",
-                () -> CorrelativeController.getInstance().create(false, null));
+        JButton createButton = main.common.components.Button.success("Crear", () -> CorrelativeController.getInstance().searchCreate());
         divButton.add(createButton);
 
-        JButton updateButton = main.common.components.Button.primary("Actualizar",
-                () -> CorrelativeController.getInstance().update(false, model.getId()));
+        JButton updateButton = main.common.components.Button.primary("Actualizar", () -> CorrelativeController.getInstance().update(false, model.getId()));
         divButton.add(updateButton);
 
         JButton deleteButton = main.common.components.Button.danger("Eliminar",
@@ -322,6 +323,64 @@ public class CorrelativeViews {
 
         JButton backButton = main.common.components.Button.danger("Volver",
                 () -> CorrelativeController.getInstance().index());
+        divButton.add(backButton);
+
+        divBox.add(divButton, BorderLayout.SOUTH);
+
+        components.add(divBox);
+
+        return components;
+    }
+
+    public static List<JComponent> searchCreate() {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1(String.format("Buscar %s", Career.TRANSLATE_NAME));
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        div.setBackground(Common.BACKGROUND_COLOR);
+
+        JPanel divForm = new JPanel(new GridBagLayout());
+        divForm.setBackground(Common.BACKGROUND_COLOR);
+
+        GridBagConstraints conditions = new GridBagConstraints();
+        conditions.gridx = 0;
+        conditions.gridy = 0;
+        conditions.anchor = GridBagConstraints.WEST;
+
+        JLabel careerIDLabel = Text.label("Carrera:");
+        divForm.add(careerIDLabel, conditions);
+
+        conditions.gridy++;
+        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
+        divForm.add(careerIDField, conditions);
+
+        div.add(divForm, BorderLayout.NORTH);
+        divBox.add(div, BorderLayout.NORTH);
+
+        JPanel divButton = new JPanel();
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JButton saveButton = main.common.components.Button.info("Buscar", () -> {
+            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
+
+            if (selectedCareerId > 0) {
+                CorrelativeController.getInstance().create(false,null, selectedCareerId);
+            }
+        });
+        divButton.add(saveButton);
+
+        JButton backButton = Button.danger("Volver", () -> CorrelativeController.getInstance().index());
         divButton.add(backButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
