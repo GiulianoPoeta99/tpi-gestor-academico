@@ -6,6 +6,7 @@ public class SubjectLoad extends Subject {
         dataCareer2();
         dataCareer3();
         dataCareer4();
+        dataCareer5();
     }
 
     private static void dataCareer1() {
@@ -182,41 +183,111 @@ public class SubjectLoad extends Subject {
     }
 
     private static void dataCareer4() {
-        new Subject("Álgebra", false,true,1,4); //165
+        new Subject("Álgebra", false,true,1,4);
         new Subject("Elementos de Informática", false,true,1,4);
         new Subject("Expresión de Problemas y Algoritmos", false,true,1,4);
-        new Subject("Algorítmica y Programación I", false,true,2,4); // 168
+        new Subject("Algorítmica y Programación I", false,true,2,4);
         new Subject("Análisis Matemático", false,true,2,4);
         new Subject("Elementos de Lógica y Matemática Discreta", false,true,2,4);
-        new Subject("Algorítmica y Programación II", false,true,3,4); //171
+        new Subject("Algorítmica y Programación II", false,true,3,4);
         new Subject("Arquitectura de Computadoras", false,true,3,4);
         new Subject("Estadística", false,true,3,4);
         new Subject("Sistemas y Organizaciones", false,true,3,4);
-        new Subject("Bases de Datos I", false,true,4,4); // 175
+        new Subject("Bases de Datos I", false,true,4,4);
         new Subject("Ingeniería de Software I", false,true,4,4);
         new Subject("Programación y Diseño Orientado a Objetos", false,true,4,4);
-        new Subject("Fundamentos Teóricos de Informática", false,true,5,4); // 178
+        new Subject("Fundamentos Teóricos de Informática", false,true,5,4);
         new Subject("Ingeniería de Software II", false,true,5,4);
         new Subject("Introducción a la Concurrencia", false,true,5,4);
         new Subject("Laboratorio de Programación y Lenguajes", false,true,5,4);
-        new Subject("Bases de Datos II", false,true,6,4); // 182
+        new Subject("Bases de Datos II", false,true,6,4);
         new Subject("Laboratorio de Software", false,true,6,4);
         new Subject("Seminario de Aspectos Legales y Profesionales I", false,true,6,4);
         new Subject("Sistemas Operativos", false,true,6,4);
-        new Subject("Paradigmas y Lenguajes de Programación", false,true,7,4); // 186
+        new Subject("Paradigmas y Lenguajes de Programación", false,true,7,4);
         new Subject("Redes y Transmisión de Datos", false,true,7,4);
         new Subject("Taller de Nuevas Tecnologías", false,true,7,4);
-        new Subject("Ingeniería de Software III", false,true,8,4); // 189
+        new Subject("Ingeniería de Software III", false,true,8,4);
         new Subject("Seminario de Aspectos Legales y Profesionales II", false,true,8,4);
         new Subject("Sistemas Distribuidos", false,true,8,4);
         new Subject("Sistemas Inteligentes", false,true,8,4);
-
-        new Subject("Bases de Datos Distribuidas", false,true,9,4); // 193
+        new Subject("Bases de Datos Distribuidas", false,true,9,4);
         new Subject("Seminario de Seguridad", false,true,9,4);
         new Subject("Sistemas de Tiempo Real", false,true,9,4);
         new Subject("Sistemas Paralelos", false,true,9,4);
-
-        new Subject("Modelos y Simulación", false,true,10,4); // 197
+        new Subject("Modelos y Simulación", false,true,10,4);
         new Subject("Proyecto de Software", false,true,10,4);
+    }
+
+    private static void dataCareer5() {
+        new Subject("Contabilidad", false,true,1,5); 
+        new Subject("Introducción a la Economía", false,true,1,5);
+        new Subject("Introducción al Cálculo", false,true,1,5);
+        new Subject("Introducción al Estudio de la Sociedad, la Cultura y el Ambiente", false,true,1,5);
+        new Subject("Epistemología de las Ciencias Sociales", false,true,2,5);
+        new Subject("Fundamentos de Sociología", false,true,2,5);
+        new Subject("Matemática I", false,true,2,5);
+        new Subject("Microeconomía I", false,true,2,5);
+        new Subject("Administración y Gestión Empresarial", false,true,3,5);
+        new Subject("Álgebra", false,true,3,5);
+        new Subject("Macroeconomía I", false,true,3,5);
+        new Subject("Taller de Fuentes de Información Económico y Social", false,true,3,5);
+        new Subject("Examen Nivel I de Inglés", false,true,4,5);
+        new Subject("Fundamentos de Ciencia Política", false,true,4,5);
+        new Subject("Historia del Pensamiento Económico I", false,true,4,5);
+        new Subject("Macroeconomía II", false,true,4,5);
+        new Subject("Matemática II", false,true,4,5);
+        new Subject("Economía Organizacional", false,true,5,5);
+        new Subject("Estadística", false,true,5,5);
+        new Subject("Historia del Pensamiento Económico II", false,true,5,5);
+        new Subject("Instituciones, Derecho, Economía y Negocios", false,true,5,5);
+        new Subject("Historia Social Argentina", false,true,6,5);
+        new Subject("Matemática para Economistas", false,true,6,5);
+        new Subject("Taller de Investigación de Metodología Cuantitativa y Cualitativa", false,true,6,5);
+        new Subject("Tópicos de Crecimiento Económico y Desarrollo", false,true,6,5);
+        new Subject("Comercio Internacional Economía Global y Globalización", false,true,7,5);
+        new Subject("Dinero, Agregados Monetarios y Sistema Financiero", false,true,7,5);
+        new Subject("Econometría", false,true,7,5);
+        new Subject("Examen Nivel II de Inglés", false,true,8,5);
+
+        new Subject("Contabilidad II", true,true,8,5);
+        new Subject("Creación de Empresas", true,true,8,5);
+        new Subject("Dirección y Gerenciamiento", true,true,8,5);
+        new Subject("Economías y Ruralidades en Patagonia Sur", true,true,8,5);
+        new Subject("Historia Social Latinoamericana", true,true,8,5);
+        new Subject("Taller de Comercio Exterior", true,true,8,5);
+        new Subject("Taller de Economía Latinoamericana y Emergentes", true,true,8,5);
+        new Subject("Taller de Gestión Emprendedora II", true,true,8,5);
+        new Subject("Taller de Gestión Emprendedora III", true,true,8,5);
+        new Subject("Análisis Economíco de Coyuntura", true,true,8,5);
+        new Subject("Econometría Avanzada", true,true,8,5);
+        new Subject("Economía de la Energía", true,true,8,5);
+        new Subject("Economía de los Recursos Naturales y Ambiente", true,true,8,5);
+        new Subject("Economía del Turismo", true,true,8,5);
+        new Subject("Economías Latinoamericanas y Emergentes", true,true,8,5);
+        new Subject("Evaluación de Proyectos de Inversión", true,true,8,5);
+        new Subject("Historia del Desarrollo Económico Argentino", true,true,8,5);
+        new Subject("La Imposibilidad de sí. Forma de violencia y subjetivación en las sociedades contemporáneas", true,true,8,5);
+        new Subject("La política internacional latinoamericana contemporánea", true,true,8,5);
+        new Subject("Microeconomía Avanzada", true,true,8,5);
+        new Subject("Política Macroeconómica Avanzada", true,true,8,5);
+        new Subject("Políticas Públicas y Proyectos de Intervención Social", true,true,8,5);
+        new Subject("Sistema Financiero Internacional y Flujos de Capital", true,true,8,5);
+        new Subject("Sociología Política", true,true,8,5);
+        new Subject("Taller de Creación de Empresas", true,true,8,5);
+        new Subject("Taller de Gestión Emprendedora I", true,true,8,5);
+        new Subject("Teoría de los Juegos", true,true,8,5);
+        new Subject("Teoría Social Foucaultiana", true,true,8,5);
+        new Subject("Teorías de la Innovación, del Progreso Técnico y de los Sistemas Evolutivos", true,true,8,5);
+        new Subject("Tópicos de Matemática para su Aplicación en Ingeniería y Economía", true,true,8,5);
+        new Subject("Pensamiento Económico y Social Latinoamericano", false,true,8,5);
+        new Subject("Política Económica y Finanzas Públicas", false,true,8,5);
+        new Subject("Práctica profesional I", false,true,8,5);
+        new Subject("Examen Nivel I de Portugués", false,true,9,5);
+        new Subject("Seminario de Problemática Fueguina", false,true,9,5);
+        new Subject("Taller Trabajo Final", false,true,9,5);
+        new Subject("Examen Nivel III de Inglés", false,true,10,5);
+        new Subject("Práctica profesional II", false,true,10,5);
+        new Subject("Trabajo Final", false,true,10,5);
     }
 }
