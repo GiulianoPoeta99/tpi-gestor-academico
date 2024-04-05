@@ -5,6 +5,7 @@ public class CorrelativeLoad extends Correlative {
         dataCareer1();
         dataCareer2();
         dataCareer3();
+        dataCareer4();
     }
 
     private static void dataCareer1() {
@@ -501,5 +502,56 @@ public class CorrelativeLoad extends Correlative {
 
         new Correlative(164, 156);
         new Correlative(164, 157);
+    }
+
+    private static void dataCareer4() {
+        new Correlative(168, 167);
+
+        new Correlative(171, 168);
+        new Correlative(171, 170);
+        new Correlative(172, 166);
+        new Correlative(173, 165);
+        new Correlative(173, 169);
+
+        new Correlative(175, 171);
+        new Correlative(176, 168);
+        new Correlative(176, 174);
+        new Correlative(177, 171);
+
+        new Correlative(178, 170);
+        new Correlative(178, 175);
+        new Correlative(179, 176);
+        new Correlative(179, 173);
+        new Correlative(180, 171);
+        new Correlative(180, 172);
+        new Correlative(181, 175);
+
+        new Correlative(182, 175);
+        new Correlative(183, 175);
+        new Correlative(183, 176);
+        new Correlative(183, 177);
+        new Correlative(184, 174);
+        new Correlative(185, 180);
+
+        new Correlative(186, 177);
+        new Correlative(186, 178);
+        new Correlative(187, 185);
+        new Correlative(188, 183);
+
+        new Correlative(189, 179);
+        new Correlative(190, 184);
+        new Correlative(191, 187);
+        new Correlative(192, 178);
+
+        new Correlative(193, 182);
+        new Correlative(193, 187);
+        new Correlative(194, 187);
+        new Correlative(195, 185);
+        new Correlative(196, 181);
+        new Correlative(196, 191);
+
+        new Correlative(197, 173);
+        new Correlative(197, 186);
+        new Correlative(198, 189);
     }
 }
