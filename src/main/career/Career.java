@@ -55,13 +55,6 @@ public class Career implements Model {
         serial++;
     }
 
-    public static void loadData() {
-        new Career("Tecnicatura en sistemas");
-        new Career("Licenciatura en sistemas");
-        new Career("Ingenieria Industrial");
-        new Career("Licenciatura en economia");
-    }
-
     // Model interface methods =================================================
 
     @Override

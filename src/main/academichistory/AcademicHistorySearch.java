@@ -5,6 +5,7 @@ import main.common.Model;
 import main.student.Student;
 import main.student.StudentSearch;
 import main.studyplan.StudyPlan;
+import main.studyplan.StudyPlanSearch;
 import main.subject.Subject;
 import main.subject.SubjectSearch;
 
@@ -72,4 +73,16 @@ public class AcademicHistorySearch extends AcademicHistory{
         }
         return typeMap;
     }
+    public static Map<Integer, Model> getAllAcademicHistoryFromStudent(int idStudent) {
+        Map<Integer, Model> academicHistoryMap = new LinkedHashMap<>();
+        for (Model model : AcademicHistory.getAll().values()) {
+            if (model instanceof AcademicHistory academicHistory) {
+                if (idStudent == academicHistory.getIdStudent()) {
+                    academicHistoryMap.put(academicHistory.getId(), academicHistory);
+                }
+            }
+        }
+        return academicHistoryMap;
+    }
+
 }

@@ -79,6 +79,19 @@ public class SubjectSearch extends Subject {
         return new String[] { "Nombre", "Opcional", "Cuatrimestre" };
     }
 
+    public static Map<Integer, Model> getAllSubjectsForCareer(int idCareer) {
+        Map<Integer, Model> subjectsMap = new LinkedHashMap<>();
+        for (Model model : Subject.getAll().values()) {
+            if (model instanceof Subject subject) {
+                StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
+                if (idCareer == studyPlan.getId()) {
+                    subjectsMap.put(subject.getId(), subject);
+                }
+            }
+        }
+        return subjectsMap;
+    }
+
     public static Map<Integer, String> getAllSubjectsForCareerForSelect2(int idCareer) {
         Map<Integer, String> subjectsMap = new LinkedHashMap<>();
         for (Model model : Subject.getAll().values()) {

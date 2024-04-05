@@ -1,11 +1,17 @@
 package main.academichistory;
 
+import main.career.Career;
+import main.career.CareerSearch;
 import main.common.Controller;
+import main.common.Model;
+import main.student.Student;
+import main.student.StudentSearch;
 import main.studyplan.StudyPlan;
 import main.studyplan.StudyPlanSearch;
 import main.subject.Subject;
 import main.subject.SubjectSearch;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class AcademicHistoryController implements Controller {
@@ -68,8 +74,8 @@ public class AcademicHistoryController implements Controller {
         render(AcademicHistoryViews::search);
     }
 
-    public void searchStudent() {
-        render(AcademicHistoryViews::searchStudent);
+    public void searchStudent(boolean isVerify) {
+        render(() -> AcademicHistoryViews.searchStudent(isVerify));
     }
 
     public void enrollSubject(boolean save, AcademicHistory model, int idStudent) {
@@ -104,5 +110,15 @@ public class AcademicHistoryController implements Controller {
             AcademicHistory finalModel = model;
             render(() -> AcademicHistoryViews.enrollSubject(finalModel));
         }
+    }
+
+    public void verifyGraduate(int idStudent) {
+        Student student = (Student) StudentSearch.getById(idStudent);
+        Career career = (Career) CareerSearch.getById(student.getIdCareer());
+
+        Map<Integer, Model> allSubjects = SubjectSearch.getAllSubjectsForCareer(career.getId());
+
+        Map<Integer, Model> allAcademicHistory = AcademicHistorySearch.getAllAcademicHistoryFromStudent(idStudent);
+
     }
 }

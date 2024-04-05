@@ -83,11 +83,6 @@ public class StudyPlan implements Model {
         serial++;
     }
 
-    public static void loadData() {
-        new StudyPlan("A", 1, true);
-        new StudyPlan("B", 2, true);
-    }
-
     // Model interface methods =================================================
 
     @Override

@@ -101,15 +101,6 @@ public class Subject implements Model {
         serial++;
     }
 
-    public static void loadData() {
-        new Subject("Expresion de problemas y algoritmos", true,true,1,1);
-        new Subject("Elementos de informatica", true,true,1,1);
-        new Subject("Analisis matematico", true,true,1,1);
-        new Subject("Expresion de problemas y algoritmos", true,true,1,2);
-        new Subject("Elementos de informatica", true,true,1,2);
-        new Subject("Analisis matematico", true,true,1,2);
-    }
-
     // Model interface methods =================================================
 
     @Override

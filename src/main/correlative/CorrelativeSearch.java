@@ -19,7 +19,7 @@ public class CorrelativeSearch extends Correlative {
         for (Model model : Correlative.getAll().values()) {
             if (model instanceof Correlative correlative) {
                 Subject subject = (Subject) SubjectSearch.getById(correlative.getIdSubject());
-                Subject subjectCorrelative = (Subject) SubjectSearch.getById(correlative.getIdSubject());
+                Subject subjectCorrelative = (Subject) SubjectSearch.getById(correlative.getIdSubjectCorrelative());
                 Object[] rowData = new Object[] {
                     subject.getName(),
                     subjectCorrelative.getName()

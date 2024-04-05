@@ -67,9 +67,6 @@ public class Correlative implements Model {
         serial++;
     }
 
-    public static void loadData() {
-    }
-
     // Model interface methods =================================================
 
     @Override

@@ -126,10 +126,6 @@ public class AcademicHistory implements Model {
         serial++;
     }
 
-    public static void loadData() {
-        new AcademicHistory();
-    }
-
     // Model interface methods =================================================
 
     @Override

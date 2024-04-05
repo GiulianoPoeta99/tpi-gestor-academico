@@ -4,6 +4,8 @@ import main.career.Career;
 import main.career.CareerSearch;
 import main.common.Model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -21,10 +23,14 @@ public class StudentSearch extends Student {
                 Model careerModel = CareerSearch.getById(student.getIdCareer());
                 if (careerModel != null) {
                     if (careerModel instanceof Career career) {
+
+                        LocalDate birthDate = student.getBirthDate();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        String formattedDate = birthDate.format(formatter);
                         Object[] rowData = new Object[]{
                                 student.getDossierNumber(),
                                 String.format("%s %s", student.getLastName(), student.getFirstName()),
-                                student.getBirthDate(),
+                                formattedDate,
                                 career.getName()
                         };
                         customData.add(rowData);

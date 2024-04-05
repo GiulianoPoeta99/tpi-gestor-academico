@@ -402,7 +402,7 @@ public class AcademicHistoryViews {
         return components;
     }
 
-    public static List<JComponent> searchStudent() {
+    public static List<JComponent> searchStudent(boolean isVerify) {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1(String.format("Buscar %s", Student.TRANSLATE_NAME));
@@ -445,7 +445,11 @@ public class AcademicHistoryViews {
             Integer selectedStudentId = (Integer) ((JComboBox<?>) studentIDField.getComponent(0)).getClientProperty("selectedIndex");
 
             if (selectedStudentId > 0) {
-                AcademicHistoryController.getInstance().enrollSubject(false, null, selectedStudentId);
+                if (isVerify) {
+                    AcademicHistoryController.getInstance().verifyGraduate(selectedStudentId);
+                } else {
+                    AcademicHistoryController.getInstance().enrollSubject(false, null, selectedStudentId);
+                }
             }
         });
         divButton.add(saveButton);
