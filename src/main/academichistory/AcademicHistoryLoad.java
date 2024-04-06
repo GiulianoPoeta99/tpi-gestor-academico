@@ -32,7 +32,7 @@ public class AcademicHistoryLoad extends AcademicHistory {
     }
 
     private static void dataStudent2() {
-        new AcademicHistory();
+        new AcademicHistory(2,51, "Aprobado",6,9,false,7,7);
     }
 
     private static void dataStudent3() {

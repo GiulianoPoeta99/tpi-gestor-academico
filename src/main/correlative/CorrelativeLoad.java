@@ -375,9 +375,6 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(111, 105);
         new Correlative(112, 104);
         new Correlative(112, 106);
-
-        // 2do año
-        // 1er
         new Correlative(114, 106);
         new Correlative(114, 109);
         new Correlative(114, 111);
@@ -386,8 +383,6 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(115, 111);
         new Correlative(116, 109);
         new Correlative(116, 111);
-
-        // 2do
         new Correlative(117, 114);
         new Correlative(118, 107);
         new Correlative(118, 108);
@@ -395,9 +390,6 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(120, 114);
         new Correlative(120, 115);
         new Correlative(121, 114);
-
-        // 3er año
-        // 1er
         new Correlative(122, 107);
         new Correlative(122, 118);
         new Correlative(123, 120);
@@ -413,8 +405,6 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(126, 113);
         new Correlative(127, 107);
         new Correlative(127, 121);
-
-        // 2do
         new Correlative(128, 122);
         new Correlative(129, 125);
         new Correlative(130, 122);
@@ -425,9 +415,6 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(131, 125);
         new Correlative(132, 124);
         new Correlative(132, 127);
-
-        // 4to año
-        // 1er
         new Correlative(133, 117);
         new Correlative(133, 129);
         new Correlative(134, 129);
@@ -438,8 +425,6 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(137, 123);
         new Correlative(137, 128);
         new Correlative(137, 132);
-
-        // 2do
         new Correlative(138, 122);
         new Correlative(138, 133);
         new Correlative(138, 136);
@@ -452,9 +437,6 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(141, 136);
         new Correlative(142, 133);
         new Correlative(142, 137);
-
-        // 5to año
-        // 1er
         new Correlative(144, 133);
         new Correlative(145, 138);
         new Correlative(145, 141);
@@ -488,8 +470,6 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(156, 138);
         new Correlative(157, 140);
         new Correlative(157, 141);
-
-        // 2do
         new Correlative(158, 144);
         new Correlative(158, 154);
         new Correlative(159, 141);
@@ -500,7 +480,6 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(162, 154);
         new Correlative(163, 133);
         new Correlative(163, 135);
-
         new Correlative(164, 156);
         new Correlative(164, 157);
     }
