@@ -220,7 +220,7 @@ public class SubjectLoad extends Subject {
     }
 
     private static void dataCareer5() {
-        new Subject("Contabilidad", false,true,1,5); 
+        new Subject("Contabilidad", false,true,1,5);
         new Subject("Introducción a la Economía", false,true,1,5);
         new Subject("Introducción al Cálculo", false,true,1,5);
         new Subject("Introducción al Estudio de la Sociedad, la Cultura y el Ambiente", false,true,1,5);
@@ -249,7 +249,6 @@ public class SubjectLoad extends Subject {
         new Subject("Dinero, Agregados Monetarios y Sistema Financiero", false,true,7,5);
         new Subject("Econometría", false,true,7,5);
         new Subject("Examen Nivel II de Inglés", false,true,8,5);
-
         new Subject("Contabilidad II", true,true,8,5);
         new Subject("Creación de Empresas", true,true,8,5);
         new Subject("Dirección y Gerenciamiento", true,true,8,5);
