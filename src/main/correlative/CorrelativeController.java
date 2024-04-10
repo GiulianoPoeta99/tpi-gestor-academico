@@ -74,4 +74,12 @@ public class CorrelativeController implements Controller {
     public void searchCreate() {
         render(CorrelativeViews::searchCreate);
     }
+
+    public void searchSubject() {
+        render(CorrelativeViews::searchSubject);
+    }
+
+    public void correlativePerSubject(int idSubject) {
+        render(() -> CorrelativeViews.correlativePerSubject(idSubject));
+    }
 }

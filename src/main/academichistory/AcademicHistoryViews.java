@@ -34,6 +34,8 @@ public class AcademicHistoryViews {
         divButton.add(createButton);
         JButton searchButton = main.common.components.Button.warning("Ver historia", () -> AcademicHistoryController.getInstance().search());
         divButton.add(searchButton);
+        JButton searchStudentButton = main.common.components.Button.info("Ver historia de alumno", () -> AcademicHistoryController.getInstance().searchStudent(false,true));
+        divButton.add(searchStudentButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
         JScrollPane table = UIComponent.table(AcademicHistorySearch.getCustomColumns(), AcademicHistorySearch.getCustomData());
@@ -402,7 +404,7 @@ public class AcademicHistoryViews {
         return components;
     }
 
-    public static List<JComponent> searchStudent(boolean isVerify) {
+    public static List<JComponent> searchStudent(boolean isVerifyGraduate, boolean isVerifyStudent) {
         List<JComponent> components = new ArrayList<>();
 
         JLabel title = Text.h1(String.format("Buscar %s", Student.TRANSLATE_NAME));
@@ -445,10 +447,14 @@ public class AcademicHistoryViews {
             Integer selectedStudentId = (Integer) ((JComboBox<?>) studentIDField.getComponent(0)).getClientProperty("selectedIndex");
 
             if (selectedStudentId > 0) {
-                if (isVerify) {
+                if (isVerifyGraduate) {
                     AcademicHistoryController.getInstance().verifyGraduate(selectedStudentId);
                 } else {
-                    AcademicHistoryController.getInstance().enrollSubject(false, null, selectedStudentId);
+                    if (isVerifyStudent) {
+                        AcademicHistoryController.getInstance().viewPerStudent(selectedStudentId);
+                    } else {
+                        AcademicHistoryController.getInstance().enrollSubject(false, null, selectedStudentId);
+                    }
                 }
             }
         });
@@ -517,10 +523,38 @@ public class AcademicHistoryViews {
 
         divButton.add(saveButton);
 
-        JButton backButton = Button.danger("Volver", () -> AcademicHistoryController.getInstance().index());
+        JButton backButton = Button.danger("Volver", AcademicHistoryController.getInstance()::index);
         divButton.add(backButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
+
+        components.add(divBox);
+
+        return components;
+    }
+
+    public static List<JComponent> historyPerStudent(int idStudent) {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1(AcademicHistory.TRANSLATE_NAME);
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        JButton backButton = main.common.components.Button.danger("Volver", AcademicHistoryController.getInstance()::index);
+        divButton.add(backButton);
+        divBox.add(divButton, BorderLayout.NORTH);
+
+        JScrollPane table = UIComponent.table(AcademicHistorySearch.getCustomColumns(), AcademicHistorySearch.getCustomDataForStudent(idStudent));
+        divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
 

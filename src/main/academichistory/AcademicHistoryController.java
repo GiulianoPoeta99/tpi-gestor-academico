@@ -74,8 +74,8 @@ public class AcademicHistoryController implements Controller {
         render(AcademicHistoryViews::search);
     }
 
-    public void searchStudent(boolean isVerify) {
-        render(() -> AcademicHistoryViews.searchStudent(isVerify));
+    public void searchStudent(boolean isVerifyGraduate, boolean isVerifyStudent) {
+        render(() -> AcademicHistoryViews.searchStudent(isVerifyGraduate, isVerifyStudent));
     }
 
     public void enrollSubject(boolean save, AcademicHistory model, int idStudent) {
@@ -112,6 +112,10 @@ public class AcademicHistoryController implements Controller {
         }
     }
 
+    public void viewPerStudent(int idStudent) {
+        render(() -> AcademicHistoryViews.historyPerStudent(idStudent));
+    }
+
     public void verifyGraduate(int idStudent) {
         Student student = (Student) StudentSearch.getById(idStudent);
         Career career = (Career) CareerSearch.getById(student.getIdCareer());
@@ -119,6 +123,5 @@ public class AcademicHistoryController implements Controller {
         Map<Integer, Model> allSubjects = SubjectSearch.getAllSubjectsForCareer(career.getId());
 
         Map<Integer, Model> allAcademicHistory = AcademicHistorySearch.getAllAcademicHistoryFromStudent(idStudent);
-
     }
 }

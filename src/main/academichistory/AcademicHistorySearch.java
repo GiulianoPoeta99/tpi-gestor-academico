@@ -85,4 +85,27 @@ public class AcademicHistorySearch extends AcademicHistory{
         return academicHistoryMap;
     }
 
+    public static List<Object[]> getCustomDataForStudent(int idStudent) {
+        List<Object[]> customData = new ArrayList<>();
+        for (Model model : AcademicHistory.getAll().values()) {
+            if (model instanceof AcademicHistory academicHistory) {
+                if (idStudent == academicHistory.getIdStudent()) {
+                    Student student = (Student) StudentSearch.getById(academicHistory.getIdStudent());
+                    Subject subject = (Subject) SubjectSearch.getById(academicHistory.getIdSubject());
+                    Object[] rowData = new Object[] {
+                            String.format("%s - %s %s", student.getDossierNumber(), student.getLastName(), student.getFirstName()),
+                            String.format("%s - %s", subject.getId(), subject.getName()),
+                            academicHistory.getState(),
+                            academicHistory.getPartial1(),
+                            academicHistory.getPartial2(),
+                            academicHistory.getIsPromoted() ? "Si" : "No",
+                            academicHistory.getFinalExam(),
+                            academicHistory.getGrade()
+                    };
+                    customData.add(rowData);
+                }
+            }
+        }
+        return customData;
+    }
 }

@@ -8,6 +8,8 @@ import main.common.components.Common;
 import main.common.components.Input;
 import main.common.components.Text;
 import main.common.components.UIComponent;
+import main.subject.Subject;
+import main.subject.SubjectController;
 import main.subject.SubjectSearch;
 
 import javax.swing.*;
@@ -36,6 +38,8 @@ public class CorrelativeViews {
         divButton.add(createButton);
         JButton searchButton = main.common.components.Button.warning("Ver correlativa", () -> CorrelativeController.getInstance().search());
         divButton.add(searchButton);
+        JButton searchSubjectButton = main.common.components.Button.info("Ver correlativa de materia", () -> CorrelativeController.getInstance().searchSubject());
+        divButton.add(searchSubjectButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
         JScrollPane table = UIComponent.table(CorrelativeSearch.getCustomColumns(), CorrelativeSearch.getCustomData());
@@ -384,6 +388,92 @@ public class CorrelativeViews {
         divButton.add(backButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
+
+        components.add(divBox);
+
+        return components;
+    }
+
+    public static List<JComponent> searchSubject() {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1(String.format("Buscar %s", Subject.TRANSLATE_NAME));
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        div.setBackground(Common.BACKGROUND_COLOR);
+
+        JPanel divForm = new JPanel(new GridBagLayout());
+        divForm.setBackground(Common.BACKGROUND_COLOR);
+
+        GridBagConstraints conditions = new GridBagConstraints();
+        conditions.gridx = 0;
+        conditions.gridy = 0;
+        conditions.anchor = GridBagConstraints.WEST;
+
+        JLabel subjectIDLabel = Text.label("Materia:");
+        divForm.add(subjectIDLabel, conditions);
+
+        conditions.gridy++;
+        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectSearch.getIDNameForSelect2());
+        divForm.add(subjectIDField, conditions);
+
+        div.add(divForm, BorderLayout.NORTH);
+        divBox.add(div, BorderLayout.NORTH);
+
+        JPanel divButton = new JPanel();
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JButton saveButton = Button.info("Buscar", () -> {
+            Integer selectedSubjectId = (Integer) ((JComboBox<?>) subjectIDField.getComponent(0)).getClientProperty("selectedIndex");
+
+            if (selectedSubjectId > 0) {
+                CorrelativeController.getInstance().correlativePerSubject(selectedSubjectId);
+            }
+        });
+        divButton.add(saveButton);
+
+        JButton backButton = Button.danger("Volver", CorrelativeController.getInstance()::index);
+        divButton.add(backButton);
+
+        divBox.add(divButton, BorderLayout.SOUTH);
+
+        components.add(divBox);
+
+        return components;
+    }
+
+    public static List<JComponent> correlativePerSubject(int idSubject) {
+        List<JComponent> components = new ArrayList<>();
+
+        JLabel title = Text.h1(Correlative.TRANSLATE_NAME);
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        JButton backButton = main.common.components.Button.danger("Volver", CorrelativeController.getInstance()::index);
+        divButton.add(backButton);
+        divBox.add(divButton, BorderLayout.NORTH);
+
+        JScrollPane table = UIComponent.table(CorrelativeSearch.getCustomColumns(), CorrelativeSearch.getCustomDataForSubject(idSubject));
+        divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
 
