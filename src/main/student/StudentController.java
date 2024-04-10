@@ -66,4 +66,12 @@ public class StudentController implements Controller {
         Student student = (Student) StudentSearch.getById(idStudent);
         render(() -> StudentViews.enrollCareer(student));
     }
+
+    public void searchCareer() {
+        render(StudentViews::searchCareer);
+    }
+
+    public void studentsForCareer(int idCareer) {
+        render(() -> StudentViews.studentsForCareer(idCareer));
+    }
 }

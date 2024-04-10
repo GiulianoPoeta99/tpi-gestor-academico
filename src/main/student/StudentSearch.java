@@ -63,4 +63,31 @@ public class StudentSearch extends Student {
         }
         return studentMap;
     }
+
+    public static List<Object[]> getCustomDataForCareer(int idCareer) {
+        List<Object[]> customData = new ArrayList<>();
+        for (Model model : Student.getAll().values()) {
+            if (model instanceof Student student) {
+                if (idCareer == student.getIdCareer()) {
+                    Model careerModel = CareerSearch.getById(student.getIdCareer());
+                    if (careerModel != null) {
+                        if (careerModel instanceof Career career) {
+
+                            LocalDate birthDate = student.getBirthDate();
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                            String formattedDate = birthDate.format(formatter);
+                            Object[] rowData = new Object[]{
+                                    student.getDossierNumber(),
+                                    String.format("%s %s", student.getLastName(), student.getFirstName()),
+                                    formattedDate,
+                                    career.getName()
+                            };
+                            customData.add(rowData);
+                        }
+                    }
+                }
+            }
+        }
+        return customData;
+    }
 }
