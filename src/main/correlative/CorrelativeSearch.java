@@ -4,10 +4,7 @@ import main.common.Model;
 import main.subject.Subject;
 import main.subject.SubjectSearch;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CorrelativeSearch extends Correlative {
     public static String[] getCustomColumns() {
@@ -63,5 +60,17 @@ public class CorrelativeSearch extends Correlative {
             }
         }
         return customData;
+    }
+
+    public static List<Correlative> getAllCorrelativesForSubject(int idSubject) {
+        List<Correlative> allCorrelatives = new ArrayList<>();
+        for (Model model : Correlative.getAll().values()) {
+            if (model instanceof Correlative correlative) {
+                if (idSubject == correlative.getIdSubject()) {
+                    allCorrelatives.add(correlative);
+                }
+            }
+        }
+        return allCorrelatives;
     }
 }

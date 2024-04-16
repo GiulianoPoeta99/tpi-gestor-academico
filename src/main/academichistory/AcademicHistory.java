@@ -10,7 +10,7 @@ import java.util.Map;
 public class AcademicHistory implements Model {
     // Constants
     public static final String TRANSLATE_NAME = "Historia academica";
-    public static final List<String> TYPES_STATE = Arrays.asList("Aprobado", "Desaprobado", "Cursando", "Promocionado");
+    public static final List<String> TYPES_STATE = Arrays.asList("Aprobado", "Desaprobado", "Cursando", "Promocionado", "Regularizado");
 
     // Attributes
     private int id;

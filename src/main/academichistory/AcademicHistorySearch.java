@@ -108,4 +108,8 @@ public class AcademicHistorySearch extends AcademicHistory{
         }
         return customData;
     }
+
+    public static AcademicHistory getAcademicHistoryFromSubjectStudent(int idSubject, int idStudent) {
+
+    }
 }
