@@ -3,7 +3,6 @@ package main.subject;
 import main.career.Career;
 import main.career.CareerSearch;
 import main.common.Model;
-import main.student.Student;
 import main.studyplan.StudyPlan;
 import main.studyplan.StudyPlanSearch;
 
@@ -102,6 +101,22 @@ public class SubjectSearch extends Subject {
 
                     String name = String.format("%s - %s", career.getName(), subject.getName());
                     subjectsMap.put(subject.getId(), name);
+                }
+            }
+        }
+        return subjectsMap;
+    }
+
+    public static Map<Integer, Subject> getAllSubjectsFromPreviousFourMonths(int idSubject, int countFourMonths) {
+        Map<Integer, Subject> subjectsMap = new LinkedHashMap<>();
+        Subject selectSubject = (Subject) SubjectSearch.getById(idSubject);
+
+        int minFourMonths = selectSubject.getFourMonths() - countFourMonths;
+
+        for (Model model : Subject.getAll().values()) {
+            if (model instanceof Subject subject) {
+                if ((subject.getFourMonths() >= minFourMonths) && (subject.getFourMonths() <= selectSubject.getFourMonths())) {
+                    subjectsMap.put(subject.getId(), subject);
                 }
             }
         }

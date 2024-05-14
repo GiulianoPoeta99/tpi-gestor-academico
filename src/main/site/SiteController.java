@@ -35,6 +35,7 @@ public class SiteController implements Controller {
         redirections.put("Registrar alumno", () -> StudentController.getInstance().create(true, false, null));
         redirections.put("Inscribir a carrera", () -> StudentController.getInstance().search(true));
         redirections.put("Inscribir a materia", () -> AcademicHistoryController.getInstance().searchStudent(false,false));
+        redirections.put("Verificar graduado", () -> AcademicHistoryController.getInstance().searchStudent(true,false));
 
         SwingUtilities.invokeLater(() -> {
             SiteViews.layout(redirections);

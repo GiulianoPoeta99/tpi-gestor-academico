@@ -13,6 +13,7 @@ import main.studyplan.StudyPlanSearch;
 import main.subject.Subject;
 import main.subject.SubjectSearch;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -124,7 +125,14 @@ public class AcademicHistoryController implements Controller {
                         canEnroll = false;
                         break;
                     }
-                    // ver si aprobo las materias de 5 cuatrimestres anteriores
+                }
+                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectSearch.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),5);
+                for (Subject previousSubject : allPreviousFourMonthsSubjects.values()) {
+                    AcademicHistory academicHistory = AcademicHistorySearch.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
+                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
+                        canEnroll = false;
+                        break;
+                    }
                 }
             } else if (Objects.equals(type,"D")) {
                 // Plan D: aprobó las cursadas de las correlativas y los finales de todas las materias de 3 cuatrimestres previos al que se quiere anotar
@@ -135,7 +143,14 @@ public class AcademicHistoryController implements Controller {
                         canEnroll = false;
                         break;
                     }
-                    // ver si aprobo las materias de 3 cuatrimestres anteriores
+                }
+                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectSearch.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),3);
+                for (Subject previousSubject : allPreviousFourMonthsSubjects.values()) {
+                    AcademicHistory academicHistory = AcademicHistorySearch.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
+                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
+                        canEnroll = false;
+                        break;
+                    }
                 }
             } else if (Objects.equals(type,"E")) {
                 // Plan E: aprobó los finales de las correlativas y los finales de todas las materias de 3 cuatrimestres previos.
@@ -147,7 +162,14 @@ public class AcademicHistoryController implements Controller {
                         break;
                     }
                 }
-                // ver si aprobo las materias de 3 cuatrimestres anteriores
+                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectSearch.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),3);
+                for (Subject previousSubject : allPreviousFourMonthsSubjects.values()) {
+                    AcademicHistory academicHistory = AcademicHistorySearch.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
+                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
+                        canEnroll = false;
+                        break;
+                    }
+                }
             }
 
             if (canEnroll) {
@@ -170,7 +192,33 @@ public class AcademicHistoryController implements Controller {
         Career career = (Career) CareerSearch.getById(student.getIdCareer());
 
         Map<Integer, Model> allSubjects = SubjectSearch.getAllSubjectsForCareer(career.getId());
-
         Map<Integer, Model> allAcademicHistory = AcademicHistorySearch.getAllAcademicHistoryFromStudent(idStudent);
+
+        List<Subject> subjectsNotApproved = new ArrayList<>();
+
+        for (Model model : allSubjects.values()) {
+            if (model instanceof Subject subject) {
+                boolean approved = false;
+                if (!subject.getIsOptional()) {
+                    for (Model modelAH : allAcademicHistory.values()) {
+                        if (modelAH instanceof AcademicHistory academicHistory) {
+                            if (subject.getId() == academicHistory.getIdSubject() &&
+                                    (Objects.equals(academicHistory.getState(), "Aprobado") ||
+                                            Objects.equals(academicHistory.getState(), "Promocionado"))) {
+                                approved = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!approved) {
+                        subjectsNotApproved.add(subject);
+                    }
+                }
+            }
+        }
+
+        boolean isGraduated = subjectsNotApproved.isEmpty();
+        render(() -> AcademicHistoryViews.verifyGraduate(isGraduated, subjectsNotApproved));
     }
+
 }

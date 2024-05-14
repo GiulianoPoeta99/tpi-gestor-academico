@@ -71,6 +71,14 @@ public class UIComponent extends Common {
         return scrollPane;
     }
 
+    public static JScrollPane scrollPane(JPanel panel) {
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        return scrollPane;
+    }
+
     private static JTable configureTable(DefaultTableModel model) {
         JTable table = new JTable(model);
         table.setFillsViewportHeight(true);

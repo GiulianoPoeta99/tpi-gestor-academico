@@ -1,11 +1,8 @@
 package main.academichistory;
 
-import main.career.Career;
 import main.common.Model;
 import main.student.Student;
 import main.student.StudentSearch;
-import main.studyplan.StudyPlan;
-import main.studyplan.StudyPlanSearch;
 import main.subject.Subject;
 import main.subject.SubjectSearch;
 
@@ -110,6 +107,16 @@ public class AcademicHistorySearch extends AcademicHistory{
     }
 
     public static AcademicHistory getAcademicHistoryFromSubjectStudent(int idSubject, int idStudent) {
-
+        Map<Integer, Model> allAcademicHistory = AcademicHistorySearch.getAllAcademicHistoryFromStudent(idStudent);
+        AcademicHistory finalAcademicHistory = null;
+        for (Model model : allAcademicHistory.values()) {
+            if (model instanceof AcademicHistory academicHistory) {
+                if (academicHistory.getIdSubject() == idSubject) {
+                    finalAcademicHistory = academicHistory;
+                    break;
+                }
+            }
+        }
+        return finalAcademicHistory;
     }
 }

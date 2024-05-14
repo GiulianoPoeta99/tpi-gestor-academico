@@ -6,6 +6,7 @@ import main.common.components.*;
 import main.common.components.Button;
 import main.student.Student;
 import main.student.StudentSearch;
+import main.subject.Subject;
 import main.subject.SubjectSearch;
 
 import javax.swing.*;
@@ -560,4 +561,52 @@ public class AcademicHistoryViews {
 
         return components;
     }
+
+    public static List<JComponent> verifyGraduate(boolean isGraduated, List<Subject> subjectsNotApproved) {
+        List<JComponent> components = new ArrayList<>();
+        JLabel title = Text.h1("Verificar graduado");
+
+        Box titleBox = Box.createHorizontalBox();
+        titleBox.add(Box.createHorizontalGlue());
+        titleBox.add(title);
+        titleBox.add(Box.createHorizontalGlue());
+        components.add(titleBox);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+        JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        divButton.setBackground(Common.BACKGROUND_COLOR);
+        JButton backButton = main.common.components.Button.danger("Volver", AcademicHistoryController.getInstance()::index);
+        divButton.add(backButton);
+        divBox.add(divButton, BorderLayout.NORTH);
+
+        JPanel subjectsPanel = UIComponent.bigBox();
+        subjectsPanel.setLayout(new BoxLayout(subjectsPanel, BoxLayout.Y_AXIS));
+
+        if (!isGraduated) {
+            JLabel graduatedLabel = Text.h2("El estudiante no está recibido.");
+            subjectsPanel.add(graduatedLabel);
+
+            JLabel listSubjectLabel = Text.h3("Materias faltantes:");
+            subjectsPanel.add(listSubjectLabel);
+            for (Subject subject : subjectsNotApproved) {
+                JLabel subjectLabel = Text.p(String.format("* %s (cuatrimestre: %d)", subject.getName(), subject.getFourMonths()));
+                subjectsPanel.add(subjectLabel);
+            }
+        } else {
+            JLabel graduatedLabel = Text.h2("El estudiante está recibido.");
+            subjectsPanel.add(graduatedLabel);
+        }
+
+        // Crear JScrollPane y envolver subjectsPanel
+        JScrollPane scrollPane = UIComponent.scrollPane(subjectsPanel);
+
+        divBox.add(scrollPane, BorderLayout.CENTER);
+
+        components.add(divBox);
+
+        return components;
+    }
+
 }
