@@ -52,7 +52,7 @@ public class StudentController implements Controller {
         if (validation) {
             Student model = (Student) StudentService.getById(id);
             model.delete();
-            render(() -> StudentViews.delete(isRegister,true, id));
+            render(() -> StudentViews.delete(isRegister, true, id));
         } else {
             render(() -> StudentViews.delete(isRegister, false, id));
         }

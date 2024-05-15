@@ -8,10 +8,8 @@ import main.common.Model;
 
 public class Student implements Model {
 
-    // Constants
     public static final String TRANSLATE_NAME = "Estudiante";
 
-    // Attributes
     private int id;
     private String dossierNumber;
     private String firstName;
@@ -19,13 +17,11 @@ public class Student implements Model {
     private LocalDate birthDate;
     private int idCareer;
 
-    // Static attributes
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 
-    // Constructors ==========================================================
-
-    public Student() {}
+    public Student() {
+    }
 
     protected Student(String firstName, String lastName, LocalDate birthDate, int idCareer) {
         this.firstName = firstName;
@@ -34,8 +30,6 @@ public class Student implements Model {
         this.idCareer = idCareer;
         this.save();
     }
-
-    // Setters & Getters =======================================================
 
     public void setId(int id) {
         this.id = id;
@@ -89,21 +83,15 @@ public class Student implements Model {
         return all;
     }
 
-    // Methods ================================================================
-
     protected static void addSerial() {
         serial++;
     }
 
-    // Model interface methods =================================================
-
     @Override
     public boolean validate() {
-        return (
-            this.firstName != null &&
-            this.lastName != null &&
-            this.birthDate != null
-        );
+        return (this.firstName != null &&
+                this.lastName != null &&
+                this.birthDate != null);
     }
 
     @Override
@@ -134,30 +122,27 @@ public class Student implements Model {
 
     @Override
     public Object[] getAttributeValues() {
-        return new Object[] { dossierNumber, firstName, lastName, birthDate, idCareer}; // Devuelve los valores de los atributos como un arreglo de objetos
+        return new Object[] { dossierNumber, firstName, lastName, birthDate, idCareer };
     }
 
     @Override
     public String[] getAttributeNames() {
-        return new String[] { "Legajo", "Nombre", "Apellido", "Fecha de nacimiento", "ID Carrera" }; // Devuelve los nombres de los atributos como un arreglo de cadenas
+        return new String[] { "Legajo", "Nombre", "Apellido", "Fecha de nacimiento", "ID Carrera" };
     }
-
-    // Overrides ===============================================================
 
     @Override
     public String toString() {
         return String.format("""
-            %s:
-              * Legajo: %s
-              * Nombre: %s
-              * Apellido: %s
-              * Fecha de Nacimiento: %s
-            """,
-            TRANSLATE_NAME,
-            this.getDossierNumber(),
-            this.getFirstName(),
-            this.getLastName(),
-            this.getBirthDate().toString()
-        );
+                %s:
+                  * Legajo: %s
+                  * Nombre: %s
+                  * Apellido: %s
+                  * Fecha de Nacimiento: %s
+                """,
+                TRANSLATE_NAME,
+                this.getDossierNumber(),
+                this.getFirstName(),
+                this.getLastName(),
+                this.getBirthDate().toString());
     }
 }

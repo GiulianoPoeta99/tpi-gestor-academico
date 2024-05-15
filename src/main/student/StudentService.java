@@ -27,7 +27,7 @@ public class StudentService extends Student {
                         LocalDate birthDate = student.getBirthDate();
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                         String formattedDate = birthDate.format(formatter);
-                        Object[] rowData = new Object[]{
+                        Object[] rowData = new Object[] {
                                 student.getDossierNumber(),
                                 String.format("%s %s", student.getLastName(), student.getFirstName()),
                                 formattedDate,
@@ -36,7 +36,7 @@ public class StudentService extends Student {
                         customData.add(rowData);
                     }
                 } else {
-                    Object[] rowData = new Object[]{
+                    Object[] rowData = new Object[] {
                             student.getDossierNumber(),
                             String.format("%s %s", student.getLastName(), student.getFirstName()),
                             student.getBirthDate(),
@@ -57,7 +57,8 @@ public class StudentService extends Student {
         Map<Integer, String> studentMap = new LinkedHashMap<>();
         for (Model model : Student.getAll().values()) {
             if (model instanceof Student student) {
-                String name = String.format("%s - %s %s", student.getDossierNumber(), student.getLastName(), student.getFirstName());
+                String name = String.format("%s - %s %s", student.getDossierNumber(), student.getLastName(),
+                        student.getFirstName());
                 studentMap.put(student.getId(), name);
             }
         }
@@ -76,7 +77,7 @@ public class StudentService extends Student {
                             LocalDate birthDate = student.getBirthDate();
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                             String formattedDate = birthDate.format(formatter);
-                            Object[] rowData = new Object[]{
+                            Object[] rowData = new Object[] {
                                     student.getDossierNumber(),
                                     String.format("%s %s", student.getLastName(), student.getFirstName()),
                                     formattedDate,

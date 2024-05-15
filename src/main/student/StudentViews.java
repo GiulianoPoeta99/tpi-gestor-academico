@@ -29,11 +29,13 @@ public class StudentViews {
 
         JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
         divButton.setBackground(Common.BACKGROUND_COLOR);
-        JButton createButton = Button.success("Crear estudiante", () -> StudentController.getInstance().create(false, false, null));
+        JButton createButton = Button.success("Crear estudiante",
+                () -> StudentController.getInstance().create(false, false, null));
         divButton.add(createButton);
         JButton searchButton = Button.warning("Ver estudiante", () -> StudentController.getInstance().search(false));
         divButton.add(searchButton);
-        JButton searchCareerButton = Button.info("Ver estudiante por carrera", StudentController.getInstance()::searchCareer);
+        JButton searchCareerButton = Button.info("Ver estudiante por carrera",
+                StudentController.getInstance()::searchCareer);
         divButton.add(searchCareerButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
@@ -45,11 +47,13 @@ public class StudentViews {
         return components;
     }
 
-    private static void performSaveOrUpdate(boolean isRegister, Student model, JTextField firstNameField, JTextField lastNameField, JTextField birthDateField, JPanel careerIDField) {
+    private static void performSaveOrUpdate(boolean isRegister, Student model, JTextField firstNameField,
+            JTextField lastNameField, JTextField birthDateField, JPanel careerIDField) {
         String newFirstName = firstNameField.getText();
         String newLastName = lastNameField.getText();
         String newBirthDate = birthDateField.getText();
-        Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
+        Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0))
+                .getClientProperty("selectedIndex");
 
         if (!newFirstName.isEmpty() && !newFirstName.equals(model.getFirstName())) {
             model.setFirstName(newFirstName);
@@ -157,7 +161,7 @@ public class StudentViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = form(model,false, isRegister);
+        JPanel divBox = form(model, false, isRegister);
         components.add(divBox);
 
         return components;
@@ -174,7 +178,7 @@ public class StudentViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = form(model,true, isRegister);
+        JPanel divBox = form(model, true, isRegister);
         components.add(divBox);
 
         return components;
@@ -210,13 +214,16 @@ public class StudentViews {
         JButton continueButton = Button.secondary("Continuar", () -> StudentController.getInstance().index());
         divButton.add(continueButton);
 
-        JButton createButton = Button.success("Crear", () -> StudentController.getInstance().create(isRegister, false, null));
+        JButton createButton = Button.success("Crear",
+                () -> StudentController.getInstance().create(isRegister, false, null));
         divButton.add(createButton);
 
-        JButton updateButton = Button.primary("Actualizar", () -> StudentController.getInstance().update(isRegister, false, model.getId()));
+        JButton updateButton = Button.primary("Actualizar",
+                () -> StudentController.getInstance().update(isRegister, false, model.getId()));
         divButton.add(updateButton);
 
-        JButton deleteButton = Button.danger("Eliminar", () -> StudentController.getInstance().delete(isRegister, false, model.getId()));
+        JButton deleteButton = Button.danger("Eliminar",
+                () -> StudentController.getInstance().delete(isRegister, false, model.getId()));
         divButton.add(deleteButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
@@ -263,7 +270,8 @@ public class StudentViews {
             divButton.setBackground(Common.BACKGROUND_COLOR);
             divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-            JButton deleteButton = Button.danger("Eliminar", () -> StudentController.getInstance().delete(isRegister, true, id));
+            JButton deleteButton = Button.danger("Eliminar",
+                    () -> StudentController.getInstance().delete(isRegister, true, id));
             divButton.add(deleteButton);
 
             JButton goBackButton = Button.primary("Volver", () -> StudentController.getInstance().view(isRegister, id));
@@ -335,7 +343,8 @@ public class StudentViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.info("Buscar", () -> {
-            Integer selectedStudentId = (Integer) ((JComboBox<?>) studentIDField.getComponent(0)).getClientProperty("selectedIndex");
+            Integer selectedStudentId = (Integer) ((JComboBox<?>) studentIDField.getComponent(0))
+                    .getClientProperty("selectedIndex");
 
             if (selectedStudentId > 0) {
                 if (isRegister) {
@@ -360,7 +369,8 @@ public class StudentViews {
     public static List<JComponent> enrollCareer(Student model) {
         List<JComponent> components = new ArrayList<>();
 
-        JLabel title = Text.h1(String.format("Inscribir %s: %s - %s %s  a %s", Student.TRANSLATE_NAME, model.getDossierNumber(), model.getLastName(), model.getLastName(), Career.TRANSLATE_NAME));
+        JLabel title = Text.h1(String.format("Inscribir %s: %s - %s %s  a %s", Student.TRANSLATE_NAME,
+                model.getDossierNumber(), model.getLastName(), model.getLastName(), Career.TRANSLATE_NAME));
 
         Box titleBox = Box.createHorizontalBox();
         titleBox.add(Box.createHorizontalGlue());
@@ -397,7 +407,8 @@ public class StudentViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.success("Guardar", () -> {
-            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
+            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0))
+                    .getClientProperty("selectedIndex");
 
             if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
                 model.setIdCareer(selectedCareerId);
@@ -456,7 +467,8 @@ public class StudentViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.info("Buscar", () -> {
-            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
+            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0))
+                    .getClientProperty("selectedIndex");
 
             if (selectedCareerId > 0) {
                 StudentController.getInstance().studentsForCareer(selectedCareerId);
@@ -490,13 +502,15 @@ public class StudentViews {
 
         JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
         divButton.setBackground(Common.BACKGROUND_COLOR);
-        JButton createButton = Button.success("Crear estudiante", () -> StudentController.getInstance().create(false, false, null));
+        JButton createButton = Button.success("Crear estudiante",
+                () -> StudentController.getInstance().create(false, false, null));
         divButton.add(createButton);
         JButton searchButton = Button.warning("Ver estudiante", () -> StudentController.getInstance().search(false));
         divButton.add(searchButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(StudentService.getCustomColumns(), StudentService.getCustomDataForCareer(idCareer));
+        JScrollPane table = UIComponent.table(StudentService.getCustomColumns(),
+                StudentService.getCustomDataForCareer(idCareer));
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
