@@ -20,8 +20,8 @@ public class LayOut extends Common {
         sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
         sidePanel.setBackground(Color.decode("#191C20"));
 
-        for (Map.Entry<String, Runnable> redirection: redirections.entrySet()) {
-            JButton button = sideButton(redirection.getKey(),redirection.getValue());
+        for (Map.Entry<String, Runnable> redirection : redirections.entrySet()) {
+            JButton button = sideButton(redirection.getKey(), redirection.getValue());
             sidePanel.add(button);
             sidePanel.add(Box.createRigidArea(new Dimension(0, 2)));
         }
@@ -37,9 +37,8 @@ public class LayOut extends Common {
         button.setFont(new Font("Arial", Font.PLAIN, 16));
         button.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(0, 0, 1, 0, Color.decode("#2E2F32")),
-                BorderFactory.createEmptyBorder(10, 20, 10, 20)
-        ));
-        button.setFocusPainted(false); // Remover indicación de enfoque
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)));
+        button.setFocusPainted(false);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setAlignmentY(Component.CENTER_ALIGNMENT);
 
@@ -49,7 +48,6 @@ public class LayOut extends Common {
 
         return button;
     }
-
 
     public static JPanel topPanel() {
         JPanel topPanel = new JPanel();

@@ -18,7 +18,7 @@ public class UIComponent extends Common {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(LayOut.getContentPanel().getWidth() - 25, boxPanelHeight));
         panel.setBackground(BACKGROUND_COLOR);
-        panel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Agregar borde vacío de 5 píxeles
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
         return panel;
     }
 
@@ -93,11 +93,9 @@ public class UIComponent extends Common {
         header.setForeground(TEXT_COLOR);
         header.setBackground(COLUMN_BACKGROUND_COLOR);
 
-        // Agregar borde alrededor de la tabla
         table.setBorder(new CompoundBorder(
-            new MatteBorder(1, 1, 1, 1, TEXT_COLOR),
-            new EmptyBorder(5, 5, 5, 5)
-        ));
+                new MatteBorder(1, 1, 1, 1, TEXT_COLOR),
+                new EmptyBorder(5, 5, 5, 5)));
         return table;
     }
 }

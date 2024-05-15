@@ -20,8 +20,7 @@ public class Input extends UIComponent {
         comboBox.setBackground(BACKGROUND_COLOR);
         comboBox.setBorder(new CompoundBorder(
                 new MatteBorder(1, 1, 1, 1, TEXT_COLOR),
-                new EmptyBorder(5, 5, 5, 5)
-        ));
+                new EmptyBorder(5, 5, 5, 5)));
         comboBox.setSelectedIndex(-1);
     }
 
@@ -48,8 +47,7 @@ public class Input extends UIComponent {
         textField.setBackground(BACKGROUND_COLOR);
         textField.setBorder(new CompoundBorder(
                 new MatteBorder(1, 1, 1, 1, TEXT_COLOR),
-                new EmptyBorder(5, 5, 5, 5)
-        ));
+                new EmptyBorder(5, 5, 5, 5)));
         return textField;
     }
 
