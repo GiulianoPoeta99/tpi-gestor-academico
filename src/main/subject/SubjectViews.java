@@ -27,7 +27,8 @@ public class SubjectViews {
 
         JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
         divButton.setBackground(Common.BACKGROUND_COLOR);
-        JButton createButton = Button.success("Crear materia", () -> SubjectController.getInstance().create(false, null, 0));
+        JButton createButton = Button.success("Crear materia",
+                () -> SubjectController.getInstance().create(false, null, 0));
         divButton.add(createButton);
         JButton searchButton = Button.warning("Ver materia", () -> SubjectController.getInstance().search());
         divButton.add(searchButton);
@@ -104,10 +105,13 @@ public class SubjectViews {
 
         JButton saveButton = Button.success("Guardar", () -> {
             String newName = nameField.getText();
-            boolean selectedIsOptional = (boolean) ((JComboBox<?>) isOptionalField.getComponent(0)).getClientProperty("selectedIndex");
-            boolean selectedIsPromotable = (boolean) ((JComboBox<?>) isPromotableField.getComponent(0)).getClientProperty("selectedIndex");
+            boolean selectedIsOptional = (boolean) ((JComboBox<?>) isOptionalField.getComponent(0))
+                    .getClientProperty("selectedIndex");
+            boolean selectedIsPromotable = (boolean) ((JComboBox<?>) isPromotableField.getComponent(0))
+                    .getClientProperty("selectedIndex");
             String newFourMonths = fourMonthsField.getText();
-            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
+            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0))
+                    .getClientProperty("selectedIndex");
 
             if (!newName.isEmpty()) {
                 assert model != null;
@@ -134,7 +138,8 @@ public class SubjectViews {
         if (update) {
             saveButton = Button.primary("Actualizar", () -> {
                 String newName = nameField.getText();
-                boolean selectedIsOptional = (boolean) ((JComboBox<?>) isOptionalField.getComponent(0)).getClientProperty("selectedIndex");
+                boolean selectedIsOptional = (boolean) ((JComboBox<?>) isOptionalField.getComponent(0))
+                        .getClientProperty("selectedIndex");
                 String newFourMonths = fourMonthsField.getText();
 
                 if (!newName.isEmpty()) {
@@ -177,7 +182,7 @@ public class SubjectViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = form(model,false);
+        JPanel divBox = form(model, false);
 
         components.add(divBox);
 
@@ -195,7 +200,7 @@ public class SubjectViews {
         titleBox.add(Box.createHorizontalGlue());
         components.add(titleBox);
 
-        JPanel divBox = form(model,true);
+        JPanel divBox = form(model, true);
 
         components.add(divBox);
 
@@ -235,10 +240,12 @@ public class SubjectViews {
         JButton createButton = Button.success("Crear", () -> SubjectController.getInstance().create(false, null, 0));
         divButton.add(createButton);
 
-        JButton updateButton = Button.primary("Actualizar", () -> SubjectController.getInstance().update(false, model.getId()));
+        JButton updateButton = Button.primary("Actualizar",
+                () -> SubjectController.getInstance().update(false, model.getId()));
         divButton.add(updateButton);
 
-        JButton deleteButton = Button.danger("Eliminar", () -> SubjectController.getInstance().delete(false, model.getId()));
+        JButton deleteButton = Button.danger("Eliminar",
+                () -> SubjectController.getInstance().delete(false, model.getId()));
         divButton.add(deleteButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
@@ -357,7 +364,8 @@ public class SubjectViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.info("Buscar", () -> {
-            Integer selectedSubjectId = (Integer) ((JComboBox<?>) subjectIDField.getComponent(0)).getClientProperty("selectedIndex");
+            Integer selectedSubjectId = (Integer) ((JComboBox<?>) subjectIDField.getComponent(0))
+                    .getClientProperty("selectedIndex");
 
             if (selectedSubjectId > 0) {
                 SubjectController.getInstance().view(selectedSubjectId);

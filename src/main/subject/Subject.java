@@ -6,32 +6,25 @@ import java.util.Map;
 import main.common.Model;
 
 public class Subject implements Model {
-    // Constants
     public static final String TRANSLATE_NAME = "Materia";
-
-    // Attributes
     private int id;
     private String name;
     private boolean isOptional;
     private boolean isPromotable;
     private int fourMonths;
     private int idStudyPlan;
-
-    // Static attributes
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 
-    // Constructors ==========================================================
-
-    public Subject() {}
+    public Subject() {
+    }
 
     protected Subject(
-        String name,
-        boolean isOptional,
-        boolean isPromotable,
-        int fourMonths,
-        int idStudyPlan
-    ) {
+            String name,
+            boolean isOptional,
+            boolean isPromotable,
+            int fourMonths,
+            int idStudyPlan) {
         this.name = name;
         this.isOptional = isOptional;
         this.isPromotable = isPromotable;
@@ -39,8 +32,6 @@ public class Subject implements Model {
         this.idStudyPlan = idStudyPlan;
         this.save();
     }
-
-    // Setters & Getters =======================================================
 
     public Subject setId(int id) {
         this.id = id;
@@ -95,21 +86,15 @@ public class Subject implements Model {
         return all;
     }
 
-    // Methods ================================================================
-
     protected static void addSerial() {
         serial++;
     }
 
-    // Model interface methods =================================================
-
     @Override
     public boolean validate() {
-        return (
-            name != null &&
-            fourMonths != 0 &&
-            idStudyPlan != 0
-        );
+        return (name != null &&
+                fourMonths != 0 &&
+                idStudyPlan != 0);
     }
 
     @Override
@@ -147,20 +132,17 @@ public class Subject implements Model {
         return new String[] { "Nombre", "Opcional", "Cuatrimestre", "ID Plan de studio" };
     }
 
-    // Overrides ===============================================================
-
     @Override
     public String toString() {
         return String.format("""
-            %s:
-              * Nombre: %s
-              * Cuatrimestre: %d
-              * ID plan de estudio: %s
-            """,
-            TRANSLATE_NAME,
-            name,
-            fourMonths,
-            idStudyPlan
-        );
+                %s:
+                  * Nombre: %s
+                  * Cuatrimestre: %d
+                  * ID plan de estudio: %s
+                """,
+                TRANSLATE_NAME,
+                name,
+                fourMonths,
+                idStudyPlan);
     }
 }

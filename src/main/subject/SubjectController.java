@@ -4,7 +4,6 @@ import main.common.Controller;
 import main.studyplan.StudyPlan;
 import main.studyplan.StudyPlanService;
 
-
 public class SubjectController implements Controller {
     private static final SubjectController instance = new SubjectController();
 

@@ -20,7 +20,7 @@ public class SubjectService extends Subject {
                 if (studyPlanModel instanceof StudyPlan studyPlan) {
                     Model careerModel = CareerService.getById(studyPlan.getIdCareer());
                     if (careerModel instanceof Career career) {
-                        Object[] rowData = new Object[]{
+                        Object[] rowData = new Object[] {
                                 subject.getName(),
                                 subject.getIsOptional() ? "Si" : "No",
                                 subject.getFourMonths(),
@@ -62,7 +62,7 @@ public class SubjectService extends Subject {
         for (Model model : Subject.getAll().values()) {
             if (model instanceof Subject subject) {
                 if (subject.getIdStudyPlan() == idStudyPLan) {
-                    Object[] rowData = new Object[]{
+                    Object[] rowData = new Object[] {
                             subject.getName(),
                             subject.getIsOptional() ? "Si" : "No",
                             subject.getFourMonths()
@@ -115,7 +115,8 @@ public class SubjectService extends Subject {
 
         for (Model model : Subject.getAll().values()) {
             if (model instanceof Subject subject) {
-                if ((subject.getFourMonths() >= minFourMonths) && (subject.getFourMonths() <= selectSubject.getFourMonths())) {
+                if ((subject.getFourMonths() >= minFourMonths)
+                        && (subject.getFourMonths() <= selectSubject.getFourMonths())) {
                     subjectsMap.put(subject.getId(), subject);
                 }
             }
