@@ -100,72 +100,94 @@ public class AcademicHistoryController implements Controller {
                 // Plan A: aprobó las cursadas de las correlativas
                 List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
-                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
-                    if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado") || Objects.equals(academicHistory.getState(), "Cursando")) {
+                    AcademicHistory academicHistory = AcademicHistoryService
+                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                    if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado")
+                            || Objects.equals(academicHistory.getState(), "Cursando")) {
                         canEnroll = false;
                         break;
                     }
                 }
-            } else if (Objects.equals(type,"B")) {
+            } else if (Objects.equals(type, "B")) {
                 // Plan B: aprobó los finales de las correlativas
                 List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
-                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
-                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
+                    AcademicHistory academicHistory = AcademicHistoryService
+                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado")
+                            && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;
                         break;
                     }
                 }
-            } else if (Objects.equals(type,"C")) {
-                // Plan C: aprobó las cursadas de las correlativas y los finales de todas las materias de 5 cuatrimestres previos al que se quiere anotar
+            } else if (Objects.equals(type, "C")) {
+                // Plan C: aprobó las cursadas de las correlativas y los finales de todas las
+                // materias de 5 cuatrimestres previos al que se quiere anotar
                 List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
-                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
-                    if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado") || Objects.equals(academicHistory.getState(), "Cursando")) {
+                    AcademicHistory academicHistory = AcademicHistoryService
+                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                    if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado")
+                            || Objects.equals(academicHistory.getState(), "Cursando")) {
                         canEnroll = false;
                         break;
                     }
                 }
-                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectService.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),5);
+                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectService
+                        .getAllSubjectsFromPreviousFourMonths(model.getIdSubject(), 5);
                 for (Subject previousSubject : allPreviousFourMonthsSubjects.values()) {
-                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
-                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
+                    AcademicHistory academicHistory = AcademicHistoryService
+                            .getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
+                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado")
+                            && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;
                         break;
                     }
                 }
-            } else if (Objects.equals(type,"D")) {
-                // Plan D: aprobó las cursadas de las correlativas y los finales de todas las materias de 3 cuatrimestres previos al que se quiere anotar
+            } else if (Objects.equals(type, "D")) {
+                // Plan D: aprobó las cursadas de las correlativas y los finales de todas las
+                // materias de 3 cuatrimestres previos al que se quiere anotar
                 List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
-                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
-                    if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado") || Objects.equals(academicHistory.getState(), "Cursando")) {
+                    AcademicHistory academicHistory = AcademicHistoryService
+                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                    if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado")
+                            || Objects.equals(academicHistory.getState(), "Cursando")) {
                         canEnroll = false;
                         break;
                     }
                 }
-                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectService.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),3);
+                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectService
+                        .getAllSubjectsFromPreviousFourMonths(model.getIdSubject(), 3);
                 for (Subject previousSubject : allPreviousFourMonthsSubjects.values()) {
-                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
-                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
+                    AcademicHistory academicHistory = AcademicHistoryService
+                            .getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
+                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado")
+                            && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;
                         break;
                     }
                 }
-            } else if (Objects.equals(type,"E")) {
-                // Plan E: aprobó los finales de las correlativas y los finales de todas las materias de 3 cuatrimestres previos.
+            } else if (Objects.equals(type, "E")) {
+                // Plan E: aprobó los finales de las correlativas y los finales de todas las
+                // materias de 3 cuatrimestres previos.
                 List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
-                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
-                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
+                    AcademicHistory academicHistory = AcademicHistoryService
+                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado")
+                            && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;
                         break;
                     }
                 }
-                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectService.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),3);
+                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectService
+                        .getAllSubjectsFromPreviousFourMonths(model.getIdSubject(), 3);
                 for (Subject previousSubject : allPreviousFourMonthsSubjects.values()) {
-                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
-                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
+                    AcademicHistory academicHistory = AcademicHistoryService
+                            .getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
+                    if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado")
+                            && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;
                         break;
                     }

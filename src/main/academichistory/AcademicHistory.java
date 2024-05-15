@@ -8,11 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 public class AcademicHistory implements Model {
-    // Constants
     public static final String TRANSLATE_NAME = "Historia academica";
-    public static final List<String> TYPES_STATE = Arrays.asList("Aprobado", "Desaprobado", "Cursando", "Promocionado", "Regularizado");
-
-    // Attributes
+    public static final List<String> TYPES_STATE = Arrays.asList("Aprobado", "Desaprobado", "Cursando", "Promocionado",
+            "Regularizado");
     private int id;
     private int idStudent;
     private int idSubject;
@@ -22,16 +20,14 @@ public class AcademicHistory implements Model {
     private boolean isPromoted;
     private int finalExam;
     private int grade;
-
-    // Static attributes
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 
-    // Constructors ==========================================================
+    public AcademicHistory() {
+    }
 
-    public AcademicHistory() {}
-
-    protected AcademicHistory(int idStudent, int idSubject, String state, int partial1, int partial2, boolean isPromoted, int finalExam, int grade) {
+    protected AcademicHistory(int idStudent, int idSubject, String state, int partial1, int partial2,
+            boolean isPromoted, int finalExam, int grade) {
         this.idStudent = idStudent;
         this.idSubject = idSubject;
         this.state = state;
@@ -42,8 +38,6 @@ public class AcademicHistory implements Model {
         this.grade = grade;
         save();
     }
-
-    // Setters & Getters ======================================================
 
     public void setId(int id) {
         this.id = id;
@@ -84,6 +78,7 @@ public class AcademicHistory implements Model {
     public int getPartial1() {
         return partial1;
     }
+
     public void setPartial2(int partial2) {
         this.partial2 = partial2;
     }
@@ -120,21 +115,15 @@ public class AcademicHistory implements Model {
         return all;
     }
 
-    // Methods ================================================================
-
     protected static void addSerial() {
         serial++;
     }
 
-    // Model interface methods =================================================
-
     @Override
     public boolean validate() {
-        return (
-            idStudent != 0
-            && idSubject != 0
-            && state != null
-        );
+        return (idStudent != 0
+                && idSubject != 0
+                && state != null);
     }
 
     @Override
@@ -169,33 +158,31 @@ public class AcademicHistory implements Model {
 
     @Override
     public String[] getAttributeNames() {
-        return new String[] { "ID estudiante", "ID materia", "Estado", "Parcial 1", "Parcial 2", "Promoción", "Final", "Nota" };
+        return new String[] { "ID estudiante", "ID materia", "Estado", "Parcial 1", "Parcial 2", "Promoción", "Final",
+                "Nota" };
     }
-
-    // Overrides ===============================================================
 
     @Override
     public String toString() {
         return String.format("""
-            %s
-              * Estudiante: %d
-              * Materia: %d
-              * Estado: %s
-              * Parcial 1: %d
-              * Parcial 2: %d
-              * Promoción: %s
-              * Final: %d
-              * Nota: %d
-            """,
-            TRANSLATE_NAME,
-            idStudent,
-            idSubject,
-            state != null ? state : "-",
-            partial1,
-            partial2,
-            isPromoted,
-            finalExam,
-            grade
-        );
+                %s
+                  * Estudiante: %d
+                  * Materia: %d
+                  * Estado: %s
+                  * Parcial 1: %d
+                  * Parcial 2: %d
+                  * Promoción: %s
+                  * Final: %d
+                  * Nota: %d
+                """,
+                TRANSLATE_NAME,
+                idStudent,
+                idSubject,
+                state != null ? state : "-",
+                partial1,
+                partial2,
+                isPromoted,
+                finalExam,
+                grade);
     }
 }
