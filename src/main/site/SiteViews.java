@@ -35,8 +35,6 @@ public class SiteViews {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
 
-
-
         components.add(divBox);
 
         return components;
