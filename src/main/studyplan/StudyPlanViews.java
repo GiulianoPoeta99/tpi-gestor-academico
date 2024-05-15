@@ -12,7 +12,7 @@ import java.util.List;
 import main.common.components.*;
 import main.common.components.Button;
 import main.subject.Subject;
-import main.subject.SubjectSearch;
+import main.subject.SubjectService;
 
 public class StudyPlanViews {
     public static List<JComponent> index() {
@@ -39,7 +39,7 @@ public class StudyPlanViews {
         divButton.add(subjectButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(StudyPlanSearch.getCustomColumns(), StudyPlanSearch.getCustomData());
+        JScrollPane table = UIComponent.table(StudyPlanService.getCustomColumns(), StudyPlanService.getCustomData());
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
@@ -83,7 +83,7 @@ public class StudyPlanViews {
         divForm.add(typeLabel, constraints);
 
         constraints.gridy++;
-        JPanel typeField = Input.createSelect2InputStrStr(StudyPlanSearch.getTypeForSelect2());
+        JPanel typeField = Input.createSelect2InputStrStr(StudyPlanService.getTypeForSelect2());
         divForm.add(typeField, constraints);
 
         constraints.gridy++;
@@ -239,7 +239,7 @@ public class StudyPlanViews {
             JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
             div.setBackground(Common.BACKGROUND_COLOR);
 
-            JLabel viewModel = Text.h3(StudyPlanSearch.getById(id).toString());
+            JLabel viewModel = Text.h3(StudyPlanService.getById(id).toString());
 
             div.add(viewModel);
 
@@ -310,7 +310,7 @@ public class StudyPlanViews {
         divForm.add(studyPlanIDLabel, conditions);
 
         conditions.gridy++;
-        JPanel studyPlanIDField = Input.createSelect2InputStrInt(StudyPlanSearch.getIDNameForSelect2());
+        JPanel studyPlanIDField = Input.createSelect2InputStrInt(StudyPlanService.getIDNameForSelect2());
         divForm.add(studyPlanIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -364,7 +364,7 @@ public class StudyPlanViews {
         divButton.add(backButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(SubjectSearch.getCustomColumnsForStudyPlan(), SubjectSearch.getCustomDataForStudyPlan(model.getId()));
+        JScrollPane table = UIComponent.table(SubjectService.getCustomColumnsForStudyPlan(), SubjectService.getCustomDataForStudyPlan(model.getId()));
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);

@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StudyPlanSearch extends StudyPlan{
+public class StudyPlanService extends StudyPlan{
     public static String[] getCustomColumns() {
         return new String[] { "Identificador", "Tipo", "Carrera", "Vigente" };
     }

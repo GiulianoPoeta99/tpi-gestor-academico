@@ -4,19 +4,19 @@ import main.career.Career;
 import main.career.CareerService;
 import main.common.Model;
 import main.studyplan.StudyPlan;
-import main.studyplan.StudyPlanSearch;
+import main.studyplan.StudyPlanService;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SubjectSearch extends Subject {
+public class SubjectService extends Subject {
     public static List<Object[]> getCustomData() {
         List<Object[]> customData = new ArrayList<>();
         for (Model model : Subject.getAll().values()) {
             if (model instanceof Subject subject) {
-                Model studyPlanModel = StudyPlanSearch.getById(subject.getIdStudyPlan());
+                Model studyPlanModel = StudyPlanService.getById(subject.getIdStudyPlan());
                 if (studyPlanModel instanceof StudyPlan studyPlan) {
                     Model careerModel = CareerService.getById(studyPlan.getIdCareer());
                     if (careerModel instanceof Career career) {
@@ -46,7 +46,7 @@ public class SubjectSearch extends Subject {
         Map<Integer, String> subjectMap = new LinkedHashMap<>();
         for (Model model : Subject.getAll().values()) {
             if (model instanceof Subject subject) {
-                StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
+                StudyPlan studyPlan = (StudyPlan) StudyPlanService.getById(subject.getIdStudyPlan());
                 Career career = (Career) CareerService.getById(studyPlan.getIdCareer());
 
                 String name = String.format("%s - %s", career.getName(), subject.getName());
@@ -82,7 +82,7 @@ public class SubjectSearch extends Subject {
         Map<Integer, Model> subjectsMap = new LinkedHashMap<>();
         for (Model model : Subject.getAll().values()) {
             if (model instanceof Subject subject) {
-                StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
+                StudyPlan studyPlan = (StudyPlan) StudyPlanService.getById(subject.getIdStudyPlan());
                 if (idCareer == studyPlan.getId()) {
                     subjectsMap.put(subject.getId(), subject);
                 }
@@ -95,7 +95,7 @@ public class SubjectSearch extends Subject {
         Map<Integer, String> subjectsMap = new LinkedHashMap<>();
         for (Model model : Subject.getAll().values()) {
             if (model instanceof Subject subject) {
-                StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
+                StudyPlan studyPlan = (StudyPlan) StudyPlanService.getById(subject.getIdStudyPlan());
                 if (idCareer == studyPlan.getId()) {
                     Career career = (Career) CareerService.getById(studyPlan.getIdCareer());
 
@@ -109,7 +109,7 @@ public class SubjectSearch extends Subject {
 
     public static Map<Integer, Subject> getAllSubjectsFromPreviousFourMonths(int idSubject, int countFourMonths) {
         Map<Integer, Subject> subjectsMap = new LinkedHashMap<>();
-        Subject selectSubject = (Subject) SubjectSearch.getById(idSubject);
+        Subject selectSubject = (Subject) SubjectService.getById(idSubject);
 
         int minFourMonths = selectSubject.getFourMonths() - countFourMonths;
 

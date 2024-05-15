@@ -5,13 +5,13 @@ import main.career.CareerService;
 import main.common.Controller;
 import main.common.Model;
 import main.correlative.Correlative;
-import main.correlative.CorrelativeSearch;
+import main.correlative.CorrelativeService;
 import main.student.Student;
-import main.student.StudentSearch;
+import main.student.StudentService;
 import main.studyplan.StudyPlan;
-import main.studyplan.StudyPlanSearch;
+import main.studyplan.StudyPlanService;
 import main.subject.Subject;
-import main.subject.SubjectSearch;
+import main.subject.SubjectService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class AcademicHistoryController implements Controller {
     }
 
     public void update(boolean save, int id) {
-        AcademicHistory model = (AcademicHistory) AcademicHistorySearch.getById(id);
+        AcademicHistory model = (AcademicHistory) AcademicHistoryService.getById(id);
 
         if (save) {
             if (model.update()) {
@@ -60,13 +60,13 @@ public class AcademicHistoryController implements Controller {
     }
 
     public void view(int id) {
-        AcademicHistory model = (AcademicHistory) AcademicHistorySearch.getById(id);
+        AcademicHistory model = (AcademicHistory) AcademicHistoryService.getById(id);
         render(() -> AcademicHistoryViews.view(model));
     }
 
     public void delete(boolean validation, int id) {
         if (validation) {
-            AcademicHistory model = (AcademicHistory) AcademicHistorySearch.getById(id);
+            AcademicHistory model = (AcademicHistory) AcademicHistoryService.getById(id);
             model.delete();
             render(() -> AcademicHistoryViews.delete(true, id));
         } else {
@@ -91,16 +91,16 @@ public class AcademicHistoryController implements Controller {
         model.setState("Cursando");
 
         if (save) {
-            Subject subject = (Subject) SubjectSearch.getById(model.getIdSubject());
-            StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
+            Subject subject = (Subject) SubjectService.getById(model.getIdSubject());
+            StudyPlan studyPlan = (StudyPlan) StudyPlanService.getById(subject.getIdStudyPlan());
 
             boolean canEnroll = true;
             String type = studyPlan.getType();
             if (Objects.equals(type, "A")) {
                 // Plan A: aprobó las cursadas de las correlativas
-                List<Correlative> correlatives = CorrelativeSearch.getAllCorrelativesForSubject(model.getIdSubject());
+                List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
-                    AcademicHistory academicHistory = AcademicHistorySearch.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
                     if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado") || Objects.equals(academicHistory.getState(), "Cursando")) {
                         canEnroll = false;
                         break;
@@ -108,9 +108,9 @@ public class AcademicHistoryController implements Controller {
                 }
             } else if (Objects.equals(type,"B")) {
                 // Plan B: aprobó los finales de las correlativas
-                List<Correlative> correlatives = CorrelativeSearch.getAllCorrelativesForSubject(model.getIdSubject());
+                List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
-                    AcademicHistory academicHistory = AcademicHistorySearch.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
                     if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;
                         break;
@@ -118,17 +118,17 @@ public class AcademicHistoryController implements Controller {
                 }
             } else if (Objects.equals(type,"C")) {
                 // Plan C: aprobó las cursadas de las correlativas y los finales de todas las materias de 5 cuatrimestres previos al que se quiere anotar
-                List<Correlative> correlatives = CorrelativeSearch.getAllCorrelativesForSubject(model.getIdSubject());
+                List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
-                    AcademicHistory academicHistory = AcademicHistorySearch.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
                     if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado") || Objects.equals(academicHistory.getState(), "Cursando")) {
                         canEnroll = false;
                         break;
                     }
                 }
-                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectSearch.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),5);
+                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectService.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),5);
                 for (Subject previousSubject : allPreviousFourMonthsSubjects.values()) {
-                    AcademicHistory academicHistory = AcademicHistorySearch.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
+                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
                     if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;
                         break;
@@ -136,17 +136,17 @@ public class AcademicHistoryController implements Controller {
                 }
             } else if (Objects.equals(type,"D")) {
                 // Plan D: aprobó las cursadas de las correlativas y los finales de todas las materias de 3 cuatrimestres previos al que se quiere anotar
-                List<Correlative> correlatives = CorrelativeSearch.getAllCorrelativesForSubject(model.getIdSubject());
+                List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
-                    AcademicHistory academicHistory = AcademicHistorySearch.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
                     if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado") || Objects.equals(academicHistory.getState(), "Cursando")) {
                         canEnroll = false;
                         break;
                     }
                 }
-                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectSearch.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),3);
+                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectService.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),3);
                 for (Subject previousSubject : allPreviousFourMonthsSubjects.values()) {
-                    AcademicHistory academicHistory = AcademicHistorySearch.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
+                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
                     if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;
                         break;
@@ -154,17 +154,17 @@ public class AcademicHistoryController implements Controller {
                 }
             } else if (Objects.equals(type,"E")) {
                 // Plan E: aprobó los finales de las correlativas y los finales de todas las materias de 3 cuatrimestres previos.
-                List<Correlative> correlatives = CorrelativeSearch.getAllCorrelativesForSubject(model.getIdSubject());
+                List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
-                    AcademicHistory academicHistory = AcademicHistorySearch.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
                     if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;
                         break;
                     }
                 }
-                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectSearch.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),3);
+                Map<Integer, Subject> allPreviousFourMonthsSubjects = SubjectService.getAllSubjectsFromPreviousFourMonths(model.getIdSubject(),3);
                 for (Subject previousSubject : allPreviousFourMonthsSubjects.values()) {
-                    AcademicHistory academicHistory = AcademicHistorySearch.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
+                    AcademicHistory academicHistory = AcademicHistoryService.getAcademicHistoryFromSubjectStudent(previousSubject.getId(), model.getIdStudent());
                     if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado") && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;
                         break;
@@ -188,11 +188,11 @@ public class AcademicHistoryController implements Controller {
     }
 
     public void verifyGraduate(int idStudent) {
-        Student student = (Student) StudentSearch.getById(idStudent);
+        Student student = (Student) StudentService.getById(idStudent);
         Career career = (Career) CareerService.getById(student.getIdCareer());
 
-        Map<Integer, Model> allSubjects = SubjectSearch.getAllSubjectsForCareer(career.getId());
-        Map<Integer, Model> allAcademicHistory = AcademicHistorySearch.getAllAcademicHistoryFromStudent(idStudent);
+        Map<Integer, Model> allSubjects = SubjectService.getAllSubjectsForCareer(career.getId());
+        Map<Integer, Model> allAcademicHistory = AcademicHistoryService.getAllAcademicHistoryFromStudent(idStudent);
 
         List<Subject> subjectsNotApproved = new ArrayList<>();
 

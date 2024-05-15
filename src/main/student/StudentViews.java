@@ -37,7 +37,7 @@ public class StudentViews {
         divButton.add(searchCareerButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(StudentSearch.getCustomColumns(), StudentSearch.getCustomData());
+        JScrollPane table = UIComponent.table(StudentService.getCustomColumns(), StudentService.getCustomData());
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
@@ -253,7 +253,7 @@ public class StudentViews {
             JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
             div.setBackground(Common.BACKGROUND_COLOR);
 
-            JLabel viewModel = Text.h3(StudentSearch.getById(id).toString());
+            JLabel viewModel = Text.h3(StudentService.getById(id).toString());
 
             div.add(viewModel);
 
@@ -324,7 +324,7 @@ public class StudentViews {
         divForm.add(studentIDLabel, conditions);
 
         conditions.gridy++;
-        JPanel studentIDField = Input.createSelect2InputStrInt(StudentSearch.getIDNameForSelect2());
+        JPanel studentIDField = Input.createSelect2InputStrInt(StudentService.getIDNameForSelect2());
         divForm.add(studentIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -496,7 +496,7 @@ public class StudentViews {
         divButton.add(searchButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(StudentSearch.getCustomColumns(), StudentSearch.getCustomDataForCareer(idCareer));
+        JScrollPane table = UIComponent.table(StudentService.getCustomColumns(), StudentService.getCustomDataForCareer(idCareer));
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);

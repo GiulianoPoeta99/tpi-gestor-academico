@@ -2,16 +2,16 @@ package main.academichistory;
 
 import main.common.Model;
 import main.student.Student;
-import main.student.StudentSearch;
+import main.student.StudentService;
 import main.subject.Subject;
-import main.subject.SubjectSearch;
+import main.subject.SubjectService;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AcademicHistorySearch extends AcademicHistory{
+public class AcademicHistoryService extends AcademicHistory{
     public static String[] getCustomColumns() {
         return new String[] { "Estudiante", "Materia", "Estado", "Parcial 1", "Parcial 2", "Promoción", "Final", "Nota" };
     }
@@ -20,8 +20,8 @@ public class AcademicHistorySearch extends AcademicHistory{
         List<Object[]> customData = new ArrayList<>();
         for (Model model : AcademicHistory.getAll().values()) {
             if (model instanceof AcademicHistory academicHistory) {
-                Student student = (Student) StudentSearch.getById(academicHistory.getIdStudent());
-                Subject subject = (Subject) SubjectSearch.getById(academicHistory.getIdSubject());
+                Student student = (Student) StudentService.getById(academicHistory.getIdStudent());
+                Subject subject = (Subject) SubjectService.getById(academicHistory.getIdSubject());
                 Object[] rowData = new Object[] {
                     String.format("%s - %s %s", student.getDossierNumber(), student.getLastName(), student.getFirstName()),
                     String.format("%s - %s", subject.getId(), subject.getName()),
@@ -46,8 +46,8 @@ public class AcademicHistorySearch extends AcademicHistory{
         Map<Integer, String> academicHistoryMap = new LinkedHashMap<>();
         for (Model model : AcademicHistory.getAll().values()) {
             if (model instanceof AcademicHistory academicHistory) {
-                Student student = (Student) StudentSearch.getById(academicHistory.getIdStudent());
-                Subject subject = (Subject) SubjectSearch.getById(academicHistory.getIdSubject());
+                Student student = (Student) StudentService.getById(academicHistory.getIdStudent());
+                Subject subject = (Subject) SubjectService.getById(academicHistory.getIdSubject());
                 academicHistoryMap.put(
                     academicHistory.getId(),
                     String.format(
@@ -87,8 +87,8 @@ public class AcademicHistorySearch extends AcademicHistory{
         for (Model model : AcademicHistory.getAll().values()) {
             if (model instanceof AcademicHistory academicHistory) {
                 if (idStudent == academicHistory.getIdStudent()) {
-                    Student student = (Student) StudentSearch.getById(academicHistory.getIdStudent());
-                    Subject subject = (Subject) SubjectSearch.getById(academicHistory.getIdSubject());
+                    Student student = (Student) StudentService.getById(academicHistory.getIdStudent());
+                    Subject subject = (Subject) SubjectService.getById(academicHistory.getIdSubject());
                     Object[] rowData = new Object[] {
                             String.format("%s - %s %s", student.getDossierNumber(), student.getLastName(), student.getFirstName()),
                             String.format("%s - %s", subject.getId(), subject.getName()),
@@ -107,7 +107,7 @@ public class AcademicHistorySearch extends AcademicHistory{
     }
 
     public static AcademicHistory getAcademicHistoryFromSubjectStudent(int idSubject, int idStudent) {
-        Map<Integer, Model> allAcademicHistory = AcademicHistorySearch.getAllAcademicHistoryFromStudent(idStudent);
+        Map<Integer, Model> allAcademicHistory = AcademicHistoryService.getAllAcademicHistoryFromStudent(idStudent);
         AcademicHistory finalAcademicHistory = null;
         for (Model model : allAcademicHistory.values()) {
             if (model instanceof AcademicHistory academicHistory) {

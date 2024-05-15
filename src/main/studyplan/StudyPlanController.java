@@ -23,7 +23,7 @@ public class StudyPlanController implements Controller {
 
         if (save) {
             model.setIsActive(true);
-            StudyPlan studyPlanActive = (StudyPlan) StudyPlanSearch.getByIdCareer(model.getIdCareer());
+            StudyPlan studyPlanActive = (StudyPlan) StudyPlanService.getByIdCareer(model.getIdCareer());
             if (studyPlanActive != null) {
                 studyPlanActive.setIsActive(false);
                 if (studyPlanActive.update()) {
@@ -43,7 +43,7 @@ public class StudyPlanController implements Controller {
     }
 
     public void update(boolean save, int id) {
-        StudyPlan model = (StudyPlan) StudyPlanSearch.getById(id);
+        StudyPlan model = (StudyPlan) StudyPlanService.getById(id);
 
         if (save) {
             if (model.update()) {
@@ -55,13 +55,13 @@ public class StudyPlanController implements Controller {
     }
 
     public void view(int id) {
-        StudyPlan model = (StudyPlan) StudyPlanSearch.getById(id);
+        StudyPlan model = (StudyPlan) StudyPlanService.getById(id);
         render(() -> StudyPlanViews.view(model));
     }
 
     public void delete(boolean validation, int id) {
         if (validation) {
-            StudyPlan model = (StudyPlan) StudyPlanSearch.getById(id);
+            StudyPlan model = (StudyPlan) StudyPlanService.getById(id);
             model.delete();
             render(() -> StudyPlanViews.delete(true, id));
         } else {
@@ -74,7 +74,7 @@ public class StudyPlanController implements Controller {
     }
 
     public void viewSubjects(int idStudyPlan) {
-        StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(idStudyPlan);
+        StudyPlan studyPlan = (StudyPlan) StudyPlanService.getById(idStudyPlan);
         render(() -> StudyPlanViews.viewSubjects(studyPlan));
     }
 }

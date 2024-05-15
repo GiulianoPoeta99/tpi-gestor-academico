@@ -9,7 +9,7 @@ import main.common.components.*;
 import main.common.components.Button;
 import main.studyplan.StudyPlan;
 import main.subject.Subject;
-import main.subject.SubjectSearch;
+import main.subject.SubjectService;
 
 /**
  * The CareerViews class provides static methods for generating the user interface
@@ -32,7 +32,7 @@ import main.subject.SubjectSearch;
  * @see CareerService
  * @see StudyPlan
  * @see Subject
- * @see SubjectSearch
+ * @see SubjectService
  *
  * @version 1.0.0
  * @author Giuliano Ignacio Poeta
@@ -422,7 +422,7 @@ public class CareerViews {
         divButton.add(backButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(SubjectSearch.getCustomColumnsForStudyPlan(), SubjectSearch.getCustomDataForStudyPlan(model.getId()));
+        JScrollPane table = UIComponent.table(SubjectService.getCustomColumnsForStudyPlan(), SubjectService.getCustomDataForStudyPlan(model.getId()));
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);

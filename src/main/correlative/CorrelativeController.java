@@ -4,9 +4,9 @@ import main.career.Career;
 import main.career.CareerService;
 import main.common.Controller;
 import main.studyplan.StudyPlan;
-import main.studyplan.StudyPlanSearch;
+import main.studyplan.StudyPlanService;
 import main.subject.Subject;
-import main.subject.SubjectSearch;
+import main.subject.SubjectService;
 
 public class CorrelativeController implements Controller {
     private static final CorrelativeController instance = new CorrelativeController();
@@ -38,9 +38,9 @@ public class CorrelativeController implements Controller {
     }
 
     public void update(boolean save, int id) {
-        Correlative model = (Correlative) CorrelativeSearch.getById(id);
-        Subject subject = (Subject) SubjectSearch.getById(model.getIdSubject());
-        StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
+        Correlative model = (Correlative) CorrelativeService.getById(id);
+        Subject subject = (Subject) SubjectService.getById(model.getIdSubject());
+        StudyPlan studyPlan = (StudyPlan) StudyPlanService.getById(subject.getIdStudyPlan());
         Career career = (Career) CareerService.getById(studyPlan.getIdCareer());
 
         if (save) {
@@ -53,13 +53,13 @@ public class CorrelativeController implements Controller {
     }
 
     public void view(int id) {
-        Correlative model = (Correlative) CorrelativeSearch.getById(id);
+        Correlative model = (Correlative) CorrelativeService.getById(id);
         render(() -> CorrelativeViews.view(model));
     }
 
     public void delete(boolean validation, int id) {
         if (validation) {
-            Correlative model = (Correlative) CorrelativeSearch.getById(id);
+            Correlative model = (Correlative) CorrelativeService.getById(id);
             model.delete();
             render(() -> CorrelativeViews.delete(true, id));
         } else {

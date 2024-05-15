@@ -5,9 +5,9 @@ import main.career.CareerService;
 import main.common.components.*;
 import main.common.components.Button;
 import main.student.Student;
-import main.student.StudentSearch;
+import main.student.StudentService;
 import main.subject.Subject;
-import main.subject.SubjectSearch;
+import main.subject.SubjectService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +39,7 @@ public class AcademicHistoryViews {
         divButton.add(searchStudentButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(AcademicHistorySearch.getCustomColumns(), AcademicHistorySearch.getCustomData());
+        JScrollPane table = UIComponent.table(AcademicHistoryService.getCustomColumns(), AcademicHistoryService.getCustomData());
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
@@ -110,21 +110,21 @@ public class AcademicHistoryViews {
         JLabel studentIDLabel = Text.label("Estudiante:");
         divForm.add(studentIDLabel, conditions);
         conditions.gridy++;
-        JPanel studentIDField = Input.createSelect2InputStrInt(StudentSearch.getIDNameForSelect2());
+        JPanel studentIDField = Input.createSelect2InputStrInt(StudentService.getIDNameForSelect2());
         divForm.add(studentIDField, conditions);
 
         conditions.gridy++;
         JLabel subjectIDLabel = Text.label("Materia:");
         divForm.add(subjectIDLabel, conditions);
         conditions.gridy++;
-        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectSearch.getIDNameForSelect2());
+        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectService.getIDNameForSelect2());
         divForm.add(subjectIDField, conditions);
 
         conditions.gridy++;
         JLabel stateLabel = Text.label("Estado:");
         divForm.add(stateLabel, conditions);
         conditions.gridy++;
-        JPanel stateField = Input.createSelect2InputStrStr(AcademicHistorySearch.getStateForSelect2());
+        JPanel stateField = Input.createSelect2InputStrStr(AcademicHistoryService.getStateForSelect2());
         divForm.add(stateField, conditions);
 
         conditions.gridy++;
@@ -303,7 +303,7 @@ public class AcademicHistoryViews {
             JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
             div.setBackground(Common.BACKGROUND_COLOR);
 
-            JLabel viewModel = Text.h3(AcademicHistorySearch.getById(id).toString());
+            JLabel viewModel = Text.h3(AcademicHistoryService.getById(id).toString());
 
             div.add(viewModel);
 
@@ -376,7 +376,7 @@ public class AcademicHistoryViews {
         divForm.add(academicHistoryIDLabel, conditions);
 
         conditions.gridy++;
-        JPanel academicHistoryIDField = Input.createSelect2InputStrInt(AcademicHistorySearch.getIDNameForSelect2());
+        JPanel academicHistoryIDField = Input.createSelect2InputStrInt(AcademicHistoryService.getIDNameForSelect2());
         divForm.add(academicHistoryIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -434,7 +434,7 @@ public class AcademicHistoryViews {
         divForm.add(studentIDLabel, conditions);
 
         conditions.gridy++;
-        JPanel studentIDField = Input.createSelect2InputStrInt(StudentSearch.getIDNameForSelect2());
+        JPanel studentIDField = Input.createSelect2InputStrInt(StudentService.getIDNameForSelect2());
         divForm.add(studentIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -472,7 +472,7 @@ public class AcademicHistoryViews {
     }
 
     public static List<JComponent> enrollSubject(AcademicHistory model) {
-        Student student = (Student) StudentSearch.getById(model.getIdStudent());
+        Student student = (Student) StudentService.getById(model.getIdStudent());
         Career career = (Career) CareerService.getById(student.getIdCareer());
 
         List<JComponent> components = new ArrayList<>();
@@ -502,7 +502,7 @@ public class AcademicHistoryViews {
         JLabel subjectIDLabel = Text.label("Materia:");
         divForm.add(subjectIDLabel, conditions);
         conditions.gridy++;
-        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectSearch.getAllSubjectsForCareerForSelect2(career.getId()));
+        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectService.getAllSubjectsForCareerForSelect2(career.getId()));
         divForm.add(subjectIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -554,7 +554,7 @@ public class AcademicHistoryViews {
         divButton.add(backButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(AcademicHistorySearch.getCustomColumns(), AcademicHistorySearch.getCustomDataForStudent(idStudent));
+        JScrollPane table = UIComponent.table(AcademicHistoryService.getCustomColumns(), AcademicHistoryService.getCustomDataForStudent(idStudent));
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);

@@ -33,7 +33,7 @@ public class SubjectViews {
         divButton.add(searchButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(SubjectSearch.getCustomColumns(), SubjectSearch.getCustomData());
+        JScrollPane table = UIComponent.table(SubjectService.getCustomColumns(), SubjectService.getCustomData());
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
@@ -275,7 +275,7 @@ public class SubjectViews {
             JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
             div.setBackground(Common.BACKGROUND_COLOR);
 
-            JLabel viewModel = Text.h3(SubjectSearch.getById(id).toString());
+            JLabel viewModel = Text.h3(SubjectService.getById(id).toString());
 
             div.add(viewModel);
 
@@ -346,7 +346,7 @@ public class SubjectViews {
         divForm.add(subjectIDLabel, conditions);
 
         conditions.gridy++;
-        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectSearch.getIDNameForSelect2());
+        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectService.getIDNameForSelect2());
         divForm.add(subjectIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);

@@ -8,7 +8,7 @@ import main.common.components.Input;
 import main.common.components.Text;
 import main.common.components.UIComponent;
 import main.subject.Subject;
-import main.subject.SubjectSearch;
+import main.subject.SubjectService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,7 +40,7 @@ public class CorrelativeViews {
         divButton.add(searchSubjectButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(CorrelativeSearch.getCustomColumns(), CorrelativeSearch.getCustomData());
+        JScrollPane table = UIComponent.table(CorrelativeService.getCustomColumns(), CorrelativeService.getCustomData());
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
@@ -79,14 +79,14 @@ public class CorrelativeViews {
         JLabel subjectIDLabel = Text.label("Materia:");
         divForm.add(subjectIDLabel, conditions);
         conditions.gridy++;
-        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectSearch.getAllSubjectsForCareerForSelect2(idCareer));
+        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectService.getAllSubjectsForCareerForSelect2(idCareer));
         divForm.add(subjectIDField, conditions);
 
         conditions.gridy++;
         JLabel subjectCorrelativeIDLabel = Text.label("Materia Correlativa:");
         divForm.add(subjectCorrelativeIDLabel, conditions);
         conditions.gridy++;
-        JPanel subjectCorrelativeIDField = Input.createSelect2InputStrInt(SubjectSearch.getAllSubjectsForCareerForSelect2(idCareer));
+        JPanel subjectCorrelativeIDField = Input.createSelect2InputStrInt(SubjectService.getAllSubjectsForCareerForSelect2(idCareer));
         divForm.add(subjectCorrelativeIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -229,7 +229,7 @@ public class CorrelativeViews {
             JPanel div = new JPanel(new FlowLayout(FlowLayout.LEFT));
             div.setBackground(Common.BACKGROUND_COLOR);
 
-            JLabel viewModel = Text.h3(CorrelativeSearch.getById(id).toString());
+            JLabel viewModel = Text.h3(CorrelativeService.getById(id).toString());
 
             div.add(viewModel);
 
@@ -303,7 +303,7 @@ public class CorrelativeViews {
         divForm.add(correlativeIDLabel, conditions);
 
         conditions.gridy++;
-        JPanel correlativeIDField = Input.createSelect2InputStrInt(CorrelativeSearch.getIDNameForSelect2());
+        JPanel correlativeIDField = Input.createSelect2InputStrInt(CorrelativeService.getIDNameForSelect2());
         divForm.add(correlativeIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -421,7 +421,7 @@ public class CorrelativeViews {
         divForm.add(subjectIDLabel, conditions);
 
         conditions.gridy++;
-        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectSearch.getIDNameForSelect2());
+        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectService.getIDNameForSelect2());
         divForm.add(subjectIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -470,7 +470,7 @@ public class CorrelativeViews {
         divButton.add(backButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(CorrelativeSearch.getCustomColumns(), CorrelativeSearch.getCustomDataForSubject(idSubject));
+        JScrollPane table = UIComponent.table(CorrelativeService.getCustomColumns(), CorrelativeService.getCustomDataForSubject(idSubject));
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);

@@ -2,11 +2,11 @@ package main.correlative;
 
 import main.common.Model;
 import main.subject.Subject;
-import main.subject.SubjectSearch;
+import main.subject.SubjectService;
 
 import java.util.*;
 
-public class CorrelativeSearch extends Correlative {
+public class CorrelativeService extends Correlative {
     public static String[] getCustomColumns() {
         return new String[] { "Materia", "Materia correlativa" };
     }
@@ -15,8 +15,8 @@ public class CorrelativeSearch extends Correlative {
         List<Object[]> customData = new ArrayList<>();
         for (Model model : Correlative.getAll().values()) {
             if (model instanceof Correlative correlative) {
-                Subject subject = (Subject) SubjectSearch.getById(correlative.getIdSubject());
-                Subject subjectCorrelative = (Subject) SubjectSearch.getById(correlative.getIdSubjectCorrelative());
+                Subject subject = (Subject) SubjectService.getById(correlative.getIdSubject());
+                Subject subjectCorrelative = (Subject) SubjectService.getById(correlative.getIdSubjectCorrelative());
                 Object[] rowData = new Object[] {
                     subject.getName(),
                     subjectCorrelative.getName()
@@ -35,8 +35,8 @@ public class CorrelativeSearch extends Correlative {
         Map<Integer, String> correlativeMap = new LinkedHashMap<>();
         for (Model model : Correlative.getAll().values()) {
             if (model instanceof Correlative correlative) {
-                Subject subject = (Subject) SubjectSearch.getById(correlative.getIdSubject());
-                Subject subjectCorrelative = (Subject) SubjectSearch.getById(correlative.getIdSubject());
+                Subject subject = (Subject) SubjectService.getById(correlative.getIdSubject());
+                Subject subjectCorrelative = (Subject) SubjectService.getById(correlative.getIdSubject());
                 String name = String.format("%d - %s -> %s", correlative.getId(), subjectCorrelative.getName(), subject.getName());
                 correlativeMap.put(correlative.getId(), name);
             }
@@ -49,8 +49,8 @@ public class CorrelativeSearch extends Correlative {
         for (Model model : Correlative.getAll().values()) {
             if (model instanceof Correlative correlative) {
                 if (idSubject == correlative.getIdSubject()) {
-                    Subject subject = (Subject) SubjectSearch.getById(correlative.getIdSubject());
-                    Subject subjectCorrelative = (Subject) SubjectSearch.getById(correlative.getIdSubjectCorrelative());
+                    Subject subject = (Subject) SubjectService.getById(correlative.getIdSubject());
+                    Subject subjectCorrelative = (Subject) SubjectService.getById(correlative.getIdSubjectCorrelative());
                     Object[] rowData = new Object[] {
                             subject.getName(),
                             subjectCorrelative.getName()

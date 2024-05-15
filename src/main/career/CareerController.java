@@ -2,7 +2,7 @@ package main.career;
 
 import main.common.Controller;
 import main.studyplan.StudyPlan;
-import main.studyplan.StudyPlanSearch;
+import main.studyplan.StudyPlanService;
 
 import java.util.Objects;
 
@@ -26,7 +26,7 @@ import java.util.Objects;
  * @see Controller
  * @see Career
  * @see StudyPlan
- * @see StudyPlanSearch
+ * @see StudyPlanService
  * @see CareerViews
  *
  * @version 1.0.0
@@ -135,8 +135,8 @@ public class CareerController implements Controller {
      * @param idCareer The ID of the career whose subjects are to be viewed.
      */
     public void viewSubjects(int idCareer) {
-        int idStudyPlan = ((StudyPlan) Objects.requireNonNull(StudyPlanSearch.getByIdCareer(idCareer))).getId();
-        StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(idStudyPlan);
+        int idStudyPlan = ((StudyPlan) Objects.requireNonNull(StudyPlanService.getByIdCareer(idCareer))).getId();
+        StudyPlan studyPlan = (StudyPlan) StudyPlanService.getById(idStudyPlan);
         render(() -> CareerViews.viewSubjects(studyPlan));
     }
 }

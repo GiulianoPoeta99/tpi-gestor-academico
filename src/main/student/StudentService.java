@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StudentSearch extends Student {
+public class StudentService extends Student {
     public static String[] getCustomColumns() {
         return new String[] { "Legajo", "Nombre completo", "Fecha de nacimiento", "Carrera" };
     }
