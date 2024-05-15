@@ -7,31 +7,25 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Correlative implements Model {
-    // Constants
     public static final String TRANSLATE_NAME = "Correlativas";
 
-    // Attributes
     private int id;
 
     private int idSubject;
 
     private int idSubjectCorrelative;
 
-    // Static attributes
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 
-    // Constructors ==========================================================
-
-    public Correlative() {}
+    public Correlative() {
+    }
 
     protected Correlative(int idSubject, int idSubjectCorrelative) {
         this.idSubject = idSubject;
         this.idSubjectCorrelative = idSubjectCorrelative;
         save();
     }
-
-    // Setters & Getters ======================================================
 
     public void setId(int id) {
         this.id = id;
@@ -61,13 +55,9 @@ public class Correlative implements Model {
         return all;
     }
 
-    // Methods ================================================================
-
     protected static void addSerial() {
         serial++;
     }
-
-    // Model interface methods =================================================
 
     @Override
     public boolean validate() {
@@ -101,26 +91,23 @@ public class Correlative implements Model {
 
     @Override
     public Object[] getAttributeValues() {
-        return new Object[] {  };
+        return new Object[] {};
     }
 
     @Override
     public String[] getAttributeNames() {
-        return new String[] {  };
+        return new String[] {};
     }
-
-    // Overrides ===============================================================
 
     @Override
     public String toString() {
         return String.format("""
-            %s
-              * Materia: %d
-              * Materia correlativa: %d
-            """,
-            TRANSLATE_NAME,
-            idSubject,
-            idSubjectCorrelative
-        );
+                %s
+                  * Materia: %d
+                  * Materia correlativa: %d
+                """,
+                TRANSLATE_NAME,
+                idSubject,
+                idSubjectCorrelative);
     }
 }

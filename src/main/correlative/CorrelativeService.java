@@ -18,8 +18,8 @@ public class CorrelativeService extends Correlative {
                 Subject subject = (Subject) SubjectService.getById(correlative.getIdSubject());
                 Subject subjectCorrelative = (Subject) SubjectService.getById(correlative.getIdSubjectCorrelative());
                 Object[] rowData = new Object[] {
-                    subject.getName(),
-                    subjectCorrelative.getName()
+                        subject.getName(),
+                        subjectCorrelative.getName()
                 };
                 customData.add(rowData);
             }
@@ -37,7 +37,8 @@ public class CorrelativeService extends Correlative {
             if (model instanceof Correlative correlative) {
                 Subject subject = (Subject) SubjectService.getById(correlative.getIdSubject());
                 Subject subjectCorrelative = (Subject) SubjectService.getById(correlative.getIdSubject());
-                String name = String.format("%d - %s -> %s", correlative.getId(), subjectCorrelative.getName(), subject.getName());
+                String name = String.format("%d - %s -> %s", correlative.getId(), subjectCorrelative.getName(),
+                        subject.getName());
                 correlativeMap.put(correlative.getId(), name);
             }
         }
@@ -50,7 +51,8 @@ public class CorrelativeService extends Correlative {
             if (model instanceof Correlative correlative) {
                 if (idSubject == correlative.getIdSubject()) {
                     Subject subject = (Subject) SubjectService.getById(correlative.getIdSubject());
-                    Subject subjectCorrelative = (Subject) SubjectService.getById(correlative.getIdSubjectCorrelative());
+                    Subject subjectCorrelative = (Subject) SubjectService
+                            .getById(correlative.getIdSubjectCorrelative());
                     Object[] rowData = new Object[] {
                             subject.getName(),
                             subjectCorrelative.getName()

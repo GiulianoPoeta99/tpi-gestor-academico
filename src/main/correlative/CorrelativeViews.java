@@ -32,15 +32,19 @@ public class CorrelativeViews {
 
         JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
         divButton.setBackground(Common.BACKGROUND_COLOR);
-        JButton createButton = main.common.components.Button.success("Crear correlativa", () -> CorrelativeController.getInstance().searchCreate());
+        JButton createButton = main.common.components.Button.success("Crear correlativa",
+                () -> CorrelativeController.getInstance().searchCreate());
         divButton.add(createButton);
-        JButton searchButton = main.common.components.Button.warning("Ver correlativa", () -> CorrelativeController.getInstance().search());
+        JButton searchButton = main.common.components.Button.warning("Ver correlativa",
+                () -> CorrelativeController.getInstance().search());
         divButton.add(searchButton);
-        JButton searchSubjectButton = main.common.components.Button.info("Ver correlativa de materia", () -> CorrelativeController.getInstance().searchSubject());
+        JButton searchSubjectButton = main.common.components.Button.info("Ver correlativa de materia",
+                () -> CorrelativeController.getInstance().searchSubject());
         divButton.add(searchSubjectButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(CorrelativeService.getCustomColumns(), CorrelativeService.getCustomData());
+        JScrollPane table = UIComponent.table(CorrelativeService.getCustomColumns(),
+                CorrelativeService.getCustomData());
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
@@ -48,9 +52,12 @@ public class CorrelativeViews {
         return components;
     }
 
-    private static void performSaveOrUpdate(Correlative model, JPanel subjectIDField, JPanel subjectCorrelativeIDField) {
-        Integer selectedSubjectId = (Integer) ((JComboBox<?>) subjectIDField.getComponent(0)).getClientProperty("selectedIndex");
-        Integer selectedCorrelativeSubjectId = (Integer) ((JComboBox<?>) subjectCorrelativeIDField.getComponent(0)).getClientProperty("selectedIndex");
+    private static void performSaveOrUpdate(Correlative model, JPanel subjectIDField,
+            JPanel subjectCorrelativeIDField) {
+        Integer selectedSubjectId = (Integer) ((JComboBox<?>) subjectIDField.getComponent(0))
+                .getClientProperty("selectedIndex");
+        Integer selectedCorrelativeSubjectId = (Integer) ((JComboBox<?>) subjectCorrelativeIDField.getComponent(0))
+                .getClientProperty("selectedIndex");
 
         if (selectedSubjectId > 0) {
             model.setIdSubject(selectedSubjectId);
@@ -79,14 +86,16 @@ public class CorrelativeViews {
         JLabel subjectIDLabel = Text.label("Materia:");
         divForm.add(subjectIDLabel, conditions);
         conditions.gridy++;
-        JPanel subjectIDField = Input.createSelect2InputStrInt(SubjectService.getAllSubjectsForCareerForSelect2(idCareer));
+        JPanel subjectIDField = Input
+                .createSelect2InputStrInt(SubjectService.getAllSubjectsForCareerForSelect2(idCareer));
         divForm.add(subjectIDField, conditions);
 
         conditions.gridy++;
         JLabel subjectCorrelativeIDLabel = Text.label("Materia Correlativa:");
         divForm.add(subjectCorrelativeIDLabel, conditions);
         conditions.gridy++;
-        JPanel subjectCorrelativeIDField = Input.createSelect2InputStrInt(SubjectService.getAllSubjectsForCareerForSelect2(idCareer));
+        JPanel subjectCorrelativeIDField = Input
+                .createSelect2InputStrInt(SubjectService.getAllSubjectsForCareerForSelect2(idCareer));
         divForm.add(subjectCorrelativeIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -182,13 +191,16 @@ public class CorrelativeViews {
         divButton.setBackground(Common.BACKGROUND_COLOR);
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        JButton continueButton = main.common.components.Button.secondary("Continuar", () -> CorrelativeController.getInstance().index());
+        JButton continueButton = main.common.components.Button.secondary("Continuar",
+                () -> CorrelativeController.getInstance().index());
         divButton.add(continueButton);
 
-        JButton createButton = main.common.components.Button.success("Crear", () -> CorrelativeController.getInstance().searchCreate());
+        JButton createButton = main.common.components.Button.success("Crear",
+                () -> CorrelativeController.getInstance().searchCreate());
         divButton.add(createButton);
 
-        JButton updateButton = main.common.components.Button.primary("Actualizar", () -> CorrelativeController.getInstance().update(false, model.getId()));
+        JButton updateButton = main.common.components.Button.primary("Actualizar",
+                () -> CorrelativeController.getInstance().update(false, model.getId()));
         divButton.add(updateButton);
 
         JButton deleteButton = main.common.components.Button.danger("Eliminar",
@@ -374,10 +386,11 @@ public class CorrelativeViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = main.common.components.Button.info("Buscar", () -> {
-            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
+            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0))
+                    .getClientProperty("selectedIndex");
 
             if (selectedCareerId > 0) {
-                CorrelativeController.getInstance().create(false,null, selectedCareerId);
+                CorrelativeController.getInstance().create(false, null, selectedCareerId);
             }
         });
         divButton.add(saveButton);
@@ -432,7 +445,8 @@ public class CorrelativeViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.info("Buscar", () -> {
-            Integer selectedSubjectId = (Integer) ((JComboBox<?>) subjectIDField.getComponent(0)).getClientProperty("selectedIndex");
+            Integer selectedSubjectId = (Integer) ((JComboBox<?>) subjectIDField.getComponent(0))
+                    .getClientProperty("selectedIndex");
 
             if (selectedSubjectId > 0) {
                 CorrelativeController.getInstance().correlativePerSubject(selectedSubjectId);
@@ -470,7 +484,8 @@ public class CorrelativeViews {
         divButton.add(backButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(CorrelativeService.getCustomColumns(), CorrelativeService.getCustomDataForSubject(idSubject));
+        JScrollPane table = UIComponent.table(CorrelativeService.getCustomColumns(),
+                CorrelativeService.getCustomDataForSubject(idSubject));
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);
