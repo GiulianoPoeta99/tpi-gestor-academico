@@ -1,6 +1,5 @@
 package main.studyplan;
 
-
 import main.career.Career;
 import main.career.CareerService;
 
@@ -31,9 +30,11 @@ public class StudyPlanViews {
 
         JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
         divButton.setBackground(Common.BACKGROUND_COLOR);
-        JButton createButton = Button.success("Crear plan de estudio", () -> StudyPlanController.getInstance().create(false, null));
+        JButton createButton = Button.success("Crear plan de estudio",
+                () -> StudyPlanController.getInstance().create(false, null));
         divButton.add(createButton);
-        JButton searchButton = Button.warning("Ver plan de estudio", () -> StudyPlanController.getInstance().search(false));
+        JButton searchButton = Button.warning("Ver plan de estudio",
+                () -> StudyPlanController.getInstance().search(false));
         divButton.add(searchButton);
         JButton subjectButton = Button.info("Ver materias", () -> StudyPlanController.getInstance().search(true));
         divButton.add(subjectButton);
@@ -47,10 +48,13 @@ public class StudyPlanViews {
         return components;
     }
 
-    private static void performSaveOrUpdate(StudyPlan model, JPanel typeField, JPanel careerIDField, JPanel isActiveField) {
+    private static void performSaveOrUpdate(StudyPlan model, JPanel typeField, JPanel careerIDField,
+            JPanel isActiveField) {
         String selectedType = (String) ((JComboBox<?>) typeField.getComponent(0)).getClientProperty("selectedIndex");
-        Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
-        boolean selectedIsActive = (boolean) ((JComboBox<?>) isActiveField.getComponent(0)).getClientProperty("selectedIndex");
+        Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0))
+                .getClientProperty("selectedIndex");
+        boolean selectedIsActive = (boolean) ((JComboBox<?>) isActiveField.getComponent(0))
+                .getClientProperty("selectedIndex");
         if (selectedType != null && !selectedType.isEmpty() && !selectedType.equals(model.getType())) {
             model.setType(selectedType);
         }
@@ -111,12 +115,12 @@ public class StudyPlanViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.success("Guardar", () -> {
-            performSaveOrUpdate(model,typeField,careerIDField,isActiveField);
+            performSaveOrUpdate(model, typeField, careerIDField, isActiveField);
             StudyPlanController.getInstance().create(true, model);
         });
         if (update) {
             saveButton = Button.primary("Actualizar", () -> {
-                performSaveOrUpdate(model,typeField,careerIDField,isActiveField);
+                performSaveOrUpdate(model, typeField, careerIDField, isActiveField);
                 StudyPlanController.getInstance().update(true, model.getId());
             });
         }
@@ -199,10 +203,12 @@ public class StudyPlanViews {
         JButton createButton = Button.success("Crear", () -> StudyPlanController.getInstance().create(false, null));
         divButton.add(createButton);
 
-        JButton updateButton = Button.primary("Actualizar", () -> StudyPlanController.getInstance().update(false, model.getId()));
+        JButton updateButton = Button.primary("Actualizar",
+                () -> StudyPlanController.getInstance().update(false, model.getId()));
         divButton.add(updateButton);
 
-        JButton deleteButton = Button.danger("Eliminar", () -> StudyPlanController.getInstance().delete(false, model.getId()));
+        JButton deleteButton = Button.danger("Eliminar",
+                () -> StudyPlanController.getInstance().delete(false, model.getId()));
         divButton.add(deleteButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
@@ -321,7 +327,8 @@ public class StudyPlanViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.info("Buscar", () -> {
-            Integer selectedStudyPlanId = (Integer) ((JComboBox<?>) studyPlanIDField.getComponent(0)).getClientProperty("selectedIndex");
+            Integer selectedStudyPlanId = (Integer) ((JComboBox<?>) studyPlanIDField.getComponent(0))
+                    .getClientProperty("selectedIndex");
 
             if (selectedStudyPlanId > 0) {
                 if (viewSubject) {
@@ -347,7 +354,9 @@ public class StudyPlanViews {
         List<JComponent> components = new ArrayList<>();
         String career = ((Career) CareerService.getById(model.getIdCareer())).getName();
 
-        JLabel title = Text.h1(String.format("Ver %ss de la %s: %s y el %s %d (%s) Tipo: %s", Subject.TRANSLATE_NAME, Career.TRANSLATE_NAME, career, StudyPlan.TRANSLATE_NAME, model.getId(), model.getIsActive() ? "Vigente" : "No vigente", model.getType()));
+        JLabel title = Text.h1(String.format("Ver %ss de la %s: %s y el %s %d (%s) Tipo: %s", Subject.TRANSLATE_NAME,
+                Career.TRANSLATE_NAME, career, StudyPlan.TRANSLATE_NAME, model.getId(),
+                model.getIsActive() ? "Vigente" : "No vigente", model.getType()));
 
         Box titleBox = Box.createHorizontalBox();
         titleBox.add(Box.createHorizontalGlue());
@@ -364,7 +373,8 @@ public class StudyPlanViews {
         divButton.add(backButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(SubjectService.getCustomColumnsForStudyPlan(), SubjectService.getCustomDataForStudyPlan(model.getId()));
+        JScrollPane table = UIComponent.table(SubjectService.getCustomColumnsForStudyPlan(),
+                SubjectService.getCustomDataForStudyPlan(model.getId()));
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);

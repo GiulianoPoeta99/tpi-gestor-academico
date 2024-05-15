@@ -8,24 +8,17 @@ import java.util.Map;
 import main.common.Model;
 
 public class StudyPlan implements Model {
-
-    // Constants
     public static final String TRANSLATE_NAME = "Plan de Estudio";
     public static final List<String> TYPES_STUDY_PLAN = Arrays.asList("A", "B", "C", "D", "E");
-
-    // Attributes
     private int id;
     private String type;
     private int idCareer;
     private boolean isActive;
-
-    // Static attributes
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 
-    // Constructors ============================================================
-
-    public StudyPlan() {}
+    public StudyPlan() {
+    }
 
     protected StudyPlan(String type, int idCareer, boolean isActive) {
         this.type = type;
@@ -33,8 +26,6 @@ public class StudyPlan implements Model {
         this.isActive = isActive;
         this.save();
     }
-
-    // Setters & Getters =======================================================
 
     public StudyPlan setId(int id) {
         this.id = id;
@@ -69,7 +60,7 @@ public class StudyPlan implements Model {
         this.isActive = isActive;
     }
 
-    public boolean getIsActive () {
+    public boolean getIsActive() {
         return isActive;
     }
 
@@ -77,21 +68,14 @@ public class StudyPlan implements Model {
         return all;
     }
 
-    // Methods ================================================================
-
     protected static void addSerial() {
         serial++;
     }
 
-    // Model interface methods =================================================
-
     @Override
     public boolean validate() {
-        // Validation logic goes here
-        return (
-            type != null &&
-            idCareer != 0
-        );
+        return (type != null &&
+                idCareer != 0);
     }
 
     @Override
@@ -121,7 +105,7 @@ public class StudyPlan implements Model {
 
     @Override
     public Object[] getAttributeValues() {
-        return new Object[] { type, idCareer, isActive};
+        return new Object[] { type, idCareer, isActive };
     }
 
     @Override
@@ -129,20 +113,17 @@ public class StudyPlan implements Model {
         return new String[] { "Tipo", "ID Carrera", "Vigente" };
     }
 
-    // Overrides ===============================================================
-
     @Override
     public String toString() {
         return String.format("""
-            %s:
-              * Tipo: %s
-              * Carrera: %s
-              * Vigente: %s
-            """,
-            TRANSLATE_NAME,
-            type != null ? type : "N/A",
-            idCareer != 0 ? idCareer : "N/A",
-            isActive
-        );
+                %s:
+                  * Tipo: %s
+                  * Carrera: %s
+                  * Vigente: %s
+                """,
+                TRANSLATE_NAME,
+                type != null ? type : "N/A",
+                idCareer != 0 ? idCareer : "N/A",
+                isActive);
     }
 }

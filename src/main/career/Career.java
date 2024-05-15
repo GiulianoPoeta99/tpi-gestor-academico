@@ -62,12 +62,9 @@ import main.common.Model;
  * @since 2023.12.05
  */
 public class Career implements Model {
-
     public static final String TRANSLATE_NAME = "Carrera";
-
     private int id;
     private String name;
-
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 

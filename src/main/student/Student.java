@@ -7,16 +7,13 @@ import java.time.LocalDate;
 import main.common.Model;
 
 public class Student implements Model {
-
     public static final String TRANSLATE_NAME = "Estudiante";
-
     private int id;
     private String dossierNumber;
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
     private int idCareer;
-
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 

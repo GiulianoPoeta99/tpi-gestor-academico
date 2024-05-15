@@ -8,13 +8,9 @@ import java.util.Map;
 
 public class Correlative implements Model {
     public static final String TRANSLATE_NAME = "Correlativas";
-
     private int id;
-
     private int idSubject;
-
     private int idSubjectCorrelative;
-
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
 
