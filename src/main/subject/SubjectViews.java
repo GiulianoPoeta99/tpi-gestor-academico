@@ -1,6 +1,6 @@
 package main.subject;
 
-import main.career.CareerSearch;
+import main.career.CareerService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -92,7 +92,7 @@ public class SubjectViews {
         divForm.add(careerIDLabel, constraints);
 
         constraints.gridy++;
-        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
+        JPanel careerIDField = Input.createSelect2InputStrInt(CareerService.getIDNameForSelect2());
         divForm.add(careerIDField, constraints);
 
         div.add(divForm, BorderLayout.NORTH);

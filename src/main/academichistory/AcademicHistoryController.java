@@ -1,7 +1,7 @@
 package main.academichistory;
 
 import main.career.Career;
-import main.career.CareerSearch;
+import main.career.CareerService;
 import main.common.Controller;
 import main.common.Model;
 import main.correlative.Correlative;
@@ -189,7 +189,7 @@ public class AcademicHistoryController implements Controller {
 
     public void verifyGraduate(int idStudent) {
         Student student = (Student) StudentSearch.getById(idStudent);
-        Career career = (Career) CareerSearch.getById(student.getIdCareer());
+        Career career = (Career) CareerService.getById(student.getIdCareer());
 
         Map<Integer, Model> allSubjects = SubjectSearch.getAllSubjectsForCareer(career.getId());
         Map<Integer, Model> allAcademicHistory = AcademicHistorySearch.getAllAcademicHistoryFromStudent(idStudent);

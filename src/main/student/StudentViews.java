@@ -1,8 +1,7 @@
 package main.student;
 
 import main.career.Career;
-import main.career.CareerController;
-import main.career.CareerSearch;
+import main.career.CareerService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -110,7 +109,7 @@ public class StudentViews {
 
         JLabel careerIDLabel = Text.label("Carrera:");
 
-        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
+        JPanel careerIDField = Input.createSelect2InputStrInt(CareerService.getIDNameForSelect2());
 
         if (!isRegister) {
             constraints.gridy++;
@@ -387,7 +386,7 @@ public class StudentViews {
         divForm.add(careerIDLabel, conditions);
 
         conditions.gridy++;
-        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
+        JPanel careerIDField = Input.createSelect2InputStrInt(CareerService.getIDNameForSelect2());
         divForm.add(careerIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);
@@ -446,7 +445,7 @@ public class StudentViews {
         divForm.add(careerIDLabel, conditions);
 
         conditions.gridy++;
-        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
+        JPanel careerIDField = Input.createSelect2InputStrInt(CareerService.getIDNameForSelect2());
         divForm.add(careerIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);

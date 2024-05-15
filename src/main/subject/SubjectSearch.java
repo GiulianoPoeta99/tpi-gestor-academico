@@ -1,7 +1,7 @@
 package main.subject;
 
 import main.career.Career;
-import main.career.CareerSearch;
+import main.career.CareerService;
 import main.common.Model;
 import main.studyplan.StudyPlan;
 import main.studyplan.StudyPlanSearch;
@@ -18,7 +18,7 @@ public class SubjectSearch extends Subject {
             if (model instanceof Subject subject) {
                 Model studyPlanModel = StudyPlanSearch.getById(subject.getIdStudyPlan());
                 if (studyPlanModel instanceof StudyPlan studyPlan) {
-                    Model careerModel = CareerSearch.getById(studyPlan.getIdCareer());
+                    Model careerModel = CareerService.getById(studyPlan.getIdCareer());
                     if (careerModel instanceof Career career) {
                         Object[] rowData = new Object[]{
                                 subject.getName(),
@@ -47,7 +47,7 @@ public class SubjectSearch extends Subject {
         for (Model model : Subject.getAll().values()) {
             if (model instanceof Subject subject) {
                 StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
-                Career career = (Career) CareerSearch.getById(studyPlan.getIdCareer());
+                Career career = (Career) CareerService.getById(studyPlan.getIdCareer());
 
                 String name = String.format("%s - %s", career.getName(), subject.getName());
 
@@ -97,7 +97,7 @@ public class SubjectSearch extends Subject {
             if (model instanceof Subject subject) {
                 StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
                 if (idCareer == studyPlan.getId()) {
-                    Career career = (Career) CareerSearch.getById(studyPlan.getIdCareer());
+                    Career career = (Career) CareerService.getById(studyPlan.getIdCareer());
 
                     String name = String.format("%s - %s", career.getName(), subject.getName());
                     subjectsMap.put(subject.getId(), name);

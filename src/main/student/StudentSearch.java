@@ -1,7 +1,7 @@
 package main.student;
 
 import main.career.Career;
-import main.career.CareerSearch;
+import main.career.CareerService;
 import main.common.Model;
 
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ public class StudentSearch extends Student {
         List<Object[]> customData = new ArrayList<>();
         for (Model model : Student.getAll().values()) {
             if (model instanceof Student student) {
-                Model careerModel = CareerSearch.getById(student.getIdCareer());
+                Model careerModel = CareerService.getById(student.getIdCareer());
                 if (careerModel != null) {
                     if (careerModel instanceof Career career) {
 
@@ -69,7 +69,7 @@ public class StudentSearch extends Student {
         for (Model model : Student.getAll().values()) {
             if (model instanceof Student student) {
                 if (idCareer == student.getIdCareer()) {
-                    Model careerModel = CareerSearch.getById(student.getIdCareer());
+                    Model careerModel = CareerService.getById(student.getIdCareer());
                     if (careerModel != null) {
                         if (careerModel instanceof Career career) {
 

@@ -2,7 +2,7 @@ package main.studyplan;
 
 
 import main.career.Career;
-import main.career.CareerSearch;
+import main.career.CareerService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,7 +91,7 @@ public class StudyPlanViews {
         divForm.add(careerIDLabel, constraints);
 
         constraints.gridy++;
-        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
+        JPanel careerIDField = Input.createSelect2InputStrInt(CareerService.getIDNameForSelect2());
         divForm.add(careerIDField, constraints);
 
         JLabel isActiveLabel = Text.label("Vigente:");
@@ -345,7 +345,7 @@ public class StudyPlanViews {
 
     public static List<JComponent> viewSubjects(StudyPlan model) {
         List<JComponent> components = new ArrayList<>();
-        String career = ((Career) CareerSearch.getById(model.getIdCareer())).getName();
+        String career = ((Career) CareerService.getById(model.getIdCareer())).getName();
 
         JLabel title = Text.h1(String.format("Ver %ss de la %s: %s y el %s %d (%s) Tipo: %s", Subject.TRANSLATE_NAME, Career.TRANSLATE_NAME, career, StudyPlan.TRANSLATE_NAME, model.getId(), model.getIsActive() ? "Vigente" : "No vigente", model.getType()));
 

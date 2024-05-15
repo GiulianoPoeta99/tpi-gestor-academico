@@ -8,6 +8,7 @@ import java.util.Map;
 
 import main.common.components.LayOut;
 import main.common.components.Text;
+import main.common.components.UIComponent;
 
 public class SiteViews {
 
@@ -30,6 +31,13 @@ public class SiteViews {
 
         JLabel title = Text.h1("Inicio");
         components.add(title);
+
+        JPanel divBox = UIComponent.bigBox();
+        divBox.setLayout(new BorderLayout());
+
+
+
+        components.add(divBox);
 
         return components;
     }

@@ -1,7 +1,7 @@
 package main.studyplan;
 
 import main.career.Career;
-import main.career.CareerSearch;
+import main.career.CareerService;
 import main.common.Model;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class StudyPlanSearch extends StudyPlan{
         List<Object[]> customData = new ArrayList<>();
         for (Model model : StudyPlan.getAll().values()) {
             if (model instanceof StudyPlan studyPlan) {
-                Model career = CareerSearch.getById(studyPlan.getIdCareer());
+                Model career = CareerService.getById(studyPlan.getIdCareer());
                 if (career instanceof Career) {
                     Object[] rowData = new Object[] {
                             studyPlan.getId(),
@@ -60,7 +60,7 @@ public class StudyPlanSearch extends StudyPlan{
         Map<Integer, String> studyPlanMap = new LinkedHashMap<>();
         for (Model model : StudyPlan.getAll().values()) {
             if (model instanceof StudyPlan studyPlan) {
-                Career career = (Career) CareerSearch.getById(studyPlan.getIdCareer());
+                Career career = (Career) CareerService.getById(studyPlan.getIdCareer());
                 String name = String.format("%s - %d (%s) Tipo: %s", career.getName(), studyPlan.getId(), studyPlan.getIsActive() ? "Vigente" : "No Vigente", studyPlan.getType());
                 studyPlanMap.put(studyPlan.getId(), name);
             }

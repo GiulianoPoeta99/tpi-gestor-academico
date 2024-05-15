@@ -1,20 +1,28 @@
 package main;
 
-import main.academichistory.AcademicHistory;
 import main.academichistory.AcademicHistoryLoad;
 import main.career.CareerLoad;
 import main.correlative.CorrelativeLoad;
 import main.site.SiteController;
-import main.career.Career;
 import main.student.StudentLoad;
-import main.studyplan.StudyPlan;
 import main.studyplan.StudyPlanLoad;
-import main.subject.Subject;
-import main.student.Student;
 import main.subject.SubjectLoad;
 
+/**
+ * The AcademicManager class serves as the entry point for the academic management system.
+ * It coordinates the loading of various data components and initializes the user interface.
+ *
+ * @author Giuliano Ignacio Poeta
+ * @version 1.0.0
+ * @since 2023.12.05
+ */
 public class AcademicManager {
 
+    /**
+     * Loads initial data required for the system to function properly.
+     * This includes career data, student data, study plan data, subject data,
+     * correlative data, and academic history data.
+     */
     private static void loadData() {
         CareerLoad.data();
         StudentLoad.data();
@@ -24,11 +32,17 @@ public class AcademicManager {
         AcademicHistoryLoad.data();
     }
 
+    /**
+     * Main method to start the academic management system.
+     * It loads initial data and initializes the user interface.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
-        // Carga inicial de datos
+        // Load initial data
         AcademicManager.loadData();
 
-        // Inicializar la interfaz gráfica de usuario (UI) utilizando SiteController
+        // Initialize the user interface (UI) using SiteController
         SiteController.getInstance().principal();
     }
 }

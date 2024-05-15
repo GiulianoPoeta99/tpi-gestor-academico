@@ -1,15 +1,13 @@
 package main.correlative;
 
 import main.career.Career;
-import main.career.CareerController;
-import main.career.CareerSearch;
+import main.career.CareerService;
 import main.common.components.Button;
 import main.common.components.Common;
 import main.common.components.Input;
 import main.common.components.Text;
 import main.common.components.UIComponent;
 import main.subject.Subject;
-import main.subject.SubjectController;
 import main.subject.SubjectSearch;
 
 import javax.swing.*;
@@ -365,7 +363,7 @@ public class CorrelativeViews {
         divForm.add(careerIDLabel, conditions);
 
         conditions.gridy++;
-        JPanel careerIDField = Input.createSelect2InputStrInt(CareerSearch.getIDNameForSelect2());
+        JPanel careerIDField = Input.createSelect2InputStrInt(CareerService.getIDNameForSelect2());
         divForm.add(careerIDField, conditions);
 
         div.add(divForm, BorderLayout.NORTH);

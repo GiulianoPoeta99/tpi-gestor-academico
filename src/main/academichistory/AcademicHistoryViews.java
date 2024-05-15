@@ -1,7 +1,7 @@
 package main.academichistory;
 
 import main.career.Career;
-import main.career.CareerSearch;
+import main.career.CareerService;
 import main.common.components.*;
 import main.common.components.Button;
 import main.student.Student;
@@ -473,7 +473,7 @@ public class AcademicHistoryViews {
 
     public static List<JComponent> enrollSubject(AcademicHistory model) {
         Student student = (Student) StudentSearch.getById(model.getIdStudent());
-        Career career = (Career) CareerSearch.getById(student.getIdCareer());
+        Career career = (Career) CareerService.getById(student.getIdCareer());
 
         List<JComponent> components = new ArrayList<>();
 

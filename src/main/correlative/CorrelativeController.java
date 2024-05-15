@@ -1,7 +1,7 @@
 package main.correlative;
 
 import main.career.Career;
-import main.career.CareerSearch;
+import main.career.CareerService;
 import main.common.Controller;
 import main.studyplan.StudyPlan;
 import main.studyplan.StudyPlanSearch;
@@ -41,7 +41,7 @@ public class CorrelativeController implements Controller {
         Correlative model = (Correlative) CorrelativeSearch.getById(id);
         Subject subject = (Subject) SubjectSearch.getById(model.getIdSubject());
         StudyPlan studyPlan = (StudyPlan) StudyPlanSearch.getById(subject.getIdStudyPlan());
-        Career career = (Career) CareerSearch.getById(studyPlan.getIdCareer());
+        Career career = (Career) CareerService.getById(studyPlan.getIdCareer());
 
         if (save) {
             if (model.update()) {
