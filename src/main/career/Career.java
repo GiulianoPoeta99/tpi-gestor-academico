@@ -63,23 +63,19 @@ import main.common.Model;
  */
 public class Career implements Model {
 
-    // Constants
     public static final String TRANSLATE_NAME = "Carrera";
 
-    // Attributes
     private int id;
     private String name;
 
-    // Static attributes
     protected static int serial = 0;
     protected static Map<Integer, Model> all = new LinkedHashMap<>();
-
-    // Constructors ==========================================================
 
     /**
      * Default constructor.
      */
-    public Career() {}
+    public Career() {
+    }
 
     /**
      * Protected constructor to create a Career with a specified name.
@@ -90,8 +86,6 @@ public class Career implements Model {
         this.name = name;
         save();
     }
-
-    // Setters & Getters ======================================================
 
     /**
      * Sets the ID of the career.
@@ -138,16 +132,12 @@ public class Career implements Model {
         return all;
     }
 
-    // Methods ================================================================
-
     /**
      * Increments the serial counter.
      */
     protected static void addSerial() {
         serial++;
     }
-
-    // Model interface methods =================================================
 
     /**
      * Validates the career instance.
@@ -217,8 +207,6 @@ public class Career implements Model {
         return new String[] { "Nombre" };
     }
 
-    // Overrides ===============================================================
-
     /**
      * Returns a string representation of the career.
      *
@@ -227,11 +215,10 @@ public class Career implements Model {
     @Override
     public String toString() {
         return String.format("""
-            %s
-              * Nombre: %s
-            """,
+                %s
+                  * Nombre: %s
+                """,
                 TRANSLATE_NAME,
-                name != null ? name : "N/A"
-        );
+                name != null ? name : "N/A");
     }
 }

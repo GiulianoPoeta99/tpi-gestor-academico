@@ -61,7 +61,8 @@ public class CareerViews {
 
         JPanel divButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
         divButton.setBackground(Common.BACKGROUND_COLOR);
-        JButton createButton = Button.success("Crear carrera", () -> CareerController.getInstance().create(false, null));
+        JButton createButton = Button.success("Crear carrera",
+                () -> CareerController.getInstance().create(false, null));
         divButton.add(createButton);
         JButton searchButton = Button.warning("Ver carrera", () -> CareerController.getInstance().search(false));
         divButton.add(searchButton);
@@ -80,7 +81,7 @@ public class CareerViews {
     /**
      * Handles saving or updating a career model based on the input field values.
      *
-     * @param model The Career model to be saved or updated.
+     * @param model     The Career model to be saved or updated.
      * @param nameField The JTextField containing the career name.
      */
     private static void performSaveOrUpdate(Career model, JTextField nameField) {
@@ -238,10 +239,12 @@ public class CareerViews {
         JButton createButton = Button.success("Crear", () -> CareerController.getInstance().create(false, null));
         divButton.add(createButton);
 
-        JButton updateButton = Button.primary("Actualizar", () -> CareerController.getInstance().update(false, model.getId()));
+        JButton updateButton = Button.primary("Actualizar",
+                () -> CareerController.getInstance().update(false, model.getId()));
         divButton.add(updateButton);
 
-        JButton deleteButton = Button.danger("Eliminar", () -> CareerController.getInstance().delete(false, model.getId()));
+        JButton deleteButton = Button.danger("Eliminar",
+                () -> CareerController.getInstance().delete(false, model.getId()));
         divButton.add(deleteButton);
 
         divBox.add(divButton, BorderLayout.SOUTH);
@@ -373,7 +376,8 @@ public class CareerViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.info("Buscar", () -> {
-            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0)).getClientProperty("selectedIndex");
+            Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0))
+                    .getClientProperty("selectedIndex");
 
             if (selectedCareerId > 0) {
                 if (viewSubjects) {
@@ -405,7 +409,9 @@ public class CareerViews {
         List<JComponent> components = new ArrayList<>();
         String career = ((Career) CareerService.getById(model.getIdCareer())).getName();
 
-        JLabel title = Text.h1(String.format("Ver %ss de la %s: %s y el %s %d (%s) Tipo: %s", Subject.TRANSLATE_NAME, Career.TRANSLATE_NAME, career, StudyPlan.TRANSLATE_NAME, model.getId(), model.getIsActive() ? "Vigente" : "No vigente", model.getType()));
+        JLabel title = Text.h1(String.format("Ver %ss de la %s: %s y el %s %d (%s) Tipo: %s", Subject.TRANSLATE_NAME,
+                Career.TRANSLATE_NAME, career, StudyPlan.TRANSLATE_NAME, model.getId(),
+                model.getIsActive() ? "Vigente" : "No vigente", model.getType()));
 
         Box titleBox = Box.createHorizontalBox();
         titleBox.add(Box.createHorizontalGlue());
@@ -422,7 +428,8 @@ public class CareerViews {
         divButton.add(backButton);
         divBox.add(divButton, BorderLayout.NORTH);
 
-        JScrollPane table = UIComponent.table(SubjectService.getCustomColumnsForStudyPlan(), SubjectService.getCustomDataForStudyPlan(model.getId()));
+        JScrollPane table = UIComponent.table(SubjectService.getCustomColumnsForStudyPlan(),
+                SubjectService.getCustomDataForStudyPlan(model.getId()));
         divBox.add(table, BorderLayout.CENTER);
 
         components.add(divBox);

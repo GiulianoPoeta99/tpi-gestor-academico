@@ -36,6 +36,9 @@ import java.util.Objects;
 public class CareerController implements Controller {
     private static final CareerController instance = new CareerController();
 
+    /**
+     * Default constructor.
+     */
     private CareerController() {
     }
 
