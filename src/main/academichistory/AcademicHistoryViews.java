@@ -14,7 +14,22 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class provides static methods to generate GUI components for managing academic history records.
+ * It includes methods for creating, updating, viewing, and deleting academic history entries,
+ * as well as methods for searching and enrolling subjects.
+ *
+ * @author Giuliano Ignacio Poeta
+ * @version 1.0.0
+ * @since yyyy.mm.dd (complete with actual date when integrating)
+ */
 public class AcademicHistoryViews {
+
+    /**
+     * Generates GUI components for the index page of academic history records.
+     *
+     * @return List of JComponent objects representing the GUI components for the index page.
+     */
     public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
@@ -51,6 +66,19 @@ public class AcademicHistoryViews {
         return components;
     }
 
+    /**
+     * Performs the saving or updating of an academic history record.
+     *
+     * @param model         AcademicHistory object to be saved or updated.
+     * @param studentIDField JPanel containing the student ID field components.
+     * @param subjectIDField JPanel containing the subject ID field components.
+     * @param stateField    JPanel containing the state field components.
+     * @param partial1Field JTextField for partial 1 grade.
+     * @param partial2Field JTextField for partial 2 grade.
+     * @param isPromotedField JPanel containing the promotion status field components.
+     * @param finalExamField JTextField for final exam grade.
+     * @param gradeField    JTextField for overall grade.
+     */
     private static void performSaveOrUpdate(AcademicHistory model, JPanel studentIDField, JPanel subjectIDField,
             JPanel stateField, JTextField partial1Field, JTextField partial2Field, JPanel isPromotedField,
             JTextField finalExamField, JTextField gradeField) {
@@ -101,6 +129,13 @@ public class AcademicHistoryViews {
 
     }
 
+    /**
+     * Generates GUI components for the form used to create or update an academic history record.
+     *
+     * @param model  AcademicHistory object to populate the form if updating.
+     * @param update Boolean flag indicating whether the form is used for updating.
+     * @return JPanel representing the form for creating or updating academic history records.
+     */
     private static JPanel form(AcademicHistory model, boolean update) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
@@ -158,7 +193,7 @@ public class AcademicHistoryViews {
         divForm.add(isPromotedField, conditions);
 
         conditions.gridy++;
-        JLabel finalExamLabel = Text.label("Parcial 2:");
+        JLabel finalExamLabel = Text.label("Final:");
         divForm.add(finalExamLabel, conditions);
         conditions.gridy++;
         JTextField finalExamField = Input.createInput(model != null ? String.valueOf(model.getFinalExam()) : "");
@@ -202,6 +237,12 @@ public class AcademicHistoryViews {
         return divBox;
     }
 
+    /**
+     * Generates GUI components for creating a new academic history record.
+     *
+     * @param model AcademicHistory object for pre-filling the form if updating.
+     * @return List of JComponent objects representing the GUI components for creating a new record.
+     */
     public static List<JComponent> create(AcademicHistory model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -220,6 +261,12 @@ public class AcademicHistoryViews {
         return components;
     }
 
+    /**
+     * Generates GUI components for updating an existing academic history record.
+     *
+     * @param model AcademicHistory object to be updated.
+     * @return List of JComponent objects representing the GUI components for updating the record.
+     */
     public static List<JComponent> update(AcademicHistory model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -238,6 +285,12 @@ public class AcademicHistoryViews {
         return components;
     }
 
+    /**
+     * Generates GUI components for viewing details of an academic history record.
+     *
+     * @param model AcademicHistory object to view details of.
+     * @return List of JComponent objects representing the GUI components for viewing the record.
+     */
     public static List<JComponent> view(AcademicHistory model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -287,6 +340,13 @@ public class AcademicHistoryViews {
         return components;
     }
 
+    /**
+     * Generates GUI components for deleting an academic history record.
+     *
+     * @param isDelete Boolean flag indicating whether the record has already been deleted.
+     * @param id       Integer ID of the academic history record to be deleted.
+     * @return List of JComponent objects representing the GUI components for deleting the record.
+     */
     public static List<JComponent> delete(boolean isDelete, int id) {
         List<JComponent> components = new ArrayList<>();
 
@@ -358,6 +418,11 @@ public class AcademicHistoryViews {
         return components;
     }
 
+    /**
+     * Generates GUI components for searching academic history records.
+     *
+     * @return List of JComponent objects representing the GUI components for searching records.
+     */
     public static List<JComponent> search() {
         List<JComponent> components = new ArrayList<>();
 
@@ -417,6 +482,13 @@ public class AcademicHistoryViews {
         return components;
     }
 
+    /**
+     * Generates GUI components for searching a student's academic history records.
+     *
+     * @param isVerifyGraduate Boolean flag indicating whether to verify if the student is a graduate.
+     * @param isVerifyStudent  Boolean flag indicating whether to verify academic history records for the student.
+     * @return List of JComponent objects representing the GUI components for searching student records.
+     */
     public static List<JComponent> searchStudent(boolean isVerifyGraduate, boolean isVerifyStudent) {
         List<JComponent> components = new ArrayList<>();
 
@@ -484,6 +556,12 @@ public class AcademicHistoryViews {
         return components;
     }
 
+    /**
+     * Generates GUI components for enrolling a student in a subject.
+     *
+     * @param model AcademicHistory object representing the enrollment details.
+     * @return List of JComponent objects representing the GUI components for enrolling a student.
+     */
     public static List<JComponent> enrollSubject(AcademicHistory model) {
         Student student = (Student) StudentService.getById(model.getIdStudent());
         Career career = (Career) CareerService.getById(student.getIdCareer());
@@ -549,6 +627,12 @@ public class AcademicHistoryViews {
         return components;
     }
 
+    /**
+     * Generates GUI components for displaying academic history records of a specific student.
+     *
+     * @param idStudent Integer ID of the student whose records are to be displayed.
+     * @return List of JComponent objects representing the GUI components for displaying records per student.
+     */
     public static List<JComponent> historyPerStudent(int idStudent) {
         List<JComponent> components = new ArrayList<>();
 
@@ -579,6 +663,13 @@ public class AcademicHistoryViews {
         return components;
     }
 
+    /**
+     * Generates GUI components for verifying whether a student is graduated.
+     *
+     * @param isGraduated         Boolean flag indicating if the student is graduated.
+     * @param subjectsNotApproved List of Subject objects representing subjects not approved by the student.
+     * @return List of JComponent objects representing the GUI components for verifying graduation status.
+     */
     public static List<JComponent> verifyGraduate(boolean isGraduated, List<Subject> subjectsNotApproved) {
         List<JComponent> components = new ArrayList<>();
         JLabel title = Text.h1("Verificar graduado");
@@ -618,7 +709,6 @@ public class AcademicHistoryViews {
             subjectsPanel.add(graduatedLabel);
         }
 
-        // Crear JScrollPane y envolver subjectsPanel
         JScrollPane scrollPane = UIComponent.scrollPane(subjectsPanel);
 
         divBox.add(scrollPane, BorderLayout.CENTER);

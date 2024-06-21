@@ -1,6 +1,29 @@
 package main.academichistory;
 
-public class AcademicHistoryLoad extends AcademicHistory {
+/**
+ * The AcademicHistoryLoad class is responsible for loading predefined academic history data
+ * for multiple students. This class provides methods to initialize the data for each student
+ * and populate the academic history records.
+ *
+ * <p>Methods:</p>
+ * <ul>
+ *   <li>data() - Loads the academic history data for all students.</li>
+ *   <li>dataStudent1() - Loads the academic history data for student 1.</li>
+ *   <li>dataStudent2() - Loads the academic history data for student 2.</li>
+ *   <li>dataStudent3() - Loads the academic history data for student 3.</li>
+ *   <li>dataStudent4() - Loads the academic history data for student 4.</li>
+ *   <li>dataStudent5() - Loads the academic history data for student 5.</li>
+ * </ul>
+ *
+ * @version 1.0.0
+ * @since 2024.04.05
+ * @author Giuliano Ignacio Poeta
+ */
+public class
+AcademicHistoryLoad extends AcademicHistory {
+    /**
+     * Loads the academic history data for all students.
+     */
     public static void data() {
         dataStudent1();
         dataStudent2();
@@ -9,6 +32,9 @@ public class AcademicHistoryLoad extends AcademicHistory {
         dataStudent5();
     }
 
+    /**
+     * Loads the academic history data for student 1.
+     */
     private static void dataStudent1() {
         new AcademicHistory(1, 1, "Aprobado", 6, 9, false, 7, 7);
         new AcademicHistory(1, 2, "Aprobado", 6, 5, false, 9, 9);
@@ -31,6 +57,9 @@ public class AcademicHistoryLoad extends AcademicHistory {
         new AcademicHistory(1, 17, "Aprobado", 6, 9, false, 10, 10);
     }
 
+    /**
+     * Loads the academic history data for student 2.
+     */
     private static void dataStudent2() {
         new AcademicHistory(2, 51, "Aprobado", 6, 9, false, 7, 7);
         new AcademicHistory(2, 52, "Aprobado", 6, 9, false, 7, 7);
@@ -51,6 +80,9 @@ public class AcademicHistoryLoad extends AcademicHistory {
         new AcademicHistory(2, 67, "Aprobado", 6, 9, false, 7, 7);
     }
 
+    /**
+     * Loads the academic history data for student 3.
+     */
     private static void dataStudent3() {
         new AcademicHistory(3, 104, "Aprobado", 6, 9, false, 7, 7);
         new AcademicHistory(3, 104, "Aprobado", 6, 9, false, 7, 7);
@@ -83,6 +115,9 @@ public class AcademicHistoryLoad extends AcademicHistory {
         new AcademicHistory(3, 104, "Aprobado", 6, 9, false, 7, 7);
     }
 
+    /**
+     * Loads the academic history data for student 4.
+     */
     private static void dataStudent4() {
         new AcademicHistory(4, 165, "Promocionado", 7, 7, true, 0, 7);
         new AcademicHistory(4, 166, "Aprobado", 6, 7, false, 6, 6);
@@ -102,6 +137,9 @@ public class AcademicHistoryLoad extends AcademicHistory {
         new AcademicHistory(4, 183, "Cursando", 0, 0, false, 0, 0);
     }
 
+    /**
+     * Loads the academic history data for student 5.
+     */
     private static void dataStudent5() {
         new AcademicHistory(5, 199, "Aprobado", 6, 7, false, 7, 7);
         new AcademicHistory(5, 200, "Aprobado", 6, 7, false, 7, 7);
