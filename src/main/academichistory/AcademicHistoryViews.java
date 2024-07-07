@@ -21,7 +21,7 @@ import java.util.List;
  *
  * @author Giuliano Ignacio Poeta
  * @version 1.0.0
- * @since yyyy.mm.dd (complete with actual date when integrating)
+ * @since 2024.04.03
  */
 public class AcademicHistoryViews {
 

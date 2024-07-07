@@ -1,6 +1,28 @@
 package main.correlative;
 
+/**
+ * The CorrelativeLoad class is responsible for loading predefined correlative data
+ * for multiple careers. This class provides methods to initialize the data for each career
+ * and populate the correlatives records.
+ *
+ * <p>Methods:</p>
+ * <ul>
+ *   <li>data() - Loads the academic history data for all students.</li>
+ *   <li>dataCareer1() - Loads the academic history data for career 1.</li>
+ *   <li>dataCareer2() - Loads the academic history data for career 2.</li>
+ *   <li>dataCareer3() - Loads the academic history data for career 3.</li>
+ *   <li>dataCareer4() - Loads the academic history data for career 4.</li>
+ *   <li>dataCareer5() - Loads the academic history data for career 5.</li>
+ * </ul>
+ *
+ * @version 1.0.0
+ * @since 2024.04.05
+ * @author Giuliano Ignacio Poeta
+ */
 public class CorrelativeLoad extends Correlative {
+    /**
+     * Loads the correlative data for all careers.
+     */
     public static void data() {
         dataCareer1();
         dataCareer2();
@@ -9,6 +31,9 @@ public class CorrelativeLoad extends Correlative {
         dataCareer5();
     }
 
+    /**
+     * Loads the correlative data for career 1.
+     */
     private static void dataCareer1() {
         new Correlative(5, 1);
         new Correlative(5, 2);
@@ -188,6 +213,9 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(51, 33);
     }
 
+    /**
+     * Loads the correlative data for career 2.
+     */
     private static void dataCareer2() {
         new Correlative(55, 52);
         new Correlative(55, 53);
@@ -369,6 +397,9 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(103, 82);
     }
 
+    /**
+     * Loads the correlative data for career 3.
+     */
     private static void dataCareer3() {
         new Correlative(109, 105);
         new Correlative(110, 105);
@@ -484,6 +515,9 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(164, 157);
     }
 
+    /**
+     * Loads the correlative data for career 4.
+     */
     private static void dataCareer4() {
         new Correlative(168, 167);
         new Correlative(171, 168);
@@ -527,6 +561,9 @@ public class CorrelativeLoad extends Correlative {
         new Correlative(198, 189);
     }
 
+    /**
+     * Loads the correlative data for career 5.
+     */
     private static void dataCareer5() {
         new Correlative(205, 201);
         new Correlative(206, 200);

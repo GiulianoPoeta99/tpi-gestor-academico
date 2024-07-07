@@ -15,7 +15,36 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The CorrelativeViews class provides various methods to generate UI components for managing correlatives.
+ * It includes methods to display forms, tables, and other UI elements for creating, updating, viewing, and deleting correlatives.
+ *
+ * <p>Methods:</p>
+ * <ul>
+ *   <li>index() - Generates the main view for managing correlatives.</li>
+ *   <li>performSaveOrUpdate(Correlative model, JPanel subjectIDField, JPanel subjectCorrelativeIDField) - Performs save or update operations for a correlative model.</li>
+ *   <li>form(Correlative model, int idCareer, boolean update) - Creates a form for creating or updating a correlative.</li>
+ *   <li>create(Correlative model, int idCareer) - Generates the view for creating a new correlative.</li>
+ *   <li>update(Correlative model, int idCareer) - Generates the view for updating an existing correlative.</li>
+ *   <li>view(Correlative model) - Generates the view for displaying a correlative.</li>
+ *   <li>delete(boolean isDelete, int id) - Generates the view for deleting a correlative.</li>
+ *   <li>search() - Generates the view for searching correlatives.</li>
+ *   <li>searchCreate() - Generates the view for searching a career to create a new correlative.</li>
+ *   <li>searchSubject() - Generates the view for searching a subject to view its correlatives.</li>
+ *   <li>correlativePerSubject(int idSubject) - Generates the view for displaying correlatives of a specific subject.</li>
+ * </ul>
+ *
+ * @version 1.0.0
+ * @since 2024.04.04
+ * @author Giuliano Ignacio Poeta
+ */
 public class CorrelativeViews {
+
+    /**
+     * Generates the main view for managing correlatives.
+     *
+     * @return A list of JComponents for the main correlative management view.
+     */
     public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
@@ -52,6 +81,13 @@ public class CorrelativeViews {
         return components;
     }
 
+    /**
+     * Performs save or update operations for a correlative model.
+     *
+     * @param model The correlative model to save or update.
+     * @param subjectIDField The panel containing the subject ID field.
+     * @param subjectCorrelativeIDField The panel containing the correlative subject ID field.
+     */
     private static void performSaveOrUpdate(Correlative model, JPanel subjectIDField,
             JPanel subjectCorrelativeIDField) {
         Integer selectedSubjectId = (Integer) ((JComboBox<?>) subjectIDField.getComponent(0))
@@ -68,6 +104,14 @@ public class CorrelativeViews {
         }
     }
 
+    /**
+     * Creates a form for creating or updating a correlative.
+     *
+     * @param model The correlative model.
+     * @param idCareer The career ID.
+     * @param update True if the form is for updating, false if it's for creating.
+     * @return A JPanel containing the form.
+     */
     private static JPanel form(Correlative model, int idCareer, boolean update) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
@@ -128,6 +172,13 @@ public class CorrelativeViews {
         return divBox;
     }
 
+    /**
+     * Generates the view for creating a new correlative.
+     *
+     * @param model The correlative model.
+     * @param idCareer The career ID.
+     * @return A list of JComponents for the create correlative view.
+     */
     public static List<JComponent> create(Correlative model, int idCareer) {
         List<JComponent> components = new ArrayList<>();
 
@@ -146,6 +197,13 @@ public class CorrelativeViews {
         return components;
     }
 
+    /**
+     * Generates the view for updating an existing correlative.
+     *
+     * @param model The correlative model.
+     * @param idCareer The career ID.
+     * @return A list of JComponents for the update correlative view.
+     */
     public static List<JComponent> update(Correlative model, int idCareer) {
         List<JComponent> components = new ArrayList<>();
 
@@ -164,6 +222,12 @@ public class CorrelativeViews {
         return components;
     }
 
+    /**
+     * Generates the view for displaying a correlative.
+     *
+     * @param model The correlative model.
+     * @return A list of JComponents for the view correlative view.
+     */
     public static List<JComponent> view(Correlative model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -214,6 +278,13 @@ public class CorrelativeViews {
         return components;
     }
 
+    /**
+     * Generates the view for deleting a correlative.
+     *
+     * @param isDelete True if the correlative is to be deleted, false if confirming the delete action.
+     * @param id The correlative ID.
+     * @return A list of JComponents for the delete correlative view.
+     */
     public static List<JComponent> delete(boolean isDelete, int id) {
         List<JComponent> components = new ArrayList<>();
 
@@ -286,6 +357,11 @@ public class CorrelativeViews {
         return components;
     }
 
+    /**
+     * Generates the view for searching correlatives.
+     *
+     * @return A list of JComponents for the search correlative view.
+     */
     public static List<JComponent> search() {
         List<JComponent> components = new ArrayList<>();
 
@@ -346,6 +422,11 @@ public class CorrelativeViews {
         return components;
     }
 
+    /**
+     * Generates the view for searching a career to create a new correlative.
+     *
+     * @return A list of JComponents for the search create correlative view.
+     */
     public static List<JComponent> searchCreate() {
         List<JComponent> components = new ArrayList<>();
 
@@ -405,6 +486,11 @@ public class CorrelativeViews {
         return components;
     }
 
+    /**
+     * Generates the view for searching a subject to view its correlatives.
+     *
+     * @return A list of JComponents for the search subject correlative view.
+     */
     public static List<JComponent> searchSubject() {
         List<JComponent> components = new ArrayList<>();
 
@@ -464,6 +550,12 @@ public class CorrelativeViews {
         return components;
     }
 
+    /**
+     * Generates the view for displaying correlatives of a specific subject.
+     *
+     * @param idSubject The subject ID.
+     * @return A list of JComponents for the correlative per subject view.
+     */
     public static List<JComponent> correlativePerSubject(int idSubject) {
         List<JComponent> components = new ArrayList<>();
 
