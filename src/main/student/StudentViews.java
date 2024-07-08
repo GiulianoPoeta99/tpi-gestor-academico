@@ -12,7 +12,22 @@ import java.util.List;
 import main.common.components.*;
 import main.common.components.Button;
 
+/**
+ * This class provides various views for managing students.
+ * It includes methods for creating, updating, viewing, deleting, and searching for students.
+ * Each method returns a list of Swing components that make up the corresponding view.
+ *
+ * @author Giuliano Ignacio Poeta
+ * @version 1.0.0
+ * @since 2024.02.08
+ */
 public class StudentViews {
+    /**
+     * Generates the index view for students.
+     * This view includes options for creating, viewing, and searching for students.
+     *
+     * @return a list of JComponents for the index view.
+     */
     public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
@@ -47,6 +62,17 @@ public class StudentViews {
         return components;
     }
 
+    /**
+     * Performs save or update operation for a student.
+     * It sets the new values for the student's attributes.
+     *
+     * @param isRegister Indicates if it is a register operation.
+     * @param model The student model.
+     * @param firstNameField The text field for the first name.
+     * @param lastNameField The text field for the last name.
+     * @param birthDateField The text field for the birth date.
+     * @param careerIDField The panel for selecting the career ID.
+     */
     private static void performSaveOrUpdate(boolean isRegister, Student model, JTextField firstNameField,
             JTextField lastNameField, JTextField birthDateField, JPanel careerIDField) {
         String newFirstName = firstNameField.getText();
@@ -73,6 +99,14 @@ public class StudentViews {
         }
     }
 
+    /**
+     * Creates a form for student registration or updating.
+     *
+     * @param model The student model.
+     * @param update Indicates if it is an update operation.
+     * @param isRegister Indicates if it is a register operation.
+     * @return a JPanel containing the form.
+     */
     private static JPanel form(Student model, boolean update, boolean isRegister) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
@@ -150,6 +184,14 @@ public class StudentViews {
         return divBox;
     }
 
+    /**
+     * Generates the create view for students.
+     * This view includes a form for creating a new student.
+     *
+     * @param isRegister Indicates if it is a register operation.
+     * @param model The student model.
+     * @return a list of JComponents for the create view.
+     */
     public static List<JComponent> create(boolean isRegister, Student model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -167,6 +209,14 @@ public class StudentViews {
         return components;
     }
 
+    /**
+     * Generates the update view for students.
+     * This view includes a form for updating an existing student.
+     *
+     * @param isRegister Indicates if it is a register operation.
+     * @param model The student model.
+     * @return a list of JComponents for the update view.
+     */
     public static List<JComponent> update(boolean isRegister, Student model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -184,6 +234,13 @@ public class StudentViews {
         return components;
     }
 
+    /**
+     * Generates the view for displaying a student's details.
+     *
+     * @param isRegister Indicates if it is a register operation.
+     * @param model The student model.
+     * @return a list of JComponents for the view details view.
+     */
     public static List<JComponent> view(boolean isRegister, Student model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -233,6 +290,14 @@ public class StudentViews {
         return components;
     }
 
+    /**
+     * Generates the delete confirmation view for a student.
+     *
+     * @param isRegister Indicates if it is a register operation.
+     * @param isDelete Indicates if the student is to be deleted.
+     * @param id The ID of the student.
+     * @return a list of JComponents for the delete view.
+     */
     public static List<JComponent> delete(boolean isRegister, boolean isDelete, int id) {
         List<JComponent> components = new ArrayList<>();
 
@@ -303,6 +368,13 @@ public class StudentViews {
         return components;
     }
 
+    /**
+     * Generates the search view for students.
+     * This view includes a form for searching for students.
+     *
+     * @param isRegister Indicates if it is a register operation.
+     * @return a list of JComponents for the search view.
+     */
     public static List<JComponent> search(boolean isRegister) {
         List<JComponent> components = new ArrayList<>();
 
@@ -366,6 +438,12 @@ public class StudentViews {
         return components;
     }
 
+    /**
+     * Generates the view for enrolling a student in a career.
+     *
+     * @param model The student model.
+     * @return a list of JComponents for the enroll career view.
+     */
     public static List<JComponent> enrollCareer(Student model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -427,6 +505,12 @@ public class StudentViews {
         return components;
     }
 
+    /**
+     * Generates the search view for careers.
+     * This view includes a form for searching for careers.
+     *
+     * @return a list of JComponents for the search career view.
+     */
     public static List<JComponent> searchCareer() {
         List<JComponent> components = new ArrayList<>();
 
@@ -486,6 +570,12 @@ public class StudentViews {
         return components;
     }
 
+    /**
+     * Generates the view for displaying students enrolled in a specific career.
+     *
+     * @param idCareer The ID of the career.
+     * @return a list of JComponents for the students for career view.
+     */
     public static List<JComponent> studentsForCareer(int idCareer) {
         List<JComponent> components = new ArrayList<>();
 
