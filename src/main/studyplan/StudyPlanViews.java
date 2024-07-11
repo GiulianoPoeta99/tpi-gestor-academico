@@ -13,7 +13,36 @@ import main.common.components.Button;
 import main.subject.Subject;
 import main.subject.SubjectService;
 
+/**
+ * The StudyPlanViews class provides various static methods to create and manage
+ * the user interface components related to study plans, such as creating,
+ * updating, viewing, and deleting study plans.
+ *
+ * <p>Methods:</p>
+ * <ul>
+ *   <li>index() - Generates the components for the index view of study plans.</li>
+ *   <li>performSaveOrUpdate(StudyPlan model, JPanel typeField, JPanel careerIDField, JPanel isActiveField) -
+ *       Performs the save or update action for a study plan.</li>
+ *   <li>form(StudyPlan model, boolean update) - Generates the form components for creating or updating a study plan.</li>
+ *   <li>create(StudyPlan model) - Generates the components for the create view of a study plan.</li>
+ *   <li>update(StudyPlan model) - Generates the components for the update view of a study plan.</li>
+ *   <li>view(StudyPlan model) - Generates the components for the view of a specific study plan.</li>
+ *   <li>delete(boolean isDelete, int id) - Generates the components for deleting a study plan.</li>
+ *   <li>search(boolean viewSubject) - Generates the components for searching study plans.</li>
+ *   <li>viewSubjects(StudyPlan model) - Generates the components to view subjects related to a specific study plan.</li>
+ * </ul>
+ *
+ * @version 1.0.0
+ * @author Giuliano Ignacio Poeta
+ * @since 2024.02.27
+ */
 public class StudyPlanViews {
+
+    /**
+     * Generates the components for the index view of study plans.
+     *
+     * @return A list of JComponents for the index view.
+     */
     public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
@@ -48,6 +77,14 @@ public class StudyPlanViews {
         return components;
     }
 
+    /**
+     * Performs the save or update action for a study plan.
+     *
+     * @param model The StudyPlan model to be saved or updated.
+     * @param typeField The JPanel containing the type field.
+     * @param careerIDField The JPanel containing the career ID field.
+     * @param isActiveField The JPanel containing the isActive field.
+     */
     private static void performSaveOrUpdate(StudyPlan model, JPanel typeField, JPanel careerIDField,
             JPanel isActiveField) {
         String selectedType = (String) ((JComboBox<?>) typeField.getComponent(0)).getClientProperty("selectedIndex");
@@ -68,6 +105,13 @@ public class StudyPlanViews {
         }
     }
 
+    /**
+     * Generates the form components for creating or updating a study plan.
+     *
+     * @param model The StudyPlan model to be created or updated.
+     * @param update A boolean indicating whether the form is for updating.
+     * @return A JPanel containing the form components.
+     */
     private static JPanel form(StudyPlan model, boolean update) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
@@ -134,6 +178,12 @@ public class StudyPlanViews {
         return divBox;
     }
 
+    /**
+     * Generates the components for the create view of a study plan.
+     *
+     * @param model The StudyPlan model to be created.
+     * @return A list of JComponents for the create view.
+     */
     public static List<JComponent> create(StudyPlan model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -152,6 +202,12 @@ public class StudyPlanViews {
         return components;
     }
 
+    /**
+     * Generates the components for the update view of a study plan.
+     *
+     * @param model The StudyPlan model to be updated.
+     * @return A list of JComponents for the update view.
+     */
     public static List<JComponent> update(StudyPlan model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -170,6 +226,12 @@ public class StudyPlanViews {
         return components;
     }
 
+    /**
+     * Generates the components for the view of a specific study plan.
+     *
+     * @param model The StudyPlan model to be viewed.
+     * @return A list of JComponents for the view.
+     */
     public static List<JComponent> view(StudyPlan model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -218,6 +280,13 @@ public class StudyPlanViews {
         return components;
     }
 
+    /**
+     * Generates the components for deleting a study plan.
+     *
+     * @param isDelete A boolean indicating whether the deletion is confirmed.
+     * @param id The ID of the study plan to be deleted.
+     * @return A list of JComponents for the delete view.
+     */
     public static List<JComponent> delete(boolean isDelete, int id) {
         List<JComponent> components = new ArrayList<>();
 
@@ -287,6 +356,12 @@ public class StudyPlanViews {
         return components;
     }
 
+    /**
+     * Generates the components for searching study plans.
+     *
+     * @param viewSubject A boolean indicating whether to view subjects related to the study plan.
+     * @return A list of JComponents for the search view.
+     */
     public static List<JComponent> search(boolean viewSubject) {
         List<JComponent> components = new ArrayList<>();
 
@@ -350,6 +425,12 @@ public class StudyPlanViews {
         return components;
     }
 
+    /**
+     * Generates the components to view subjects related to a specific study plan.
+     *
+     * @param model The StudyPlan model whose subjects are to be viewed.
+     * @return A list of JComponents for viewing subjects of the study plan.
+     */
     public static List<JComponent> viewSubjects(StudyPlan model) {
         List<JComponent> components = new ArrayList<>();
         String career = ((Career) CareerService.getById(model.getIdCareer())).getName();
