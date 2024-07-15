@@ -10,7 +10,34 @@ import java.util.List;
 import main.common.components.*;
 import main.common.components.Button;
 
+/**
+ * The SubjectViews class provides various methods to generate and manage
+ * the graphical user interface components for subjects.
+ *
+ * <p>Methods:</p>
+ * <ul>
+ *   <li>index() - Generates the index view of subjects.</li>
+ *   <li>create(Subject model) - Generates the create view for a new subject.</li>
+ *   <li>update(Subject model) - Generates the update view for an existing subject.</li>
+ *   <li>view(Subject model) - Generates the view details for a specific subject.</li>
+ *   <li>delete(boolean isDelete, int id) - Generates the delete confirmation view for a subject.</li>
+ *   <li>search() - Generates the search view for subjects.</li>
+ * </ul>
+ *
+ * @see Subject
+ * @see SubjectController
+ * @see SubjectService
+ *
+ * @version 1.0.0
+ * @author Giuliano Ignacio Poeta
+ * @since 2024.02.28
+ */
 public class SubjectViews {
+    /**
+     * Generates the index view of subjects.
+     *
+     * @return A list of JComponents representing the index view.
+     */
     public static List<JComponent> index() {
         List<JComponent> components = new ArrayList<>();
 
@@ -42,6 +69,13 @@ public class SubjectViews {
         return components;
     }
 
+    /**
+     * Generates a form panel for subject creation or updating.
+     *
+     * @param model The subject model being created or updated.
+     * @param update A boolean indicating if the form is for updating.
+     * @return A JPanel containing the form.
+     */
     private static JPanel form(Subject model, boolean update) {
         JPanel divBox = UIComponent.bigBox();
         divBox.setLayout(new BorderLayout());
@@ -171,6 +205,12 @@ public class SubjectViews {
         return divBox;
     }
 
+    /**
+     * Generates the create view for a new subject.
+     *
+     * @param model The subject model to be created.
+     * @return A list of JComponents representing the create view.
+     */
     public static List<JComponent> create(Subject model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -189,6 +229,12 @@ public class SubjectViews {
         return components;
     }
 
+    /**
+     * Generates the update view for an existing subject.
+     *
+     * @param model The subject model to be updated.
+     * @return A list of JComponents representing the update view.
+     */
     public static List<JComponent> update(Subject model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -207,6 +253,12 @@ public class SubjectViews {
         return components;
     }
 
+    /**
+     * Generates the view details for a specific subject.
+     *
+     * @param model The subject model to be viewed.
+     * @return A list of JComponents representing the view details.
+     */
     public static List<JComponent> view(Subject model) {
         List<JComponent> components = new ArrayList<>();
 
@@ -255,6 +307,13 @@ public class SubjectViews {
         return components;
     }
 
+    /**
+     * Generates the delete confirmation view for a subject.
+     *
+     * @param isDelete A boolean indicating if the subject is to be deleted.
+     * @param id The ID of the subject to be deleted.
+     * @return A list of JComponents representing the delete confirmation view.
+     */
     public static List<JComponent> delete(boolean isDelete, int id) {
         List<JComponent> components = new ArrayList<>();
 
@@ -324,6 +383,11 @@ public class SubjectViews {
         return components;
     }
 
+    /**
+     * Generates the search view for subjects.
+     *
+     * @return A list of JComponents representing the search view.
+     */
     public static List<JComponent> search() {
         List<JComponent> components = new ArrayList<>();
 

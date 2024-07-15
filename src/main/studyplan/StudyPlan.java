@@ -70,7 +70,7 @@ import main.common.Model;
  *
  * @version 1.0.0
  * @author Giuliano Ignacio Poeta
- * @since 2027.12.06
+ * @since 2023.12.06
  */
 public class StudyPlan implements Model {
     public static final String TRANSLATE_NAME = "Plan de Estudio";

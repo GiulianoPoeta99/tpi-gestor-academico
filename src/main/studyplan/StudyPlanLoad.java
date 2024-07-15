@@ -12,7 +12,7 @@ package main.studyplan;
  * @see StudyPlan
  *
  * @version 1.0.0
- * @since yyyy.mm.dd
+ * @since 2024.04.05
 
  * @author Giuliano Ignacio Poeta
  */

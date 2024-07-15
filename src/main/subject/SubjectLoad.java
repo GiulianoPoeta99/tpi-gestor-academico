@@ -1,6 +1,28 @@
 package main.subject;
 
+/**
+ * The SubjectLoad class is responsible for loading predefined subject data
+ * for multiple careers. This class provides methods to initialize the data for each career
+ * and populate the subjects records.
+ *
+ * <p>Methods:</p>
+ * <ul>
+ *   <li>data() - Loads the academic history data for all careers.</li>
+ *   <li>dataCareer1() - Loads the subjects data for career 1.</li>
+ *   <li>dataCareer2() - Loads the subjects data for career 2.</li>
+ *   <li>dataCareer3() - Loads the subjects data for career 3.</li>
+ *   <li>dataCareer4() - Loads the subjects data for career 4.</li>
+ *   <li>dataCareer5() - Loads the subjects data for career 5.</li>
+ * </ul>
+ *
+ * @version 1.0.0
+ * @since 2024.04.05
+ * @author Giuliano Ignacio Poeta
+ */
 public class SubjectLoad extends Subject {
+    /**
+     * Loads the subjects data for all careers.
+     */
     public static void data() {
         dataCareer1();
         dataCareer2();
@@ -9,6 +31,9 @@ public class SubjectLoad extends Subject {
         dataCareer5();
     }
 
+    /**
+     * Loads the subjects data for career 1.
+     */
     private static void dataCareer1() {
         new Subject("Física I para Ciencias Naturales", false, true, 1, 1);
         new Subject("Introducción a la Problemática Ambiental", false, true, 1, 1);
@@ -63,6 +88,9 @@ public class SubjectLoad extends Subject {
         new Subject("Taller de Trabajo Final", false, true, 10, 1);
     }
 
+    /**
+     * Loads the subjects data for career 2.
+     */
     private static void dataCareer2() {
         new Subject("Física I para Ciencias Naturales", false, true, 1, 2);
         new Subject("Introducción a la Geología", false, true, 1, 2);
@@ -118,6 +146,9 @@ public class SubjectLoad extends Subject {
         new Subject("Riesgo Geológico y Geología Ambiental", false, true, 10, 2);
     }
 
+    /**
+     * Loads the subjects data for career 3.
+     */
     private static void dataCareer3() {
         new Subject("Introducción a la Ingeniería", false, true, 1, 3);
         new Subject("Introducción al Cálculo", false, true, 1, 3);
@@ -182,6 +213,9 @@ public class SubjectLoad extends Subject {
         new Subject("Trabajo Final 2", false, true, 10, 3);
     }
 
+    /**
+     * Loads the subjects data for career 4.
+     */
     private static void dataCareer4() {
         new Subject("Álgebra", false, true, 1, 4);
         new Subject("Elementos de Informática", false, true, 1, 4);
@@ -219,6 +253,9 @@ public class SubjectLoad extends Subject {
         new Subject("Proyecto de Software", false, true, 10, 4);
     }
 
+    /**
+     * Loads the subjects data for career 5.
+     */
     private static void dataCareer5() {
         new Subject("Contabilidad", false, true, 1, 5);
         new Subject("Introducción a la Economía", false, true, 1, 5);

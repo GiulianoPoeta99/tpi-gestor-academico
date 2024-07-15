@@ -7,7 +7,7 @@ package main.correlative;
  *
  * <p>Methods:</p>
  * <ul>
- *   <li>data() - Loads the academic history data for all students.</li>
+ *   <li>data() - Loads the academic history data for all careers.</li>
  *   <li>dataCareer1() - Loads the academic history data for career 1.</li>
  *   <li>dataCareer2() - Loads the academic history data for career 2.</li>
  *   <li>dataCareer3() - Loads the academic history data for career 3.</li>
