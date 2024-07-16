@@ -189,7 +189,7 @@ public class AcademicHistoryController implements Controller {
                 List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
                     AcademicHistory academicHistory = AcademicHistoryService
-                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubjectCorrelative(), model.getIdStudent());
                     if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado")
                             || Objects.equals(academicHistory.getState(), "Cursando")) {
                         canEnroll = false;
@@ -201,7 +201,7 @@ public class AcademicHistoryController implements Controller {
                 List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
                     AcademicHistory academicHistory = AcademicHistoryService
-                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubjectCorrelative(), model.getIdStudent());
                     if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado")
                             && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;
@@ -214,7 +214,7 @@ public class AcademicHistoryController implements Controller {
                 List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
                     AcademicHistory academicHistory = AcademicHistoryService
-                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubjectCorrelative(), model.getIdStudent());
                     if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado")
                             || Objects.equals(academicHistory.getState(), "Cursando")) {
                         canEnroll = false;
@@ -238,7 +238,7 @@ public class AcademicHistoryController implements Controller {
                 List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
                     AcademicHistory academicHistory = AcademicHistoryService
-                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubjectCorrelative(), model.getIdStudent());
                     if (academicHistory == null || Objects.equals(academicHistory.getState(), "Desaprobado")
                             || Objects.equals(academicHistory.getState(), "Cursando")) {
                         canEnroll = false;
@@ -262,7 +262,7 @@ public class AcademicHistoryController implements Controller {
                 List<Correlative> correlatives = CorrelativeService.getAllCorrelativesForSubject(model.getIdSubject());
                 for (Correlative correlative : correlatives) {
                     AcademicHistory academicHistory = AcademicHistoryService
-                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubject(), model.getIdStudent());
+                            .getAcademicHistoryFromSubjectStudent(correlative.getIdSubjectCorrelative(), model.getIdStudent());
                     if (academicHistory == null || (!Objects.equals(academicHistory.getState(), "Promocionado")
                             && !Objects.equals(academicHistory.getState(), "Aprobado"))) {
                         canEnroll = false;

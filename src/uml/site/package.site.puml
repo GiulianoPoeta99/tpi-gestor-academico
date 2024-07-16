@@ -1,8 +1,0 @@
-@startuml
-
-package site {
-    !include ./SiteController.puml
-    !include ./SiteViews.puml
-}
-
-@enduml

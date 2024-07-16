@@ -189,12 +189,13 @@ public class SubjectService extends Subject {
     public static Map<Integer, Subject> getAllSubjectsFromPreviousFourMonths(int idSubject, int countFourMonths) {
         Map<Integer, Subject> subjectsMap = new LinkedHashMap<>();
         Subject selectSubject = (Subject) SubjectService.getById(idSubject);
+        StudyPlan studyPlan = (StudyPlan) StudyPlanService.getById(selectSubject.getIdStudyPlan());
 
         int minFourMonths = selectSubject.getFourMonths() - countFourMonths;
 
-        for (Model model : Subject.getAll().values()) {
+        for (Model model : SubjectService.getAllSubjectsForCareer(studyPlan.getIdCareer()).values()) {
             if (model instanceof Subject subject) {
-                if ((subject.getFourMonths() >= minFourMonths)
+                if ((subject.getFourMonths() >= minFourMonths && subject.getFourMonths() != selectSubject.getFourMonths())
                         && (subject.getFourMonths() <= selectSubject.getFourMonths())) {
                     subjectsMap.put(subject.getId(), subject);
                 }
