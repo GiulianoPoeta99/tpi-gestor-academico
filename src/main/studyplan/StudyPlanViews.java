@@ -85,23 +85,25 @@ public class StudyPlanViews {
      * @param careerIDField The JPanel containing the career ID field.
      * @param isActiveField The JPanel containing the isActive field.
      */
-    private static void performSaveOrUpdate(StudyPlan model, JPanel typeField, JPanel careerIDField,
+    private static void performSaveOrUpdate(boolean update, StudyPlan model, JPanel typeField, JPanel careerIDField,
             JPanel isActiveField) {
         String selectedType = (String) ((JComboBox<?>) typeField.getComponent(0)).getClientProperty("selectedIndex");
         Integer selectedCareerId = (Integer) ((JComboBox<?>) careerIDField.getComponent(0))
                 .getClientProperty("selectedIndex");
-        boolean selectedIsActive = (boolean) ((JComboBox<?>) isActiveField.getComponent(0))
-                .getClientProperty("selectedIndex");
+        if (update) {
+            boolean selectedIsActive = (boolean) ((JComboBox<?>) isActiveField.getComponent(0))
+                    .getClientProperty("selectedIndex");
+            if (selectedIsActive != model.getIsActive()) {
+                model.setIsActive(selectedIsActive);
+            }
+        }
+
         if (selectedType != null && !selectedType.isEmpty() && !selectedType.equals(model.getType())) {
             model.setType(selectedType);
         }
 
         if (selectedCareerId > 0 && selectedCareerId != model.getIdCareer()) {
             model.setIdCareer(selectedCareerId);
-        }
-
-        if (selectedIsActive != model.getIsActive()) {
-            model.setIsActive(selectedIsActive);
         }
     }
 
@@ -159,12 +161,12 @@ public class StudyPlanViews {
         divButton.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton saveButton = Button.success("Guardar", () -> {
-            performSaveOrUpdate(model, typeField, careerIDField, isActiveField);
+            performSaveOrUpdate(update, model, typeField, careerIDField, isActiveField);
             StudyPlanController.getInstance().create(true, model);
         });
         if (update) {
             saveButton = Button.primary("Actualizar", () -> {
-                performSaveOrUpdate(model, typeField, careerIDField, isActiveField);
+                performSaveOrUpdate(update, model, typeField, careerIDField, isActiveField);
                 StudyPlanController.getInstance().update(true, model.getId());
             });
         }
