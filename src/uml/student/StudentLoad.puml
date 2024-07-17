@@ -1,0 +1,8 @@
+@startuml
+
+class StudentLoad {
+  + {static} data(): void
+}
+
+
+@enduml

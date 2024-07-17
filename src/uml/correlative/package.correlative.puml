@@ -1,0 +1,20 @@
+@startuml
+
+'package correlative {
+    !include ./Correlative.puml
+    !include ./CorrelativeController.puml
+    !include ./CorrelativeLoad.puml
+    !include ./CorrelativeService.puml
+    !include ./CorrelativeViews.puml
+
+    Correlative <|-- CorrelativeService: Inheritance
+    CorrelativeController *--> Correlative : Composition
+    CorrelativeService o--> CorrelativeController: Aggregation
+    CorrelativeController <--o CorrelativeViews: Aggregation
+    CorrelativeViews -- Correlative : Association
+    CorrelativeViews -- CorrelativeService : Association
+    CorrelativeLoad -- Correlative : Association
+'}
+
+
+@enduml

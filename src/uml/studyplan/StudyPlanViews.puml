@@ -1,0 +1,15 @@
+@startuml
+
+class StudyPlanViews {
+    + {static} index(): List<JComponent>
+    - {static} performSaveOrUpdate(update: boolean, model: StudyPlan, typeField: JPanel, careerIDField: JPanel, isActiveField: JPanel): void
+    - {static} form(model: StudyPlan, update: boolean): JPanel
+    + {static} create(model: StudyPlan): List<JComponent>
+    + {static} update(model: StudyPlan): List<JComponent>
+    + {static} view(model: StudyPlan): List<JComponent>
+    + {static} delete(isDelete: boolean, id: int): List<JComponent>
+    + {static} search(viewSubject: boolean): List<JComponent>
+    + {static} viewSubjects(model: StudyPlan): List<JComponent>
+}
+
+@enduml

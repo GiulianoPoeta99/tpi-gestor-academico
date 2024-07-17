@@ -1,0 +1,12 @@
+@startuml
+
+class SubjectLoad {
+    + {static} data(): void
+    - {static} dataCareer1(): void
+    - {static} dataCareer2(): void
+    - {static} dataCareer3(): void
+    - {static} dataCareer4(): void
+    - {static} dataCareer5(): void
+}
+
+@enduml

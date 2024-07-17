@@ -1,0 +1,20 @@
+@startuml
+
+'package academichistory {
+    !include ./AcademicHistory.puml
+    !include ./AcademicHistoryController.puml
+    !include ./AcademicHistoryLoad.puml
+    !include ./AcademicHistoryService.puml
+    !include ./AcademicHistoryViews.puml
+
+    AcademicHistory <|-- AcademicHistoryService: Inheritance
+    AcademicHistoryController *--> AcademicHistory : Composition
+    AcademicHistoryService o--> AcademicHistoryController: Aggregation
+    AcademicHistoryController <--o AcademicHistoryViews: Aggregation
+    AcademicHistoryViews -- AcademicHistory : Association
+    AcademicHistoryViews -- AcademicHistoryService : Association
+    AcademicHistoryLoad -- AcademicHistory : Association
+'}
+
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+
+class SiteController {
+    - {static} instance: SiteController
+    - SiteController()
+    + {static} getInstance(): SiteController
+    + principal(): void
+    + index(): void
+}
+
+@enduml

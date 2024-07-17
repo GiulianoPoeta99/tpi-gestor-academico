@@ -1,0 +1,12 @@
+@startuml
+
+class CorrelativeService {
+  + {static} getCustomColumns(): String[]
+  + {static} getCustomData(): List<Object[]>
+  + {static} getById(id: int): Model
+  + {static} getIDNameForSelect2(): Map<Integer, String>
+  + {static} getCustomDataForSubject(idSubject: int): List<Object[]>
+  + {static} getAllCorrelativesForSubject(idSubject: int): List<Correlative>
+}
+
+@enduml

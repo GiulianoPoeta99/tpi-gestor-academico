@@ -1,0 +1,163 @@
+@startuml AcademicManager
+
+note "The builders, setters, and getters \n are not included in the diagram." as N1
+
+package main {
+    class AcademicManager {
+        - loadData(): void
+        + main(String[] args): void
+    }
+
+    !include ./academichistory/package.academichistory.puml
+    !include ./career/package.career.puml
+    !include ./common/package.common.puml
+    !include ./correlative/package.correlative.puml
+    !include ./site/package.site.puml
+    !include ./student/package.student.puml
+    !include ./studyplan/package.studyplan.puml
+    !include ./subject/package.subject.puml
+
+    '? Main =====================================================================
+    AcademicManager ..> AcademicHistoryLoad : Dependency
+    AcademicManager ..> CareerLoad : Dependency
+    AcademicManager ..> CorrelativeLoad : Dependency
+    AcademicManager ..> SiteController : Dependency
+    AcademicManager ..> StudentLoad : Dependency
+    AcademicManager ..> StudyPlanLoad : Dependency
+    AcademicManager ..> SubjectLoad : Dependency
+
+    '? Models ===================================================================
+    Model <|.. AcademicHistory : Implements
+    Model <|.. Career : Implements
+    Model <|.. Correlative : Implements
+    Model <|.. Student : Implements
+    Model <|.. StudyPlan : Implements
+    Model <|.. Subject : Implements
+
+    '? Controllers ==============================================================
+    Controller <|.. SiteController : Implements
+    Controller <|.. AcademicHistoryController : Implements
+    Controller <|.. CareerController : Implements
+    Controller <|.. CorrelativeController : Implements
+    Controller <|.. SiteController : Implements
+    Controller <|.. StudentController : Implements
+    Controller <|.. StudyPlanController : Implements
+    Controller <|.. SubjectController : Implements
+
+    '? Site ====================================================================
+    SiteController ..> AcademicHistoryController : Dependency
+    SiteController ..> CareerController : Dependency
+    SiteController ..> CorrelativeController : Dependency
+    SiteController ..> StudentController : Dependency
+    SiteController ..> StudyPlanController : Dependency
+    SiteController ..> SubjectController : Dependency
+
+    SiteViews ..> LayOut : Dependency
+    SiteViews ..> Text : Dependency
+    SiteViews ..> UIComponent : Dependency
+
+    '? AcademicHistory =========================================================
+    AcademicHistoryController ..> Subject : Dependency
+    AcademicHistoryController ..> StudyPlan : Dependency
+    AcademicHistoryController ..> Correlative : Dependency
+    AcademicHistoryController ..> Student : Dependency
+    AcademicHistoryController ..> SubjectService : Dependency
+    AcademicHistoryController ..> StudyPlanService : Dependency
+    AcademicHistoryController ..> CorrelativeService : Dependency
+    AcademicHistoryController ..> StudentService : Dependency
+
+    AcademicHistoryService..> Subject : Dependency
+    AcademicHistoryService ..> Student : Dependency
+    AcademicHistoryService ..> SubjectService : Dependency
+    AcademicHistoryService ..> StudentService : Dependency
+
+    AcademicHistoryViews ..> Career : Dependency
+    AcademicHistoryViews ..> CareerService : Dependency
+    AcademicHistoryViews ..> Student : Dependency
+    AcademicHistoryViews ..> StudentService : Dependency
+    AcademicHistoryViews ..> Subject : Dependency
+    AcademicHistoryViews ..> SubjectService : Dependency
+    AcademicHistoryViews ..> Text : Dependency
+    AcademicHistoryViews ..> UIComponent : Dependency
+    AcademicHistoryViews ..> Common : Dependency
+    AcademicHistoryViews ..> Button : Dependency
+    AcademicHistoryViews ..> Input : Dependency
+
+    '? Career =================================================================
+    CareerController ..> StudyPlan : Dependency
+    CareerController ..> StudyPlanService : Dependency
+
+    CareerViews ..> StudyPlan : Dependency
+    CareerViews ..> Subject : Dependency
+    CareerViews ..> SubjectService : Dependency
+    CareerViews ..> Text : Dependency
+    CareerViews ..> UIComponent : Dependency
+    CareerViews ..> Common : Dependency
+    CareerViews ..> Button : Dependency
+    CareerViews ..> Input : Dependency
+
+    '? Correlative ============================================================
+    CorrelativeController ..> Career : Dependency
+    CorrelativeController ..> CareerService : Dependency
+    CorrelativeController ..> StudyPlan : Dependency
+    CorrelativeController ..> StudyPlanService : Dependency
+    CorrelativeController ..> Subject : Dependency
+    CorrelativeController ..> SubjectService : Dependency
+
+    CorrelativeService ..> Subject : Dependency
+    CorrelativeService ..> SubjectService : Dependency
+
+    CorrelativeViews ..> Career : Dependency
+    CorrelativeViews ..> CareerService : Dependency
+    CorrelativeViews ..> Subject : Dependency
+    CorrelativeViews ..> SubjectService : Dependency
+    CorrelativeViews ..> Button : Dependency
+    CorrelativeViews ..> Common : Dependency
+    CorrelativeViews ..> Input : Dependency
+    CorrelativeViews ..> Text : Dependency
+    CorrelativeViews ..> UIComponent : Dependency
+
+    '? Student =================================================================
+    StudentService ..> Career : Dependency
+    StudentService ..> CareerService : Dependency
+
+    StudentViews ..> Career : Dependency
+    StudentViews ..> CareerService : Dependency
+    StudentViews ..> Text : Dependency
+    StudentViews ..> UIComponent : Dependency
+    StudentViews ..> Common : Dependency
+    StudentViews ..> Button : Dependency
+    StudentViews ..> Input : Dependency
+
+    '? StudyPlan ==============================================================
+    StudyPlanService ..> Career : Dependency
+    StudyPlanService ..> CareerService : Dependency
+
+    StudyPlanViews ..> Career : Dependency
+    StudyPlanViews ..> CareerService : Dependency
+    StudyPlanViews ..> Subject : Dependency
+    StudyPlanViews ..> SubjectService : Dependency
+    StudyPlanViews ..> Button : Dependency
+    StudyPlanViews ..> Common : Dependency
+    StudyPlanViews ..> Input : Dependency
+    StudyPlanViews ..> Text : Dependency
+    StudyPlanViews ..> UIComponent : Dependency
+
+    '? Subject ===============================================================
+    SubjectController ..> StudyPlan : Dependency
+    SubjectController ..> StudyPlanService : Dependency
+
+    SubjectService ..> Career : Dependency
+    SubjectService ..> CareerService : Dependency
+    SubjectService ..> StudyPlan : Dependency
+    SubjectService ..> StudyPlanService : Dependency
+
+    SubjectViews ..> CareerService : Dependency
+    SubjectViews ..> Button : Dependency
+    SubjectViews ..> Common : Dependency
+    SubjectViews ..> Input : Dependency
+    SubjectViews ..> Text : Dependency
+    SubjectViews ..> UIComponent : Dependency
+}
+
+@enduml

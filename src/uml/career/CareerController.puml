@@ -1,0 +1,17 @@
+@startuml
+
+class CareerController {
+  - {static} instance : CareerController
+
+  - CareerController()
+  + {static} getInstance() : CareerController
+  + index() : void
+  + create(save : boolean, model : Career) : void
+  + update(save : boolean, id : int) : void
+  + view(id : int) : void
+  + delete(validation : boolean, id : int) : void
+  + search(viewSubjects : boolean) : void
+  + viewSubjects(idCareer : int) : void
+}
+
+@enduml

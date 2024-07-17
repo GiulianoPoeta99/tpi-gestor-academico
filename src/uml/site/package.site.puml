@@ -1,0 +1,10 @@
+@startuml
+
+'package site {
+    !include ./SiteController.puml
+    !include ./SiteViews.puml
+
+    SiteController <--o SiteViews: Aggregation
+'}
+
+@enduml

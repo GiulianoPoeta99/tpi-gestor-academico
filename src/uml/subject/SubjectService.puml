@@ -1,0 +1,15 @@
+@startuml
+
+class SubjectService {
+    + {static} getCustomData(): List<Object[]>
+    + {static} getCustomColumns(): String[]
+    + {static} getById(id: int): Model
+    + {static} getIDNameForSelect2(): Map<Integer, String>
+    + {static} getCustomDataForStudyPlan(idStudyPlan: int): List<Object[]>
+    + {static} getCustomColumnsForStudyPlan(): String[]
+    + {static} getAllSubjectsForCareer(idCareer: int): Map<Integer, Model>
+    + {static} getAllSubjectsForCareerForSelect2(idCareer: int): Map<Integer, String>
+    + {static} getAllSubjectsFromPreviousFourMonths(idSubject: int, countFourMonths: int): Map<Integer, Subject>
+}
+
+@enduml

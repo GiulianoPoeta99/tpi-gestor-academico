@@ -1,0 +1,17 @@
+@startuml
+
+class StudentViews {
+    + {static} index(): List<JComponent>
+    - {static} performSaveOrUpdate(isRegister: boolean, model: Student, firstNameField: JTextField, lastNameField: JTextField, birthDateField: JTextField, careerIDField: JPanel): void
+    - {static} form(model: Student, update: boolean, isRegister: boolean): JPanel
+    + {static} create(isRegister: boolean, model: Student): List<JComponent>
+    + {static} update(isRegister: boolean, model: Student): List<JComponent>
+    + {static} view(isRegister: boolean, model: Student): List<JComponent>
+    + {static} delete(isRegister: boolean, isDelete: boolean, id: int): List<JComponent>
+    + {static} search(isRegister: boolean): List<JComponent>
+    + {static} enrollCareer(model: Student): List<JComponent>
+    + {static} searchCareer(): List<JComponent>
+    + {static} studentsForCareer(idCareer: int): List<JComponent>
+}
+
+@enduml

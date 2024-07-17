@@ -1,0 +1,29 @@
+@startuml
+
+class AcademicHistory {
+    + {static} TRANSLATE_NAME: String
+    + {static} TYPES_STATE: List<String>
+    - id: int
+    - idStudent: int
+    - idSubject: int
+    - state: String
+    - partial1: int
+    - partial2: int
+    - isPromoted: boolean
+    - finalExam: int
+    - grade: int
+    # {static} serial: int
+    # {static} all: Map<Integer, Model>
+
+    + {static} getAll() : Map<Integer, Model>
+    # {static} addSerial(): void
+    + validate(): boolean
+    + save(): boolean
+    + update(): boolean
+    + delete(): void
+    + getAttributeValues(): Object[]
+    + getAttributeNames(): String[]
+    + toString(): String
+}
+
+@enduml

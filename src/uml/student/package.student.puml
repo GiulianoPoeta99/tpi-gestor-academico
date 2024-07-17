@@ -1,0 +1,19 @@
+@startuml
+
+'package student {
+    !include ./Student.puml
+    !include ./StudentController.puml
+    !include ./StudentLoad.puml
+    !include ./StudentService.puml
+    !include ./StudentViews.puml
+
+    Student <|-- StudentService: Inheritance
+    StudentController *--> Student : Composition
+    StudentService o--> StudentController: Aggregation
+    StudentController <--o StudentViews: Aggregation
+    StudentViews -- Student : Association
+    StudentViews -- StudentService : Association
+    StudentLoad -- Student : Association
+'}
+
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+
+class LayOut {
+  - {static} contentPanel: JPanel
+
+  + {static} mainFrame(): JFrame
+  + {static} sidePanel(Map<String, Runnable> redirections): JPanel
+  + {static} sideButton(String text, Runnable redirection): JButton
+  + {static} topPanel(): JPanel
+  + {static} contentPanel(): JPanel
+  + {static} getContentPanel(): JPanel
+}
+
+
+@enduml

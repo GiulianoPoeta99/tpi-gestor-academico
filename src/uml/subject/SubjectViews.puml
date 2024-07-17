@@ -1,0 +1,13 @@
+@startuml
+
+class SubjectViews {
+  + {static} index(): List<JComponent>
+  - {static} form(Subject model, boolean update): JPanel
+  + {static} create(Subject model): List<JComponent>
+  + {static} update(Subject model): List<JComponent>
+  + {static} view(Subject model): List<JComponent>
+  + {static} delete(boolean isDelete, int id): List<JComponent>
+  + {static} search(): List<JComponent>
+}
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+
+class AcademicHistoryLoad {
+    + {static} data(): void
+    - {static} dataStudent1(): void
+    - {static} dataStudent2(): void
+    - {static} dataStudent3(): void
+    - {static} dataStudent4(): void
+    - {static} dataStudent5(): void
+}
+
+@enduml

@@ -1,7 +1,5 @@
 package main.student;
 
-import main.career.Career;
-
 import java.time.LocalDate;
 
 /**

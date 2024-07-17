@@ -1,0 +1,17 @@
+@startuml
+
+class Common {
+  + {static} PRIMARY_COLOR: Color
+  + {static} SUCCESS_COLOR: Color
+  + {static} WARNING_COLOR: Color
+  + {static} DANGER_COLOR: Color
+  + {static} INFO_COLOR: Color
+  + {static} SECONDARY_COLOR: Color
+  + {static} TEXT_COLOR: Color
+  + {static} BACKGROUND_COLOR: Color
+  + {static} COLUMN_BACKGROUND_COLOR: Color
+  + {static} DEFAULT_FONT: String
+}
+
+
+@enduml

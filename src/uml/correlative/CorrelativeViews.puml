@@ -1,0 +1,17 @@
+@startuml
+
+class CorrelativeViews {
+  + {static} index(): List<JComponent>
+  - {static} performSaveOrUpdate(model: Correlative, subjectIDField: JPanel, subjectCorrelativeIDField: JPanel): void
+  - {static} form(model: Correlative, idCareer: int, update: boolean): JPanel
+  + {static} create(model: Correlative, idCareer: int): List<JComponent>
+  + {static} update(model: Correlative, idCareer: int): List<JComponent>
+  + {static} view(model: Correlative): List<JComponent>
+  + {static} delete(isDelete: boolean, id: int): List<JComponent>
+  + {static} search(): List<JComponent>
+  + {static} searchCreate(): List<JComponent>
+  + {static} searchSubject(): List<JComponent>
+  + {static} correlativePerSubject(idSubject: int): List<JComponent>
+}
+
+@enduml

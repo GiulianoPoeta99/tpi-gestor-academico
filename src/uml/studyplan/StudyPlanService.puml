@@ -1,0 +1,12 @@
+@startuml
+
+class StudyPlanService {
+    + {static} getCustomColumns(): String[]
+    + {static} getCustomData(): List<Object[]>
+    + {static} getById(id: int): Model
+    + {static} getByIdCareer(idCareer: int): Model
+    + {static} getTypeForSelect2(): Map<String, String>
+    + {static} getIDNameForSelect2(): Map<Integer, String>
+}
+
+@enduml

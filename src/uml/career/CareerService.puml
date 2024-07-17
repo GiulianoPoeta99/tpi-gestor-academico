@@ -1,0 +1,10 @@
+@startuml
+
+class CareerService {
+  + {static} getCustomColumns() : String[]
+  + {static} getCustomData() : List<Object[]>
+  + {static} getById(id : int) : Model
+  + {static} getIDNameForSelect2() : Map<Integer, String>
+}
+
+@enduml

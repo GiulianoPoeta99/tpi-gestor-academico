@@ -1,0 +1,19 @@
+@startuml
+
+'package subject {
+    !include ./Subject.puml
+    !include ./SubjectController.puml
+    !include ./SubjectLoad.puml
+    !include ./SubjectService.puml
+    !include ./SubjectViews.puml
+
+    Subject <|-- SubjectService: Inheritance
+    SubjectController *--> Subject : Composition
+    SubjectService o--> SubjectController: Aggregation
+    SubjectController <--o SubjectViews: Aggregation
+    SubjectViews -- Subject : Association
+    SubjectViews -- SubjectService : Association
+    SubjectLoad -- Subject : Association
+'}
+
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+
+class SiteViews {
+    + {static} layout(redirections: Map<String, Runnable>): void
+    + {static} index(): List<JComponent>
+}
+
+@enduml

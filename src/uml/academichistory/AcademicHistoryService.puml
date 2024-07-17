@@ -1,0 +1,14 @@
+@startuml
+
+class AcademicHistoryService {
+    + {static} getCustomColumns(): String[]
+    + {static} getCustomData(): List<Object[]>
+    + {static} getById(id: int): Model
+    + {static} getIDNameForSelect2(): Map<Integer, String>
+    + {static} getStateForSelect2(): Map<String, String>
+    + {static} getAllAcademicHistoryFromStudent(idStudent: int): Map<Integer, Model>
+    + {static} getCustomDataForStudent(idStudent: int): List<Object[]>
+    + {static} getAcademicHistoryFromSubjectStudent(idSubject: int, idStudent: int): AcademicHistory
+}
+
+@enduml

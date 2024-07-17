@@ -1,0 +1,17 @@
+@startuml
+
+class Input {
+  - {static} WIDTH: int
+  - {static} HEIGHT: int
+
+  - {static} configureComboBox(JComboBox<String> comboBox): void
+  - {static} configureComboBoxWithMap(JComboBox<String> comboBox, Map<?, String> options): void
+  + {static} createInput(String initialValue): JTextField
+  + {static} createDateInput(LocalDate initialValue): JTextField
+  + {static} createSelect2InputStrInt(Map<Integer, String> options): JPanel
+  + {static} createSelect2InputStrStr(Map<String, String> options): JPanel
+  + {static} createSelect2InputBoolStr(): JPanel
+}
+
+
+@enduml

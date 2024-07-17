@@ -1,0 +1,12 @@
+@startuml
+
+interface Model {
+  + validate(): boolean
+  + save(): boolean
+  + update(): boolean
+  + delete(): void
+  + getAttributeValues(): Object[]
+  + getAttributeNames(): String[]
+}
+
+@enduml

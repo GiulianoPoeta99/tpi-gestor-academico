@@ -1,0 +1,20 @@
+@startuml
+
+'package career {
+    !include ./Career.puml
+    !include ./CareerController.puml
+    !include ./CareerLoad.puml
+    !include ./CareerService.puml
+    !include ./CareerViews.puml
+
+
+    Career <|-- CareerService: Inheritance
+    CareerController *--> Career : Composition
+    CareerService o--> CareerController: Aggregation
+    CareerController <--o CareerViews: Aggregation
+    CareerViews -- Career : Association
+    CareerViews -- CareerService : Association
+    CareerLoad -- Career : Association
+'}
+
+@enduml

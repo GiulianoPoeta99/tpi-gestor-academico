@@ -1,0 +1,11 @@
+@startuml
+
+class StudentService {
+  + {static} getCustomColumns(): String[]
+  + {static} getCustomData(): List<Object[]>
+  + {static} getById(id: int): Model
+  + {static} getIDNameForSelect2(): Map<Integer, String>
+  + {static} getCustomDataForCareer(idCareer: int): List<Object[]>
+}
+
+@enduml

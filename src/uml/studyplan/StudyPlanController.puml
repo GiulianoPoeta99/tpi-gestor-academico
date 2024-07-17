@@ -1,0 +1,16 @@
+@startuml
+
+class StudyPlanController {
+    - {static} instance: StudyPlanController
+
+    + {static} getInstance(): StudyPlanController
+    + index(): void
+    + create(save: boolean, model: StudyPlan): void
+    + update(save: boolean, id: int): void
+    + view(id: int): void
+    + delete(validation: boolean, id: int): void
+    + search(viewSubjects: boolean): void
+    + viewSubjects(idStudyPlan: int): void
+}
+
+@enduml

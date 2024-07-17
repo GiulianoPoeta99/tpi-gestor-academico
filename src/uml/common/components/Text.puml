@@ -1,0 +1,15 @@
+@startuml
+
+class Text {
+  - {static} configureLabel(String text, int fontSize): JLabel
+  + {static} h1(String text): JLabel
+  + {static} h2(String text): JLabel
+  + {static} h3(String text): JLabel
+  + {static} h4(String text): JLabel
+  + {static} h5(String text): JLabel
+  + {static} h6(String text): JLabel
+  + {static} p(String text): JLabel
+  + {static} label(String text): JLabel
+}
+
+@enduml

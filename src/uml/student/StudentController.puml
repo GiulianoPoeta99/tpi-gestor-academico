@@ -1,0 +1,19 @@
+@startuml
+
+
+class StudentController {
+  - {static} instance: StudentController
+
+  + {static} getInstance(): StudentController
+  + index(): void
+  + create(isRegister: boolean, save: boolean, model: Student): void
+  + update(isRegister: boolean, save: boolean, id: int): void
+  + view(isRegister: boolean, id: int): void
+  + delete(isRegister: boolean, validation: boolean, id: int): void
+  + search(isRegister: boolean): void
+  + enrollCareer(idStudent: int): void
+  + searchCareer(): void
+  + studentsForCareer(idCareer: int): void
+}
+
+@enduml

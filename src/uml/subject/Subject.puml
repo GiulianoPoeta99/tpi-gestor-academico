@@ -1,0 +1,25 @@
+@startuml
+
+class Subject {
+  + {static} TRANSLATE_NAME: String
+  - id: int
+  - name: String
+  - isOptional: boolean
+  - isPromotable: boolean
+  - fourMonths: int
+  - idStudyPlan: int
+  # {static} serial: int
+  # {static} all: Map<Integer, Model>
+
+  + {static} getAll(): Map<Integer, Model>
+  # {static} addSerial(): void
+  + validate(): boolean
+  + save(): boolean
+  + update(): boolean
+  + delete(): void
+  + getAttributeValues(): Object[]
+  + getAttributeNames(): String[]
+  + toString(): String
+}
+
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+
+interface Controller {
+  + render(Supplier<List<JComponent>> viewMethod): void
+}
+
+@enduml

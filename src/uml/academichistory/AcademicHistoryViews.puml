@@ -1,0 +1,18 @@
+@startuml
+
+class AcademicHistoryViews {
+    + {static} index(): List<JComponent>
+    - {static} performSaveOrUpdate(model: AcademicHistory, studentIDField: JPanel, subjectIDField: JPanel, stateField: JPanel, partial1Field: JTextField, partial2Field: JTextField, isPromotedField: JPanel, finalExamField: JTextField, gradeField: JTextField): void
+    - {static} form(model: AcademicHistory, update: boolean): JPanel
+    + {static} create(model: AcademicHistory): List<JComponent>
+    + {static} update(model: AcademicHistory): List<JComponent>
+    + {static} view(model: AcademicHistory): List<JComponent>
+    + {static} delete(isDelete: boolean, id: int): List<JComponent>
+    + {static} search(): List<JComponent>
+    + {static} searchStudent(isVerifyGraduate: boolean, isVerifyStudent: boolean): List<JComponent>
+    + {static} enrollSubject(model: AcademicHistory): List<JComponent>
+    + {static} historyPerStudent(idStudent: int): List<JComponent>
+    + {static} verifyGraduate(isGraduated: boolean, subjectsNotApproved: List<Subject>): List<JComponent>
+}
+
+@enduml

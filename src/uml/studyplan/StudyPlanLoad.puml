@@ -1,0 +1,7 @@
+@startuml
+
+class StudyPlanLoad {
+    + {static} data(): void
+}
+
+@enduml

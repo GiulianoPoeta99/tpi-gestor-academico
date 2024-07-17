@@ -1,0 +1,18 @@
+@startuml
+
+class CorrelativeController {
+    - {static} instance: CorrelativeController
+
+    + {static} getInstance(): CorrelativeController
+    + index(): void
+    + create(save: boolean, model: Correlative, idCareer: int): void
+    + update(save: boolean, id: int): void
+    + view(id: int): void
+    + delete(validation: boolean, id: int): void
+    + search(): void
+    + searchCreate(): void
+    + searchSubject(): void
+    + correlativePerSubject(idSubject: int): void
+}
+
+@enduml

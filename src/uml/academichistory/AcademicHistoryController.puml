@@ -1,0 +1,19 @@
+@startuml
+
+class AcademicHistoryController {
+    - {static} instance: AcademicHistoryController
+
+    + {static} getInstance(): AcademicHistoryController
+    + index(): void
+    + create(save: boolean, model: AcademicHistory): void
+    + update(save: boolean, id: int): void
+    + view(id: int): void
+    + delete(validation: boolean, id: int): void
+    + search(): void
+    + searchStudent(isVerifyGraduate: boolean, isVerifyStudent: boolean): void
+    + enrollSubject(save: boolean, model: AcademicHistory, idStudent: int): void
+    + viewPerStudent(idStudent: int): void
+    + verifyGraduate(idStudent: int): void
+}
+
+@enduml

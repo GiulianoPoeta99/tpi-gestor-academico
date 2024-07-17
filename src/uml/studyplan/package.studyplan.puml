@@ -1,0 +1,19 @@
+@startuml
+
+'package studyplan {
+    !include ./StudyPlan.puml
+    !include ./StudyPlanController.puml
+    !include ./StudyPlanLoad.puml
+    !include ./StudyPlanService.puml
+    !include ./StudyPlanViews.puml
+
+    StudyPlan <|-- StudyPlanService: Inheritance
+    StudyPlanController *--> StudyPlan : Composition
+    StudyPlanService o--> StudyPlanController: Aggregation
+    StudyPlanController <--o StudyPlanViews: Aggregation
+    StudyPlanViews -- StudyPlan : Association
+    StudyPlanViews -- StudyPlanService : Association
+    StudyPlanLoad -- StudyPlan : Association
+'}
+
+@enduml

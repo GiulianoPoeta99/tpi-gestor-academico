@@ -1,0 +1,26 @@
+@startuml
+
+class Student {
+  + {static} TRANSLATE_NAME: String
+  - id: int
+  - dossierNumber: String
+  - firstName: String
+  - lastName: String
+  - birthDate: LocalDate
+  - idCareer: int
+  # {static} serial: int
+  # {static} all: Map<Integer, Model>
+
+  + {static} getAll(): Map<Integer, Model>
+  # {static} addSerial(): void
+  + validate(): boolean
+  + save(): boolean
+  + update(): boolean
+  + delete(): void
+  + getAttributeValues(): Object[]
+  + getAttributeNames(): String[]
+  + toString(): String
+}
+
+
+@enduml

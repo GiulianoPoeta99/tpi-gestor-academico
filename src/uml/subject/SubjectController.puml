@@ -1,0 +1,15 @@
+@startuml
+
+class SubjectController {
+    - {static} instance: SubjectController
+
+    + {static} getInstance(): SubjectController
+    + index(): void
+    + create(save: boolean, model: Subject, idCareer: int): void
+    + update(save: boolean, id: int): void
+    + view(id: int): void
+    + delete(validation: boolean, id: int): void
+    + search(): void
+}
+
+@enduml
